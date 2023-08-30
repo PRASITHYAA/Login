@@ -484,15 +484,14 @@
                                 <div class="input-group">
                                     <input type="text" class="form-control bg" id="spouse_name"
                                         name="spouse_name" placeholder="Spouse Name"
-                                         required>
+                                         >
                                 </div>
                                 <!-- spousedob -->
                                 <label  class="form-label">Date of Birth <span
                                         class="red">*</span></label>
                                 <div class="input-group">
                                     <input type="date" class="form-control bg" name="spouse_date_of_birth"
-                                       id="spouse_date_of_birth"
-                                         required>
+                                       id="spouse_date_of_birth" >
                                 </div>
                                 <!-- spouseemail -->
                                 <label  class="form-label">Email <span
@@ -506,7 +505,7 @@
                                 <label  class="form-label">Phone/Mobile <span
                                         class="red">*</span></label>
                                 <div class="input-group">
-                                    <input type="tel" class="phoneInputField" name="spouse_phone" id="spouse_phone" required>
+                                    <input type="tel" class="phoneInputField" name="spouse_phone" id="spouse_phone" >
                                     <p class="errorText" style="color: red;"></p>
 
                                 </div>
@@ -518,7 +517,7 @@
                                 <div class="input-group">
                                     <input type="file" class="form-control" name="spouse_image" accept="image/*"
                                         id="spouse_image"
-                                        required>
+                                        >
                                 </div>
                                 <div class="form-group">
                                     <img id="spouseimagePreview" src="#" alt="Image Preview"
