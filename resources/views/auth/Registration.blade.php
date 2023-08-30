@@ -4,9 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>registration</title>
+    <title>Registration Form</title>
+    {{-- bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
 </head>
 
 <body>
@@ -16,17 +21,18 @@
             color: red;
         }
 
-        .register {
+        .bg {
             background-color: rgb(240, 244, 223);
         }
 
-        .register:hover {
+        .bg:hover {
             background-color: white;
         }
     </style>
     <div class="container-fluid">
         <div class="container mt-5 d-flex align-items-center justify-content-center ">
             <div class="card " style="width: 40%">
+
             {{-- error display --}}
             @if ($errors->has('email'))
                 <div class="alert alert-danger">
@@ -41,26 +47,31 @@
                 {{-- name --}}
                 <div class="col">
                     <label for="name" class="col-form-label">Name<span class="star">*</span></label>
-                    <input type="name" class="form-control register " id="name" name="name"
+                    <input type="name" class="form-control bg " id="name" name="name"
                         placeholder="Enter Your Name" required>
                 </div>
                 {{-- email --}}
                 <div class="col">
                     <label for="email" class="col-form-label">Email<span class="star">*</span></label>
-                    <input type="email" class="form-control register" id="email" name="email"
+                    <input type="email" class="form-control bg " id="email" name="email"
                         placeholder="Enter Your Email" required>
                 </div>
                 {{-- password --}}
                 <div class="col">
                     <label for="pwd" class="col-form-label">Password<span class="star ">*</span></label>
-                    <input type="password" class="form-control register" id="pwd" name="password"
+                    <input type="password" class="form-control bg @error('password') is-invalid @enderror" id="confirmPwd" id="pwd" name="password"
                         placeholder="Enter Your Password" required>
+
+
                 </div>
                 {{-- confirm password --}}
                 <div class="col">
                     <label for="confirmPwd" class="col-form-label">Confirm Password<span class="star">*</span></label>
-                    <input type="password" class="form-control register" id="confirmPwd" name="password_confirmation"
+                    <input type="password" class="form-control bg @error('password') is-invalid @enderror" id="confirmPwd" name="password_confirmation"
                         placeholder="Confirm Your Password" required>
+                        @error('password')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <br>
                 <!-- check box -->
@@ -70,16 +81,13 @@
                     <label class="form-check-label" for="exampleCheck1">I agree to terms & Policy.</label>
                 </div>
                 {{-- button --}}
-                <button type="submit" style="border-radius: 40px;font-weight: bold;;"
+                <button type="submit" style="border-radius: 40px;font-weight: bold;"
                     class="btn btn-warning px-4 m-2">REGISTER</button>
                 <P>Have an account already? <a  href="login">Login</a> </P>
                 @csrf
             </form>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-        </script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@ class LoginController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:6',
         ],
         );
 
@@ -27,7 +27,7 @@ class LoginController extends Controller
             Auth::login($user);
 
             // return redirect('home');
-            return redirect()->route('home')->with('success', 'Your Login successfully!');
+            return redirect()->route('users.index')->with('success', 'Your Login successfully!');
         } else {
             return back()->with('error', 'Invalid email or password')->withInput();
         }
