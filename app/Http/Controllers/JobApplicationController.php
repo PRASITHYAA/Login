@@ -9,7 +9,7 @@ class JobApplicationController extends Controller
 {
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $jobApplication = $request->validate([
             'sector' => 'required',
             'postion' => 'required',
