@@ -32,7 +32,7 @@ class JobApplication extends Model
         'Permanant_city',
         'Permanant_postal_code',
         'permanant_phone',
-        'permanant-country',
+        'permanant_country',
         'permanant_address',
 
         // father

@@ -34,7 +34,7 @@ class JobApplicationController extends Controller
             'Permanant_city' => 'required_if:permanant_address_input,yes',
             'Permanant_postal_code' => 'required_if:permanant_address_input,yes',
             'permanant_phone' => 'required_if:permanant_address_input,yes',
-            'permanant-country' => 'required_if:permanant_address_input,yes',
+            'permanant_country' => 'required_if:permanant_address_input,yes',
             'permanant_address' => 'required_if:permanant_address_input,yes',
 
             // fathername
