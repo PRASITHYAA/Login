@@ -10,15 +10,21 @@ class Disclaimer extends Model
     use HasFactory;
 
     protected $fillable = [
-        
-        'Expectedatetojoin',
 
-        'CurrentSalary',
+        'expected_date_to_join',
 
-        'ExpectedSalary',
+        'current_salary',
 
-         'Signature',
+        'expected_salary',
 
-         'place',
+         'disclaimer_signature',
+
+         'disclaimer_date',
+
+         'disclaimer_time',
+
+         'disclamer_print_name',
+
+         'disclaimer_place',
 ];
 }

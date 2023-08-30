@@ -384,10 +384,9 @@
                                 </div>
                                 <!--address -->
                                 <div class="col-md-4">
-                                    <label class="form-label">Address <span class="red">*</span></label>
-                                    <input type="text" name="permanent_address" class="form-control bg"
-                                        placeholder="Address" id="permanant_address"
-                                        >
+                                     <label class="form-label">Address <span class="red">*</span></label>
+                                    <input type="text" name="permanent_address" class="form-control bg" placeholder="Address" id="permanant_address">
+
                                 </div>
 
                                 <!-- Permanantcity -->

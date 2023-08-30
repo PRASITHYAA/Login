@@ -12,11 +12,16 @@ class DisclaimerController extends Controller
         // dd($request->all());
 
         $disclaimer = $request->validate([
-            'Expectedatetojoin' => 'required|date',
-            'CurrentSalary' => 'required|numeric',
-            'ExpectedSalary' => 'required|numeric',
-            'Signature' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'place' => 'required',
+            'expected_date_to_join' => 'required|date',
+            'current_salary' => 'required|numeric',
+            'expected_salary' => 'required|numeric',
+            'disclaimer_signature' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'disclaimer_date' => 'required',
+            'disclaimer_time' => 'required',
+            'disclamer_print_name' => 'required',
+            'disclaimer_place' => 'required',
+
+
         ]);
 
         if ($request->hasFile('Signature')) {
