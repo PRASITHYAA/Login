@@ -195,8 +195,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('job_application.store') }}" method="POST" enctype="multipart/form-data"
-                    id="save-later-form">
+                <form action="{{ route('job_application.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="row">

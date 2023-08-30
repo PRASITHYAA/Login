@@ -161,6 +161,24 @@
             <div class="progress-bar mt-2" role="progressbar"
                 style="width: 100%; background-color: #111;color: white; " aria-valuenow="100" aria-valuemin=""
                 aria-valuemax="100%">100%</div>
+                                {{-- error --}}
+                                @if ($errors->any())
+                                <div class=" alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            {{-- success --}}
+
+                            @if (session('success'))
+                                <div class=" container  alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
         </div>
         <h2 class="text-center p-4">DISCLAIMER</h2> disclaimer
         <!-- paragraph -->
@@ -174,7 +192,11 @@
         <div class="container">
             <!-- heading -->
             <h4 class="p-3">Joining date/Current and Expected Salary Details</h4>
-            <form class="row g-3">
+
+            <form action="{{ route('job_application.store') }}" class="row g-3" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+
                 <!-- Expected date to join -->
                 <div class="col-md-4">
                     <label class="form-label">Expected date to join <span class="red">*</span></label>
@@ -203,12 +225,15 @@
                 <div class="row ">
                     <!-- Signature -->
                     <div class="col-md-4">
-                        <label for="disclaimer_Signature" class="form-label">Signature <span class="red">*</span></label>
+                        <label for="disclaimer_Signature" class="form-label">Signature <span
+                                class="red">*</span></label>
                         <div class="input-group">
-                            <input type="file" class="form-control" id="disclaimer_Signature" name="disclaimer_signature" accept="image/*" required>
+                            <input type="file" class="form-control" id="disclaimer_Signature"
+                                name="disclaimer_signature" accept="image/*" required>
                         </div>
                         <div class="form-group mt-2">
-                            <img id="disclaimer_SignaturePreview" src="#" alt="Image Preview" style="max-width:150px; display: none;">
+                            <img id="disclaimer_SignaturePreview" src="#" alt="Image Preview"
+                                style="max-width:150px; display: none;">
                         </div>
                     </div>
                     <!-- date -->
@@ -368,14 +393,14 @@
     <script>
         const signatureInput = document.getElementById('disclaimer_Signature');
         const signaturePreview = document.getElementById('disclaimer_SignaturePreview');
-// signature
-        signatureInput.addEventListener('change', function () {
+        // signature
+        signatureInput.addEventListener('change', function() {
             const file = this.files[0];
 
             if (file) {
                 const reader = new FileReader();
 
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     signaturePreview.src = e.target.result;
                     signaturePreview.style.display = 'block';
                 };
