@@ -204,17 +204,14 @@
                             <p>Sectors <span class="red">*</span></p>
                             <select class="form-select bg" name="sector" id="sector" required>
                                 <option selected>Open this select menu</option>
-                                @php
-                                    $sectors = \App\Models\Sector::all();
-                                @endphp
-                                @foreach ($sectors as $sector)
-                                    <option value="{{ $sector->id }}">{{ $sector->sector }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <!-- Position -->
-                        <div class="col-lg-6">
-                            <p>Position Applied For<span class="red">*</span></p>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <!-- Position -->
+                            <div class="col-lg-6">
+                                <p>Position Applied For<span class="red">*</span></p>
                             <select class="form-select bg" name="postion" id="postion" required>
                                 <option selected>Open this select menu</option>
                                 @php
