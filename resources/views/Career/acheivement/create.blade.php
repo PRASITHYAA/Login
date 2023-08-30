@@ -156,10 +156,30 @@
     <div class="container   mt-2">
         <div class="progress-bar" role="progressbar" style="width: 90%; background-color: #111;color: white; "
             aria-valuenow="90" aria-valuemin="0" aria-valuemax="90%">90%</div>
+                            {{-- error --}}
+                            @if ($errors->any())
+                            <div class=" alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        {{-- success --}}
+
+                        @if (session('success'))
+                            <div class=" container  alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
     </div>
     <div class="container-fluid">
         <div class="container">
-            <form action="">
+            <form action="{{ route('acheivement.store') }}"  method="POST"
+                enctype="multipart/form-data">
+                @csrf
                 <h2 class="text-center p-4">ACHEIVEMENTS, CO-CURRICULAR, EXTRA-CURRICULAR DETAILS</h2>
                 <p>Please use this section to indicate how far you meet each of the competencies required for the post.
                     Indicate specific experience, achievements, knowledge, personal <br> qualities, and skills, which
