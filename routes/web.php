@@ -104,3 +104,9 @@ Route::delete('/job/{job}', [JobController::class, 'destroy'])->name('job.destro
 
  Route::view('/disclaimer', 'career.disclaimer.create');
  Route::post('disclaimer', [DisclaimerController::class, 'store'])->name('disclaimer.store');
+
+
+// employment
+
+ Route::view('/employment', 'career.employment.create');
+ Route::post('employment', [EmploymentController::class, 'store'])->name('employment.store');

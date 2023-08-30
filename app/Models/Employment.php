@@ -11,28 +11,30 @@ class Employment extends Model
     protected $fillable = [
         'open-input',
         // experience
-        'experiencecompany',
-        'experienceemail',
-        'experienceaddress',
-        'experiencenumber',
-        'experiencejobtitle',
-        'experiencefromdate',
-        'experiencetodate',
-        'experienceyear',
-        'experienceResponsibilities',
+        'employer_company',
+        'employer_email',
+        'employer_address',
+        'employer_phone',
+        'employer_job_title',
+        'employer_from_date',
+        'employer_to_date',
+        'employer_experience',
+        'employer_responsibilities',
+
         // REFERENCE
-        'referencename',
-        'referencecompany',
-        'referenceposition',
-        'referenceemail',
-        'referencephone',
-        'referenceaddress',
+        'reference_name ',
+        'reference_company',
+        'reference_position',
+        'reference_email',
+        'reference_phone',
+        'reference_phone',
 
         // second'',
         'nested-option',
-        'crimeexplain',
-        'eligiabletowork',
+        'sub-nested-input',
+
         'sub-nested-option',
         'nested-input-field',
+
     ];
 }
