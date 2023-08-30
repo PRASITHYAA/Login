@@ -8,22 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Card extends Model
 {
     use HasFactory;
-    protected $fillable = ['aadharname',
-     'aadharidnumber',
-      'aadharissuedplace',
-      'aadharissuedstate',
-      'aadharissuedcountry',
-      'aadharimage',
-      'aadharimagepage',
+    protected $fillable = [
+        'aadhar_name',
+     'aadhar_id_number',
+      'aadhar_issued_country',
+      'aadhar_issued_state',
+      'aadhar_issued_place',
+      'aadhar_image',
+      'aadhar_image_page',
     //   passport
-      'passportname',
-      'passportidnumber',
-      'passportexpireddate',
-      'paasportissueddate',
-      'passportissuedplace',
-      'passportissuedstate',
-      'passportissuedcountry',
-      'passportimageid',
-       'passportimageidpage',
+      'passport_name',
+      'passport_id_number',
+      'paasport_issue_date',
+      'passport_expired_date',
+      'passport_issued_country',
+      'passport_issued_state',
+      'passport_issued_place',
+      'passport_image_id',
+       'passport_image_id_page',
 ];
 }

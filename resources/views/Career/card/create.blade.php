@@ -53,7 +53,8 @@
     <div class="container-fluid ">
         <div class="row nav-top ">
             <div class=" container col-lg-2 text-center navtop" style="background-color: white;">
-                <img class="" style="width: 180px;height: 140px;" src="./img/NEW-LOGO-FINAL-1 (1).png" alt="">
+                <img class="" style="width: 180px;height: 140px;" src="./img/NEW-LOGO-FINAL-1 (1).png"
+                    alt="">
             </div>
             <div class=" container-fluid  col-lg-10 text-white  navtop">
                 <section style="background-color: #111c3a; "
@@ -155,36 +156,20 @@
     <div class="container-fluid">
 
         <div class="container">
-            <div class="progress-bar mt-2" role="progressbar" style="width: 45%; background-color: #111;color: white; "
-                aria-valuenow="45" aria-valuemin="" aria-valuemax="45%">45%</div>
+            <div class="progress-bar mt-2" role="progressbar"
+                style="width: 45%; background-color: #111;color: white; " aria-valuenow="45" aria-valuemin=""
+                aria-valuemax="45%">45%</div>
         </div>
         <div class="container">
-                {{-- error --}}
-                @if ($errors->any())
-                    <div class=" alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-                {{-- success --}}
-
-                @if (session('success'))
-                    <div class=" container  alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                <form action="{{ route('card.store') }}" method="POST" enctype="multipart/form-data"
-                    id="save-later-form">
-                    @csrf
+            <form action="{{}}" method="POST" enctype="multipart/form-data">
 
                 <h2 class="text-center p-4">Government-Issued Identification Cards (IDs)</h2>
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp <br>
                     Size Limit: 50KB</p>
                 <p style="font-weight: bold;">ID Card You Have <span class="red">*</span></p>
+                <!-- <label>
+                    <input type="checkbox" id="aadharcard"> AADHAR CARD
+                </label> -->
                 <label>
                     <input type="checkbox" id="aadharcard" checked> AADHAR CARD
                 </label>
@@ -200,34 +185,24 @@
                             <h4 class="text-center" style=" font-weight: bold;">AADHAR CARD</h4>
                             <!-- aadharname -->
                             <div class="col mt-4">
-                                <label for="validationDefault01" class="form-label">Name as per IDs <span
-                                        style="color: red;">*</span></label>
+                                <label class="form-label">Name as per IDs <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Name as per IDs" name="aadharname"
-                                    id="validationDefault01" required>
+                                    class="form-control" placeholder="Name as per IDs" name="aadhar_name"
+                                    id="aadhar_name" required>
                             </div>
                             <!-- aadharidnumber -->
                             <div class="col mt-4">
-                                <label for="validationDefault01" class="form-label">IDs Number <span
-                                        style="color: red;">*</span></label>
+                                <label class="form-label">IDs Number <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Aadhar Number" name="aadharidnumber" id="aadhaar"
-                                    maxlength="12" oninput="updateValidation()" required>
+                                    class="form-control" placeholder="Aadhar Number" name="aadhar_id_number"
+                                    id="aadhaar" maxlength="12" oninput="updateValidation()" required>
                                 <p id="result"></p>
-                            </div>
-                            <!-- aadharissuedplace -->
-                            <div class="col mt-4">
-                                <label for="validationDefault01" class="form-label">Issued Place
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Issued Place" name="aadharissuedplace"
-                                    id="validationDefault01" required>
                             </div>
                             <!-- aadharissuedcountry -->
                             <div class="col mt-4">
-                                <label for="validationDefault04" class="form-label">Country
+                                <label for="" class="form-label">Country
                                     <span style="color: red;">*</span></label>
-                                <select class="form-select" name="aadharissuedcountry" id="validationDefault04"
+                                <select class="form-select" name="aadhar_issued_country" id="aadhar_issued_country"
                                     required>
                                     <option selected disabled value="">Choose...</option>
                                     <option>uk</option>
@@ -235,18 +210,26 @@
                             </div>
                             <!-- aadharissuedstate -->
                             <div class="col mt-4">
-                                <label for="validationDefault01" class="form-label">State <span
-                                        style="color: red;">*</span></label>
+                                <label class="form-label">State <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    name="aadharissuedstate" class="form-control" placeholder="Issued Place"
-                                    id="validationDefault01" required>
+                                    name="aadhar_issued_state" class="form-control" placeholder="Issued Place"
+                                    id="aadhar_issued_state" required>
                             </div>
+                            <!-- aadharissuedplace -->
+                            <div class="col mt-4">
+                                <label class="form-label">Issued Place
+                                    <span style="color: red;">*</span></label>
+                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                    class="form-control" placeholder="Issued Place" name="aadhar_issued_place"
+                                    id="aadhar_issued_place" required>
+                            </div>
+
                             <!-- aadharimage -->
                             <div class="col mt-4">
                                 <label for="validationDefaultUpload" class="form-label">Upload ID- 1st Page
                                     <span style="color: red;">*</span></label>
                                 <div class="input-group">
-                                    <input type="file" class="form-control" id="aadharimage" name="aadharimage"
+                                    <input type="file" class="form-control" id="aadhar_image" name="aadhar_image"
                                         accept="image/*" required>
                                 </div>
                                 <div class="form-group">
@@ -260,8 +243,8 @@
                                 <label for="validationDefaultUpload" class="form-label">Upload ID- 2st Page
                                     <span style="color: red;">*</span></label>
                                 <div class="input-group">
-                                    <input type="file" class="form-control" id="aadharimagepage" accept="image/*"
-                                        name="aadharimagepage" required>
+                                    <input type="file" class="form-control" id="aadhar_image_page"
+                                        accept="image/*" name="aadhar_image_page" required>
                                 </div>
                                 <div class="form-group">
                                     <img id="aadharImagePagePreview" src="#" alt="Image Preview"
@@ -271,13 +254,13 @@
                             </div>
                             <!-- button -->
                             <a style="font-weight: bold; " class="btn btn-secondary mt-5"
-                                href="job_application">Previous</a>
+                                href="./job-application.html">Previous</a>
 
-                                <button class="btn btn-primary mx-4 mt-5" type="submit"> save</button>
+                            <button class="btn btn-primary mx-4 mt-5" type="submit"> save</button>
 
 
                             <a style="font-weight: bold;" class="btn btn-secondary mt-5 "
-                                href="education">Next</a>
+                                href="education.html">Next</a>
                             <br>
                             <br>
                         </div>
@@ -287,72 +270,68 @@
                                 <h4 class="text-center" style="font-weight: bold;">PASSPORT</h4>
                                 <!-- passportname -->
                                 <div class="col mt-4">
-                                    <label for="validationDefault01" class="form-label">Name as per IDs <span
+                                    <label class="form-label">Name as per IDs <span
                                             style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        name="passportname" class="form-control" placeholder="Name as per IDs"
-                                        id="validationDefault01" required>
+                                        id="passport_name" name="passport_name" class="form-control"
+                                        placeholder="Name as per IDs" >
                                 </div>
                                 <!-- passport id number -->
                                 <div class="col mt-4">
-                                    <label for="validationDefault01" class="form-label">IDs Number <span
-                                            style="color: red;">*</span></label>
+                                    <label class="form-label">IDs Number <span style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                        name="passportidnumber" class="form-control" placeholder="Passport ID Number"
-                                        id="validationDefault01" required>
+                                        id="passport_id_number" name="passport_id_number" class="form-control"
+                                        placeholder="Passport ID Number" >
                                 </div>
                                 <!-- paasport issued date -->
                                 <div class="col mt-4">
-                                    <label for="validationDefault01" class="form-label">Issued Date <span
-                                            style="color: red;">*</span></label>
+                                    <label class="form-label">Issued Date <span style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                        name="paasportissueddate" class="form-control" placeholder="" id="fromDate"
-                                        onchange="validateDateRange()" required>
+                                        name="paasport_issue_date" class="form-control" placeholder=""
+                                        id="fromDate" onchange="validateDateRange()" >
                                 </div>
                                 <!-- passport expired date -->
                                 <div class="col mt-4">
-                                    <label for="validationDefault01" class="form-label">Expired Date <span
-                                            style="color: red;">*</span></label>
+                                    <label class="form-label">Expired Date <span style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                        name="passportexpireddate" class="form-control" placeholder="" id="toDate"
-                                        onchange="validateDateRange()" required>
+                                        name="passport_expired_date" class="form-control" placeholder=""
+                                        id="toDate" onchange="validateDateRange()" >
                                     <p style="color: red;" id="validationMessage" class="error"></p>
-                                </div>
-                                <!-- passport issued place -->
-                                <div class="col mt-4">
-                                    <label for="validationDefault01" class="form-label">Issued Place
-                                        <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        name="passportissuedplace" class="form-control" placeholder="Issued Place"
-                                        id="validationDefault01" required>
                                 </div>
                                 <!-- passport issued country -->
                                 <div class="col mt-4">
-                                    <label for="validationDefault04" class="form-label">Country <span
-                                            style="color: red;">*</span></label>
-                                    <select class="form-select" id="validationDefault04" name="passportissuedcountry"
-                                        required>
+                                    <label class="form-label">Country <span style="color: red;">*</span></label>
+                                    <select class="form-select" id="passport_issued_country"
+                                        name="passport_issued_country" >
                                         <option selected disabled value="">Choose...</option>
                                         <option>...</option>
                                     </select>
                                 </div>
                                 <!-- passport issued state -->
                                 <div class="col mt-4">
-                                    <label for="validationDefault01" class="form-label">State <span
-                                            style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        name="passportissuedstate" class="form-control" placeholder="Issued Place"
-                                        id="validationDefault01" required>
+                                    <label class="form-label">State <span style="color: red;">*</span></label>
+                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" id="passport_issued_state"
+                                        name="passport_issued_state" class="form-control" placeholder="Issued Place"
+                                        >
                                 </div>
+                                <!-- passport issued place -->
+                                <div class="col mt-4">
+                                    <label class="form-label">Issued Place
+                                        <span style="color: red;">*</span></label>
+                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                        name="passport_issued_place" class="form-control" placeholder="Issued Place"
+                                        id="passport_issued_place" >
+                                </div>
+
                                 <!-- passport  upload id -->
                                 <div class="col mt-4">
                                     <label for="validationDefaultUpload" class="form-label">Upload ID- 1st
                                         Page
                                         <span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input type="file" class="form-control" id="passportimageid"
-                                            name="passportimageid" accept="image/*"
-                                            aria-describedby="inputGroupPrepend2" required>
+                                        <input type="file" class="form-control" id="passport_image_id"
+                                            name="passport_image_id" accept="image/*"
+                                            aria-describedby="inputGroupPrepend2" >
                                     </div>
                                     <div class="form-group">
                                         <img id="passportImageIdPreview" src="#" alt="Image Preview"
@@ -362,12 +341,12 @@
                                 </div>
                                 <!-- passport image id page -->
                                 <div class="col mt-4">
-                                    <label for="validationDefaultUpload" class="form-label">Upload ID- 2st
+                                    <label  class="form-label">Upload ID- 2st
                                         Page
                                         <span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input type="file" class="form-control" id="passportimageidpage"
-                                            name="passportimageidpage" accept="image/*"
+                                        <input type="file" class="form-control" id="passport_image_id_page"
+                                            name="passport_image_id_page" accept="image/*"
                                             aria-describedby="inputGroupPrepend2" required>
                                     </div>
                                     <div class="form-group">
@@ -400,10 +379,12 @@
                             innovative <br> solutions for your engineering needs</p>
                         <!-- icons -->
                         <div class="">
-                            <a style="text-decoration: none; padding-right: 10px;" href="" class="   text-reset">
+                            <a style="text-decoration: none; padding-right: 10px;" href=""
+                                class="   text-reset">
                                 <i class="icons-1  fab fa-facebook-f g-5 "></i>
                             </a>
-                            <a style="text-decoration: none; padding-right: 10px;" href="" class=" text-reset ">
+                            <a style="text-decoration: none; padding-right: 10px;" href=""
+                                class=" text-reset ">
                                 <i class="fa-brands fa-instagram  "></i>
                             </a>
                             <a style="text-decoration: none;padding-right: 10px;" href="" class=" text-reset">
@@ -488,16 +469,16 @@
     <!-- {{--  previews image --}} -->
     <script>
         function setupImagePreview(inputId, previewId) {
-            document.getElementById(inputId).addEventListener('change', function (event) {
+            document.getElementById(inputId).addEventListener('change', function(event) {
                 var image = document.getElementById(previewId);
                 image.src = URL.createObjectURL(event.target.files[0]);
                 image.style.display = 'block';
             });
         }
-        setupImagePreview('aadharimage', 'aadharImagePreview');
-        setupImagePreview('aadharimagepage', 'aadharImagePagePreview');
-        setupImagePreview('passportimageid', 'passportImageIdPreview');
-        setupImagePreview('passportimageidpage', 'passportImageIdPagePreview');
+        setupImagePreview('aadhar_image', 'aadharImagePreview');
+        setupImagePreview('aadhar_image_page', 'aadharImagePagePreview');
+        setupImagePreview('passport_image_id', 'passportImageIdPreview');
+        setupImagePreview('passport_image_id_page', 'passportImageIdPagePreview');
     </script>
 
     <!-- aadhar number validation -->
@@ -552,7 +533,7 @@
     <!-- {{-- bootstrap --}} -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-        </script>
+    </script>
 
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
