@@ -193,7 +193,7 @@
             <!-- heading -->
             <h4 class="p-3">Joining date/Current and Expected Salary Details</h4>
 
-            <form action="{{ route('job_application.store') }}" class="row g-3" method="POST"
+            <form action="{{ route('disclaimer.store') }}" class="row g-3" method="POST"
                 enctype="multipart/form-data">
                 @csrf
 

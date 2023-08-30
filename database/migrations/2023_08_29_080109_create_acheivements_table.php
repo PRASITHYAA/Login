@@ -4,48 +4,42 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class() extends Migration {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
+class CreateAchievementsTable extends Migration
+{
+    public function up()
     {
-        Schema::create('acheivements', function (Blueprint $table) {
+        Schema::create('achievements', function (Blueprint $table) {
             $table->id();
+            $table->string('achievement');
 
-            $table->string('acheivements');
+            $table->string('open_input');
 
-            $table->boolean('open-input');
+            $table->string('conference')->nullable();
 
-            $table->string('Conference')->nullable();
+            $table->string('open_input_2');
 
-            $table->boolean('open-input-2');
+            $table->string('final_year_project')->nullable();
 
-            $table->string('finalyearproject')->nullable();
+            $table->string('project_document')->nullable();
 
-            $table->string('projectdocument')->nullable();
+            $table->string('extra_curricular_skills');
 
-            $table->string('curricularskills');
+            $table->string('extra_curricular_skills_project_document')->nullable();
 
-            $table->string('curricularskillsprojectdocument')->nullable();
+            $table->string('open_input_3');
 
-            $table->boolean('open-input-3');
+            $table->string('yes_curriculum_pdf_format')->nullable();
 
-            $table->string('resumepfdformate')->nullable();
+            $table->string('open_input_4');
 
-            $table->boolean('open-input-4');
-
-            $table->string('exampletextarea')->nullable();
+            $table->string('no_curriculum_explain')->nullable();
 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('acheivements');
+        Schema::dropIfExists('achievements');
     }
-};
+}

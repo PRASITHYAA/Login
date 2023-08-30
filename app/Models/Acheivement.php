@@ -9,17 +9,22 @@ class Acheivement extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'acheivements',
+        'acheivement',
+
         'open-input',
         'Conference',
+
         'open-input-2',
-        'finalyearproject',
-        'projectdocument',
-        'curricularskills',
-        'curricularskillsprojectdocument',
+        'final_year_project',
+        'project_document',
+
+        'extra_curricular_skills',
+        'extra_curricular_skills_project_document',
+
         'open-input-3',
-        'resumepfdformate',
+        'yes_curriculum_pdf_format',
+
         'open-input-4',
-        'exampletextarea',
+        'no_curriculum_explain',
 ];
 }

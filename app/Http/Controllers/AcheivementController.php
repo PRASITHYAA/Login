@@ -2,60 +2,50 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AcheivementRequest;
 use App\Models\Acheivement;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Validator; // Import the Validator class
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AcheivementController extends Controller
 {
-    public function store(AcheivementRequest $request)
+    public function store(Request $request)
     {
-        // dd($request->all());
+        $achievement = $request->validate([
+            'acheivement' => 'required',
 
-        $validator = Validator::make($request->all(), [
-            'acheivements' => 'required',
-            'open-input' => 'sometimes|nullable|required|in:yes,no',
-            'Conference' => 'sometimes|nullable|required_if:open-input,yes',
+            'open-input' => 'required|in:yes,no',
+            'Conference' => 'required_if:open-input,yes',
 
             'open-input-2' => 'required|in:yes,no',
-            'finalyearproject' => 'sometimes|nullable|required_if:open-input-2,yes',
-            'projectdocument' => 'sometimes|nullable|required_if:open-input-2,yes|file|mimes:pdf',
+            'final_year_project' => 'required_if:open-input-2,yes',
+            'project_document' => 'required_if:open-input-2,yes|file|mimes:pdf,jpg,jpeg,png',
 
-            'curricularskills' => 'required',
-            'curricularskillsprojectdocument' => 'required|file|mimes:pdf',
+            'extra_curricular_skills' => 'required',
+            'extra_curricular_skills_project_document' => 'required|file|mimes:pdf,jpg,jpeg,png',
 
             'open-input-3' => 'required|in:yes,no',
-            'resumepfdformate' => 'sometimes|nullable|required_if:open-input-3,yes|file|mimes:pdf',
+            'yes_curriculum_pdf_format' => 'required_if:open-input-3,yes|file|mimes:pdf,jpg,jpeg,png',
 
             'open-input-4' => 'required|in:yes,no',
-            'exampletextarea' => 'sometimes|nullable|required_unless:open-input-4,no',
+            'no_curriculum_explain' => 'required_unless:open-input-4,no',
         ]);
 
-        if ($validator->fails()) {
-            return redirect('post/create')
-                        ->withErrors($validator)
-                        ->withInput();
+        if ($request->hasFile('project_document')) {
+            $projectDocumentPath = $request->file('project_document')->store('documents', 'public');
+            $achievement['project_document'] = $projectDocumentPath;
         }
 
-        $validatedData = $validator->validated(); // Get the validated data
-
-        if ($request->hasFile('projectdocument')) {
-            $projectDocumentPath = $request->file('projectdocument')->store('documents', 'public');
-            $validatedData['projectdocument'] = $projectDocumentPath;
+        if ($request->hasFile('extra_curricular_skills_project_document')) {
+            $curricularSkillsDocumentPath = $request->file('extra_curricular_skills_project_document')->store('documents', 'public');
+            $achievement['extra_curricular_skills_project_document'] = $curricularSkillsDocumentPath;
         }
 
-        if ($request->hasFile('curricularskillsprojectdocument')) {
-            $curricularSkillsDocumentPath = $request->file('curricularskillsprojectdocument')->store('documents', 'public');
-            $validatedData['curricularskillsprojectdocument'] = $curricularSkillsDocumentPath;
+        if ($request->hasFile('yes_curriculum_pdf_format')) {
+            $resumeDocumentPath = $request->file('yes_curriculum_pdf_format')->store('documents', 'public');
+            $achievement['yes_curriculum_pdf_format'] = $resumeDocumentPath;
         }
-
-        if ($request->hasFile('resumepfdformate')) {
-            $resumeDocumentPath = $request->file('resumepfdformate')->store('documents', 'public');
-            $validatedData['resumepfdformate'] = $resumeDocumentPath;
-        }
-
-        Acheivement::create($validatedData);
+            Acheivement::create($achievement);
 
         return redirect()->back()->with('success', 'Achievement submitted successfully!');
     }
