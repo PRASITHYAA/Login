@@ -201,7 +201,7 @@
                         <div class="col-lg-6">
                             <!-- sector -->
                             <p>Sectors <span class="red">*</span></p>
-                            <select class="form-select bg" name="sector" required>
+                            <select class="form-select bg" name="sector" id="sector" required>
                                 <option selected>Open this select menu</option>
                                 @php
                                     $sectors = \App\Models\Sector::all();
@@ -214,8 +214,7 @@
                         <!-- Position -->
                         <div class="col-lg-6">
                             <p>Position Applied For<span class="red">*</span></p>
-                            <select class="form-select bg" name="postion" aria-label="Default select example"
-                                required>
+                            <select class="form-select bg" name="postion" id="postion" required>
                                 <option selected>Open this select menu</option>
                                 @php
                                     $jobs = \App\Models\Job::all();
@@ -238,14 +237,15 @@
                         <div class="col-md-4">
                             <label for="validationDefault01" class="form-label">First name <span
                                     class="red">*</span></label>
-                            <input type="text" class="form-control bg" name="firstname" placeholder="first name"
-                                id="firstName" required>
+                            <input type="text" class="form-control bg" name="first_name" placeholder="First Name"
+                                id="first_name" required>
                         </div>
                         <!-- lastname -->
                         <div class="col-md-4">
                             <label for="validationDefault02" class="form-label">Last name <span
                                     class="red">*</span></label>
-                            <input type="text" class="form-control bg" name="lastname" id="lastName" required>
+                            <input type="text" class="form-control bg" name="last_name" id="last_name"
+                                placeholder="Last Name">
                         </div>
                         <!-- upload -->
                         <div class="col-md-4">
@@ -270,7 +270,8 @@
                         <!-- age -->
                         <div class="col-md-4">
                             <label for="ageOutput">Your age is</label><br>
-                            <input class="form-control bg " type="text" id="ageOutput" name="age" readonly>
+                            <input class="form-control bg " type="text" id="ageOutput" name="age"
+                                placeholder="Age" readonly>
                         </div>
                         <!-- space -->
                         <div class="col-md-4">
@@ -279,7 +280,7 @@
                         <div class="col-md-4">
                             <label for="validationDefault04" class="form-label">Country <span
                                     class="red">*</span></label>
-                            <select class="form-select" name="country" id="validationDefault04" required>
+                            <select class="form-select" name="country" id="country" required>
                                 <option selected disabled value="">Choose...</option>
                                 <option>...</option>
                             </select>
@@ -287,109 +288,101 @@
 
                         <!-- state -->
                         <div class="col-md-4">
-                            <label for="validationDefault04" class="form-label">State <span
-                                    class="red">*</span></label>
-                            <select class="form-select " id="validationDefault04" name="state" required>
+                            <label class="form-label">State <span class="red">*</span></label>
+                            <select class="form-select " id="state" name="state" required>
                                 <option selected disabled value="">Choose...</option>
                                 <option>...</option>
                             </select>
                         </div>
                         <!-- city -->
                         <div class="col-md-4">
-                            <label for="validationDefault04" class="form-label">City <span
-                                    class="red">*</span></label>
-                            <select class="form-select" id="validationDefault04" name="city" required>
+                            <label class="form-label">City <span class="red">*</span></label>
+                            <select class="form-select" id="city" name="city" required>
                                 <option selected disabled value="">Choose...</option>
                                 <option>...</option>
                             </select>
                         </div>
                         <!--address -->
                         <div class="col-md-4">
-                            <label for="validationDefault03" class="form-label">Address <span
-                                    class="red">*</span></label>
+                            <label class="form-label">Address <span class="red">*</span></label>
                             <input type="text" name="address" class="form-control bg" placeholder="Address"
-                                id="validationDefault03" name="address" required>
+                                id="address" name="address" required>
                         </div>
                         <!-- postal code -->
                         <div class="col-md-4">
-                            <label for="validationDefault03" class="form-label">Postal Code
+                            <label class="form-label">Postal Code
                                 <span class="red">*</span></label>
-                            <input type="text" class="form-control bg" placeholder="postal code"
-                                id="validationDefault03" name="postalcode" required>
+                            <input type="text" class="form-control bg" placeholder="postal code" id="postal_code"
+                                name="postal_code" required>
                         </div>
                         <!-- phone -->
                         <div class="col-md-4">
-                            <label for="validationDefault05" class="form-label">Phone/Mobile <span
-                                    class="red">*</span></label><br>
-                            <input type="tel" class="phoneInputField" name="phone" required>
+                            <label class="form-label">Phone/Mobile <span class="red">*</span></label><br>
+                            <input type="tel" class="phoneInputField" name="phone" id="phone" required>
                             <p class="errorText" style="color: red;"></p>
 
                         </div>
                         <!-- Alternative Phone -->
                         <div class="col-md-4">
-                            <label for="validationDefault03" class="form-label">Alternative Phone/Mobile </label>
+                            <label class="form-label">Alternative Phone/Mobile </label>
                             <br>
-                            <input type="tel" class="phoneInputField" name="alternativephone">
+                            <input type="tel" class="phoneInputField" name="alternative_phone"
+                                id="alternative_phone">
                             <p class="errorText" style="color: red;"></p>
 
                         </div>
                         <!-- email -->
                         <div class="col-md-4">
-                            <label for="validationDefault05" class="form-label">Email <span
-                                    class="red">*</span></label>
-                            <input type="email" class="form-control bg" placeholder="Email-Id"
-                                id="validationDefault05" name="email" required>
+                            <label class="form-label">Email <span class="red">*</span></label>
+                            <input type="email" class="form-control bg" placeholder="Email-Id" id="email"
+                                name="email" required>
                         </div>
                         <!-- fblink -->
                         <div class="col-md-4">
-                            <label for="validationDefault05" class="form-label">FB Profile Link <span
-                                    class="red">*</span></label>
-                            <input type="text" name="fblink" class="form-control bg"
-                                placeholder="FB Profile Link" id="validationDefault05" required>
+                            <label class="form-label">FB Profile Link <span class="red">*</span></label>
+                            <input type="text" name="fb_link" class="form-control bg"
+                                placeholder="FB Profile Link" id="fb_link" required>
                         </div>
-                        <!-- instalink -->
+
+                        <!-- instagram link -->
                         <div class="col-md-4">
-                            <label for="validationDefault05" class="form-label">Instagram Profile Link <span
-                                    class="red">*</span></label>
+                            <label class="form-label">Instagram Profile Link <span class="red">*</span></label>
                             <input type="text" class="form-control bg" placeholder="Instagram Profile Link"
-                                id="validationDefault05" name="instalink" required>
+                                id="instagram_link" name="instagram_link" required>
                         </div>
+
                         <!-- linked link -->
                         <div class="col-md-4">
-                            <label for="validationDefault05" class="form-label">LinkedIn Profile Link
-                                <span class="red">*</span>
-                            </label>
-                            <input type="text" name="linkedlink" class="form-control bg"
-                                placeholder="LinkedIn Profile Link
-                            "
-                                id="validationDefault05" name="linkedlink" required>
+                            <label class="form-label">LinkedIn Profile Link<span class="red">*</span></label>
+                            <input type="text" name="linked_link" class="form-control bg" id="linked_link"
+                                placeholder="LinkedIn Profile Link" required>
                         </div>
-                        <!-- {{-- Permanantaddress yes OR no --}} -->
+
+                        <!-- Permanantaddress yes OR no  -->
                         <div class="col-md-4">
                             <label>Does Your Permanant Address is Different
                                 <br>
-                                <input type="radio" name="permanantaddress" value="yes" id="yesRadio1"> Yes
+                                <input type="radio" name="permanant_address_input" value="yes" id="yesRadio1"> Yes
                             </label> <br>
                             <label>
-                                <input type="radio" name="permanantaddress" value="no" id="noRadio1"> No
+                                <input type="radio" name="permanant_address_input" value="no" id="noRadio1"> No
                             </label>
 
                             <div id="formContainer1" class="hidden">
+
                                 <!-- Permanantcity -->
-                                <label for="validationDefault03" class="form-label">City <span
+                                <label  class="form-label">City <span
                                         class="red">*</span></label>
-                                <input type="text" name="Permanantcity" class="form-control bg"
-                                    placeholder="City" id="validationDefault03" required>
+                                <input type="text" name="Permanant_city" class="form-control bg"
+                                    placeholder="City" id="Permanant_city" >
                                 <!-- Permanantpostalcode -->
-                                <label for="validationDefault03" class="form-label">Postal Code
+                                <label  class="form-label">Postal Code
                                     <span class="red">*</span></label>
-                                <input type="text" class="form-control bg" name="Permanantpostalcode"
-                                    placeholder="City" id="validationDefault03" required>
+                                <input type="text" class="form-control bg" name="Permanant_postal_code" id="Permanant_postal_code"
+                                    placeholder="City" >
                                 <!-- Permanant phone -->
-                                <label for="validationDefault05" class="form-label">Phone/Mobile <span
-                                        class="red">*</span></label>
-                                <br>
-                                <input type="tel" class="phoneInputField" name="permanantphone" required>
+                                <label class="form-label">Phone/Mobile <span class="red">*</span></label><br>
+                                <input type="tel" class="phoneInputField" name="permanant_phone" id="permanant_phone" >
                                 <p class="errorText" style="color: red;"></p>
 
                             </div>
@@ -397,37 +390,33 @@
 
                         <!-- fathername -->
                         <div class="col-md-3">
-                            <label for="validationDefaultUpload" class="form-label">Father’s Name <span
+                            <label  class="form-label">Father’s Name <span
                                     class="red">*</span></label>
                             <div class="input-group">
-                                <input type="text" name="fathername" class="form-control bg"
-                                    id="validationDefaultUsername" placeholder="father's name"
-                                    aria-describedby="inputGroupPrepend2" required>
+                                <input type="text" name="father_name" class="form-control bg"
+                                    id="" placeholder="Father's Name" required>
                             </div>
                         </div>
                         <!-- fatherdateofbirth -->
                         <div class="col-md-3">
-                            <label for="validationDefault03" class="form-label">Date Of Birth <span
+                            <label  class="form-label">Date Of Birth <span
                                     class="red">*</span></label>
-                            <input type="date" class="form-control" id="validationDefault03"
-                                name="fatherdateofbirth" required>
+                            <input type="date" class="form-control" name="father_date_of_birth"  id="father_date_of_birth" required>
                         </div>
                         <!-- fatherphone -->
                         <div class="col-md-3">
-                            <label for="validationDefault03" class="form-label">Phone/Mobile <span
-                                    class="red">*</span>
+                            <label  class="form-label">Phone/Mobile <span class="red">*</span>
                             </label>
                             <br>
-                            <input type="tel" class="phoneInputField" name="fatherphone" required>
+                            <input type="tel" class="phoneInputField" name="father_phone" id="father_phone" required>
                             <p class="errorText" style="color: red;"></p>
 
                         </div>
                         <!-- fatherupload -->
                         <div class="col-md-3">
-                            <label for="validationDefaultUpload" class="form-label">upload <span
-                                    class="red">*</span></label>
+                            <label  class="form-label">upload <span class="red">*</span></label>
                             <div class="input-group">
-                                <input type="file" class="form-control" id="fatherimage" name="fatherimage"
+                                <input type="file" class="form-control" id="father_image" name="father_image"
                                     accept="image/*" required>
                             </div>
                             <!-- images  -->
@@ -438,37 +427,36 @@
                         </div>
                         <!-- mothername -->
                         <div class="col-md-3">
-                            <label for="validationDefaultUpload" class="form-label">Mother's Name <span
+                            <label  class="form-label">Mother's Name <span
                                     class="red">*</span></label>
                             <div class="input-group">
-                                <input type="text" class="form-control bg" id="validationDefaultUsername"
-                                    placeholder="mother's name" name="mothername"
-                                    aria-describedby="inputGroupPrepend2" required>
+                                <input type="text" class="form-control bg" id="mother_name"
+                                    placeholder="Mother's Name" name="mother_name" required>
                             </div>
                         </div>
                         <!-- mother dob -->
                         <div class="col-md-3">
-                            <label for="validationDefault03" class="form-label">Date Of Birth <span
+                            <label  class="form-label">Date Of Birth <span
                                     class="red">*</span></label>
-                            <input type="date" class="form-control" name="motherdateofbirth"
-                                id="validationDefault03" required>
+                            <input type="date" class="form-control" name="mother_date_of_birth" id="mother_date_of_birth"
+                             required>
                         </div>
                         <!-- motherphone -->
                         <div class="col-md-3">
-                            <label for="validationDefault03" class="form-label">Phone/Mobile <span
+                            <label  class="form-label">Phone/Mobile <span
                                     class="red">*</span>
                             </label>
-                            <input type="tel" class="phoneInputField" name="motherphone" required>
+                            <input type="tel" class="phoneInputField" name="mother_phone"  id="mother_phone" required>
                             <p class="errorText" style="color: red;"></p>
 
                         </div>
                         <!-- mother upload -->
                         <div class="col-md-3">
-                            <label for="validationDefaultUpload" class="form-label">upload <span
+                            <label  class="form-label">upload <span
                                     class="red">*</span></label>
                             <div class="input-group">
-                                <input type="file" class="form-control" name="motherimage" accept="image/*"
-                                    id="motherimage" required>
+                                <input type="file" class="form-control" name="mother_image" accept="image/*"
+                                    id="mother_image" required>
                             </div>`
                             <!-- images  -->
                             <div class="form-group">
@@ -479,58 +467,57 @@
                         </div>
                         <!-- marital status -->
                         <div class="col-lg-6">
-                            <!-- <label class="mx-4" for="maritalStatus">Marital Status:</label> -->
                             <p style="font-weight: bold;">Marital Status :</p>
-                            <input class="" type="radio" name="maritalStatus" value="married"
+                            <input type="radio" name="marital_Status" value="married"
                                 onclick="showInputs()" required>
                             Married
                             <br>
-                            <input class="" type="radio" name="maritalStatus" value="single"
+                            <input  type="radio" name="marital_Status" value="single"
                                 onclick="hideInputs()" required>
                             Single
                         </div>
                         <div id="marriedInputs" style="display: none;">
                             <div class="col-md-3">
                                 <!-- spousename -->
-                                <label for="validationDefaultUpload" class="form-label ">Spouse Name <span
+                                <label  class="form-label ">Spouse Name <span
                                         class="red">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control bg" id="validationDefaultUsername"
-                                        name="spousename" placeholder="Spouse Name"
-                                        aria-describedby="inputGroupPrepend2" required>
+                                    <input type="text" class="form-control bg" id="spouse_name"
+                                        name="spouse_name" placeholder="Spouse Name"
+                                         required>
                                 </div>
                                 <!-- spousedob -->
-                                <label for="validationDefaultUpload" class="form-label">Date of Birth <span
+                                <label  class="form-label">Date of Birth <span
                                         class="red">*</span></label>
                                 <div class="input-group">
-                                    <input type="date" class="form-control bg" name="spousedateofbirth"
-                                        name="spousedateofbirth" id="validationDefaultUsername" placeholder=""
-                                        aria-describedby="inputGroupPrepend2" required>
+                                    <input type="date" class="form-control bg" name="spouse_date_of_birth"
+                                       id="spouse_date_of_birth"
+                                         required>
                                 </div>
                                 <!-- spouseemail -->
-                                <label for="validationDefaultUpload" class="form-label">Email <span
+                                <label  class="form-label">Email <span
                                         class="red">*</span></label>
                                 <div class="input-group">
-                                    <input type="email" class="form-control bg" name="spouseemail"
-                                        id="validationDefaultUsername" placeholder="Email id"
-                                        aria-describedby="inputGroupPrepend2" required>
+                                    <input type="email" class="form-control bg" name="spouse_email"
+                                        id="spouse_email" placeholder="Email id"
+                                         required>
                                 </div>
                                 <!-- spousephone -->
-                                <label for="validationDefaultUpload" class="form-label">Phone/Mobile <span
+                                <label  class="form-label">Phone/Mobile <span
                                         class="red">*</span></label>
                                 <div class="input-group">
-                                    <input type="tel" class="phoneInputField" name="spousephone" required>
+                                    <input type="tel" class="phoneInputField" name="spouse_phone" id="spouse_phone" required>
                                     <p class="errorText" style="color: red;"></p>
 
                                 </div>
                                 <!-- spouseupload -->
-                                <label for="validationDefaultUpload" class="form-label">Upload the Latest Passport
+                                <label  class="form-label">Upload the Latest Passport
                                     Size Photo
                                     <span class="red">*</span>
                                 </label>
                                 <div class="input-group">
-                                    <input type="file" class="form-control " name="spouseimage" accept="image/*"
-                                        id="spouseimage" placeholder="" aria-describedby="inputGroupPrepend2"
+                                    <input type="file" class="form-control" name="spouse_image" accept="image/*"
+                                        id="spouse_image"
                                         required>
                                 </div>
                                 <div class="form-group">
@@ -547,55 +534,53 @@
                         <div class="col-lg-6">
                             <p style="font-weight: bold;">Siblings :</p>
                             <label>
-                                <input type="radio" name="Siblings" value="yes" id="yesRadio2" required> Yes
+                                <input type="radio" name="siblings" value="yes" id="yesRadio2" required> Yes
                             </label> <br>
                             <label>
-                                <input type="radio" name="Siblings" value="no" id="noRadio2" required> No
+                                <input type="radio" name="siblings" value="no" id="noRadio2" required> No
                             </label>
                         </div>
                         <div id="formContainer2" class="hidden">
                             <!-- Siblings name -->
                             <div class="col-md-3">
-                                <label for="validationDefaultUpload" class="form-label">Siblings name<span
+                                <label  class="form-label">Siblings name<span
                                         class="red">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control bg" id="validationDefaultUsername"
-                                        placeholder="Siblings name" name="siblingsname"
-                                        aria-describedby="inputGroupPrepend2" required>
+                                    <input type="text" class="form-control bg" id="siblings_name"
+                                        placeholder="Siblings name" name="siblings_name"
+                                         >
                                 </div>
                             </div>
                             <!--Siblings  Date of Birth-->
                             <div class="col-md-3">
-                                <label for="validationDefault05" class="form-label">Date of Birth <span
-                                        class="red">*</span></label>
-                                <input type="date" name="siblingsdateofbirth" class="form-control "
-                                    placeholder="" id="validationDefault05" required>
+                                <label class="form-label">Date of Birth <span class="red">*</span></label>
+                                <input type="date" name="siblings_date_of_birth" class="form-control "
+                                     id="siblings_date_of_birth" >
                             </div>
                             <!-- siblings  email -->
                             <div class="col-md-3">
-                                <label for="validationDefault05" class="form-label">Email <span
-                                        class="red">*</span></label>
+                                <label class="form-label">Email <span class="red">*</span></label>
                                 <input type="email" class="form-control bg" placeholder="Email-Id"
-                                    id="validationDefault05" name="siblingsemail" required>
+                                    id="siblings_email" name="siblings_email" >
                             </div>
                             <!--siblings  phone -->
                             <div class="col-md-3">
-                                <label for="validationDefaultUpload" class="form-label">Phone/Mobile <span
+                                <label  class="form-label">Phone/Mobile <span
                                         class="red">*</span></label><br>
                                 <div class="input-group">
-                                    <input type="tel" class="phoneInputField" name="siblingsphone" required>
+                                    <input type="tel" class="phoneInputField" name="siblings_phone"  id="siblings_phone">
                                     <p class="errorText" style="color: red;"></p>
 
                                 </div>
                             </div>
                             <!--siblings  Upload the Latest Passport Size Photo -->
                             <div class="col-md-3">
-                                <label for="validationDefaultUpload" class="form-label">Upload the Latest Passport
+                                <label  class="form-label">Upload the Latest Passport
                                     Size
                                     Photo <span class="red">*</span></label>
                                 <div class="input-group">
-                                    <input type="file" class="form-control" id="siblingsimage"
-                                        name="siblingsimage" accept="image/*" required>
+                                    <input type="file" class="form-control" id="siblings_image"
+                                        name="siblings_image" accept="image/*" >
                                 </div>
                                 <!-- images  -->
                                 <div class="form-group">
@@ -609,8 +594,7 @@
                     <div class="container ">
                         <div style="display: flex;justify-content: end; align-items: center; " class="  ">
                             <!-- button  -->
-                            <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                                href="career">Previous</a>
+                            <a style="font-weight: bold;" class="btn btn-secondary m-1" href="career">Previous</a>
                             <button class="btn btn-primary m-1 " type="submit">Save</button>
                             <a style="font-weight: bold;" class="btn btn-secondary m-1" href="card">Next</a>
                         </div>
@@ -721,10 +705,10 @@
         }
 
         handleImagePreview(document.getElementById('image'), document.getElementById('imagePreview'));
-        handleImagePreview(document.getElementById('fatherimage'), document.getElementById('fatherimagePreview'));
-        handleImagePreview(document.getElementById('motherimage'), document.getElementById('motherimagePreview'));
-        handleImagePreview(document.getElementById('spouseimage'), document.getElementById('spouseimagePreview'));
-        handleImagePreview(document.getElementById('siblingsimage'), document.getElementById('siblingsimagePreview'));
+        handleImagePreview(document.getElementById('father_image'), document.getElementById('fatherimagePreview'));
+        handleImagePreview(document.getElementById('mother_image'), document.getElementById('motherimagePreview'));
+        handleImagePreview(document.getElementById('spouse_image'), document.getElementById('spouseimagePreview'));
+        handleImagePreview(document.getElementById('siblings_image'), document.getElementById('siblingsimagePreview'));
     </script>
 
 

@@ -11,9 +11,9 @@ class CreateJobApplicationsTable extends Migration
         Schema::create('job_applications', function (Blueprint $table) {
             $table->id();
             $table->string('sector');
-            $table->string('postion');
-            $table->string('firstname');
-            $table->string('lastname');
+            $table->string('position');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('image')->nullable();
             $table->date('dob');
             $table->integer('age');
@@ -21,36 +21,46 @@ class CreateJobApplicationsTable extends Migration
             $table->string('state');
             $table->string('city');
             $table->string('address');
-            $table->string('postalcode');
+            $table->string('postal_code');
             $table->string('phone');
-            $table->string('alternativephone');
+            $table->string('alternative_phone')->nullable();
             $table->string('email');
-            $table->string('fblink');
-            $table->string('instalink');
-            $table->string('linkedlink');
-            $table->string('permanantaddress');
-            $table->string('Permanantcity')->nullable();
-            $table->string('Permanantpostalcode')->nullable();
-            $table->string('fathername');
-            $table->date('fatherdateofbirth');
-            $table->string('fatherphone');
-            $table->string('fatherimage')->nullable();
-            $table->string('mothername');
-            $table->date('motherdateofbirth');
-            $table->string('motherphone');
-            $table->string('motherimage')->nullable();
-            $table->string('maritalStatus');
-            $table->string('spousename')->nullable();
-            $table->date('spousedateofbirth')->nullable();
-            $table->string('spouseemail')->nullable();
-            $table->string('spousephone')->nullable();
-            $table->string('spouseimage')->nullable();
-            $table->string('Siblings');
-            $table->string('siblingsname')->nullable();
-            $table->date('siblingsdateofbirth')->nullable();
-            $table->string('siblingsemail')->nullable();
-            $table->string('siblingsphone')->nullable();
-            $table->string('siblingsimage')->nullable();
+            $table->string('fb_link')->nullable();
+            $table->string('instagram_link')->nullable();
+            $table->string('linked_link')->nullable();
+            // permanantaddress
+            $table->string('permanent_address_input');
+            $table->string('permanent_city');
+            $table->string('permanent_postal_code');
+            $table->string('permanent_phone');
+            $table->string('permanent_country');
+            $table->string('permanent_address');
+
+            // father
+            $table->string('father_name');
+            $table->date('father_date_of_birth');
+            $table->string('father_phone');
+            $table->string('father_image')->nullable();
+            // mother
+            $table->string('mother_name');
+            $table->date('mother_date_of_birth');
+            $table->string('mother_phone');
+            $table->string('mother_image')->nullable();
+            // marital status
+            $table->string('marital_status');
+            $table->string('spouse_name')->nullable();
+            $table->date('spouse_date_of_birth')->nullable();
+            $table->string('spouse_email')->nullable();
+            $table->string('spouse_phone')->nullable();
+            $table->string('spouse_image')->nullable();
+            // Siblings
+            $table->boolean('siblings');
+            $table->string('siblings_name')->nullable();
+            $table->date('siblings_date_of_birth')->nullable();
+            $table->string('siblings_email')->nullable();
+            $table->string('siblings_phone')->nullable();
+            $table->string('siblings_image')->nullable();
+
             $table->timestamps();
         });
     }

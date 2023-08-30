@@ -13,8 +13,8 @@ class JobApplicationController extends Controller
         $jobApplication = $request->validate([
             'sector' => 'required',
             'postion' => 'required',
-            'firstname' => 'required',
-            'lastname' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
             'dob' => 'required|date',
             'age' => 'required|integer|min:18|max:99',
@@ -22,61 +22,65 @@ class JobApplicationController extends Controller
             'state' => 'required',
             'city' => 'required',
             'address' => 'required',
-            'postalcode' => 'required',
+            'postal_code' => 'required',
             'phone' => 'required|numeric',
-            'alternativephone' => 'required|numeric',
+            'alternative_phone' => 'required|numeric',
             'email' => 'required|email',
-            'fblink' => 'required',
-            'instalink' => 'required',
-            'linkedlink' => 'required',
+            'fb_link' => 'required',
+            'linked_link' => 'required',
+            'instagram_link' => 'required',
             // permanantaddress
-            'permanantaddress' => 'required|in:yes,no',
-            'Permanantcity' => 'required_if:permanantaddress,yes',
-            'Permanantpostalcode' => 'required_if:permanantaddress,yes',
+            'permanant_address_input' => 'required|in:yes,no',
+            'Permanant_city' => 'required_if:permanant_address_input,yes',
+            'Permanant_postal_code' => 'required_if:permanant_address_input,yes',
+            'permanant_phone' => 'required_if:permanant_address_input,yes',
+            'permanant-country' => 'required_if:permanant_address_input,yes',
+            'permanant_address' => 'required_if:permanant_address_input,yes',
+
             // fathername
-            'fathername' => 'required',
-            'fatherdateofbirth' => 'required|date',
-            'fatherphone' => 'required|numeric',
-            'fatherimage' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
+            'father_name' => 'required',
+            'father_date_of_birth' => 'required|date',
+            'father_phone' => 'required|numeric',
+            'father_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
             // mothername
-            'mothername' => 'required',
-            'motherdateofbirth' => 'required|date',
-            'motherphone' => 'required|numeric',
-            'motherimage' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
+            'mother_name' => 'required',
+            'mother_date_of_birth' => 'required|date',
+            'mother_phone' => 'required|numeric',
+            'mother_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
             // maritalStatus
-            'maritalStatus' => 'required|in:married,single',
-            'spousename' => 'required_if:maritalStatus,married',
-            'spousedateofbirth' => 'required_if:maritalStatus,married|date',
-            'spouseemail' => 'required_if:maritalStatus,married|email',
-            'spousephone' => 'required_if:maritalStatus,married|numeric',
-            'spouseimage' => 'required_if:maritalStatus,married|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',  // Adjust max size if needed
-            // Siblings
-            'Siblings' => 'required|in:yes,no',
-            'siblingsname' => 'required_if:Siblings,yes',
-            'siblingsdateofbirth' => 'required_if:Siblings,yes|date',
-            'siblingsemail' => 'required_if:Siblings,yes|email',
-            'siblingsphone' => 'required_if:Siblings,yes|numeric',
-            'siblingsimage' => 'required_if:Siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',  // Adjust max size if needed
+            'marital_Status' => 'required|in:married,single',
+            'spouse_name' => 'required_if:marital_Status,married',
+            'spouse_date_of_birth' => 'required_if:marital_Status,married|date',
+            'spouse_email' => 'required_if:marital_Status,married|email',
+            'spouse_phone' => 'required_if:marital_Status,married|numeric',
+            'spouse_image' => 'required_if:marital_Status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',  // Adjust max size if needed
+            // siblings
+            'siblings' => 'required|in:yes,no',
+            'siblings_name' => 'required_if:siblings,yes',
+            'siblings_date_of_birth' => 'required_if:siblings,yes|date',
+            'siblings_email' => 'required_if:siblings,yes|email',
+            'siblings_phone' => 'required_if:siblings,yes|numeric',
+            'siblings_image' => 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',  // Adjust max size if needed
         ]);
 
         // Upload and store father image
-        if ($request->hasFile('fatherimage')) {
-            $fatherImagePath = $request->file('fatherimage')->store('images', 'public');
-            $jobApplication['fatherimage'] = $fatherImagePath;
+        if ($request->hasFile('father_image')) {
+            $fatherImagePath = $request->file('father_image')->store('images', 'public');
+            $jobApplication['father_image'] = $fatherImagePath;
         }
 
-        if ($request->hasFile('motherimage')) {
-            $motherImagepath = $request->file('motherimage')->store('images', 'public');
-            $jobApplication['motherimage'] = $motherImagepath;
+        if ($request->hasFile('mother_image')) {
+            $motherImagepath = $request->file('mother_image')->store('images', 'public');
+            $jobApplication['mother_image'] = $motherImagepath;
         }
 
-        if ($request->hasFile('spouseimage ')) {
-            $spouseImagepath = $request->file('spouseimage')->store('images', 'public');
-            $jobApplication['spouseimage'] = $spouseImagepath;
+        if ($request->hasFile('spouse_image ')) {
+            $spouseImagepath = $request->file('spouse_image')->store('images', 'public');
+            $jobApplication['spouse_image'] = $spouseImagepath;
         }
-        if ($request->hasFile('siblingsimage ')) {
-            $siblingsImagepath = $request->file('siblingsimage')->store('images', 'public');
-            $jobApplication['siblingsimage'] = $siblingsImagepath;
+        if ($request->hasFile('siblings_image ')) {
+            $siblingsImagepath = $request->file('siblings_image')->store('images', 'public');
+            $jobApplication['siblings_image'] = $siblingsImagepath;
         }
 
         JobApplication::create($jobApplication);
