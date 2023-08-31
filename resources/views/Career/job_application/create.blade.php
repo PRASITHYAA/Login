@@ -216,7 +216,7 @@
                         <!-- Position -->
                         <div class="col-lg-6">
                             <p>Position Applied For<span class="red">*</span></p>
-                            <select class="form-select bg" name="postion" id="postion" required>
+                            <select class="form-select bg" name="position" id="position" required>
                                 <option selected>Open this select menu</option>
                                 @php
                                     $jobs = \App\Models\Job::all();
@@ -572,49 +572,49 @@
                             <input type="text" class="form-control bg" placeholder="LinkedIn Profile Link"
                                 name="linked_link" id="linked_link" required>
                         </div>
-                        <!-- {{-- Permanantaddress yes OR no --}} -->
+                        <!-- {{-- Permanentaddress yes OR no --}} -->
                         <div class="col-md-4">
-                            <label>Does Your Permanant Address is Different
+                            <label>Does Your Permanent Address is Different
                                 <br>
-                                <input type="radio" name="permanant_address_input" value="yes" id="yesRadio1">
+                                <input type="radio" name="permanent_address_input" value="yes" id="yesRadio1">
                                 Yes
                             </label> <br>
                             <label>
-                                <input type="radio" name="permanant_address_input" value="no" id="noRadio1">
+                                <input type="radio" name="permanent_address_input" value="no" id="noRadio1">
                                 No
                             </label>
 
                             <div id="formContainer1" class="hidden">
                                 {{-- country --}}
                                 <label class="form-label">Country <span style="color: red;">*</span></label>
-                                <select class="form-select bg" id="permanant_country" name="permanant_country">
+                                <select class="form-select bg permanent-address-input" id="permanent_country" name="permanent_country">
                                     <option selected disabled value="">Choose...</option>
                                     <option>...</option>
                                 </select>
 
 
-                                <!-- Permanantcity -->
+                                <!-- permanentcity -->
                                 <label class="form-label">City <span class="red">*</span></label>
-                                <input type="text" name="Permanant_city" class="form-control bg"
-                                    id="Permanant_city" placeholder="City">
+                                <input type="text" name="permanent_city" class="form-control bg permanent-address-input"
+                                    id="permanent_city" placeholder="City">
 
-                                <!-- permanant_address -->
+                                <!-- permanent_address -->
                                 <label class="form-label">Address
                                     <span class="red">*</span></label>
-                                <input type="text" class="form-control bg" name="permanant_address"
-                                    id="permanant_address" placeholder="Address">
+                                <input type="text" class="form-control bg permanent-address-input" name="permanent_address"
+                                    id="permanent_address" placeholder="Address">
 
-                                <!-- Permanantpostalcode -->
+                                <!-- permanentpostalcode -->
                                 <label class="form-label">Postal Code
                                     <span class="red">*</span></label>
-                                <input type="text" class="form-control bg" name="Permanant_postal_code"
-                                    id="Permanant_postal_code" placeholder="Postal Code">
+                                <input type="text" class="form-control bg permanent-address-input" name="permanent_postal_code"
+                                    id="permanent_postal_code" placeholder="Postal Code">
 
-                                <!-- Permanant phone -->
+                                <!-- permanent phone -->
                                 <label class="form-label">Phone/Mobile <span class="red">*</span></label>
                                 <br>
-                                <input type="tel" class="phoneInputField" name="permanant_phone"
-                                    id="permanant_phone" required>
+                                <input type="tel" class="phoneInputField permanent-address-input" name="permanent_phone"
+                                    id="permanent_phone">
                                 <p class="errorText" style="color: red;"></p>
 
                             </div>
@@ -697,11 +697,11 @@
                         <!-- marital status -->
                         <div class="col-lg-6">
                             <p style="font-weight: bold;">Marital Status :</p>
-                            <input class="" type="radio" name="marital_Status" value="married"
+                            <input class="" type="radio" name="marital_Status" id="marital_status_yes" value="married"
                                 onclick="showInputs()" required>
                             Married
                             <br>
-                            <input class="" type="radio" name="marital_Status" value="single"
+                            <input class="" type="radio" name="marital_Status" id="marital_status_no" value="single"
                                 onclick="hideInputs()" required>
                             Single
                             <div id="marriedInputs" style="display: none;">
@@ -709,25 +709,25 @@
                                     <!-- spousename -->
                                     <label class="form-label pt-2">Spouse Name <span class="red">*</span></label>
                                     <div class="input-group ">
-                                        <input type="text" class="form-control bg" id="spouse_name"
-                                            name="spouse_name" placeholder="Spouse Name" required>
+                                        <input type="text" class="form-control bg marital-status-input" id="spouse_name"
+                                            name="spouse_name" placeholder="Spouse Name">
                                     </div>
                                     <!-- spousedob -->
                                     <label class="form-label pt-2">Date of Birth <span class="red">*</span></label>
                                     <div class="input-group ">
-                                        <input type="date" class="form-control bg" name="spouse_date_of_birth"
-                                            id="spouse_date_of_birth" placeholder="Date of Birth" required>
+                                        <input type="date" class="form-control bg marital-status-input" name="spouse_date_of_birth"
+                                            id="spouse_date_of_birth" placeholder="Date of Birth">
                                     </div>
                                     <!-- spouseemail -->
                                     <label class="form-label pt-2">Email <span class="red">*</span></label>
                                     <div class="input-group pb-2">
-                                        <input type="email" class="form-control bg" name="spouse_email"
-                                            id="spouse_email" placeholder="Email id" required>
+                                        <input type="email" class="form-control bg marital-status-input" name="spouse_email"
+                                            id="spouse_email" placeholder="Email id">
                                     </div>
                                     <!-- spousephone -->
                                     <label class="form-label pt-2">Phone/Mobile <span class="red">*</span></label>
                                     <div class="input-group ">
-                                        <input type="tel" class="phoneInputField" name="spouse_phone"
+                                        <input type="tel" class="phoneInputField marital-status-input" name="spouse_phone"
                                             id="spouse_phone">
                                         <p class="errorText" style="color: red;"></p>
 
@@ -739,8 +739,8 @@
                                         <span class="red">*</span>
                                     </label>
                                     <div class="input-group ">
-                                        <input type="file" class="form-control " name="spouse_image"
-                                            accept="image/*" id="spouse_image" placeholder="" required>
+                                        <input type="file" class="form-control marital-status-input" name="spouse_image"
+                                            accept="image/*" id="spouse_image" placeholder="">
                                     </div>
                                     <div class="form-group ">
                                         <img id="spouseimagePreview" src="#" alt="Image Preview"
@@ -767,24 +767,24 @@
                                 <!-- Siblings name -->
                                 <label class="form-label pt-2">Siblings name<span class="red">*</span></label>
                                 <div class="input-group ">
-                                    <input type="text" class="form-control bg" id="siblings_name"
+                                    <input type="text" class="form-control bg sibling-name-input" id="siblings_name"
                                         placeholder="Siblings Name" name="siblings_name">
                                 </div>
                                 <!--Siblings  Date of Birth-->
                                 <label class="form-label pt-2">Date of Birth <span class="red">*</span></label>
-                                <input type="date" name="siblings_date_of_birth" class="form-control "
+                                <input type="date" name="siblings_date_of_birth" class="form-control sibling-name-input"
                                     id="siblings_date_of_birth" placeholder="Date of Birth">
                                 <!-- siblings  email -->
                                 <div class="col-lg-12 ">
                                     <label class="form-label pt-2">Email <span class="red">*</span></label>
-                                    <input type="email" class="form-control bg" placeholder="Email-Id"
+                                    <input type="email" class="form-control bg sibling-name-input" placeholder="Email-Id"
                                         name="siblings_email" id="siblings_email">
                                     <!--siblings  phone -->
                                     <label class="form-label pt-2">Phone/Mobile <span
                                             class="red">*</span></label><br>
                                     <div class="input-group ">
-                                        <input type="tel" class="phoneInputField" name="siblings_phone"
-                                            id="siblings_phone" required>
+                                        <input type="tel" class="phoneInputField sibling-name-input" name="siblings_phone"
+                                            id="siblings_phone">
                                         <p class="errorText" style="color: red;"></p>
 
                                     </div>
@@ -794,7 +794,7 @@
                                         Size
                                         Photo <span class="red">*</span></label>
                                     <div class="input-group ">
-                                        <input type="file" class="form-control" id="siblings_image"
+                                        <input type="file" class="form-control sibling-name-input" id="siblings_image"
                                             name="siblings_image" accept="image/*">
                                         <!-- images  -->
                                         <div class="form-group  ">
@@ -804,19 +804,19 @@
                                     </div>
 
                                 </div>
-                                <div class="container ">
-                                    <div style="display: flex;justify-content: end; align-items: center; "
-                                        class="  ">
-                                        <!-- button  -->
-                                        <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                                            href="">Previous</a>
-                                        <button class="btn btn-primary m-1 " type="submit">Save</button>
-                                        <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                                            href="">Next</a>
-                                    </div>
-
-                                </div>
                             </div>
+                        </div>
+                        <div class="container ">
+                            <div style="display: flex;justify-content: end; align-items: center; "
+                                 class="  ">
+                                <!-- button  -->
+                                <a style="font-weight: bold;" class="btn btn-secondary m-1"
+                                   href="">Previous</a>
+                                <button class="btn btn-primary m-1 " type="submit">Save</button>
+                                <a style="font-weight: bold;" class="btn btn-secondary m-1"
+                                   href="">Next</a>
+                            </div>
+
                         </div>
                 </form>
             </div>
@@ -1042,7 +1042,34 @@
     </script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+    <script
+        src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+           $('#yesRadio1').click(function () {
+            $('.permanent-address-input').attr('required', true);
+           });
+            $('#noRadio1').click(function () {
+                $('.permanent-address-input').attr('required', false);
+            });
+            $('#marital_status_yes').click(function () {
+                $('.marital-status-input').attr('required', true);
+            });
+            $('#marital_status_no').click(function() {
+                $('.marital-status-input').attr('required', false);
+            });
 
+            $('#yesRadio2').click(function () {
+                $('.sibling-name-input').attr('required', true);
+            });
+            $('#noRadio2').click(function() {
+                $('.sibling-name-input').attr('required', false);
+            });
+
+        });
+    </script>
 </body>
 
 </html>

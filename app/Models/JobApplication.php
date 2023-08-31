@@ -10,7 +10,7 @@ class JobApplication extends Model
     use HasFactory;
     protected $fillable = [
         'sector',
-        'postion',
+        'position',
         'first_name',
         'last_name',
         'image',
@@ -28,12 +28,12 @@ class JobApplication extends Model
         'instagram_link',
         'linked_link',
 // permanantaddress
-        'permanant_address_input',
-        'Permanant_city',
-        'Permanant_postal_code',
-        'permanant_phone',
-        'permanant_country',
-        'permanant_address',
+        'permanent_address_input',
+        'permanent_city',
+        'permanent_postal_code',
+        'permanent_phone',
+        'permanent_country',
+        'permanent_address',
 
         // father
         'father_name',

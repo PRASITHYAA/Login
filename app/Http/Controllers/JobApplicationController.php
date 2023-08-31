@@ -9,10 +9,10 @@ class JobApplicationController extends Controller
 {
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $jobApplication = $request->validate([
             'sector' => 'required',
-            'postion' => 'required',
+            'position' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
@@ -30,12 +30,12 @@ class JobApplicationController extends Controller
             'linked_link' => 'required',
             'instagram_link' => 'required',
             // permanantaddress
-            'permanant_address_input' => 'required|in:yes,no',
-            'Permanant_city' => 'required_if:permanant_address_input,yes',
-            'Permanant_postal_code' => 'required_if:permanant_address_input,yes',
-            'permanant_phone' => 'required_if:permanant_address_input,yes',
-            'permanant_country' => 'required_if:permanant_address_input,yes',
-            'permanant_address' => 'required_if:permanant_address_input,yes',
+            'permanent_address_input' => 'required|in:yes,no',
+            'permanent_city' => 'required_if:permanent_address_input,yes',
+            'permanent_postal_code' => 'required_if:permanent_address_input,yes',
+            'permanent_phone' => 'required_if:permanent_address_input,yes',
+            'permanent_country' => 'required_if:permanent_address_input,yes',
+            'permanent_address' => 'required_if:permanent_address_input,yes',
 
             // fathername
             'father_name' => 'required',
@@ -50,16 +50,16 @@ class JobApplicationController extends Controller
             // maritalStatus
             'marital_Status' => 'required|in:married,single',
             'spouse_name' => 'required_if:marital_Status,married',
-            'spouse_date_of_birth' => 'required_if:marital_Status,married|date',
-            'spouse_email' => 'required_if:marital_Status,married|email',
-            'spouse_phone' => 'required_if:marital_Status,married|numeric',
+            'spouse_date_of_birth' => 'required_if:marital_Status,married',
+            'spouse_email' => 'required_if:marital_Status,married',
+            'spouse_phone' => 'required_if:marital_Status,married',
             'spouse_image' => 'required_if:marital_Status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',  // Adjust max size if needed
             // siblings
             'siblings' => 'required|in:yes,no',
             'siblings_name' => 'required_if:siblings,yes',
-            'siblings_date_of_birth' => 'required_if:siblings,yes|date',
-            'siblings_email' => 'required_if:siblings,yes|email',
-            'siblings_phone' => 'required_if:siblings,yes|numeric',
+            'siblings_date_of_birth' => 'required_if:siblings,yes',
+            'siblings_email' => 'required_if:siblings,yes',
+            'siblings_phone' => 'required_if:siblings,yes',
             'siblings_image' => 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',  // Adjust max size if needed
         ]);
 
