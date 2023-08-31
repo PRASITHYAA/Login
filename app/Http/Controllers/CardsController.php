@@ -14,27 +14,28 @@ class CardsController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
+         //dd($request->all());
 
         $card = $request->validate([
+            'identity_type' => 'required|in:aadhar,passport',
             // aadhar
-            'aadhar_name' => 'required',
-            'aadhar_id_number' => 'required',
-            'aadhar_issued_country' => 'required',
-            'aadhar_issued_state' => 'required',
-            'aadhar_issued_place' => 'required',
-            'aadhar_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'aadhar_image_page' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'aadhar_name' => 'required_if:identity_type,aadhar',
+            'aadhar_id_number' => 'required_if:identity_type,aadhar',
+            'aadhar_issued_country' => 'required_if:identity_type,aadhar',
+            'aadhar_issued_state' => 'required_if:identity_type,aadhar',
+            'aadhar_issued_place' => 'required_if:identity_type,aadhar',
+            'aadhar_image' => 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'aadhar_image_page' => 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             // passport
-            'passport_name' => 'required',
-            'passport_id_number' => 'required',
-            'paasport_issue_date' => 'required',
-            'passport_expired_date' => 'required',
-            'passport_issued_country' => 'required',
-            'passport_issued_state' => 'required',
-            'passport_issued_place' => 'required',
-            'passport_image_id' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'passport_image_id_page' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'passport_name' => 'required_if:identity_type,passport',
+            'passport_id_number' => 'required_if:identity_type,passport',
+            'passport_issue_date' => 'required_if:identity_type,passport',
+            'passport_expired_date' => 'required_if:identity_type,passport',
+            'passport_issued_country' => 'required_if:identity_type,passport',
+            'passport_issued_state' => 'required_if:identity_type,passport',
+            'passport_issued_place' => 'required_if:identity_type,passport',
+            'passport_image_id' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'passport_image_id_page' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($request->hasFile('aadharimage')) {
@@ -59,6 +60,6 @@ class CardsController extends Controller
 
         Card::create($card);
 
-        return redirect()->route('cards.create')->with('success', 'Card created successfully!');
+        return redirect()->route('education.view', ['id' => $request->job_application_id])->with('success', 'Card created successfully!');
     }
 }

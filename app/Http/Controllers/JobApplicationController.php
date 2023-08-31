@@ -83,9 +83,9 @@ class JobApplicationController extends Controller
             $jobApplication['siblings_image'] = $siblingsImagepath;
         }
 
-        JobApplication::create($jobApplication);
+        $jobApplication = JobApplication::create($jobApplication);
 
-        return redirect()->back()->with('success', 'Form submitted successfully!');
+        return redirect()->route('card.view', ['id' => $jobApplication->id])->with('success', 'Form submitted successfully!');
 
         // return redirect()->route('job_application.show', $jobApplication->id)
         //     ->with('success', 'Job application submitted successfully!');

@@ -161,8 +161,26 @@
                 aria-valuemax="45%">45%</div>
         </div>
         <div class="container">
-            <form action="{{}}" method="POST" enctype="multipart/form-data">
+            {{-- error --}}
+            @if ($errors->any())
+                <div class=" alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            {{-- success --}}
 
+            @if (session('success'))
+                <div class=" container  alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <form action="{{ route('card.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
                 <h2 class="text-center p-4">Government-Issued Identification Cards (IDs)</h2>
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp <br>
                     Size Limit: 50KB</p>
@@ -171,11 +189,11 @@
                     <input type="checkbox" id="aadharcard"> AADHAR CARD
                 </label> -->
                 <label>
-                    <input type="checkbox" id="aadharcard" checked> AADHAR CARD
+                    <input type="checkbox" id="aadharcard" name="identity_type" value="aadhar" checked> AADHAR CARD
                 </label>
 
                 <label>
-                    <input type="checkbox" id="passport" onchange="toggleInputFields()"> PASSPORT
+                    <input type="checkbox" id="passport" name="identity_type" value="passport" onchange="toggleInputFields()"> PASSPORT
                 </label>
 
                 <div id="inputFieldsaadharcard">
@@ -287,7 +305,7 @@
                                 <div class="col mt-4">
                                     <label class="form-label">Issued Date <span style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                        name="paasport_issue_date" class="form-control" placeholder=""
+                                        name="passport_issue_date" class="form-control" placeholder=""
                                         id="fromDate" onchange="validateDateRange()" >
                                 </div>
                                 <!-- passport expired date -->
@@ -347,7 +365,7 @@
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="passport_image_id_page"
                                             name="passport_image_id_page" accept="image/*"
-                                            aria-describedby="inputGroupPrepend2" required>
+                                            aria-describedby="inputGroupPrepend2">
                                     </div>
                                     <div class="form-group">
                                         <img id="passportImageIdPagePreview" src="#" alt="Image Preview"

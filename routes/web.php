@@ -82,12 +82,12 @@ Route::delete('/job/{job}', [JobController::class, 'destroy'])->name('job.destro
  Route::post('job_application', [JobApplicationController::class, 'store'])->name('job_application.store');
 
  // card
- Route::view('/card', 'Career.card.create');
+ Route::view('/card', 'Career.card.create')->name('card.view');
  Route::post('/card', [CardsController::class, 'store'])->name('card.store');
 
  //  education
 
- Route::view('/education', 'career.education.create');
+ Route::view('/education', 'career.education.create')->name('education.view');
  Route::post('education', [EducationController::class, 'store'])->name('education.store');
 
 
