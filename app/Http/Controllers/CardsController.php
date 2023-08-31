@@ -17,6 +17,7 @@ class CardsController extends Controller
          //dd($request->all());
 
         $card = $request->validate([
+            'job_application_id' => 'required',
             'identity_type' => 'required|in:aadhar,passport',
             // aadhar
             'aadhar_name' => 'required_if:identity_type,aadhar',

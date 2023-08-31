@@ -9,6 +9,7 @@ class Education extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'job_application_id',
         'radioOption',
         // high school
 

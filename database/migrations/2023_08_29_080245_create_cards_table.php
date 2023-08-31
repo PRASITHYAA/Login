@@ -10,6 +10,7 @@ class CreateCardsTable extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('job_application_id');
             $table->string('aadhar_name')->nullable();
             $table->string('aadhar_id_number')->nullable();
             $table->string('aadhar_issued_country')->nullable();
@@ -28,6 +29,8 @@ class CreateCardsTable extends Migration
             $table->string('passport_image_id')->nullable();
             $table->string('passport_image_id_page')->nullable();
             $table->timestamps();
+
+            $table->foreign('job_application_id')->references('id')->on('job_applications');
         });
     }
 

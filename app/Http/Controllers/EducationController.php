@@ -13,6 +13,7 @@ class EducationController extends Controller
 
         $education = $request->validate(
             [
+            'job_application_id' => 'required',
             'highschoolname' => 'required|string',
             'highschoolcity' => 'required|string',
             'highschooladdress' => 'required|string',

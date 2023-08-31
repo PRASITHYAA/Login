@@ -9,6 +9,7 @@ class Card extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'job_application_id',
         'aadhar_name',
      'aadhar_id_number',
       'aadhar_issued_country',
