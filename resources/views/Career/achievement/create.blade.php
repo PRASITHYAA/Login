@@ -156,29 +156,29 @@
     <div class="container   mt-2">
         <div class="progress-bar" role="progressbar" style="width: 90%; background-color: #111;color: white; "
             aria-valuenow="90" aria-valuemin="0" aria-valuemax="90%">90%</div>
-                            {{-- error --}}
-                            @if ($errors->any())
-                            <div class=" alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        {{-- success --}}
 
-                        @if (session('success'))
-                            <div class=" container  alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
+        {{-- error --}}
+        @if ($errors->any())
+            <div class=" alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- success --}}
+
+        @if (session('success'))
+            <div class=" container  alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
     </div>
     <div class="container-fluid">
         <div class="container">
-            <form action="{{ route('acheivement.store') }}"  method="POST"
-                enctype="multipart/form-data">
+            <form action="{{ route('achievement.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <h2 class="text-center p-4">ACHEIVEMENTS, CO-CURRICULAR, EXTRA-CURRICULAR DETAILS</h2>
                 <p>Please use this section to indicate how far you meet each of the competencies required for the post.
@@ -191,7 +191,7 @@
                 <div class="mb-3">
 
                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                        name="acheivement" id="acheivement" placeholder="">
+                        name="achievement" id="achievement" placeholder="">
                 </div>
                 <h4>Have you been published any conference papers/attended conferences? </h4>
                 <!-- first one -->
@@ -241,13 +241,14 @@
                         your writing for this part to a maximum of 500 words and upload the detailed project file.
                     </p>
                     <label for="exampleFormControlInput1" class="form-label">Final Year Projects </label>
-                    <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" name="final_year_project"
-                        id="final_year_project" >
+                    <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control"
+                        name="final_year_project" id="final_year_project">
                     <div class="col-md-3  p-2">
-                        <label  class="form-label">Upload All Your Project Documents
+                        <label class="form-label">Upload All Your Project Documents
                             Here
                             <div class="input-group">
-                                <input type="file" class="form-control" id="project_document" name="project_document">
+                                <input type="file" class="form-control" id="project_document"
+                                    name="project_document">
 
                             </div>
                     </div>
@@ -256,22 +257,22 @@
                     <h2 class="pt-4 pb-4">Cocurricular/Extra Curricular Skills</h2>
                     </p>
                     <div class="mb-3">
-                        <label  class="form-label"> Please use this section to
+                        <label class="form-label"> Please use this section to
                             indicate
                             the Personal Quality Skills. Please limit your writing for this part to a maximum of 500
                             words and upload the Co- <br> Curricular/Extracurricular Records <span
                                 class="red">*</span>
                         </label>
-                        <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" id="extra_curricular_skills" name="extra_curricular_skills"
-                            rows="3"></textarea>
+                        <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" id="extra_curricular_skills"
+                            name="extra_curricular_skills" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="col-md-3  mt-4 mb-5">
-                    <label  class="form-label">Upload All Your Project Documents Here
+                    <label class="form-label">Upload All Your Project Documents Here
 
                         <div class="input-group">
-                            <input type="file" class="form-control" id="extra_curricular_skills_project_document" name="extra_curricular_skills_project_document"
-                               required>
+                            <input type="file" class="form-control" id="extra_curricular_skills_project_document"
+                                name="extra_curricular_skills_project_document" required>
                         </div>
                 </div>
                 <div>
@@ -290,11 +291,12 @@
 
                     <div id="input-field-3" style="display: none;">
                         <div class="col-md-3  p-2">
-                            <label  class="form-label">Attach Your resume: In PDF Format
+                            <label class="form-label">Attach Your resume: In PDF Format
                                 <span class="red">*</span>
                             </label>
                             <div class="input-group">
-                                <input type="file" class="form-control" id="yes_curriculum_pdf_format" name="yes_curriculum_pdf_format">
+                                <input type="file" class="form-control" id="yes_curriculum_pdf_format"
+                                    name="yes_curriculum_pdf_format">
                             </div>
                         </div>
                     </div>
@@ -315,10 +317,10 @@
                         <div class="  p-2">
 
                             <div class=" mb-3">
-                                <label  class="form-label">please explain
+                                <label class="form-label">please explain
                                     here</label>
-                                <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" id="no_curriculum_explain" name="no_curriculum_explain"
-                                    rows="3"></textarea>
+                                <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" id="no_curriculum_explain"
+                                    name="no_curriculum_explain" rows="3"></textarea>
                             </div>
 
                         </div>
@@ -331,8 +333,9 @@
                     </div>
 
                 </div>
+
+            </form>
         </div>
-        </form>
 
 
     </div>
@@ -466,6 +469,7 @@
             inputFieldDiv.style.display = 'block';
         }
     </script>
+
     <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">

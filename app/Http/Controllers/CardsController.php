@@ -39,24 +39,24 @@ class CardsController extends Controller
             'passport_image_id_page' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        if ($request->hasFile('aadharimage')) {
-            $aadharImagePath = $request->file('aadharimage')->store('images', 'public');
-            $card->aadharImage = $aadharImagePath;
+        if ($request->hasFile('aadhar_image')) {
+            $aadharImagePath = $request->file('aadhar_image')->store('images', 'public');
+            $cardData['aadhar_image'] = $aadharImagePath;
         }
 
-        if ($request->hasFile('aadharimagepage')) {
-            $aadharImagePagePath = $request->file('aadharimagepage')->store('images', 'public');
-            $card->aadharimagepage = $aadharImagePagePath;
+        if ($request->hasFile('aadhar_image_page')) {
+            $aadharImagePagePath = $request->file('aadhar_image_page')->store('images', 'public');
+            $cardData['aadhar_image_page'] = $aadharImagePagePath;
         }
 
-        if ($request->hasFile('passportimageid')) {
-            $passportImageIdPath = $request->file('passportimageid')->store('images', 'public');
-            $card->passportimageid = $passportImageIdPath;
+        if ($request->hasFile('passport_image_id')) {
+            $passportImageIdPath = $request->file('passport_image_id')->store('images', 'public');
+            $cardData['passport_image_id'] = $passportImageIdPath;
         }
 
-        if ($request->hasFile('passportimageidpage')) {
-            $passportImageIdPagePath = $request->file('passportimageidpage')->store('images', 'public');
-            $card->passportimageidpage = $passportImageIdPagePath;
+        if ($request->hasFile('passport_image_id_page')) {
+            $passportImageIdPagePath = $request->file('passport_image_id_page')->store('images', 'public');
+            $cardData['passport_image_id_page'] = $passportImageIdPagePath;
         }
 
         Card::create($card);

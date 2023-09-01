@@ -18,7 +18,7 @@ class DisclaimerController extends Controller
             'disclaimer_signature' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'disclaimer_date' => 'required',
             'disclaimer_time' => 'required',
-            'disclamer_print_name' => 'required',
+            'disclaimer_print_name' => 'required',
             'disclaimer_place' => 'required',
 
 

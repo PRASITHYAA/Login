@@ -210,6 +210,7 @@
                         <input type="radio" name="radio_option" value="no" onclick="hideCheckboxes()"> No
                     </label>
                 </div>
+
                 <div id="checkboxes" style="display: none;">
 
                     <!-- High School -->
@@ -437,7 +438,7 @@
                                     <input type="file" class="form-control" id="higher_secondary_image_mark_sheet"
                                         name="higher_secondary_image_mark_sheet">
                                 </div>
-                                <!-- Preview for Higher Secondary image Mark Sheet -->
+                                <!-- Preview  Higher Secondary image Mark Sheet -->
                                 <div class="form-group">
                                     <img id="highersecondaryimagemarksheetPreview" src="#" alt="Image Preview"
                                         style="width:150px; display: none;">
@@ -885,9 +886,7 @@
                             <!-- doctoratefiledofinterest -->
                             <div class="col-lg-2">
                                 <label class="form-label">Filed of Interest <span
-                                        styl@push('name')
-
-                                        @endpushe="color: red;">*</span></label>
+                                        style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control" name="doctorate_filed_of_interest"
                                     id="doctorate_filed_of_interest" placeholder="Filed of Interest">
@@ -926,7 +925,7 @@
                 <!-- BUTTONS -->
                 <div style="display: flex;justify-content: end; align-items: center;" class="">
                     <a style="font-weight: bold; " class="btn btn-secondary mt-5" href="card">Previous</a>
-                    <button class="btn btn-primary mx-4 mt-5" type="submit">Save & Resume</button>
+                    <button class="btn btn-primary mx-4 mt-5" type="submit">Save </button>
                     <a style="font-weight: bold;" class="btn btn-secondary mt-5 " href="acheivement">Next</a>
                 </div>
             </form>
@@ -1038,6 +1037,8 @@
         }
     </script>
 
+
+{{-- image --}}
     <script>
         function setupImagePreview(inputId, previewId) {
             document.getElementById(inputId).addEventListener('change', function(event) {
@@ -1047,25 +1048,27 @@
             });
         }
 
-        setupImagePreview('highschoolimagemarksheet', 'highschoolMarkSheetPreview');
-        setupImagePreview('highschoolimagecertificate', 'highschoolimagecertificatePreview');
+        setupImagePreview('high_school_image_mark_sheet', 'highschoolMarkSheetPreview');
+        setupImagePreview('high_school_image_certificate', 'highschoolimagecertificatePreview');
 
-        setupImagePreview('highersecondaryimagecertificate', 'highersecondaryimagecertificatePreview');
-        setupImagePreview('highersecondaryimagemarksheet', 'highersecondaryimagemarksheetPreview');
+        setupImagePreview('higher_secondary_image_certificate', 'highersecondaryimagecertificatePreview');
+        setupImagePreview('higher_secondary_image_mark_sheet', 'highersecondaryimagemarksheetPreview');
 
-        setupImagePreview('diplomaimagecertificate', 'diplomaCertificatePreview');
-        setupImagePreview('diplomaimagemarksheet', 'diplomaMarkSheetPreview');
+        setupImagePreview('diploma_image_certificate', 'diplomaCertificatePreview');
+        setupImagePreview('diploma_image_mark_sheet', 'diplomaMarkSheetPreview');
 
-        setupImagePreview('bachelorsimagemarksheet', 'bachelorsimagemarksheetPreview');
-        setupImagePreview('bachelorsimagecertificate', 'bachelorsimagecertificatePreview');
+        setupImagePreview('bachelors_image_mark_sheet', 'bachelorsimagemarksheetPreview');
+        setupImagePreview('bachelors_image_certificate', 'bachelorsimagecertificatePreview');
 
-        setupImagePreview('masterimagecertificate', 'masterimagecertificatePreview');
-        setupImagePreview('masterimagemarksheet', 'masterimagemarksheetPreview');
+        setupImagePreview('master_image_certificate', 'masterimagecertificatePreview');
+        setupImagePreview('master_image_mark_sheet', 'masterimagemarksheetPreview');
 
-        setupImagePreview('doctorateimagecertificate', 'doctorateimagecertificatePreview');
-        setupImagePreview('doctorateimagemarksheet', 'doctorateimagemarksheetPreview');
+        setupImagePreview('doctorate_image_certificate', 'doctorateimagecertificatePreview');
+        setupImagePreview('doctorate_image_mark_sheet', 'doctorateimagemarksheetPreview');
     </script>
 
+
+{{-- bootstrap --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>

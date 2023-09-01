@@ -105,7 +105,7 @@ class EducationController extends Controller
         }
 
         if ($request->hasFile('high_school_image_mark_sheet')) {
-            $markSheetPath = $request->file('high_school_image_mark_sheet')->store('high_school_marksheets', 'public');
+            $markSheetPath = $request->file('high_school_image_mark_sheet')->store('high_school_mark_sheets', 'public');
             $education['high_school_image_mark_sheet'] = $markSheetPath;
         }
 
@@ -117,7 +117,7 @@ class EducationController extends Controller
         }
 
         if ($request->hasFile('higher_secondary_image_mark_sheet')) {
-            $markSheetPath = $request->file('higher_secondary_image_mark_sheet')->store('marksheets', 'public');
+            $markSheetPath = $request->file('higher_secondary_image_mark_sheet')->store('mark_sheets', 'public');
             $education['higher_secondary_image_mark_sheet'] = $markSheetPath;
         }
 
@@ -128,7 +128,7 @@ class EducationController extends Controller
         }
 
         if ($request->hasFile('diploma_image_mark_sheet')) {
-            $markSheetPath = $request->file('diploma_image_mark_sheet')->store('marksheets', 'public');
+            $markSheetPath = $request->file('diploma_image_mark_sheet')->store('mark_sheets', 'public');
             $education['diploma_image_mark_sheet'] = $markSheetPath;
         }
 
@@ -140,7 +140,7 @@ class EducationController extends Controller
         }
 
         if ($request->hasFile('bachelors_image_mark_sheet')) {
-            $markSheetPath = $request->file('bachelors_image_mark_sheet')->store('marksheets', 'public');
+            $markSheetPath = $request->file('bachelors_image_mark_sheet')->store('mark_sheets', 'public');
             $education['bachelors_image_mark_sheet'] = $markSheetPath;
         }
 
@@ -151,7 +151,7 @@ class EducationController extends Controller
         }
 
         if ($request->hasFile('master_image_mark_sheet')) {
-            $markSheetPath = $request->file('master_image_mark_sheet')->store('marksheets', 'public');
+            $markSheetPath = $request->file('master_image_mark_sheet')->store('mark_sheets', 'public');
             $education['master_image_mark_sheet'] = $markSheetPath;
         }
 
@@ -163,12 +163,12 @@ class EducationController extends Controller
         }
 
         if ($request->hasFile('doctorate_image_mark_sheet')) {
-            $markSheetPath = $request->file('doctorate_image_mark_sheet')->store('marksheets', 'public');
+            $markSheetPath = $request->file('doctorate_image_mark_sheet')->store('mark_sheets', 'public');
             $education['doctorate_image_mark_sheet'] = $markSheetPath;
         }
 
         Education::create($education);
 
-        return redirect()->back()->with('success', ' information has been successfully stored.');
+        return redirect()->route('employment', ['id' => $request->job_application_id])->with('success', 'Education created successfully!');
     }
 }

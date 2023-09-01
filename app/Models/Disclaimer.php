@@ -23,7 +23,7 @@ class Disclaimer extends Model
 
          'disclaimer_time',
 
-         'disclamer_print_name',
+         'disclaimer_print_name',
 
          'disclaimer_place',
 ];

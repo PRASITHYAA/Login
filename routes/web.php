@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SectorController;
 use  App\Http\Controllers\JobController;
-use App\Http\Controllers\AcheivementController;
+use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\CardsController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\EducationController;
@@ -86,20 +86,17 @@ Route::delete('/job/{job}', [JobController::class, 'destroy'])->name('job.destro
  Route::post('/card', [CardsController::class, 'store'])->name('card.store');
 
  //  education
-
  Route::view('/education', 'career.education.create')->name('education.view');
  Route::post('education', [EducationController::class, 'store'])->name('education.store');
 
 
- //  acheivement
+ //  achievement
 
- Route::view('/acheivement', 'career.acheivement.create');
- Route::post('acheivement', [AcheivementController::class, 'store'])->name('acheivement.store');
+ Route::view('/achievement', 'career.achievement.create')->name('achievement');
+ Route::post('achievement', [AchievementController::class,'store'])->name('achievement.store');
 
  //  disclaimer
 
- Route::view('/disclaimer', 'demo');
- Route::post('disclaimer', [DisclaimerController::class, 'store'])->name('disclaimer.store');
 
 
  Route::view('/disclaimer', 'career.disclaimer.create');
@@ -108,5 +105,12 @@ Route::delete('/job/{job}', [JobController::class, 'destroy'])->name('job.destro
 
 // employment
 
- Route::view('/employment', 'career.employment.create');
+ Route::view('/employment', 'career.employment.create')->name('employment');
  Route::post('employment', [EmploymentController::class, 'store'])->name('employment.store');
+
+
+
+
+  //  demo
+  Route::view('/demo', 'demo');
+  Route::post('demo', [DisclaimerController::class, 'store'])->name('disclaimer.store');

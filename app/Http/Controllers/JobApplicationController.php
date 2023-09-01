@@ -29,7 +29,7 @@ class JobApplicationController extends Controller
             'fb_link' => 'required',
             'linked_link' => 'required',
             'instagram_link' => 'required',
-            // permanantaddress
+            // permanent address
             'permanent_address_input' => 'required|in:yes,no',
             'permanent_city' => 'required_if:permanent_address_input,yes',
             'permanent_postal_code' => 'required_if:permanent_address_input,yes',
@@ -37,12 +37,12 @@ class JobApplicationController extends Controller
             'permanent_country' => 'required_if:permanent_address_input,yes',
             'permanent_address' => 'required_if:permanent_address_input,yes',
 
-            // fathername
+            // father name
             'father_name' => 'required',
             'father_date_of_birth' => 'required|date',
             'father_phone' => 'required|numeric',
             'father_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
-            // mothername
+            // mother name
             'mother_name' => 'required',
             'mother_date_of_birth' => 'required|date',
             'mother_phone' => 'required|numeric',
@@ -86,9 +86,6 @@ class JobApplicationController extends Controller
         $jobApplication = JobApplication::create($jobApplication);
 
         return redirect()->route('card.view', ['id' => $jobApplication->id])->with('success', 'Form submitted successfully!');
-
-        // return redirect()->route('job_application.show', $jobApplication->id)
-        //     ->with('success', 'Job application submitted successfully!');
     }
 
 

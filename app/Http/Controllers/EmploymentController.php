@@ -37,6 +37,6 @@ class EmploymentController extends Controller
 
         Employment::create($employment);
 
-        return redirect()->back()->with('success', 'Form submitted successfully!');
+        return redirect()->route('achievement', ['id' => $request->job_application_id])->with('success', 'Education created successfully!');
     }
 }

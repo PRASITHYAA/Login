@@ -28,7 +28,7 @@ class CreateJobApplicationsTable extends Migration
             $table->string('fb_link')->nullable();
             $table->string('instagram_link')->nullable();
             $table->string('linked_link')->nullable();
-            // permanantaddress
+            // permanent address
             $table->string('permanent_address_input');
             $table->string('permanent_city')->nullable();
             $table->string('permanent_postal_code')->nullable();
@@ -53,7 +53,7 @@ class CreateJobApplicationsTable extends Migration
             $table->string('spouse_email')->nullable();
             $table->string('spouse_phone')->nullable();
             $table->string('spouse_image')->nullable();
-            // Siblings
+            //Siblings
             $table->string('siblings')->nullable();
             $table->string('siblings_name')->nullable();
             $table->date('siblings_date_of_birth')->nullable();

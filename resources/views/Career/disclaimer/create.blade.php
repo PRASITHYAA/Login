@@ -161,23 +161,23 @@
             <div class="progress-bar mt-2" role="progressbar"
                 style="width: 100%; background-color: #111;color: white; " aria-valuenow="100" aria-valuemin=""
                 aria-valuemax="100%">100%</div>
-                                {{-- error --}}
-                                @if ($errors->any())
-                                <div class=" alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-                            {{-- success --}}
+            {{-- error --}}
+            @if ($errors->any())
+                <div class=" alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            {{-- success --}}
 
-                            @if (session('success'))
-                                <div class=" container  alert alert-success">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
+            @if (session('success'))
+                <div class=" container  alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
         </div>
         <h2 class="text-center p-4">DISCLAIMER</h2> disclaimer
@@ -242,6 +242,7 @@
                         <input class="form-control bg" type="text" id="currentDate" value="01/08/2023"
                             name="disclaimer_date" readonly>
                     </div>
+
                     <!-- time -->
                     <div class="col-md-4 ">
                         <label class="form-label">Time</label>
@@ -255,7 +256,7 @@
                             <label class="form-label">Print Name</label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control"
                                 type="text" value="Print Name" aria-label="Disabled input example"
-                                id="print_name" name="disclamer_print_name" readonly>
+                                id="print_name" name="disclaimer_print_name" readonly>
                         </div>
                         <!-- PLACE -->
                         <div class="col-md-6">
@@ -281,14 +282,15 @@
                         </div>
                     </div>
                 </div>
-        </div>
-        </form>
-        <!-- buttons -->
-        <div style="display: flex;justify-content: end;  " class="groupfinal">
-            <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
-                href="Acheivements.html">Previous</a>
-            <a class="btn btn-primary m-1 " href="">Submit Form</a>
-            <a class="btn btn-secondary m-1 " href="">Export Pdf</a>
+
+                <!-- buttons -->
+                <div style="display: flex;justify-content: end;  " class="groupfinal">
+                    <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
+                        href="Acheivements.html">Previous</a>
+                    <button class="btn btn-primary m-1 ">Submit Form</button>
+                    <a class="btn btn-secondary m-1 " href="">Export Pdf</a>
+                </div>
+            </form>
         </div>
     </div>
     <!-- footer -->
@@ -390,6 +392,8 @@
         updateCurrentTime();
         setInterval(updateCurrentTime, 60000);
     </script>
+
+    {{-- image --}}
     <script>
         const signatureInput = document.getElementById('disclaimer_Signature');
         const signaturePreview = document.getElementById('disclaimer_SignaturePreview');

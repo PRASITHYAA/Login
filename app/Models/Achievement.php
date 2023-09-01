@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Acheivement extends Model
+class Achievement extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'acheivement',
+        'achievement',
 
         'open-input',
         'Conference',
@@ -27,4 +27,5 @@ class Acheivement extends Model
         'open-input-4',
         'no_curriculum_explain',
 ];
+
 }

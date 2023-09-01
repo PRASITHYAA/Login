@@ -172,7 +172,6 @@
                 </div>
             @endif
             {{-- success --}}
-
             @if (session('success'))
                 <div class=" container  alert alert-success">
                     {{ session('success') }}
@@ -193,7 +192,8 @@
                 </label>
 
                 <label>
-                    <input type="checkbox" id="passport" name="identity_type" value="passport" onchange="toggleInputFields()"> PASSPORT
+                    <input type="checkbox" id="passport" name="identity_type" value="passport"
+                        onchange="toggleInputFields()"> PASSPORT
                 </label>
 
                 <div id="inputFieldsaadharcard">
@@ -272,13 +272,12 @@
                             </div>
                             <!-- button -->
                             <a style="font-weight: bold; " class="btn btn-secondary mt-5"
-                                href="./job-application.html">Previous</a>
+                                href="job_application">Previous</a>
 
                             <button class="btn btn-primary mx-4 mt-5" type="submit"> save</button>
 
 
-                            <a style="font-weight: bold;" class="btn btn-secondary mt-5 "
-                                href="education.html">Next</a>
+                            <a style="font-weight: bold;" class="btn btn-secondary mt-5 " href="education">Next</a>
                             <br>
                             <br>
                         </div>
@@ -292,35 +291,35 @@
                                             style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                         id="passport_name" name="passport_name" class="form-control"
-                                        placeholder="Name as per IDs" >
+                                        placeholder="Name as per IDs">
                                 </div>
                                 <!-- passport id number -->
                                 <div class="col mt-4">
                                     <label class="form-label">IDs Number <span style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
                                         id="passport_id_number" name="passport_id_number" class="form-control"
-                                        placeholder="Passport ID Number" >
+                                        placeholder="Passport ID Number">
                                 </div>
                                 <!-- paasport issued date -->
                                 <div class="col mt-4">
                                     <label class="form-label">Issued Date <span style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                         name="passport_issue_date" class="form-control" placeholder=""
-                                        id="fromDate" onchange="validateDateRange()" >
+                                        id="fromDate" onchange="validateDateRange()">
                                 </div>
                                 <!-- passport expired date -->
                                 <div class="col mt-4">
                                     <label class="form-label">Expired Date <span style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                         name="passport_expired_date" class="form-control" placeholder=""
-                                        id="toDate" onchange="validateDateRange()" >
+                                        id="toDate" onchange="validateDateRange()">
                                     <p style="color: red;" id="validationMessage" class="error"></p>
                                 </div>
                                 <!-- passport issued country -->
                                 <div class="col mt-4">
                                     <label class="form-label">Country <span style="color: red;">*</span></label>
                                     <select class="form-select" id="passport_issued_country"
-                                        name="passport_issued_country" >
+                                        name="passport_issued_country">
                                         <option selected disabled value="">Choose...</option>
                                         <option>...</option>
                                     </select>
@@ -328,9 +327,9 @@
                                 <!-- passport issued state -->
                                 <div class="col mt-4">
                                     <label class="form-label">State <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" id="passport_issued_state"
-                                        name="passport_issued_state" class="form-control" placeholder="Issued Place"
-                                        >
+                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                        id="passport_issued_state" name="passport_issued_state" class="form-control"
+                                        placeholder="Issued Place">
                                 </div>
                                 <!-- passport issued place -->
                                 <div class="col mt-4">
@@ -338,7 +337,7 @@
                                         <span style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                         name="passport_issued_place" class="form-control" placeholder="Issued Place"
-                                        id="passport_issued_place" >
+                                        id="passport_issued_place">
                                 </div>
 
                                 <!-- passport  upload id -->
@@ -349,7 +348,7 @@
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="passport_image_id"
                                             name="passport_image_id" accept="image/*"
-                                            aria-describedby="inputGroupPrepend2" >
+                                            aria-describedby="inputGroupPrepend2">
                                     </div>
                                     <div class="form-group">
                                         <img id="passportImageIdPreview" src="#" alt="Image Preview"
@@ -359,7 +358,7 @@
                                 </div>
                                 <!-- passport image id page -->
                                 <div class="col mt-4">
-                                    <label  class="form-label">Upload ID- 2st
+                                    <label class="form-label">Upload ID- 2st
                                         Page
                                         <span style="color: red;">*</span></label>
                                     <div class="input-group">
@@ -471,7 +470,7 @@
         </div>
     </footer>
 
-    <!-- {{-- passport --}} -->
+    <!--  passport - -->
     <script>
         function toggleInputFields() {
             const passport = document.getElementById('passport');
@@ -484,7 +483,7 @@
         }
     </script>
 
-    <!-- {{--  previews image --}} -->
+    <!-- previews image - -->
     <script>
         function setupImagePreview(inputId, previewId) {
             document.getElementById(inputId).addEventListener('change', function(event) {
@@ -501,8 +500,6 @@
 
     <!-- aadhar number validation -->
     <script>
-        // Verhoeff algorithm functions (same as before)
-
         function validateAadhaar(aadhaar) {
             if (aadhaar.length !== 12) {
                 return false;
@@ -529,6 +526,7 @@
             }
         }
     </script>
+
     <!-- passport date validation fromdate todate -->
     <script>
         function validateDateRange() {

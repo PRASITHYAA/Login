@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Acheivement;
+use App\Models\Achievement;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class AcheivementController extends Controller
-{
-    public function store(Request $request)
+
+
+class AchievementController extends Controller
+{    public function store(Request $request)
     {
         $achievement = $request->validate([
-            'acheivement' => 'required',
+            'achievement' => 'required',
 
             'open-input' => 'required|in:yes,no',
             'Conference' => 'required_if:open-input,yes',
@@ -45,8 +46,9 @@ class AcheivementController extends Controller
             $resumeDocumentPath = $request->file('yes_curriculum_pdf_format')->store('documents', 'public');
             $achievement['yes_curriculum_pdf_format'] = $resumeDocumentPath;
         }
-            Acheivement::create($achievement);
+        Achievement::create($achievement);
 
-        return redirect()->back()->with('success', 'Achievement submitted successfully!');
+        return redirect()->route('disclaimer', ['id' => $request->job_application_id])->with('success', 'Achievement created successfully!');
     }
+
 }

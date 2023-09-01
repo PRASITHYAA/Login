@@ -587,7 +587,8 @@
                             <div id="formContainer1" class="hidden">
                                 {{-- country --}}
                                 <label class="form-label">Country <span style="color: red;">*</span></label>
-                                <select class="form-select bg permanent-address-input" id="permanent_country" name="permanent_country">
+                                <select class="form-select bg permanent-address-input" id="permanent_country"
+                                    name="permanent_country">
                                     <option selected disabled value="">Choose...</option>
                                     <option>...</option>
                                 </select>
@@ -595,26 +596,28 @@
 
                                 <!-- permanentcity -->
                                 <label class="form-label">City <span class="red">*</span></label>
-                                <input type="text" name="permanent_city" class="form-control bg permanent-address-input"
-                                    id="permanent_city" placeholder="City">
+                                <input type="text" name="permanent_city"
+                                    class="form-control bg permanent-address-input" id="permanent_city"
+                                    placeholder="City">
 
                                 <!-- permanent_address -->
                                 <label class="form-label">Address
                                     <span class="red">*</span></label>
-                                <input type="text" class="form-control bg permanent-address-input" name="permanent_address"
-                                    id="permanent_address" placeholder="Address">
+                                <input type="text" class="form-control bg permanent-address-input"
+                                    name="permanent_address" id="permanent_address" placeholder="Address">
 
                                 <!-- permanentpostalcode -->
                                 <label class="form-label">Postal Code
                                     <span class="red">*</span></label>
-                                <input type="text" class="form-control bg permanent-address-input" name="permanent_postal_code"
-                                    id="permanent_postal_code" placeholder="Postal Code">
+                                <input type="text" class="form-control bg permanent-address-input"
+                                    name="permanent_postal_code" id="permanent_postal_code"
+                                    placeholder="Postal Code">
 
                                 <!-- permanent phone -->
                                 <label class="form-label">Phone/Mobile <span class="red">*</span></label>
                                 <br>
-                                <input type="tel" class="phoneInputField permanent-address-input" name="permanent_phone"
-                                    id="permanent_phone">
+                                <input type="tel" class="phoneInputField permanent-address-input"
+                                    name="permanent_phone" id="permanent_phone">
                                 <p class="errorText" style="color: red;"></p>
 
                             </div>
@@ -697,38 +700,39 @@
                         <!-- marital status -->
                         <div class="col-lg-6">
                             <p style="font-weight: bold;">Marital Status :</p>
-                            <input class="" type="radio" name="marital_Status" id="marital_status_yes" value="married"
-                                onclick="showInputs()" required>
+                            <input class="" type="radio" name="marital_Status" id="marital_status_yes"
+                                value="married" onclick="showInputs()" required>
                             Married
                             <br>
-                            <input class="" type="radio" name="marital_Status" id="marital_status_no" value="single"
-                                onclick="hideInputs()" required>
+                            <input class="" type="radio" name="marital_Status" id="marital_status_no"
+                                value="single" onclick="hideInputs()" required>
                             Single
                             <div id="marriedInputs" style="display: none;">
                                 <div class="col-md-12">
                                     <!-- spousename -->
                                     <label class="form-label pt-2">Spouse Name <span class="red">*</span></label>
                                     <div class="input-group ">
-                                        <input type="text" class="form-control bg marital-status-input" id="spouse_name"
-                                            name="spouse_name" placeholder="Spouse Name">
+                                        <input type="text" class="form-control bg marital-status-input"
+                                            id="spouse_name" name="spouse_name" placeholder="Spouse Name">
                                     </div>
                                     <!-- spousedob -->
                                     <label class="form-label pt-2">Date of Birth <span class="red">*</span></label>
                                     <div class="input-group ">
-                                        <input type="date" class="form-control bg marital-status-input" name="spouse_date_of_birth"
-                                            id="spouse_date_of_birth" placeholder="Date of Birth">
+                                        <input type="date" class="form-control bg marital-status-input"
+                                            name="spouse_date_of_birth" id="spouse_date_of_birth"
+                                            placeholder="Date of Birth">
                                     </div>
                                     <!-- spouseemail -->
                                     <label class="form-label pt-2">Email <span class="red">*</span></label>
                                     <div class="input-group pb-2">
-                                        <input type="email" class="form-control bg marital-status-input" name="spouse_email"
-                                            id="spouse_email" placeholder="Email id">
+                                        <input type="email" class="form-control bg marital-status-input"
+                                            name="spouse_email" id="spouse_email" placeholder="Email id">
                                     </div>
                                     <!-- spousephone -->
                                     <label class="form-label pt-2">Phone/Mobile <span class="red">*</span></label>
                                     <div class="input-group ">
-                                        <input type="tel" class="phoneInputField marital-status-input" name="spouse_phone"
-                                            id="spouse_phone">
+                                        <input type="tel" class="phoneInputField marital-status-input"
+                                            name="spouse_phone" id="spouse_phone">
                                         <p class="errorText" style="color: red;"></p>
 
                                     </div>
@@ -739,8 +743,8 @@
                                         <span class="red">*</span>
                                     </label>
                                     <div class="input-group ">
-                                        <input type="file" class="form-control marital-status-input" name="spouse_image"
-                                            accept="image/*" id="spouse_image" placeholder="">
+                                        <input type="file" class="form-control marital-status-input"
+                                            name="spouse_image" accept="image/*" id="spouse_image" placeholder="">
                                     </div>
                                     <div class="form-group ">
                                         <img id="spouseimagePreview" src="#" alt="Image Preview"
@@ -767,24 +771,25 @@
                                 <!-- Siblings name -->
                                 <label class="form-label pt-2">Siblings name<span class="red">*</span></label>
                                 <div class="input-group ">
-                                    <input type="text" class="form-control bg sibling-name-input" id="siblings_name"
-                                        placeholder="Siblings Name" name="siblings_name">
+                                    <input type="text" class="form-control bg sibling-name-input"
+                                        id="siblings_name" placeholder="Siblings Name" name="siblings_name">
                                 </div>
                                 <!--Siblings  Date of Birth-->
                                 <label class="form-label pt-2">Date of Birth <span class="red">*</span></label>
-                                <input type="date" name="siblings_date_of_birth" class="form-control sibling-name-input"
-                                    id="siblings_date_of_birth" placeholder="Date of Birth">
+                                <input type="date" name="siblings_date_of_birth"
+                                    class="form-control sibling-name-input" id="siblings_date_of_birth"
+                                    placeholder="Date of Birth">
                                 <!-- siblings  email -->
                                 <div class="col-lg-12 ">
                                     <label class="form-label pt-2">Email <span class="red">*</span></label>
-                                    <input type="email" class="form-control bg sibling-name-input" placeholder="Email-Id"
-                                        name="siblings_email" id="siblings_email">
+                                    <input type="email" class="form-control bg sibling-name-input"
+                                        placeholder="Email-Id" name="siblings_email" id="siblings_email">
                                     <!--siblings  phone -->
                                     <label class="form-label pt-2">Phone/Mobile <span
                                             class="red">*</span></label><br>
                                     <div class="input-group ">
-                                        <input type="tel" class="phoneInputField sibling-name-input" name="siblings_phone"
-                                            id="siblings_phone">
+                                        <input type="tel" class="phoneInputField sibling-name-input"
+                                            name="siblings_phone" id="siblings_phone">
                                         <p class="errorText" style="color: red;"></p>
 
                                     </div>
@@ -794,8 +799,8 @@
                                         Size
                                         Photo <span class="red">*</span></label>
                                     <div class="input-group ">
-                                        <input type="file" class="form-control sibling-name-input" id="siblings_image"
-                                            name="siblings_image" accept="image/*">
+                                        <input type="file" class="form-control sibling-name-input"
+                                            id="siblings_image" name="siblings_image" accept="image/*">
                                         <!-- images  -->
                                         <div class="form-group  ">
                                             <img id="siblingsimagePreview" src="#" alt="Image Preview"
@@ -807,14 +812,12 @@
                             </div>
                         </div>
                         <div class="container ">
-                            <div style="display: flex;justify-content: end; align-items: center; "
-                                 class="  ">
+                            <div style="display: flex;justify-content: end; align-items: center; " class="  ">
                                 <!-- button  -->
                                 <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                                   href="">Previous</a>
+                                    href="career">Previous</a>
                                 <button class="btn btn-primary m-1 " type="submit">Save</button>
-                                <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                                   href="">Next</a>
+                                <a style="font-weight: bold;" class="btn btn-secondary m-1" href="card">Next</a>
                             </div>
 
                         </div>
@@ -929,18 +932,6 @@
         handleImagePreview(document.getElementById('siblings_image'), document.getElementById('siblingsimagePreview'));
     </script>
 
-    <!-- marriage  -->
-    <script>
-        function showInputs() {
-            document.getElementById("marriedInputs").style.display = "block";
-            document.getElementById("singleInputs").style.display = "none";
-        }
-
-        function hideInputs() {
-            document.getElementById("marriedInputs").style.display = "none";
-            document.getElementById("singleInputs").style.display = "block";
-        }
-    </script>
 
     <!-- age  -->
     <script>
@@ -966,31 +957,8 @@
             document.getElementById("ageOutput").value = ageInYears;
         }
     </script>
-    <!-- address  Siblings two in one yes or no -->
-    <script>
-        function setupRadioListener(yesRadio, noRadio, formContainer) {
-            yesRadio.addEventListener("change", () => {
-                formContainer.classList.remove("hidden");
-            });
-
-            noRadio.addEventListener("change", () => {
-                formContainer.classList.add("hidden");
-            });
-        }
-
-        const yesRadio1 = document.getElementById("yesRadio1");
-        const noRadio1 = document.getElementById("noRadio1");
-        const formContainer1 = document.getElementById("formContainer1");
-        setupRadioListener(yesRadio1, noRadio1, formContainer1);
-
-        const yesRadio2 = document.getElementById("yesRadio2");
-        const noRadio2 = document.getElementById("noRadio2");
-        const formContainer2 = document.getElementById("formContainer2");
-        setupRadioListener(yesRadio2, noRadio2, formContainer2);
-    </script>
 
     <!-- phone -->
-    <!-- Include the intlTelInput library and utilsScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
 
@@ -1042,26 +1010,23 @@
     </script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
-    <script
-        src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function () {
-           $('#yesRadio1').click(function () {
-            $('.permanent-address-input').attr('required', true);
-           });
-            $('#noRadio1').click(function () {
+        $(document).ready(function() {
+            $('#yesRadio1').click(function() {
+                $('.permanent-address-input').attr('required', true);
+            });
+            $('#noRadio1').click(function() {
                 $('.permanent-address-input').attr('required', false);
             });
-            $('#marital_status_yes').click(function () {
+            $('#marital_status_yes').click(function() {
                 $('.marital-status-input').attr('required', true);
             });
             $('#marital_status_no').click(function() {
                 $('.marital-status-input').attr('required', false);
             });
-
-            $('#yesRadio2').click(function () {
+            $('#yesRadio2').click(function() {
                 $('.sibling-name-input').attr('required', true);
             });
             $('#noRadio2').click(function() {
