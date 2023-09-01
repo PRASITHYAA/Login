@@ -10,97 +10,99 @@ return new class() extends Migration {
      */
     public function up(): void
     {
-        Schema::create('education', function (Blueprint $table) {
+        Schema::create('educations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('job_application_id');
-            // high school
-            $table->string('highschoolname')->nullable();
-            $table->string('highschoolcity')->nullable();
-            $table->string('highschooladdress')->nullable();
-            $table->date('highschoolformdate')->nullable();
-            $table->date('highschooltodate')->nullable();
-            $table->date('highschoolYearofPassing')->nullable();
-            $table->decimal('highschoolgpapercentage', 5, 2)->nullable();
-            $table->string('highschoolclass')->nullable();
-            $table->string('highschoolimagecertificate')->nullable();
-            $table->string('highschoolimagemarksheet')->nullable();
 
-            // higer secondary
-            $table->string('highersecondaryinstitutionname')->nullable();
-            $table->string('highersecondarycity')->nullable();
-            $table->string('highersecondaryaddress')->nullable();
-            $table->date('highersecondaryformdate')->nullable();
-            $table->date('highersecondarytodate')->nullable();
-            $table->date('highersecondaryyearofpassing')->nullable();
-            $table->decimal('highersecondarygpapercentage', 5, 2)->nullable();
-            $table->string('highersecondaryclass')->nullable();
-            $table->string('highersecondarystream')->nullable();
-            $table->string('highersecondaryfiledofinterest')->nullable();
-            $table->string('highersecondaryimagecertificate')->nullable();
-            $table->string('highersecondaryimagemarksheet')->nullable();
+            $table->string('radio_option');
+            // high school
+
+            $table->string('high_school_name')->nullable();
+            $table->string('high_school_city')->nullable();
+            $table->string('high_school_address')->nullable();
+            $table->date('high_school_form_date')->nullable();
+            $table->date('high_school_to_date')->nullable();
+            $table->date('high_school_year_of_passing')->nullable();
+            $table->float('high_school_percentage')->nullable();
+            $table->string('high_school_class')->nullable();
+            $table->string('high_school_stream')->nullable();
+            $table->string('high_school_image_certificate')->nullable();
+            $table->string('high_school_image_mark_sheet')->nullable();
+
+            // higher secondary
+
+            $table->string('higher_secondary_institution_name')->nullable();
+            $table->string('higher_secondary_city')->nullable();
+            $table->string('higher_secondary_address')->nullable();
+            $table->date('higher_secondary_form_date')->nullable();
+            $table->date('higher_secondary_to_date')->nullable();
+            $table->date('higher_secondary_year_of_passing')->nullable();
+            $table->decimal('higher_secondary_percentage', 5, 2)->nullable();
+            $table->string('higher_secondary_class')->nullable();
+            $table->string('higher_secondary_stream')->nullable();
+            $table->string('higher_secondary_filed_of_interest')->nullable();
+            $table->string('higher_secondary_image_certificate')->nullable();
+            $table->string('higher_secondary_image_mark_sheet')->nullable();
 
             // diploma
-            $table->string('diplomainstitutionname')->nullable();
-            $table->string('diplomacity')->nullable();
-            $table->string('diplomaaddress')->nullable();
-            $table->date('diplomaformdate')->nullable();
-            $table->date('diplomatodate')->nullable();
-            $table->date('diplomayearofpassing')->nullable();
-            $table->decimal('diplomagpapercentage', 5, 2)->nullable();
-            $table->string('diplomadiploma')->nullable();
-            $table->string('diplomamajor')->nullable();
-            $table->string('diplomafiledofinterest')->nullable();
-            $table->string('diplomaimagecertificate')->nullable();
-            $table->string('diplomaimagemarksheet')->nullable();
+
+            $table->string('diploma_institution_name')->nullable();
+            $table->string('diploma_city')->nullable();
+            $table->string('diploma_address')->nullable();
+            $table->date('diploma_form_date')->nullable();
+            $table->date('diploma_to_date')->nullable();
+            $table->date('diploma_year_of_passing')->nullable();
+            $table->decimal('diploma_percentage', 5, 2)->nullable();
+            $table->string('diploma_diploma')->nullable();
+            $table->string('diploma_major')->nullable();
+            $table->string('diploma_filed_of_interest')->nullable();
+            $table->string('diploma_image_certificate')->nullable();
+            $table->string('diploma_image_mark_sheet')->nullable();
+
 
             // bachelors
 
-            $table->string('bachelorsinstitutionname')->nullable();
-            $table->string('bachelorscity')->nullable();
-            $table->string('bachelorsaddress')->nullable();
-            $table->date('bachelorformdate')->nullable();
-            $table->date('bachelorstodate')->nullable();
-            $table->date('bachelorsyearofpassing')->nullable();
-            $table->decimal('bachelorsgpapercentage', 5, 2)->nullable();
-            $table->string('bachelorscourse')->nullable();
-            $table->string('bachelorsmajor')->nullable();
-            $table->string('bachelorsfiledofinterest')->nullable();
-            $table->string('bachelorsimagecertificate')->nullable();
-            $table->string('bachelorsimagemarksheet')->nullable();
+            $table->string('bachelors_institution_name')->nullable();
+            $table->string('bachelors_city')->nullable();
+            $table->string('bachelors_address')->nullable();
+            $table->date('bachelors_form_date')->nullable();
+            $table->date('bachelors_to_date')->nullable();
+            $table->date('bachelors_year_of_passing')->nullable();
+            $table->decimal('bachelors_percentage', 5, 2)->nullable();
+            $table->string('bachelors_course')->nullable();
+            $table->string('bachelors_major')->nullable();
+            $table->string('bachelors_filed_of_interest')->nullable();
+            $table->string('bachelors_image_certificate')->nullable();
+            $table->string('bachelors_image_mark_sheet')->nullable();
 
             // master
 
-            $table->string('masterinstitutionname')->nullable();
-            $table->string('mastercity')->nullable();
-            $table->string('masteraddress')->nullable();
-            $table->date('masterfromdate')->nullable();
-            $table->date('mastertodate')->nullable();
-            $table->date('masteryearsofpassing')->nullable();
-            $table->decimal('masterpercentage', 5, 2)->nullable();
-            $table->string('masterclass')->nullable();
-            $table->string('masterfiledofspecialization')->nullable();
-            $table->string('masterfiledofinterest')->nullable();
-            $table->string('masterimagecertificate')->nullable();
-            $table->string('masterimagemarksheet')->nullable();
-
+            $table->string('master_institution_name')->nullable();
+            $table->string('master_city')->nullable();
+            $table->string('master_address')->nullable();
+            $table->date('master_from_date')->nullable();
+            $table->date('master_to_date')->nullable();
+            $table->date('master_years_of_passing')->nullable();
+            $table->decimal('master_percentage', 5, 2)->nullable();
+            $table->string('master_class')->nullable();
+            $table->string('master_filed_of_specialization')->nullable();
+            $table->string('master_filed_of_interest')->nullable();
+            $table->string('master_image_certificate')->nullable();
+            $table->string('master_image_mark_sheet')->nullable();
             // doctorate
 
-            $table->string('doctoratename')->nullable();
-            $table->string('doctoratecity')->nullable();
-            $table->string('doctorateaddress')->nullable();
-            $table->date('doctoratefromdate')->nullable();
-            $table->date('doctoratetodate')->nullable();
-            $table->date('doctorateyearofpassing')->nullable();
-            $table->decimal('doctoratepercentage', 5, 2)->nullable();
-            $table->string('doctorateclass')->nullable();
-            $table->string('doctoratefiledofspecialization')->nullable();
-            $table->string('doctoratefiledofinterest')->nullable();
-            $table->string('doctorateimagecertificate')->nullable();
-            $table->string('doctorateimagemarksheet')->nullable();
-
+            $table->string('doctorate_name')->nullable();
+            $table->string('doctorate_city')->nullable();
+            $table->string('doctorate_address')->nullable();
+            $table->date('doctorate_from_date')->nullable();
+            $table->date('doctorate_to_date')->nullable();
+            $table->date('doctorate_year_of_passing')->nullable();
+            $table->decimal('doctorate_percentage', 5, 2)->nullable();
+            $table->string('doctorate_class')->nullable();
+            $table->string('doctorate_filed_of_specialization')->nullable();
+            $table->string('doctorate_filed_of_interest')->nullable();
+            $table->string('doctorate_image_certificate')->nullable();
+            $table->string('doctorate_image_mark_sheet')->nullable();
             $table->timestamps();
-
-            $table->foreign('job_application_id')->references('id')->on('job_applications');
         });
     }
 
