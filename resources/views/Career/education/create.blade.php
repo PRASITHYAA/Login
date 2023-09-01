@@ -32,11 +32,8 @@
         }
 
         .left-02 {
-            /* background-color: #bf9855; */
             background-color: #ebc789;
             height: calc(d-lg-block);
-
-
         }
 
         .btn-00 {
@@ -60,8 +57,23 @@
             background-color: white;
             color: black;
         }
-    </style>
 
+        .btn-nav {
+            background-color: #1e3060;
+            color: white;
+            border: none;
+        }
+
+        .btn-nav:hover {
+            background-color: white;
+            color: black;
+        }
+
+        .nav-bg {
+            background-color: #bf9855;
+            color: black;
+        }
+    </style>
 
     <!-- nav bar -->
     <div class="container-fluid ">
@@ -69,97 +81,97 @@
             <div class=" container col-lg-2 text-center navtop" style="background-color: white;">
                 <img class="" style="width: 180px;height: 140px;" src="./img/NEW-LOGO-FINAL-1.png" alt="">
             </div>
-            <div class=" container  col-lg-10 text-white  navtop">
-                <div class="row">
-                    <section style="background-color: #111c3a; "
-                        class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-                        <!-- Left -->
-                        <div class=" d-none d-lg-block ">
-                            <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
-                                    class="fa-regular fa-address-book"></i> No. 5/333A, OMR Road, Thuraipakkam, Chennai,
-                                Tamil Nadu, India-600097 </span>
-                            <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
-                                    class="fa-solid fa-phone-volume"></i> +91 89009 10738</span>
-                            <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
-                                    class="fa-regular fa-envelope"></i> info@tisecon.com</span>
-                        </div>
-                        <!-- Left -->
-                        <!-- Right -->
-                        <div>
-                            <a style="text-decoration: none;" href="" class=" mx-2   text-reset">
-                                <i class="icons-1  fab fa-facebook-f "></i>
-                            </a>
-                            <a style="text-decoration: none;" href="" class=" mx-2 text-reset">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                            <a style="text-decoration: none;" href="" class="  mx-2 text-reset">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                            <a style="text-decoration: none;" href="" class=" mx-2 text-reset">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
-                            <a style="text-decoration: none;" href="" class=" mx-2 text-reset">
-                                <i class="fa-brands fa-whatsapp"></i>
-                            </a>
-                        </div>
-                        <!-- Right -->
-                    </section>
-                </div>
-                <div class="row ">
-                    <nav style="background-color: #bf9855 " class=" navbar navbar-expand-lg navbar-light text-white ">
-                        <!-- <div class="container-fluid  "> -->
-                        <!-- <a class="navbar-brand" href="#">Navbar w/ text</a> -->
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
-                            aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarText">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0  p-1">
-                                <li class="nav-item">
-                                    <a class="nav-link active mx-4" aria-current="page" href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active mx-4 " aria-current="page" href="#">About</a>
-                                </li>
+            <div class=" container-fluid  col-lg-10 text-white  navtop">
+                <section style="background-color: #111c3a; "
+                    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+                    <!-- Left -->
+                    <div class=" d-none d-lg-block ">
+                        <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
+                                class="fa-regular fa-address-book"></i> No. 5/333A, OMR Road, Thuraipakkam, Chennai,
+                            Tamil Nadu, India-600097 </span>
+                        <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
+                                class="fa-solid fa-phone-volume"></i> +91 89009 10738</span>
+                        <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
+                                class="fa-regular fa-envelope"></i> info@tisecon.com</span>
+                    </div>
+                    <!-- Right -->
+                    <div>
+                        <a style="text-decoration: none;" href="" class=" mx-2   text-reset">
+                            <i class="icons-1  fab fa-facebook-f "></i>
+                        </a>
+                        <a style="text-decoration: none;" href="" class=" mx-2 text-reset">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a style="text-decoration: none;" href="" class="  mx-2 text-reset">
+                            <i class="fa-brands fa-twitter"></i>
+                        </a>
+                        <a style="text-decoration: none;" href="" class=" mx-2 text-reset">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a style="text-decoration: none;" href="" class=" mx-2 text-reset">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </section>
+                <nav class="navbar navbar-expand-lg  nav-bg">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                            data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
 
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
                                 <li class="nav-item">
-                                    <a class="nav-link active mx-4 " aria-current="page" href="#">Sectors</a>
+                                    <a class="nav-link  mx-2 " href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  mx-2 " href="#">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link   mx-1" href="#">Sectors</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle mx-2 " href="#" id="navbarDropdown"
-                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle mx-3" href="#" id="navbarDropdownMenuLink"
+                                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                                         Services
                                     </a>
-                                    <ul class="dropdown-menu " aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <li>
-                                            <hr class="dropdown-divider">
+                                            <a class="dropdown-item" href="#">Action</a>
                                         </li>
-                                        <li><a class="dropdown-item " href="#">Something else here</a></li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active mx-4 " aria-current="page" href="#">Expertise</a>
+                                    <a class="nav-link  mx-2 " href="#">Expertise</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active  mx-4" aria-current="page" href="#">Projects</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active mx-4 " aria-current="page" href="#">Careers</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active  mx-4" aria-current="page" href="#">Contact Us
-                                    </a>
-                                </li>
-                                <button class="btn btn-primary btn-nav mx-4 p-3">Feedback</button>
 
+                                <li class="nav-item">
+                                    <a class="nav-link   mx-2" href="#">Projects</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link   mx-2" href="#">Careers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link   mx-1" href="#">Contact Us</a>
+                                </li>
                             </ul>
+                            <div class="d-flex align-items-end btn-nav">
+                                <button type="button" class="btn btn-primary btn-nav ">
+                                    Feedback
+                                </button>
+                            </div>
                         </div>
-                </div>
                 </nav>
             </div>
+
         </div>
     </div>
 
@@ -190,7 +202,6 @@
                     {{ session('success') }}
                 </div>
             @endif
-
 
             <form action="{{ route('education.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -262,8 +273,8 @@
                                 <label class="form-label">Year of Passing
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    name="high_school_Year_of_Passing" class="form-control"
-                                    placeholder="Year of Passing" id="high_school_Year_of_Passing">
+                                    name="high_school_year_of_passing" class="form-control"
+                                    placeholder="Year of Passing" id="high_school_year_of_passing">
                             </div>
                             <!-- High school GPA Percentage-->
                             <div class="col-lg-2">
@@ -408,7 +419,8 @@
                                     <option>Others</option>
 
                                 </select>
-                            </div> <!-- Higher Secondary Filed of Interest -->
+                            </div>
+                            <!-- Higher Secondary Filed of Interest -->
                             <div class="col-lg-2">
                                 <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
@@ -565,7 +577,6 @@
                     </div>
 
                     <br>
-
                     {{-- Bachelors Degree --}}
                     <input type="checkbox" onchange="toggleForm('form4')"> Bachelors Degree
                     <div id="form4" style="display: none;">
@@ -601,7 +612,7 @@
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                     class="form-control" placeholder="From (Date)" id="bachelor_form_date"
-                                    name="bachelor_form_date">
+                                    name="bachelors_form_date">
                             </div>
                             <!-- Bachelors To Date -->
                             <div class="col-lg-2">
@@ -688,9 +699,6 @@
 
                     </div>
                     <br>
-
-
-
                     {{-- Master's Degree --}}
                     <input type="checkbox" onchange="toggleForm('form5')"> Master's Degree
                     <div id="form5" style="display: none;">
@@ -885,8 +893,7 @@
                             </div>
                             <!-- doctoratefiledofinterest -->
                             <div class="col-lg-2">
-                                <label class="form-label">Filed of Interest <span
-                                        style="color: red;">*</span></label>
+                                <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control" name="doctorate_filed_of_interest"
                                     id="doctorate_filed_of_interest" placeholder="Filed of Interest">
@@ -921,18 +928,22 @@
                         </div>
                     </div>
                     <br>
+
+
                 </div>
                 <!-- BUTTONS -->
                 <div style="display: flex;justify-content: end; align-items: center;" class="">
                     <a style="font-weight: bold; " class="btn btn-secondary mt-5" href="card">Previous</a>
                     <button class="btn btn-primary mx-4 mt-5" type="submit">Save </button>
-                    <a style="font-weight: bold;" class="btn btn-secondary mt-5 " href="acheivement">Next</a>
+                    <a style="font-weight: bold;" class="btn btn-secondary mt-5 " href="employment">Next</a>
                 </div>
             </form>
         </div>
     </div>
 
-    <!-- footer -->
+
+
+
 
     <footer class="bg-dark  text-white mt-4">
         <div class="container-fluid  p-4">
@@ -941,7 +952,8 @@
                 <div class="row border-bottom ">
                     <div class="col-lg-4 col-md-6 mt-5  ">
                         <h1 class="">About TISE</h1>
-                        <p>With over 8 years of experience in the industry, <br> we provide top-notch expertise and
+                        <p>With over 8 years of experience in the industry, <br> we provide top-notch
+                            expertise and
                             innovative <br> solutions for your engineering needs</p>
                         <!-- icons -->
                         <div class="">
@@ -972,10 +984,12 @@
                                 <a href="#!" class="text-white">Privacy Policy</a>
                             </li>
                             <li class="pb-1">
-                                <a href="#!" class="text-white">Cancellation & Refund Policy – Training</a>
+                                <a href="#!" class="text-white">Cancellation & Refund Policy –
+                                    Training</a>
                             </li>
                             <li class="pb-1">
-                                <a href="#!" class="text-white">Cancellation & Refund Policy – Job</a>
+                                <a href="#!" class="text-white">Cancellation & Refund Policy –
+                                    Job</a>
                             </li>
                         </ul>
                     </div>
@@ -1019,63 +1033,89 @@
         </div>
     </footer>
 
-    <!-- checkbok -->
-    <script>
-        function showCheckboxes() {
-            const checkboxesDiv = document.getElementById('checkboxes');
-            checkboxesDiv.style.display = 'block';
-        }
-
-        function hideCheckboxes() {
-            const checkboxesDiv = document.getElementById('checkboxes');
-            checkboxesDiv.style.display = 'none';
-        }
-
-        function toggleForm(formId) {
-            const form = document.getElementById(formId);
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-        }
-    </script>
-
-
-{{-- image --}}
-    <script>
-        function setupImagePreview(inputId, previewId) {
-            document.getElementById(inputId).addEventListener('change', function(event) {
-                var image = document.getElementById(previewId);
-                image.src = URL.createObjectURL(event.target.files[0]);
-                image.style.display = 'block';
-            });
-        }
-
-        setupImagePreview('high_school_image_mark_sheet', 'highschoolMarkSheetPreview');
-        setupImagePreview('high_school_image_certificate', 'highschoolimagecertificatePreview');
-
-        setupImagePreview('higher_secondary_image_certificate', 'highersecondaryimagecertificatePreview');
-        setupImagePreview('higher_secondary_image_mark_sheet', 'highersecondaryimagemarksheetPreview');
-
-        setupImagePreview('diploma_image_certificate', 'diplomaCertificatePreview');
-        setupImagePreview('diploma_image_mark_sheet', 'diplomaMarkSheetPreview');
-
-        setupImagePreview('bachelors_image_mark_sheet', 'bachelorsimagemarksheetPreview');
-        setupImagePreview('bachelors_image_certificate', 'bachelorsimagecertificatePreview');
-
-        setupImagePreview('master_image_certificate', 'masterimagecertificatePreview');
-        setupImagePreview('master_image_mark_sheet', 'masterimagemarksheetPreview');
-
-        setupImagePreview('doctorate_image_certificate', 'doctorateimagecertificatePreview');
-        setupImagePreview('doctorate_image_mark_sheet', 'doctorateimagemarksheetPreview');
-    </script>
-
-
-{{-- bootstrap --}}
+    <!-- bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
-
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+
+</body>
+
+</html>
+
+
+<!-- BUTTONS -->
+<div style="display: flex;justify-content: end; align-items: center;" class="">
+    <a style="font-weight: bold; " class="btn btn-secondary mt-5" href="card">Previous</a>
+    <button class="btn btn-primary mx-4 mt-5" type="submit">Save </button>
+    <a style="font-weight: bold;" class="btn btn-secondary mt-5 " href="acheivement">Next</a>
+</div>
+</form>
+</div>
+</div>
+
+<!-- footer -->
+
+
+<!-- checkbok -->
+<script>
+    function showCheckboxes() {
+        const checkboxesDiv = document.getElementById('checkboxes');
+        checkboxesDiv.style.display = 'block';
+    }
+
+    function hideCheckboxes() {
+        const checkboxesDiv = document.getElementById('checkboxes');
+        checkboxesDiv.style.display = 'none';
+    }
+
+    function toggleForm(formId) {
+        const form = document.getElementById(formId);
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+</script>
+
+
+{{-- image --}}
+<script>
+    function setupImagePreview(inputId, previewId) {
+        document.getElementById(inputId).addEventListener('change', function(event) {
+            var image = document.getElementById(previewId);
+            image.src = URL.createObjectURL(event.target.files[0]);
+            image.style.display = 'block';
+        });
+    }
+
+    setupImagePreview('high_school_image_mark_sheet', 'highschoolMarkSheetPreview');
+    setupImagePreview('high_school_image_certificate', 'highschoolimagecertificatePreview');
+
+    setupImagePreview('higher_secondary_image_certificate', 'highersecondaryimagecertificatePreview');
+    setupImagePreview('higher_secondary_image_mark_sheet', 'highersecondaryimagemarksheetPreview');
+
+    setupImagePreview('diploma_image_certificate', 'diplomaCertificatePreview');
+    setupImagePreview('diploma_image_mark_sheet', 'diplomaMarkSheetPreview');
+
+    setupImagePreview('bachelors_image_mark_sheet', 'bachelorsimagemarksheetPreview');
+    setupImagePreview('bachelors_image_certificate', 'bachelorsimagecertificatePreview');
+
+    setupImagePreview('master_image_certificate', 'masterimagecertificatePreview');
+    setupImagePreview('master_image_mark_sheet', 'masterimagemarksheetPreview');
+
+    setupImagePreview('doctorate_image_certificate', 'doctorateimagecertificatePreview');
+    setupImagePreview('doctorate_image_mark_sheet', 'doctorateimagemarksheetPreview');
+</script>
+
+
+{{-- bootstrap --}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+
+
+<!-- MDB -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 </body>
 
 </html>

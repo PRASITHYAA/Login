@@ -184,9 +184,6 @@
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp <br>
                     Size Limit: 50KB</p>
                 <p style="font-weight: bold;">ID Card You Have <span class="red">*</span></p>
-                <!-- <label>
-                    <input type="checkbox" id="aadharcard"> AADHAR CARD
-                </label> -->
                 <label>
                     <input type="checkbox" id="aadharcard" name="identity_type" value="aadhar" checked> AADHAR CARD
                 </label>
@@ -273,10 +270,7 @@
                             <!-- button -->
                             <a style="font-weight: bold; " class="btn btn-secondary mt-5"
                                 href="job_application">Previous</a>
-
                             <button class="btn btn-primary mx-4 mt-5" type="submit"> save</button>
-
-
                             <a style="font-weight: bold;" class="btn btn-secondary mt-5 " href="education">Next</a>
                             <br>
                             <br>
@@ -342,8 +336,7 @@
 
                                 <!-- passport  upload id -->
                                 <div class="col mt-4">
-                                    <label for="validationDefaultUpload" class="form-label">Upload ID- 1st
-                                        Page
+                                    <label for="validationDefaultUpload" class="form-label">Upload ID- 1st Page
                                         <span style="color: red;">*</span></label>
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="passport_image_id"
@@ -358,8 +351,7 @@
                                 </div>
                                 <!-- passport image id page -->
                                 <div class="col mt-4">
-                                    <label class="form-label">Upload ID- 2st
-                                        Page
+                                    <label class="form-label">Upload ID- 2st Page
                                         <span style="color: red;">*</span></label>
                                     <div class="input-group">
                                         <input type="file" class="form-control" id="passport_image_id_page"

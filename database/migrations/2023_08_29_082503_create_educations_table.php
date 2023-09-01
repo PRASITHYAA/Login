@@ -12,10 +12,11 @@ return new class() extends Migration {
     {
         Schema::create('educations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('job_application_id');
 
             $table->string('radio_option');
-            // high school
 
+            // high school
             $table->string('high_school_name')->nullable();
             $table->string('high_school_city')->nullable();
             $table->string('high_school_address')->nullable();
@@ -27,9 +28,7 @@ return new class() extends Migration {
             $table->string('high_school_stream')->nullable();
             $table->string('high_school_image_certificate')->nullable();
             $table->string('high_school_image_mark_sheet')->nullable();
-
-            // higher secondary
-
+            //   higher secondary
             $table->string('higher_secondary_institution_name')->nullable();
             $table->string('higher_secondary_city')->nullable();
             $table->string('higher_secondary_address')->nullable();
@@ -42,9 +41,7 @@ return new class() extends Migration {
             $table->string('higher_secondary_filed_of_interest')->nullable();
             $table->string('higher_secondary_image_certificate')->nullable();
             $table->string('higher_secondary_image_mark_sheet')->nullable();
-
             // diploma
-
             $table->string('diploma_institution_name')->nullable();
             $table->string('diploma_city')->nullable();
             $table->string('diploma_address')->nullable();
@@ -52,15 +49,12 @@ return new class() extends Migration {
             $table->date('diploma_to_date')->nullable();
             $table->date('diploma_year_of_passing')->nullable();
             $table->decimal('diploma_percentage', 5, 2)->nullable();
-            $table->string('diploma_diploma')->nullable();
+            $table->string('diploma_course')->nullable();
             $table->string('diploma_major')->nullable();
             $table->string('diploma_filed_of_interest')->nullable();
             $table->string('diploma_image_certificate')->nullable();
             $table->string('diploma_image_mark_sheet')->nullable();
-
-
             // bachelors
-
             $table->string('bachelors_institution_name')->nullable();
             $table->string('bachelors_city')->nullable();
             $table->string('bachelors_address')->nullable();
@@ -73,9 +67,7 @@ return new class() extends Migration {
             $table->string('bachelors_filed_of_interest')->nullable();
             $table->string('bachelors_image_certificate')->nullable();
             $table->string('bachelors_image_mark_sheet')->nullable();
-
             // master
-
             $table->string('master_institution_name')->nullable();
             $table->string('master_city')->nullable();
             $table->string('master_address')->nullable();
@@ -89,7 +81,6 @@ return new class() extends Migration {
             $table->string('master_image_certificate')->nullable();
             $table->string('master_image_mark_sheet')->nullable();
             // doctorate
-
             $table->string('doctorate_name')->nullable();
             $table->string('doctorate_city')->nullable();
             $table->string('doctorate_address')->nullable();
@@ -103,6 +94,8 @@ return new class() extends Migration {
             $table->string('doctorate_image_certificate')->nullable();
             $table->string('doctorate_image_mark_sheet')->nullable();
             $table->timestamps();
+
+            $table->foreign('job_application_id')->references('id')->on('job_applications');
         });
     }
 
@@ -111,6 +104,6 @@ return new class() extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('education');
+        Schema::dropIfExists('educations');
     }
 };
