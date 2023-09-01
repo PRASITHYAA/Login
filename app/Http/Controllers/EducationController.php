@@ -13,158 +13,158 @@ class EducationController extends Controller
 
         $education = $request->validate(
             [
-            'job_application_id' => 'required',
-            'highschoolname' => 'required|string',
-            'highschoolcity' => 'required|string',
-            'highschooladdress' => 'required|string',
-            'highschoolformdate' => 'required|date',
-            'highschooltodate' => 'required|date',
-            'highschoolYearofPassing' => 'required|date',
-            'highschoolgpapercentage' => 'required|numeric|between:0,100',
-            'highschoolclass' => 'required|string',
-            'highschoolimagecertificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'highschoolimagemarksheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'job_application_id' => 'required',
+                'high_school_name' => 'required|string',
+                'high_school_city' => 'required|string',
+                'high_school_address' => 'required|string',
+                'high_school_form_date' => 'required|date',
+                'high_school_to_date' => 'required|date',
+                'high_school_year_of_passing' => 'required|date',
+                'high_school_percentage' => 'required|numeric|between:0,100',
+                'high_school_class' => 'required|string',
+                'high_school_image_certificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'high_school_image_mark_sheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
 
-            // Higher
-            'highersecondaryinstitutionname' => 'required|string',
-            'highersecondarycity' => 'required|string',
-            'highersecondaryaddress' => 'required|string',
-            'highersecondaryformdate' => 'required|date',
-            'highersecondarytodate' => 'required|date',
-            'highersecondaryyearofpassing' => 'required|date',
-            'highersecondarygpapercentage' => 'required|numeric|between:0,100',
-            'highersecondaryclass' => 'required|string',
-            'highersecondarystream' => 'required|string',
-            'highersecondaryfiledofinterest' => 'required|string',
-            'highersecondaryimagecertificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'highersecondaryimagemarksheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                // Higher
+                'higher_secondary_institution_name' => 'required|string',
+                'higher_secondary_city' => 'required|string',
+                'higher_secondary_address' => 'required|string',
+                'higher_secondary_form_date' => 'required|date',
+                'higher_secondary_to_date' => 'required|date',
+                'higher_secondary_year_of_passing' => 'required|date',
+                'higher_secondary_percentage' => 'required|numeric|between:0,100',
+                'higher_secondary_class' => 'required|string',
+                'higher_secondary_stream' => 'required|string',
+                'higher_secondary_filed_of_interest' => 'required|string',
+                'higher_secondary_image_certificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'higher_secondary_image_mark_sheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
 
-          'diplomainstitutionname' => 'required|string',
-            'diplomacity' => 'required|string',
-            'diplomaaddress' => 'required|string',
-            'diplomaformdate' => 'required|date',
-            'diplomatodate' => 'required|date',
-            'diplomayearofpassing' => 'required|date',
-            'diplomagpapercentage' => 'required|numeric|between:0,100',
-            'diplomadiploma' => 'required|string',
-            'diplomamajor' => 'required|string',
-            'diplomafiledofinterest' => 'required|string',
-            'diplomaimagecertificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'diplomaimagemarksheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                // diploma
+                'diploma_institution_name' => 'required|string',
+                'diploma_city' => 'required|string',
+                'diploma_address' => 'required|string',
+                'diploma_form_date' => 'required|date',
+                'diploma_to_date' => 'required|date',
+                'diploma_year_of_passing' => 'required|date',
+                'diploma_percentage' => 'required|numeric|between:0,100',
+                'diploma_diploma' => 'required|string',
+                'diploma_major' => 'required|string',
+                'diploma_filed_of_interest' => 'required|string',
+                'diploma_image_certificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'diploma_image_mark_sheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
 
-             // Bachelors
+                // Bachelors
+                'bachelors_institution_name' => 'required|string',
+                'bachelors_city' => 'required|string',
+                'bachelors_address' => 'required|string',
+                'bachelors_form_date' => 'required|date',
+                'bachelors_to_date' => 'required|date',
+                'bachelors_year_of_passing' => 'required|date',
+                'bachelors_percentage' => 'required|numeric|between:0,100',
+                'bachelors_course' => 'required|string',
+                'bachelors_major' => 'required|string',
+                'bachelors_filed_of_interest' => 'required|string',
+                'bachelors_image_certificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'bachelors_image_mark_sheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
 
-             'bachelorsinstitutionname' => 'required|string',
-            'bachelorscity' => 'required|string',
-            'bachelorsaddress' => 'required|string',
-            'bachelorformdate' => 'required|date',
-            'bachelorstodate' => 'required|date',
-            'bachelorsyearofpassing' => 'required|date',
-            'bachelorsgpapercentage' => 'required|numeric|between:0,100',
-            'bachelorscourse' => 'required|string',
-            'bachelorsmajor' => 'required|string',
-            'bachelorsfiledofinterest' => 'required|string',
-            'bachelorsimagecertificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'bachelorsimagemarksheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                // master
+                'master_institution_name' => 'required|string',
+                'master_city' => 'required|string',
+                'master_address' => 'required|string',
+                'master_from_date' => 'required|date',
+                'master_to_date' => 'required|date',
+                'master_years_of_passing' => 'required|date',
+                'master_percentage' => 'required|numeric|between:0,100',
+                'master_class' => 'required|string',
+                'master_filed_of_specialization' => 'required|string',
+                'master_filed_of_interest' => 'required|string',
+                'master_image_certificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'master_image_mark_sheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
 
-              // master
-
-              'masterinstitutionname' => 'required|string',
-            'mastercity' => 'required|string',
-            'masteraddress' => 'required|string',
-            'masterfromdate' => 'required|date',
-            'mastertodate' => 'required|date',
-            'masteryearsofpassing' => 'required|date',
-            'masterpercentage' => 'required|numeric|between:0,100',
-            'masterclass' => 'required|string',
-            'masterfiledofspecialization' => 'required|string',
-            'masterfiledofinterest' => 'required|string',
-            'masterimagecertificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'masterimagemarksheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-
-              // doctorate
-              'doctoratename' => 'required|string',
-              'doctoratecity' => 'required|string',
-              'doctorateaddress' => 'required|string',
-              'doctoratefromdate' => 'required|date',
-              'doctoratetodate' => 'required|date',
-              'doctorateyearofpassing' => 'required|date',
-              'doctoratepercentage' => 'required|numeric|between:0,100',
-              'doctorateclass' => 'required|string',
-              'doctoratefiledofspecialization' => 'required|string',
-              'doctoratefiledofinterest' => 'required|string',
-              'doctorateimagecertificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-              'doctorateimagemarksheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]
+                // doctorate
+                'doctorate_name' => 'required|string',
+                'doctorate_city' => 'required|string',
+                'doctorate_address' => 'required|string',
+                'doctorate_from_date' => 'required|date',
+                'doctorate_to_date' => 'required|date',
+                'doctorate_year_of_passing' => 'required|date',
+                'doctorate_percentage' => 'required|numeric|between:0,100',
+                'doctorate_class' => 'required|string',
+                'doctorate_filed_of_specialization' => 'required|string',
+                'doctorate_filed_of_interest' => 'required|string',
+                'doctorate_image_certificate' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'doctorate_image_mark_sheet' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]
         );
 
         // highschool
 
-        if ($request->hasFile('highschoolimagecertificate')) {
-            $certificatePath = $request->file('highschoolimagecertificate')->store('highschool_certificates', 'public');
-            $education['highschoolimagecertificate'] = $certificatePath;
+        if ($request->hasFile('high_school_image_certificate')) {
+            $certificatePath = $request->file('high_school_image_certificate')->store('high_school_certificates', 'public');
+            $education['high_school_image_certificate'] = $certificatePath;
         }
 
-        if ($request->hasFile('highschoolimagemarksheet')) {
-            $markSheetPath = $request->file('highschoolimagemarksheet')->store('highschool_marksheets', 'public');
-            $education['highschoolimagemarksheet'] = $markSheetPath;
+        if ($request->hasFile('high_school_image_mark_sheet')) {
+            $markSheetPath = $request->file('high_school_image_mark_sheet')->store('high_school_marksheets', 'public');
+            $education['high_school_image_mark_sheet'] = $markSheetPath;
         }
 
-        // highersecondary
+        // higher secondary
 
-        if ($request->hasFile('higersecondaryimagecertificate')) {
-            $certificatePath = $request->file('higersecondaryimagecertificate')->store('certificates', 'public');
-            $education['higersecondaryimagecertificate'] = $certificatePath;
+        if ($request->hasFile('higher_secondary_image_certificate')) {
+            $certificatePath = $request->file('higher_secondary_image_certificate')->store('certificates', 'public');
+            $education['higher_secondary_image_certificate'] = $certificatePath;
         }
 
-        if ($request->hasFile('higersecondaryimagemarksheet')) {
-            $markSheetPath = $request->file('higersecondaryimagemarksheet')->store('marksheets', 'public');
-            $education['higersecondaryimagemarksheet'] = $markSheetPath;
+        if ($request->hasFile('higher_secondary_image_mark_sheet')) {
+            $markSheetPath = $request->file('higher_secondary_image_mark_sheet')->store('marksheets', 'public');
+            $education['higher_secondary_image_mark_sheet'] = $markSheetPath;
+        }
+
+        // diploma
+        if ($request->hasFile('diploma_image_certificate')) {
+            $certificatePath = $request->file('diploma_image_certificate')->store('certificates', 'public');
+            $education['diploma_image_certificate'] = $certificatePath;
+        }
+
+        if ($request->hasFile('diploma_image_mark_sheet')) {
+            $markSheetPath = $request->file('diploma_image_mark_sheet')->store('marksheets', 'public');
+            $education['diploma_image_mark_sheet'] = $markSheetPath;
+        }
+
+        // bachelors
+
+        if ($request->hasFile('bachelors_image_certificate')) {
+            $certificatePath = $request->file('bachelors_image_certificate')->store('certificates', 'public');
+            $education['bachelors_image_certificate'] = $certificatePath;
+        }
+
+        if ($request->hasFile('bachelors_image_mark_sheet')) {
+            $markSheetPath = $request->file('bachelors_image_mark_sheet')->store('marksheets', 'public');
+            $education['bachelors_image_mark_sheet'] = $markSheetPath;
+        }
+
+        // master
+        if ($request->hasFile('master_image_certificate')) {
+            $certificatePath = $request->file('master_image_certificate')->store('certificates', 'public');
+            $education['master_image_certificate'] = $certificatePath;
+        }
+
+        if ($request->hasFile('master_image_mark_sheet')) {
+            $markSheetPath = $request->file('master_image_mark_sheet')->store('marksheets', 'public');
+            $education['master_image_mark_sheet'] = $markSheetPath;
         }
 
         // doctorate
 
-        if ($request->hasFile('doctorateimagecertificate')) {
-            $certificatePath = $request->file('doctorateimagecertificate')->store('certificates', 'public');
-            $education['doctorateimagecertificate'] = $certificatePath;
+        if ($request->hasFile('doctorate_image_certificate')) {
+            $certificatePath = $request->file('doctorate_image_certificate')->store('certificates', 'public');
+            $education['doctorate_image_certificate'] = $certificatePath;
         }
 
-        if ($request->hasFile('doctorateimagemarksheet')) {
-            $markSheetPath = $request->file('doctorateimagemarksheet')->store('marksheets', 'public');
-            $education['doctorateimagemarksheet'] = $markSheetPath;
-        }
-
-        // master
-        if ($request->hasFile('masterimagecertificate')) {
-            $certificatePath = $request->file('masterimagecertificate')->store('certificates', 'public');
-            $education['masterimagecertificate'] = $certificatePath;
-        }
-
-        if ($request->hasFile('masterimagemarksheet')) {
-            $markSheetPath = $request->file('masterimagemarksheet')->store('marksheets', 'public');
-            $education['masterimagemarksheet'] = $markSheetPath;
-        }
-        // bachelors
-
-        if ($request->hasFile('bachelorsimagecertificate')) {
-            $certificatePath = $request->file('bachelorsimagecertificate')->store('certificates', 'public');
-            $education['bachelorsimagecertificate'] = $certificatePath;
-        }
-
-        if ($request->hasFile('bachelorsimagemarksheet')) {
-            $markSheetPath = $request->file('bachelorsimagemarksheet')->store('marksheets', 'public');
-            $education['bachelorsimagemarksheet'] = $markSheetPath;
-        }
-
-        // diploma
-        if ($request->hasFile('diplomaimagecertificate')) {
-            $certificatePath = $request->file('diplomaimagecertificate')->store('certificates', 'public');
-            $education['diplomaimagecertificate'] = $certificatePath;
-        }
-
-        if ($request->hasFile('diplomaimagemarksheet')) {
-            $markSheetPath = $request->file('diplomaimagemarksheet')->store('marksheets', 'public');
-            $education['diplomaimagemarksheet'] = $markSheetPath;
+        if ($request->hasFile('doctorate_image_mark_sheet')) {
+            $markSheetPath = $request->file('doctorate_image_mark_sheet')->store('marksheets', 'public');
+            $education['doctorate_image_mark_sheet'] = $markSheetPath;
         }
 
         Education::create($education);
