@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Controllers\EnergyController;
+use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StoreController;
@@ -14,8 +15,6 @@ use App\Http\Controllers\EducationController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\JobApplicationController;
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +25,6 @@ use App\Http\Controllers\JobApplicationController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 
 // registration
 Route::view('/', 'auth.Registration');
@@ -53,6 +51,7 @@ Route::post('users', [UserController::class, 'store'])->name('users.store');
 Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
 Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
 // sector
 Route::get('/sector', [SectorController::class, 'index'])->name('sector.index');
 Route::get('/sector/create', [SectorController::class, 'create'])->name('sector.create');
@@ -61,7 +60,6 @@ Route::get('/sector/{sector}', [SectorController::class, 'show'])->name('sector.
 Route::get('/sector/{sector}/edit', [SectorController::class, 'edit'])->name('sector.edit');
 Route::put('/sector/{sector}', [SectorController::class, 'update'])->name('sector.update');
 Route::delete('/sector/{sector}', [SectorController::class, 'destroy'])->name('sector.destroy');
-
 
 // job
 
@@ -73,13 +71,17 @@ Route::get('/job/{job}/edit', [JobController::class, 'edit'])->name('job.edit');
 Route::put('/job/{job}', [JobController::class, 'update'])->name('job.update');
 Route::delete('/job/{job}', [JobController::class, 'destroy'])->name('job.destroy');
 
- //   instruction
- Route::view('/career', 'Career.instruction');
+// energy
 
- //  job-application
+Route::get('/energy', [EnergyController::class, 'index'])->name('energy.index');
+Route::get('/energy/create', [EnergyController::class, 'create'])->name('energy.create');
+Route::post('/energy', [EnergyController::class, 'store'])->name('energy.store');
+Route::get('/energy/{energy}', [EnergyController::class, 'show'])->name('energy.show');
+Route::get('/energy/{energy}/edit', [EnergyController::class, 'edit'])->name('energy.edit');
+Route::put('/energy/{energy}', [EnergyController::class, 'update'])->name('energy.update');
+Route::delete('/energy/{energy}', [EnergyController::class, 'destroy'])->name('energy.destroy');
 
- Route::view('/job_application', 'career.job_application.create');
- Route::post('job_application', [JobApplicationController::class, 'store'])->name('job_application.store');
+// training
 
  // card
  Route::view('/card', 'Career.card.create')->name('card.view');
@@ -88,29 +90,50 @@ Route::delete('/job/{job}', [JobController::class, 'destroy'])->name('job.destro
  //  education
  Route::view('/education', 'career.education.create')->name('education.view');
  Route::post('education', [EducationController::class, 'store'])->name('education.store');
+Route::get('/training', [TrainingController::class, 'index'])->name('training.index');
+Route::get('/training/create', [TrainingController::class, 'create'])->name('training.create');
+Route::post('/training', [TrainingController::class, 'store'])->name('training.store');
+Route::get('/training/{training}', [TrainingController::class, 'show'])->name('training.show');
+Route::get('/training/{training}/edit', [TrainingController::class, 'edit'])->name('training.edit');
+Route::put('/training/{training}', [TrainingController::class, 'update'])->name('training.update');
+Route::delete('/training/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
+
+// career home page
+Route::view('/career_home', 'Career.home');
 
 
- //  achievement
+//   instruction
+Route::view('/instruction', 'Career.instruction');
 
- Route::view('/achievement', 'career.achievement.create')->name('achievement');
- Route::post('achievement', [AchievementController::class,'store'])->name('achievement.store');
+//  job-application
 
- //  disclaimer
+Route::view('/job_application', 'career.job_application.create');
+Route::post('job_application', [JobApplicationController::class, 'store'])->name('job_application.store');
 
+// card
+Route::view('/card', 'Career.card.create')->name('card');
+Route::post('/card', [CardsController::class, 'store'])->name('card.store');
 
+//  education
 
- Route::view('/disclaimer', 'career.disclaimer.create');
- Route::post('disclaimer', [DisclaimerController::class, 'store'])->name('disclaimer.store');
+Route::view('/education', 'career.education.create')->name('education');
+Route::post('education', [EducationController::class, 'store'])->name('education.store');
 
+//  achievement
+
+Route::view('/achievement', 'career.achievement.create')->name('achievement');
+Route::post('achievement', [AchievementController::class, 'store'])->name('achievement.store');
+
+//  disclaimer
+
+Route::view('/disclaimer', 'career.disclaimer.create');
+Route::post('disclaimer', [DisclaimerController::class, 'store'])->name('disclaimer.store');
 
 // employment
 
- Route::view('/employment', 'career.employment.create')->name('employment');
- Route::post('employment', [EmploymentController::class, 'store'])->name('employment.store');
+Route::view('/employment', 'career.employment.create')->name('employment');
+Route::post('employment', [EmploymentController::class, 'store'])->name('employment.store');
 
-
-
-
-  //  demo
-  Route::view('/demo', 'demo');
-  Route::post('demo', [DisclaimerController::class, 'store'])->name('disclaimer.store');
+//  demo
+Route::view('/demo', 'demo');
+Route::post('demo', [DisclaimerController::class, 'store'])->name('disclaimer.store');

@@ -1,4 +1,4 @@
-{{-- bootstrap --}}
+{{-- bootstrap
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -23,6 +23,6 @@
 
     <h1>HELLO {{ auth()->user()->name }}!</h1>
     {{-- <a href="{{ route('users.index') }}" class="btn btn-primary">View User List</a> --}}
-</div>
+{{-- </div>
 
-</html>
+</html> --}} --}}

@@ -21,10 +21,10 @@
 
 
   <style>
-    body {
-      overflow-x: hidden;
-    }
 
+    body{
+            overflow-x: hidden;
+        }
     body {
       background-color: #fbfbfb;
     }
@@ -106,57 +106,118 @@
         </div>
     </div>
 </nav>
-
-  <main style="margin-top: 100px;">
+<!--Main layout-->
+  <main style="margin-top: 50px;">
 
     <div class="container-fluid">
-      <h1>Job List</h1>
-      @if (session('success'))
-      <div class="alert alert-success">
-          {{ session('success') }}
-      </div>
-  @endif
+
+      <h1>Energy</h1>
+
 
       <table class="table table-striped table-hover">
-
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-primary me-md-2" href="{{ route('job.create') }}">Create</a>
-        <button class="btn btn-success" type="button" onclick="window.location.reload();">Refresh</button>
-      </div>
-      <thead>
+        <div style="margin-bottom: 10px;" class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <a class="btn btn-primary me-md-2" href="./energy_create.html">Create</a>
+          <button class="btn btn-success" type="button">Refresh</button>
+        </div>
+        <!-- head line -->
         <tr>
-          <th>S.NO</th>
+          <th>
+            <div>
+              <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+            </div>
+          </th>
           <th>ID</th>
-          <th>JOB</th>
+          <th>NAME</th>
+          <th>Email</th>
+
           <th>OPERATIONS</th>
         </tr>
-      </thead>
-      <tbody>
-        @php
-        $counter = 1;
-        @endphp
-        @foreach($jobs as $job)
+        <!-- 1 coloum -->
         <tr>
-          <td>{{ $counter++ }}</td>
-          <td>{{ $job->id }}</td>
-          <td>{{ $job->job }}</td>
           <td>
-            <!-- Edit Button -->
-            <a href="{{ route('job.edit', $job->id) }}" class="btn btn-warning btn-sm">Edit</a>
+            <div>
+              <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+            </div>
+          </td>
 
-            <!-- Delete Button -->
-            <form action="{{ route('job.destroy', $job->id) }}" method="POST" class="d-inline">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-danger btn-sm"
-                onclick="return confirm('Are you sure you want to delete this job?')">Delete</button>
-            </form>
+          <td>520</td>
+          <td>1</td>
+          <td>s@gmail.com</td>
+
+          <td>
+            <div class="btn-group " role="group" aria-label="Basic mixed styles example">
+              <a class="btn btn-warning mx-1 " href="./energy_edit.html">Edit</a>
+              <a class="btn btn-danger " href="">Delete</a>
+            </div>
           </td>
         </tr>
-        @endforeach
-      </tbody>
+        <!-- 2 coloum -->
+        <tr>
+          <td>
+            <div>
+              <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+            </div>
+          </td>
+          <td>521</td>
+          <td>2</td>
+          <td>sd@gmail.com</td>
+
+          <td>
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+              <a class="btn btn-warning mx-1 " href="./energy_edit.html">Edit</a>
+              <button type="button" class="btn btn-danger">Delete</button>
+          </td>
+    </div>
+    </tr>
+    <!-- 3 coloum -->
+    <tr>
+      <td>
+        <div>
+          <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+        </div>
+      </td>
+      <td>523</td>
+      <td>3</td>
+      <td>su@gmail.com</td>
+
+      <td>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+          <a class="btn btn-warning mx-1 " href="./energy_edit.html">Edit</a>
+          <button type="button" class="btn btn-danger">Delete</button>
+      </td>o
+      </div>
+
+    </tr>
+    <tr>
+      <td>
+        <div>
+          <input class="form-check-input" type="checkbox" id="checkboxNoLabel" value="" aria-label="...">
+        </div>
+      </td>
+          <!-- 4 coloum -->
+
+      <td>523</td>
+      <td>4</td>
+      <td>s@gmail.com</td>
+
+      <td>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+          <a class="btn btn-warning mx-1 " href="./energy_create.html">Edit</a>
+          <button type="button" class="btn btn-danger">Delete</button>
+      </td>
+
+    </tr>
+    </div>
+
     </table>
-  </div>
+
+    </div>
+  </main>
+
+  <!--Main layout-->
+
+
+
   <script>
     document.addEventListener("click", function (event) {
       const dropdowns = document.getElementsByClassName("dropdown-content");
@@ -176,8 +237,8 @@
 
   <!-- bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-  </script>
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
