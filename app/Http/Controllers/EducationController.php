@@ -83,19 +83,19 @@ class EducationController extends Controller
                 'master_image_certificate' => 'required_if:radio_option,yes|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'master_image_mark_sheet' => 'required_if:radio_option,yes|image|mimes:jpeg,png,jpg,gif|max:2048',
 
-                // // doctorate
-                // 'doctorate_name' => 'required_if:radio_option,yes|string',
-                // 'doctorate_city' => 'required_if:radio_option,yes|string',
-                // 'doctorate_address' => 'required_if:radio_option,yes|string',
-                // 'doctorate_from_date' => 'required_if:radio_option,yes|date',
-                // 'doctorate_to_date' => 'required_if:radio_option,yes|date',
-                // 'doctorate_year_of_passing' => 'required_if:radio_option,yes|date',
-                // 'doctorate_percentage' => 'required_if:radio_option,yes|numeric|between:0,100',
-                // 'doctorate_class' => 'required_if:radio_option,yes|string',
-                // 'doctorate_filed_of_specialization' => 'required_if:radio_option,yes|string',
-                // 'doctorate_filed_of_interest' => 'required_if:radio_option,yes|string',
-                // 'doctorate_image_certificate' => 'required_if:radio_option,yes|image|mimes:jpeg,png,jpg,gif|max:2048',
-                // 'doctorate_image_mark_sheet' => 'required_if:radio_option,yes|image|mimes:jpeg,png,jpg,gif|max:2048',
+                // doctorate
+                'doctorate_name' => 'required_if:radio_option,yes|string',
+                'doctorate_city' => 'required_if:radio_option,yes|string',
+                'doctorate_address' => 'required_if:radio_option,yes|string',
+                'doctorate_from_date' => 'required_if:radio_option,yes|date',
+                'doctorate_to_date' => 'required_if:radio_option,yes|date',
+                'doctorate_year_of_passing' => 'required_if:radio_option,yes|date',
+                'doctorate_percentage' => 'required_if:radio_option,yes|numeric|between:0,100',
+                'doctorate_class' => 'required_if:radio_option,yes|string',
+                'doctorate_filed_of_specialization' => 'required_if:radio_option,yes|string',
+                'doctorate_filed_of_interest' => 'required_if:radio_option,yes|string',
+                'doctorate_image_certificate' => 'required_if:radio_option,yes|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'doctorate_image_mark_sheet' => 'required_if:radio_option,yes|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]
         );
 

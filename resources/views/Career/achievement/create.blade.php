@@ -180,6 +180,8 @@
         <div class="container">
             <form action="{{ route('achievement.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
+
                 <h2 class="text-center p-4">ACHEIVEMENTS, CO-CURRICULAR, EXTRA-CURRICULAR DETAILS</h2>
                 <p>Please use this section to indicate how far you meet each of the competencies required for the post.
                     Indicate specific experience, achievements, knowledge, personal <br> qualities, and skills, which
@@ -314,28 +316,26 @@
                         No
                     </label>
                     <div id="input-field-4" style="display: none;">
-                        <div class="  p-2">
-
-                            <div class=" mb-3">
-                                <label class="form-label">please explain
-                                    here</label>
+                        <div class="p-2">
+                            <div class="mb-3">
+                                <label class="form-label">Please explain here</label>
                                 <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" id="no_curriculum_explain"
                                     name="no_curriculum_explain" rows="3"></textarea>
                             </div>
-
                         </div>
                     </div>
-                    <!-- buttons -->
-                    <div style="display: flex;justify-content:end;" class="pt-5">
-                        <a class="btn btn-secondary m-1" href="./employments.html">Previous</a>
-                        <a class="btn btn-primary m-1" href="">Save </a>
-                        <a class="btn btn-secondary m-1" href="disclaimer.html">Next</a>
-                    </div>
-
+                </div>
+                <!-- buttons -->
+                <div style="display: flex;justify-content:end;" class="pt-5">
+                    <a class="btn btn-secondary m-1" href="employment">Previous</a>
+                    <button class="btn btn-primary m-1">Save </button>
+                    <a class="btn btn-secondary m-1" href="disclaimer">Next</a>
                 </div>
 
-            </form>
         </div>
+
+        </form>
+    </div>
 
 
     </div>

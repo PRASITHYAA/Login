@@ -14,6 +14,7 @@ use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\JobApplicationController;
+use App\Http\Controllers\EmploymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,8 @@ Route::delete('/energy/{energy}', [EnergyController::class, 'destroy'])->name('e
  //  education
  Route::view('/education', 'career.education.create')->name('education.view');
  Route::post('education', [EducationController::class, 'store'])->name('education.store');
+
+//  training
 Route::get('/training', [TrainingController::class, 'index'])->name('training.index');
 Route::get('/training/create', [TrainingController::class, 'create'])->name('training.create');
 Route::post('/training', [TrainingController::class, 'store'])->name('training.store');
@@ -126,7 +129,7 @@ Route::post('achievement', [AchievementController::class, 'store'])->name('achie
 
 //  disclaimer
 
-Route::view('/disclaimer', 'career.disclaimer.create');
+Route::view('/disclaimer', 'career.disclaimer.create')->name('disclaimer.view');
 Route::post('disclaimer', [DisclaimerController::class, 'store'])->name('disclaimer.store');
 
 // employment

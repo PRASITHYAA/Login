@@ -13,6 +13,9 @@ class AchievementController extends Controller
 {    public function store(Request $request)
     {
         $achievement = $request->validate([
+            
+            'job_application_id' => 'required',
+
             'achievement' => 'required',
 
             'open-input' => 'required|in:yes,no',
@@ -29,8 +32,7 @@ class AchievementController extends Controller
             'yes_curriculum_pdf_format' => 'required_if:open-input-3,yes|file|mimes:pdf,jpg,jpeg,png',
 
             'open-input-4' => 'required|in:yes,no',
-            'no_curriculum_explain' => 'required_unless:open-input-4,no',
-        ]);
+            'no_curriculum_explain' => 'required_unless:open-input-4,no',        ]);
 
         if ($request->hasFile('project_document')) {
             $projectDocumentPath = $request->file('project_document')->store('documents', 'public');
@@ -48,7 +50,7 @@ class AchievementController extends Controller
         }
         Achievement::create($achievement);
 
-        return redirect()->route('disclaimer', ['id' => $request->job_application_id])->with('success', 'Achievement created successfully!');
+        return redirect()->route('disclaimer.view', ['id' => $request->job_application_id])->with('success', 'Achievement created successfully!');
     }
 
 }

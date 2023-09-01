@@ -376,9 +376,9 @@
                 </div>
                 <!-- button -->
                 <div style="display:flex;justify-content:center;align-items: center;" class="mt-5">
-                    <a class="btn btn-secondary mx-2" href="education.html">Previous</a>
-                    <a class="btn btn-primary mx-2" href="">Save </a>
-                    <a class="btn btn-secondary mx-2" href="Acheivements.html">Next</a>
+                    <a class="btn btn-secondary mx-2" href="education">Previous</a>
+                    <button class="btn btn-primary mx-2" >Save </button>
+                    <a class="btn btn-secondary mx-2" href="achievement">Next</a>
                 </div>
 
             </form>
