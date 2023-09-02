@@ -37,7 +37,7 @@ class EmploymentController extends Controller
             'nested-option' => 'required|in:nested-yes,nested-no',
             'sub-nested-input' => 'required_if:nested-option,nested-yes',
             'sub-nested-option' => 'required_if:nested-option,nested-yes|in:sub-nested-yes,sub-nested-no',
-            'nested-input-field' => 'required_if:nested-option,nested-no',
+            //'nested-input-field' => 'required_if:nested-option,nested-no',
         ]);
 
         Employment::create($employment);

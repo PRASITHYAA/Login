@@ -45,7 +45,7 @@ class JobApplication extends Model
         'mother_phone',
         'mother_image',
         // marital status
-        'marital_Status',
+        'marital_status',
         'spouse_name',
         'spouse_date_of_birth',
         'spouse_email',

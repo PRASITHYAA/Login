@@ -196,7 +196,7 @@
                         {{ session('success') }}
                     </div>
                 @endif
-
+                {{--{{ print_r(old()) }}--}}
                 <form action="{{ route('job_application.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
@@ -209,7 +209,7 @@
                                     $sectors = \App\Models\Sector::all();
                                 @endphp
                                 @foreach ($sectors as $sector)
-                                    <option value="{{ $sector->id }}">{{ $sector->sector }}</option>
+                                    <option value="{{ $sector->id }}" {{ (old('sector')==$sector->id)?'selected':''  }}>{{ $sector->sector }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -222,7 +222,7 @@
                                     $jobs = \App\Models\Job::all();
                                 @endphp
                                 @foreach ($jobs as $job)
-                                    <option value="{{ $job->id }}">{{ $job->job }}</option>
+                                    <option value="{{ $job->id }}" {{ (old('position')==$job->id)?'selected':''  }}>{{ $job->job }}</option>
                                 @endforeach
                             </select>
 
@@ -241,13 +241,13 @@
                             <label for="validationDefault01" class="form-label">First name <span
                                     class="red">*</span></label>
                             <input type="text" class="form-control bg" name="first_name" placeholder="First Name"
-                                id="first_name" required>
+                                id="first_name" value="{{ old('first_name') ?? '' }}" required>
                         </div>
                         <!-- lastname -->
                         <div class="col-md-4">
                             <label for="validationDefault02" class="form-label">Last name <span
                                     class="red">*</span></label>
-                            <input type="text" class="form-control bg" name="last_name" id="last_name" required>
+                            <input type="text" class="form-control bg" name="last_name" id="last_name" value="{{ old('last_name') ?? '' }}" required>
                         </div>
                         <!-- upload -->
                         <div class="col-md-4">
@@ -266,13 +266,13 @@
                         <!-- dateofbirth -->
                         <div class="col-md-4">
                             <label for="dob">Enter your date of birth <span class="red">*</span></label><br>
-                            <input class="form-control " type="date" name="dob" id="dob"
+                            <input class="form-control " type="date" name="dob" id="dob" value="{{ old('dob') ?? '' }}"
                                 oninput="calculateAge()" required>
                         </div>
                         <!-- age -->
                         <div class="col-md-4">
                             <label for="ageOutput">Your age is</label><br>
-                            <input class="form-control bg " type="text" id="ageOutput" name="age" readonly>
+                            <input class="form-control bg " type="text" id="ageOutput" value="{{ old('age') ?? '' }}" name="age" readonly>
                         </div>
                         <!-- space -->
                         <div class="col-md-4">
@@ -521,19 +521,19 @@
                         <div class="col-md-4">
                             <label class="form-label">Address <span class="red">*</span></label>
                             <input type="text" name="address" class="form-control bg" placeholder="Address"
-                                name="address" id="address" required>
+                                name="address" id="address"value="{{ old('address') ?? '' }}" required>
                         </div>
                         <!-- postal code -->
                         <div class="col-md-4">
                             <label class="form-label">Postal Code
                                 <span class="red">*</span></label>
-                            <input type="text" class="form-control bg" placeholder="postal code" id="postal_code"
+                            <input type="text" class="form-control bg" placeholder="postal code" id="postal_code" value="{{ old('postal_code') ?? '' }}"
                                 name="postal_code" required>
                         </div>
                         <!-- phone -->
                         <div class="col-md-4">
                             <label class="form-label">Phone/Mobile <span class="red">*</span></label><br>
-                            <input type="tel" class="phoneInputField" name="phone" id="phone" required>
+                            <input type="tel" class="phoneInputField" name="phone" id="phone" value="{{ old('phone') ?? '' }}" required>
                             <p class="errorText" style="color: red;"></p>
 
                         </div>
@@ -542,27 +542,27 @@
                             <label class="form-label">Alternative Phone/Mobile </label>
                             <br>
                             <input type="tel" class="phoneInputField" name="alternative_phone"
-                                id="alternative_phone" required>
+                                id="alternative_phone" value="{{ old('alternative_phone') ?? '' }}" required>
                             <p class="errorText" style="color: red;"></p>
 
                         </div>
                         <!-- email -->
                         <div class="col-md-4">
                             <label class="form-label">Email <span class="red">*</span></label>
-                            <input type="email" class="form-control bg" placeholder="Email-Id" id="email"
+                            <input type="email" class="form-control bg" placeholder="Email-Id" id="email" value="{{ old('email') ?? '' }}"
                                 name="email" required>
                         </div>
                         <!-- fblink -->
                         <div class="col-md-4">
                             <label class="form-label">FB Profile Link <span class="red">*</span></label>
                             <input type="text" name="fb_link" class="form-control bg"
-                                placeholder="FB Profile Link" id="fb_link" required>
+                                placeholder="FB Profile Link" id="fb_link" value="{{ old('fb_link') ?? '' }}" required>
                         </div>
                         <!-- instalink -->
                         <div class="col-md-4">
                             <label class="form-label">Instagram Profile Link <span class="red">*</span></label>
                             <input type="text" class="form-control bg" placeholder="Instagram Profile Link"
-                                name="instagram_link" id="instagram_link" required>
+                                name="instagram_link" id="instagram_link" value="{{ old('instagram_link') ?? '' }}" required>
                         </div>
                         <!-- linked link -->
                         <div class="col-md-4">
@@ -570,21 +570,21 @@
                                 <span class="red">*</span>
                             </label>
                             <input type="text" class="form-control bg" placeholder="LinkedIn Profile Link"
-                                name="linked_link" id="linked_link" required>
+                                name="linked_link" id="linked_link" value="{{ old('linked_link') ?? '' }}" required>
                         </div>
                         <!-- {{-- Permanentaddress yes OR no --}} -->
                         <div class="col-md-4">
                             <label>Does Your Permanent Address is Different
                                 <br>
-                                <input type="radio" name="permanent_address_input" value="yes" id="yesRadio1">
+                                <input type="radio" name="permanent_address_input" value="yes" {{ (old('permanent_address_input') == 'yes') ? 'checked': '' }} id="yesRadio1">
                                 Yes
                             </label> <br>
                             <label>
-                                <input type="radio" name="permanent_address_input" value="no" id="noRadio1">
+                                <input type="radio" name="permanent_address_input" value="no" {{ (old('permanent_address_input') == 'no') ? 'checked': '' }} id="noRadio1">
                                 No
                             </label>
 
-                            <div id="formContainer1" class="hidden">
+                            <div id="formContainer1" class="{{ (old('permanent_address_input') == 'no') ? 'hidden': '' }}">
                                 {{-- country --}}
                                 <label class="form-label">Country <span style="color: red;">*</span></label>
                                 <select class="form-select bg permanent-address-input" id="permanent_country" name="permanent_country">
@@ -596,25 +596,25 @@
                                 <!-- permanentcity -->
                                 <label class="form-label">City <span class="red">*</span></label>
                                 <input type="text" name="permanent_city" class="form-control bg permanent-address-input"
-                                    id="permanent_city" placeholder="City">
+                                    id="permanent_city" value="{{ old('permanent_city') ?? '' }}" placeholder="City">
 
                                 <!-- permanent_address -->
                                 <label class="form-label">Address
                                     <span class="red">*</span></label>
                                 <input type="text" class="form-control bg permanent-address-input" name="permanent_address"
-                                    id="permanent_address" placeholder="Address">
+                                    id="permanent_address" value="{{ old('permanent_address') ?? '' }}" placeholder="Address">
 
                                 <!-- permanentpostalcode -->
                                 <label class="form-label">Postal Code
                                     <span class="red">*</span></label>
                                 <input type="text" class="form-control bg permanent-address-input" name="permanent_postal_code"
-                                    id="permanent_postal_code" placeholder="Postal Code">
+                                    id="permanent_postal_code" value="{{ old('permanent_postal_code') ?? '' }}" placeholder="Postal Code">
 
-                                <!-- permanent phone -->
+                                {{--<!-- permanent phone -->--}}
                                 <label class="form-label">Phone/Mobile <span class="red">*</span></label>
                                 <br>
                                 <input type="tel" class="phoneInputField permanent-address-input" name="permanent_phone"
-                                    id="permanent_phone">
+                                    id="permanent_phone" value="{{ old('permanent_phone') ?? '' }}">
                                 <p class="errorText" style="color: red;"></p>
 
                             </div>
@@ -624,14 +624,14 @@
                         <div class="col-md-3">
                             <label class="form-label">Father’s Name <span class="red">*</span></label>
                             <div class="input-group">
-                                <input type="text" name="father_name" class="form-control bg" id="father_name"
+                                <input type="text" name="father_name" class="form-control bg" id="father_name" value="{{ old('father_name') ?? '' }}"
                                     placeholder="Father's Name" required>
                             </div>
                         </div>
                         <!-- fatherdateofbirth -->
                         <div class="col-md-3">
                             <label class="form-label">Date Of Birth <span class="red">*</span></label>
-                            <input type="date" class="form-control" id="father_date_of_birth"
+                            <input type="date" class="form-control" id="father_date_of_birth" value="{{ old('father_date_of_birth') ?? '' }}"
                                 name="father_date_of_birth" required>
                         </div>
                         <!-- fatherphone -->
@@ -639,7 +639,7 @@
                             <label class="form-label">Phone/Mobile <span class="red">*</span>
                             </label>
                             <br>
-                            <input type="tel" class="phoneInputField" name="father_phone" id="father_phone"
+                            <input type="tel" class="phoneInputField" name="father_phone" id="father_phone" value="{{ old('father_phone') ?? '' }}"
                                 required>
                             <p class="errorText" style="color: red;"></p>
 
@@ -661,7 +661,7 @@
                         <div class="col-md-3">
                             <label class="form-label">Mother's Name <span class="red">*</span></label>
                             <div class="input-group">
-                                <input type="text" class="form-control bg" id="mother_name"
+                                <input type="text" class="form-control bg" id="mother_name" value="{{ old('mother_name') ?? '' }}"
                                     placeholder="mother's name" name="mother_name" required>
                             </div>
                         </div>
@@ -669,13 +669,13 @@
                         <div class="col-md-3">
                             <label class="form-label">Date Of Birth <span class="red">*</span></label>
                             <input type="date" class="form-control" name="mother_date_of_birth"
-                                id="mother_date_of_birth" required>
+                                id="mother_date_of_birth" value="{{ old('mother_date_of_birth') ?? '' }}" required>
                         </div>
                         <!-- motherphone -->
                         <div class="col-md-3">
                             <label class="form-label">Phone/Mobile <span class="red">*</span>
                             </label>
-                            <input type="tel" class="phoneInputField" name="mother_phone" id="mother_phone"
+                            <input type="tel" class="phoneInputField" name="mother_phone" id="mother_phone" value="{{ old('mother_phone') ?? '' }}"
                                 required>
                             <p class="errorText" style="color: red;"></p>
 
@@ -685,7 +685,7 @@
                             <label class="form-label">upload <span class="red">*</span></label>
                             <div class="input-group">
                                 <input type="file" class="form-control" name="mother_image"
-                                    id="mother_image"accept="image/*" required>
+                                    id="mother_image" accept="image/*" required>
                             </div>`
                             <!-- images  -->
                             <div class="form-group">
@@ -697,38 +697,36 @@
                         <!-- marital status -->
                         <div class="col-lg-6">
                             <p style="font-weight: bold;">Marital Status :</p>
-                            <input class="" type="radio" name="marital_Status" id="marital_status_yes" value="married"
-                                onclick="showInputs()" required>
+                            <input type="radio" name="marital_status" value="married" {{ (old('marital_status') == 'married') ? 'checked': '' }} id="marital_status_yes" onclick="showInputs()" required>
                             Married
                             <br>
-                            <input class="" type="radio" name="marital_Status" id="marital_status_no" value="single"
-                                onclick="hideInputs()" required>
+                            <input type="radio" name="marital_status" value="single" {{ (old('marital_status') == 'married') ? 'single': '' }} id="marital_status_no" onclick="hideInputs()" required>
                             Single
-                            <div id="marriedInputs" style="display: none;">
+                            <div id="marriedInputs" class="{{ (old('marital_status') == 'single') ? 'hidden': '' }}">
                                 <div class="col-md-12">
                                     <!-- spousename -->
                                     <label class="form-label pt-2">Spouse Name <span class="red">*</span></label>
                                     <div class="input-group ">
-                                        <input type="text" class="form-control bg marital-status-input" id="spouse_name"
+                                        <input type="text" class="form-control bg marital-status-input" id="spouse_name" value="{{ old('spouse_name') ?? '' }}"
                                             name="spouse_name" placeholder="Spouse Name">
                                     </div>
                                     <!-- spousedob -->
                                     <label class="form-label pt-2">Date of Birth <span class="red">*</span></label>
                                     <div class="input-group ">
                                         <input type="date" class="form-control bg marital-status-input" name="spouse_date_of_birth"
-                                            id="spouse_date_of_birth" placeholder="Date of Birth">
+                                            id="spouse_date_of_birth" value="{{ old('spouse_date_of_birth') ?? '' }}" placeholder="Date of Birth">
                                     </div>
                                     <!-- spouseemail -->
                                     <label class="form-label pt-2">Email <span class="red">*</span></label>
                                     <div class="input-group pb-2">
                                         <input type="email" class="form-control bg marital-status-input" name="spouse_email"
-                                            id="spouse_email" placeholder="Email id">
+                                            id="spouse_email" value="{{ old('spouse_email') ?? '' }}" placeholder="Email id">
                                     </div>
                                     <!-- spousephone -->
                                     <label class="form-label pt-2">Phone/Mobile <span class="red">*</span></label>
                                     <div class="input-group ">
                                         <input type="tel" class="phoneInputField marital-status-input" name="spouse_phone"
-                                            id="spouse_phone">
+                                            id="spouse_phone" value="{{ old('spouse_phone') ?? '' }}">
                                         <p class="errorText" style="color: red;"></p>
 
                                     </div>
@@ -752,57 +750,57 @@
                         </div>
 
                         <!-- single -->
-                        <div id="singleInputs" style="display: none;">
-                        </div>
-                        <!-- Siblings -->
-                        <div class="col-lg-6">
-                            <p style="font-weight: bold;">Siblings :</p>
-                            <label>
-                                <input type="radio" name="siblings" value="yes" id="yesRadio2"> Yes
-                            </label> <br>
-                            <label>
-                                <input type="radio" name="siblings" value="no" id="noRadio2"> No
-                            </label>
-                            <div id="formContainer2" class="hidden">
-                                <!-- Siblings name -->
-                                <label class="form-label pt-2">Siblings name<span class="red">*</span></label>
-                                <div class="input-group ">
-                                    <input type="text" class="form-control bg sibling-name-input" id="siblings_name"
-                                        placeholder="Siblings Name" name="siblings_name">
-                                </div>
-                                <!--Siblings  Date of Birth-->
-                                <label class="form-label pt-2">Date of Birth <span class="red">*</span></label>
-                                <input type="date" name="siblings_date_of_birth" class="form-control sibling-name-input"
-                                    id="siblings_date_of_birth" placeholder="Date of Birth">
-                                <!-- siblings  email -->
-                                <div class="col-lg-12 ">
-                                    <label class="form-label pt-2">Email <span class="red">*</span></label>
-                                    <input type="email" class="form-control bg sibling-name-input" placeholder="Email-Id"
-                                        name="siblings_email" id="siblings_email">
-                                    <!--siblings  phone -->
-                                    <label class="form-label pt-2">Phone/Mobile <span
-                                            class="red">*</span></label><br>
+                        <div id="singleInputs" class="{{ (old('marital_status') == 'married') ? 'hidden': '' }}">
+                            <!-- Siblings -->
+                            <div class="col-lg-6">
+                                <p style="font-weight: bold;">Siblings :</p>
+                                <label>
+                                    <input type="radio" name="siblings" value="yes" id="yesRadio2" {{ (old('siblings') == 'yes') ? 'checked': '' }}> Yes
+                                </label> <br>
+                                <label>
+                                    <input type="radio" name="siblings" value="no" id="noRadio2" {{ (old('siblings') == 'no') ? 'checked': '' }}> No
+                                </label>
+                                <div id="formContainer2" class="{{ (old('siblings') == 'no') ? 'hidden': '' }}">
+                                    <!-- Siblings name -->
+                                    <label class="form-label pt-2">Siblings name<span class="red">*</span></label>
                                     <div class="input-group ">
-                                        <input type="tel" class="phoneInputField sibling-name-input" name="siblings_phone"
-                                            id="siblings_phone">
-                                        <p class="errorText" style="color: red;"></p>
-
+                                        <input type="text" class="form-control bg sibling-name-input" id="siblings_name" value="{{ old('siblings_name') ?? '' }}"
+                                            placeholder="Siblings Name" name="siblings_name">
                                     </div>
-                                    <!--siblings  Upload the Latest Passport Size Photo -->
-                                    <label class="form-label pt-2">Upload the Latest
-                                        Passport
-                                        Size
-                                        Photo <span class="red">*</span></label>
-                                    <div class="input-group ">
-                                        <input type="file" class="form-control sibling-name-input" id="siblings_image"
-                                            name="siblings_image" accept="image/*">
-                                        <!-- images  -->
-                                        <div class="form-group  ">
-                                            <img id="siblingsimagePreview" src="#" alt="Image Preview"
-                                                style="max-width: 150px; display: none;">
+                                    <!--Siblings  Date of Birth-->
+                                    <label class="form-label pt-2">Date of Birth <span class="red">*</span></label>
+                                    <input type="date" name="siblings_date_of_birth" class="form-control sibling-name-input"
+                                        id="siblings_date_of_birth" value="{{ old('siblings_date_of_birth') ?? '' }}" placeholder="Date of Birth">
+                                    <!-- siblings  email -->
+                                    <div class="col-lg-12 ">
+                                        <label class="form-label pt-2">Email <span class="red">*</span></label>
+                                        <input type="email" class="form-control bg sibling-name-input" placeholder="Email-Id"
+                                            name="siblings_email" id="siblings_email" value="{{ old('siblings_email') ?? '' }}">
+                                        <!--siblings  phone -->
+                                        <label class="form-label pt-2">Phone/Mobile <span
+                                                class="red">*</span></label><br>
+                                        <div class="input-group ">
+                                            <input type="tel" class="phoneInputField sibling-name-input" name="siblings_phone"
+                                                id="siblings_phone" value="{{ old('siblings_phone') ?? '' }}">
+                                            <p class="errorText" style="color: red;"></p>
+
                                         </div>
-                                    </div>
+                                        <!--siblings  Upload the Latest Passport Size Photo -->
+                                        <label class="form-label pt-2">Upload the Latest
+                                            Passport
+                                            Size
+                                            Photo <span class="red">*</span></label>
+                                        <div class="input-group ">
+                                            <input type="file" class="form-control sibling-name-input" id="siblings_image"
+                                                name="siblings_image" accept="image/*">
+                                            <!-- images  -->
+                                            <div class="form-group  ">
+                                                <img id="siblingsimagePreview" src="#" alt="Image Preview"
+                                                    style="max-width: 150px; display: none;">
+                                            </div>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -831,11 +829,11 @@
             <!-- link -->
             <section class="container">
                 <div class="row border-bottom ">
-                    <div class="col-lg-4 col-md-6 mt-5  ">
-                        <h1 class="">About TISE</h1>
+                    <div class="col-lg-4 col-md-6 mt-5">
+                        <h1>About TISE</h1>
                         <p>With over 8 years of experience in the industry, <br> we provide top-notch expertise and
                             innovative <br> solutions for your engineering needs</p>
-                        <!-- icons -->
+                        {{--<!-- icons -->--}}
                         <div class="">
                             <a style="text-decoration: none; padding-right: 10px;" href=""
                                 class="   text-reset">

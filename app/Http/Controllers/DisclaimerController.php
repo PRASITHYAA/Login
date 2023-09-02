@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Achievement;
+use App\Models\Card;
 use App\Models\Disclaimer;
+use App\Models\Education;
+use App\Models\Employment;
+use App\Models\JobApplication;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DisclaimerController extends Controller
 {
@@ -32,7 +38,29 @@ class DisclaimerController extends Controller
 
         Disclaimer::create($disclaimer);
 
-        return redirect()->back()->with(['id' => $request->job_application_id])->with('success', ' Disclaimer And All The Forms Are created successfully');
+        return redirect()->route('acknowledgement', ['id' => $request->job_application_id])->with('success', ' Disclaimer And All The Forms Are created successfully');
     }
 
+    public function acknowledgement(Request $request)
+    {
+        $data = JobApplication::find($request->id);
+        return view('Career.acknowledgement.view', compact('data'));
+    }
+
+    public function downloadPdf(Request $request) {
+     $application = JobApplication::find($request->id);
+        $data = $application->toArray();
+     $disclaimer = Disclaimer::where('job_application_id', $request->id)->first()->toArray();
+        $data = array_merge($disclaimer,$data);
+        $education = Education::where('job_application_id', $request->id)->first()->toArray();
+        $data = array_merge($education,$data);
+        $card = Card::where('job_application_id', $request->id)->first()->toArray();
+        $data = array_merge($card,$data);
+        $achivement = Achievement::where('job_application_id', $request->id)->first()->toArray();
+        $data = array_merge($achivement,$data);
+        $employment = Employment::where('job_application_id', $request->id)->first()->toArray();
+        $data = array_merge($employment,$data);
+        $pdf = Pdf::loadView('pdf.application', $data);
+        return $pdf->download('job_application_'.$application->first_name.'.pdf');
+    }
 }

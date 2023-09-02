@@ -131,6 +131,8 @@ Route::post('achievement', [AchievementController::class, 'store'])->name('achie
 
 Route::view('/disclaimer', 'career.disclaimer.create')->name('disclaimer.view');
 Route::post('disclaimer', [DisclaimerController::class, 'store'])->name('disclaimer.store');
+Route::get('acknowledgement', [DisclaimerController::class, 'acknowledgement'])->name('acknowledgement');
+Route::get('download/pdf', [DisclaimerController::class, 'downloadPdf'])->name('download.pdf');
 
 // employment
 

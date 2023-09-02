@@ -23,8 +23,8 @@ class JobApplicationController extends Controller
             'city' => 'required',
             'address' => 'required',
             'postal_code' => 'required',
-            'phone' => 'required|numeric',
-            'alternative_phone' => 'required|numeric',
+            'phone' => ['required', 'regex:/^[0-9\s]+$/'],
+            'alternative_phone' => ['required', 'regex:/^[0-9\s]+$/'],
             'email' => 'required|email',
             'fb_link' => 'required',
             'linked_link' => 'required',
@@ -40,20 +40,20 @@ class JobApplicationController extends Controller
             // father name
             'father_name' => 'required',
             'father_date_of_birth' => 'required|date',
-            'father_phone' => 'required|numeric',
+            'father_phone' => ['required', 'regex:/^[0-9\s]+$/'],
             'father_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
             // mother name
             'mother_name' => 'required',
             'mother_date_of_birth' => 'required|date',
-            'mother_phone' => 'required|numeric',
+            'mother_phone' => ['required', 'regex:/^[0-9\s]+$/'],
             'mother_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
             // maritalStatus
-            'marital_Status' => 'required|in:married,single',
-            'spouse_name' => 'required_if:marital_Status,married',
-            'spouse_date_of_birth' => 'required_if:marital_Status,married',
-            'spouse_email' => 'required_if:marital_Status,married',
-            'spouse_phone' => 'required_if:marital_Status,married',
-            'spouse_image' => 'required_if:marital_Status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',  // Adjust max size if needed
+            'marital_status' => 'required|in:married,single',
+            'spouse_name' => 'required_if:marital_status,married',
+            'spouse_date_of_birth' => 'required_if:marital_status,married',
+            'spouse_email' => 'required_if:marital_status,married',
+            'spouse_phone' => 'required_if:marital_status,married',
+            'spouse_image' => 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',  // Adjust max size if needed
             // siblings
             'siblings' => 'required|in:yes,no',
             'siblings_name' => 'required_if:siblings,yes',

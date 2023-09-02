@@ -367,7 +367,7 @@
                         </label>
                     </div>
                     <!-- If No, Please Explain -->
-                    <div id="nested-input-field" style="display: none;font-weight: bold;">
+                    <div id="nested-input-field-div" style="display: none;font-weight: bold;">
                         If No, Please Explain <span class="f5">*</span> <br>
                         <input style="background-color:  rgba(248, 235, 235, 0.726);" type="text"
                             id="nested-input-field" name="nested-input-field">
@@ -476,7 +476,7 @@
     <script>
         function showNestedOption(selectedRadio) {
             const nestedInputDiv = document.getElementById('nested-input');
-            const nestedInputFieldDiv = document.getElementById('nested-input-field');
+            const nestedInputFieldDiv = document.getElementById('nested-input-field-div');
             const subNestedInputDiv = document.getElementById('sub-nested-input');
 
             if (selectedRadio.value === 'yes') {
@@ -492,7 +492,7 @@
 
         function showSubNestedInput(selectedRadio) {
             const subNestedInputDiv = document.getElementById('sub-nested-input');
-            const nestedInputFieldDiv = document.getElementById('nested-input-field');
+            const nestedInputFieldDiv = document.getElementById('nested-input-field-div');
 
             if (selectedRadio.value === 'nested-yes') {
                 subNestedInputDiv.style.display = 'block';
@@ -509,12 +509,12 @@
         }
 
         function showNestedInput() {
-            const nestedInputFieldDiv = document.getElementById('nested-input-field');
+            const nestedInputFieldDiv = document.getElementById('nested-input-field-div');
             nestedInputFieldDiv.style.display = 'none';
         }
 
         function hideNestedInput() {
-            const nestedInputFieldDiv = document.getElementById('nested-input-field');
+            const nestedInputFieldDiv = document.getElementById('nested-input-field-div');
             nestedInputFieldDiv.style.display = 'block';
         }
     </script>

@@ -225,7 +225,7 @@
                 <div id="checkboxes" style="display: none;">
 
                     <!-- High School -->
-                    <input type="checkbox" onchange="toggleForm('form1')"> High School
+                    <input type="checkbox" onchange="toggleForm('form1')" name="qualification" value="high_school"> High School
                     <div id="form1" style="display: none;">
                         <h4>
                             High School
@@ -340,7 +340,7 @@
                     <br>
                     <!-- Higher Secondary -->
 
-                    <input type="checkbox" onchange="toggleForm('form2')"> Higher Secondary
+                    <input type="checkbox" onchange="toggleForm('form2')" name="qualification" value="higher_secondary"> Higher Secondary
 
                     <div id="form2" style="display: none;">
                         <!-- Higher Secondary -->
@@ -464,7 +464,7 @@
 
 
                     {{-- Diploma --}}
-                    <input type="checkbox" onchange="toggleForm('form3')"> Diploma
+                    <input type="checkbox" onchange="toggleForm('form3')" name="qualification" value="diploma"> Diploma
 
                     <div id="form3" style="display: none;">
                         <!-- Diploma -->
@@ -578,7 +578,7 @@
 
                     <br>
                     {{-- Bachelors Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form4')"> Bachelors Degree
+                    <input type="checkbox" onchange="toggleForm('form4')" name="qualification" value="bachelor_degree"> Bachelors Degree
                     <div id="form4" style="display: none;">
                         <!-- Bachelors Degree -->
                         <h4>
@@ -701,7 +701,7 @@
                     <br>
 
                     {{-- Master's Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form5')"> Master's Degree
+                    <input type="checkbox" onchange="toggleForm('form5')" name="qualification" value="master_degree"> Master's Degree
                     <div id="form5" style="display: none;">
                         <!-- Master's Degree -->
                         <h4>
@@ -815,7 +815,7 @@
                     <br>
 
                     {{-- Doctorate Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form6')"> Doctorate Degree
+                    <input type="checkbox" onchange="toggleForm('form6')" name="qualification" value="doctorate_degree"> Doctorate Degree
 
                     <div id="form6" style="display: none;">
                         <!-- Doctorate Degree -->
