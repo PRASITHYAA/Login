@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('achievements', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('job_application_id');
+            // $table->unsignedBigInteger('job_application_id');
 
              $table->string('achievement');
 
@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('no_curriculum_explain')->nullable();
 
             $table->timestamps();
-            $table->foreign('job_application_id')->references('id')->on('job_applications');
+            // $table->foreign('job_application_id')->references('id')->on('job_applications');
 
         });
     }

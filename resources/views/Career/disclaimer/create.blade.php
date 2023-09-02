@@ -286,9 +286,9 @@
                 <!-- buttons -->
                 <div style="display: flex;justify-content: end;  " class="groupfinal">
                     <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
-                        href="Acheivements.html">Previous</a>
+                        href="achievement">Previous</a>
                     <button class="btn btn-primary m-1 ">Submit Form</button>
-                    <a class="btn btn-secondary m-1 " href="">Export Pdf</a>
+
                 </div>
             </form>
         </div>

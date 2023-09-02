@@ -139,4 +139,9 @@ Route::post('employment', [EmploymentController::class, 'store'])->name('employm
 
 //  demo
 Route::view('/demo', 'demo');
-Route::post('demo', [EducationController::class, 'store'])->name('education.store');
+Route::post('demo', [AchievementController::class, 'store'])->name('achievement.store');
+
+
+// home
+Route::view('/home', 'home');
+Route::post('home', [AchievementController::class, 'store'])->name('achievement.store');

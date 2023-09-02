@@ -17,6 +17,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
 
+    {{-- jquery --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -151,7 +154,6 @@
     </div>
 
 
-    <!-- main -->
     <!-- percentage -->
     <div class="container   mt-2">
         <div class="progress-bar" role="progressbar" style="width: 90%; background-color: #111;color: white; "
@@ -199,12 +201,12 @@
                 <!-- first one -->
 
                 <label>
-                    <input type="radio" name="open-input" value="yes" onclick="showInput()">
+                    <input type="radio" name="open-input" value="yes" id="yesRadio1" onclick="showInput()">
                     Yes
                 </label>
                 <br>
                 <label>
-                    <input type="radio" name="open-input" value="no" onclick="hideInput()">
+                    <input type="radio" name="open-input" value="no" id="noRadio1" onclick="hideInput()">
                     No
                 </label>
                 <div id="input-field" style="display: none;">
@@ -218,40 +220,35 @@
                             class="form-control" name="Conference" id="Conference" placeholder="">
                     </div>
                 </div>
-
                 <!-- second one -->
                 <h2 class="pt-4 pb-4"> FINAL YEAR PROJECT</h2>
-                <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, pdf
-                    bmp
-                    <br>
-                    Size Limit: 50KB
-                </p>
-                <p> Do you worked any final year projects?</p>
+                <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, pdf bmp <br> Size
+                    Limit: 50KB </p>
+                <p> Do you worked on any final year projects?</p>
 
                 <label>
-                    <input type="radio" name="open-input-2" value="yes" onclick="showInput2()">
+                    <input type="radio" name="open-input-2" value="yes" id="yesRadio2">
                     Yes
                 </label>
                 <br>
                 <label>
-                    <input type="radio" name="open-input-2" value="no" onclick="hideInput2()">
+                    <input type="radio" name="open-input-2" value="no" id="noRadio2">
                     No
                 </label>
+
                 <div id="input-field-2" style="display: none;">
                     <p class="border-bottom">Please use this section to indicate the final year project. Please
-                        limit
-                        your writing for this part to a maximum of 500 words and upload the detailed project file.
+                        limit your writing for this part to a maximum of 500 words and upload the detailed project file.
                     </p>
                     <label for="exampleFormControlInput1" class="form-label">Final Year Projects </label>
-                    <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control"
-                        name="final_year_project" id="final_year_project">
-                    <div class="col-md-3  p-2">
-                        <label class="form-label">Upload All Your Project Documents
-                            Here
-                            <div class="input-group">
-                                <input type="file" class="form-control" id="project_document"
-                                    name="project_document">
+                    <input style="background-color: rgba(248, 235, 235, 0.726);"
+                        class="form-control open-input-2-input " name="final_year_project" id="final_year_project">
 
+                    <div class="col-md-3  p-2">
+                        <label class="form-label">Upload All Your Project Documents Here
+                            <div class="input-group">
+                                <input type="file" class="form-control open-input-2-input" id="project_document"
+                                    name="project_document">
                             </div>
                     </div>
                 </div>
@@ -277,28 +274,31 @@
                                 name="extra_curricular_skills_project_document" required>
                         </div>
                 </div>
+
+
+                {{-- CURRICULUM --}}
                 <div>
                     <h2 class="pt-4 pb-4">CURRICULUM VITAE</h2>
                     <p> Are You willing to Attach Your Curriculum Vitae <span class="red">*</span></p>
 
                     <label>
-                        <input type="radio" name="open-input-3" value="yes" onclick="showInput3()">
+                        <input type="radio" name="open-input-3" value="yes" id="yesRadio3">
                         Yes
                     </label>
                     <br>
                     <label>
-                        <input type="radio" name="open-input-3" value="no" onclick="hideInput3()">
+                        <input type="radio" name="open-input-3" value="no" id="noRadio3">
                         No
                     </label>
 
                     <div id="input-field-3" style="display: none;">
                         <div class="col-md-3  p-2">
-                            <label class="form-label">Attach Your resume: In PDF Format
+                            <label class="form-label open-input-3-input">Attach Your resume: In PDF Format
                                 <span class="red">*</span>
                             </label>
                             <div class="input-group">
-                                <input type="file" class="form-control" id="yes_curriculum_pdf_format"
-                                    name="yes_curriculum_pdf_format">
+                                <input type="file" class="form-control open-input-3-input"
+                                    id="yes_curriculum_pdf_format" name="yes_curriculum_pdf_format">
                             </div>
                         </div>
                     </div>
@@ -307,14 +307,15 @@
                     <p> Are You willing to Attach Your Curriculum Vitae <span class="red">*</span></p>
 
                     <label>
-                        <input type="radio" name="open-input-4" value="yes" onclick="showInput4()">
+                        <input type="radio" name="open-input-4" value="yes" id="yesRadio4">
                         Yes
                     </label>
                     <br>
                     <label>
-                        <input type="radio" name="open-input-4" value="no" onclick="hideInput4()">
+                        <input type="radio" name="open-input-4" value="no" id="noRadio4">
                         No
                     </label>
+
                     <div id="input-field-4" style="display: none;">
                         <div class="p-2">
                             <div class="mb-3">
@@ -325,6 +326,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <!-- buttons -->
                 <div style="display: flex;justify-content:end;" class="pt-5">
                     <a class="btn btn-secondary m-1" href="employment">Previous</a>
@@ -335,147 +338,141 @@
         </div>
 
 
-    </div>
-
-
-
-
-
-    <!-- footer -->
-    <footer class="bg-dark  text-white mt-4">
-        <div class="container-fluid  p-4">
-            <!-- link -->
-            <section class="container">
-                <div class="row border-bottom ">
-                    <div class="col-lg-4 col-md-6 mt-5  ">
-                        <h1 class="">About TISE</h1>
-                        <p>With over 8 years of experience in the industry, <br> we provide top-notch expertise and
-                            innovative <br> solutions for your engineering needs</p>
-                        <!-- icons -->
-                        <div class="">
-                            <a style="text-decoration: none; padding-right: 10px;" href=""
-                                class="   text-reset">
-                                <i class="icons-1  fab fa-facebook-f g-5 "></i>
-                            </a>
-                            <a style="text-decoration: none; padding-right: 10px;" href=""
-                                class=" text-reset ">
-                                <i class="fa-brands fa-instagram  "></i>
-                            </a>
-                            <a style="text-decoration: none;padding-right: 10px;" href="" class=" text-reset">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                            <a style="text-decoration: none;padding-right: 10px;" href="" class=" text-reset">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
+        <!-- footer -->
+        <footer class="bg-dark  text-white mt-4">
+            <div class="container-fluid  p-4">
+                <!-- link -->
+                <section class="container">
+                    <div class="row border-bottom ">
+                        <div class="col-lg-4 col-md-6 mt-5  ">
+                            <h1 class="">About TISE</h1>
+                            <p>With over 8 years of experience in the industry, <br> we provide top-notch expertise and
+                                innovative <br> solutions for your engineering needs</p>
+                            <!-- icons -->
+                            <div class="">
+                                <a style="text-decoration: none; padding-right: 10px;" href=""
+                                    class="   text-reset">
+                                    <i class="icons-1  fab fa-facebook-f g-5 "></i>
+                                </a>
+                                <a style="text-decoration: none; padding-right: 10px;" href=""
+                                    class=" text-reset ">
+                                    <i class="fa-brands fa-instagram  "></i>
+                                </a>
+                                <a style="text-decoration: none;padding-right: 10px;" href=""
+                                    class=" text-reset">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                                <a style="text-decoration: none;padding-right: 10px;" href=""
+                                    class=" text-reset">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Quick Links  -->
+                        <div class="col-lg-4 col-md-6 mt-5 mb-5">
+                            <h4 class=""> Quick Links </h4>
+                            <ul class="list-unstyled mb-4 ">
+                                <li class="pb-1">
+                                    <a href="#!" class="text-white">Terms and Conditions</a>
+                                </li>
+                                <li class="pb-1">
+                                    <a href="#!" class="text-white">Privacy Policy</a>
+                                </li>
+                                <li class="pb-1">
+                                    <a href="#!" class="text-white">Cancellation & Refund Policy – Training</a>
+                                </li>
+                                <li class="pb-1">
+                                    <a href="#!" class="text-white">Cancellation & Refund Policy – Job</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Useful Links -->
+                        <div class="col-lg-2 col-md-6 mt-5 mb-5">
+                            <h4 class=""> Useful Links </h4>
+                            <ul class="list-unstyled mb-0">
+                                <li class="pb-1">
+                                    <a href="#!" class="text-white">Apply for Job</a>
+                                </li>
+                                <li class="pb-1">
+                                    <a href="#!" class="text-white">Training Sessions</a>
+                                </li>
+                                <li class="pb-1">
+                                    <a href="#!" class="text-white">Projects</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-2 col-md-6 mt-5 mb-5">
+                            <img class="pb-4 img-fluid" src="./img/TISE-Footer-Logo.png" alt="">
                         </div>
                     </div>
-                    <!-- Quick Links  -->
-                    <div class="col-lg-4 col-md-6 mt-5 mb-5">
-                        <h4 class=""> Quick Links </h4>
-                        <ul class="list-unstyled mb-4 ">
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Terms and Conditions</a>
-                            </li>
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Privacy Policy</a>
-                            </li>
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Cancellation & Refund Policy – Training</a>
-                            </li>
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Cancellation & Refund Policy – Job</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Useful Links -->
-                    <div class="col-lg-2 col-md-6 mt-5 mb-5">
-                        <h4 class=""> Useful Links </h4>
-                        <ul class="list-unstyled mb-0">
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Apply for Job</a>
-                            </li>
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Training Sessions</a>
-                            </li>
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Projects</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-md-6 mt-5 mb-5">
-                        <img class="pb-4 img-fluid" src="./img/TISE-Footer-Logo.png" alt="">
-                    </div>
+                </section>
+            </div>
+            <!-- copy -->
+            <div class="row  text-center">
+                <div class="col-lg-4 mt-2 mb-2">
+                    <p style="font-weight: bold;">Copyright © 2023 TISE, All rights reserved.</p>
                 </div>
-            </section>
-        </div>
-        <!-- copy -->
-        <div class="row  text-center">
-            <div class="col-lg-4 mt-2 mb-2">
-                <p style="font-weight: bold;">Copyright © 2023 TISE, All rights reserved.</p>
+                <div class="col-lg-4  d-flex mt-2 ">
+                    <p class="m-2">Razorpay Quick Links:</p>
+                    <a class="m-2" style="color: white; " href=""> Privacy Policy </a>
+                    <a class="m-2" style="color: white;" href=""> T&C </a>
+                    <a class="m-2" style="color: white;" href=""> Shipping </a>
+                    <a class=" m-2" style="color: white;" href=""> Refund </a>
+                </div>
+                <div class="col-lg-4 mt-2 mb-2">
+                    <p style="font-weight: bold;">Powered by TISE</p>
+
+                </div>
             </div>
-            <div class="col-lg-4  d-flex mt-2 ">
-                <p class="m-2">Razorpay Quick Links:</p>
-                <a class="m-2" style="color: white; " href=""> Privacy Policy </a>
-                <a class="m-2" style="color: white;" href=""> T&C </a>
-                <a class="m-2" style="color: white;" href=""> Shipping </a>
-                <a class=" m-2" style="color: white;" href=""> Refund </a>
-            </div>
-            <div class="col-lg-4 mt-2 mb-2">
-                <p style="font-weight: bold;">Powered by TISE</p>
-
-            </div>
-        </div>
-    </footer>
+        </footer>
 
 
-    <script>
-        function showInput() {
-            const inputFieldDiv = document.getElementById('input-field');
-            inputFieldDiv.style.display = 'block';
-        }
+        <script>
+            $(document).ready(function() {
+                $('#yesRadio1').click(function() {
+                    $('#input-field').show();
+                    $('.Conference').attr('required', true);
+                });
 
-        function hideInput() {
-            const inputFieldDiv = document.getElementById('input-field');
-            inputFieldDiv.style.display = 'none';
-        }
+                $('#noRadio1').click(function() {
+                    $('#input-field').hide();
+                    $('.Conference').attr('required', false);
+                });
 
-        function showInput2() {
-            const inputFieldDiv = document.getElementById('input-field-2');
-            inputFieldDiv.style.display = 'block';
-        }
+                $('#yesRadio2').click(function() {
+                    $('#input-field-2').show();
+                    $('.open-input-2-input').attr('required', true);
 
-        function hideInput2() {
-            const inputFieldDiv = document.getElementById('input-field-2');
-            inputFieldDiv.style.display = 'none';
-        }
+                });
+                $('#noRadio2').click(function() {
+                    $('#input-field-2').hide();
+                    $('.open-input-2-input').attr('required', false);
 
-        function showInput3() {
-            const inputFieldDiv = document.getElementById('input-field-3');
-            inputFieldDiv.style.display = 'block';
-        }
+                });
+                $('#yesRadio3').click(function() {
+                    $('#input-field-3').show();
 
-        function hideInput3() {
-            const inputFieldDiv = document.getElementById('input-field-3');
-            inputFieldDiv.style.display = 'none';
-        }
+                });
+                $('#noRadio3').click(function() {
+                    $('#input-field-3').hide();
 
-        function showInput4() {
-            const inputFieldDiv = document.getElementById('input-field-4');
-            inputFieldDiv.style.display = 'none';
-        }
+                });
 
-        function hideInput4() {
-            const inputFieldDiv = document.getElementById('input-field-4');
-            inputFieldDiv.style.display = 'block';
-        }
-    </script>
+                $('#yesRadio4').click(function() {
+                    $('#input-field-4').show();
+                });
+                $('#noRadio4').click(function() {
+                    $('#input-field-4').hide();
+                });
+            });
+        </script>
 
-    <!-- bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <!-- MDB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+        <!-- bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+        <!-- MDB -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 </body>
 
 </html>
