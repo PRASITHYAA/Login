@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Education extends Model
 {
     use HasFactory;
+    protected $table='educations';
+
     protected $fillable = [
         'job_application_id',
         'radio_option',
         // high school
-
         'high_school_name',
         'high_school_city',
         'high_school_address',
@@ -26,7 +27,6 @@ class Education extends Model
         'high_school_image_mark_sheet',
 
         // Higher Secondary
-
         'higher_secondary_institution_name',
         'higher_secondary_city',
         'higher_secondary_address',
@@ -41,7 +41,6 @@ class Education extends Model
         'higher_secondary_image_mark_sheet',
 
         // Diploma
-
         'diploma_institution_name',
         'diploma_city',
         'diploma_address',
@@ -56,7 +55,6 @@ class Education extends Model
         'diploma_image_mark_sheet',
 
         // Bachelors
-
         'bachelors_institution_name',
         'bachelors_city',
         'bachelors_address',
@@ -71,7 +69,6 @@ class Education extends Model
         'bachelors_image_mark_sheet',
 
         // master
-
         'master_institution_name',
         'master_city',
         'master_address',
@@ -85,8 +82,7 @@ class Education extends Model
         'master_image_certificate',
         'master_image_mark_sheet',
 
-// doctorate
-
+        // doctorate
         'doctorate_name',
         'doctorate_city',
         'doctorate_address',

@@ -678,7 +678,7 @@
                                 <!-- Preview for Bachelors image Certificate -->
                                 <div class="form-group">
                                     <img id="bachelorsimagecertificatePreview" src="#" alt="Image Preview"
-                                        style="width: 100%; height: auto; display: none;">
+                                        style="width: 150px; height: auto; display: none;">
                                 </div>
                             </div>
                             {{-- marksheet --}}
@@ -692,13 +692,14 @@
                                 <!-- Preview for Bachelors image Mark Sheet -->
                                 <div class="form-group">
                                     <img id="bachelorsimagemarksheetPreview" src="#" alt="Image Preview"
-                                        style="width: 100%; height: auto; display: none;">
+                                        style="width: 150px; height: auto; display: none;">
                                 </div>
                             </div>
                         </div>
 
                     </div>
                     <br>
+
                     {{-- Master's Degree --}}
                     <input type="checkbox" onchange="toggleForm('form5')"> Master's Degree
                     <div id="form5" style="display: none;">
@@ -908,7 +909,7 @@
                                 <!-- Preview for Doctorate image Certificate -->
                                 <div class="form-group">
                                     <img id="doctorateimagecertificatePreview" src="#" alt="Image Preview"
-                                        style="width: 100%; height: auto; display: none;">
+                                        style="width: 150px; height: auto; display: none;">
                                 </div>
                             </div>
                             {{-- mark sheet --}}
@@ -922,7 +923,7 @@
                                 <!-- Preview for Doctorate image Mark Sheet -->
                                 <div class="form-group">
                                     <img id="doctorateimagemarksheetPreview" src="#" alt="Image Preview"
-                                        style="width: 100%; height: auto; display: none;">
+                                        style="width: 150px; height: auto; display: none;">
                                 </div>
                             </div>
                         </div>
@@ -1033,89 +1034,67 @@
         </div>
     </footer>
 
-    <!-- bootstrap -->
+
+
+
+
+    <!-- checkbok -->
+    <script>
+        function showCheckboxes() {
+            const checkboxesDiv = document.getElementById('checkboxes');
+            checkboxesDiv.style.display = 'block';
+        }
+
+        function hideCheckboxes() {
+            const checkboxesDiv = document.getElementById('checkboxes');
+            checkboxesDiv.style.display = 'none';
+        }
+
+        function toggleForm(formId) {
+            const form = document.getElementById(formId);
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+
+
+    {{-- image --}}
+    <script>
+        function setupImagePreview(inputId, previewId) {
+            document.getElementById(inputId).addEventListener('change', function(event) {
+                var image = document.getElementById(previewId);
+                image.src = URL.createObjectURL(event.target.files[0]);
+                image.style.display = 'block';
+            });
+        }
+
+        setupImagePreview('high_school_image_mark_sheet', 'highschoolMarkSheetPreview');
+        setupImagePreview('high_school_image_certificate', 'highschoolimagecertificatePreview');
+
+        setupImagePreview('higher_secondary_image_certificate', 'highersecondaryimagecertificatePreview');
+        setupImagePreview('higher_secondary_image_mark_sheet', 'highersecondaryimagemarksheetPreview');
+
+        setupImagePreview('diploma_image_certificate', 'diplomaCertificatePreview');
+        setupImagePreview('diploma_image_mark_sheet', 'diplomaMarkSheetPreview');
+
+        setupImagePreview('bachelors_image_mark_sheet', 'bachelorsimagemarksheetPreview');
+        setupImagePreview('bachelors_image_certificate', 'bachelorsimagecertificatePreview');
+
+        setupImagePreview('master_image_certificate', 'masterimagecertificatePreview');
+        setupImagePreview('master_image_mark_sheet', 'masterimagemarksheetPreview');
+
+        setupImagePreview('doctorate_image_certificate', 'doctorateimagecertificatePreview');
+        setupImagePreview('doctorate_image_mark_sheet', 'doctorateimagemarksheetPreview');
+    </script>
+
+
+    {{-- bootstrap --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
 
+
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
-
-</body>
-
-</html>
-
-
-<!-- BUTTONS -->
-<div style="display: flex;justify-content: end; align-items: center;" class="">
-    <a style="font-weight: bold; " class="btn btn-secondary mt-5" href="card">Previous</a>
-    <button class="btn btn-primary mx-4 mt-5" type="submit">Save </button>
-    <a style="font-weight: bold;" class="btn btn-secondary mt-5 " href="acheivement">Next</a>
-</div>
-</form>
-</div>
-</div>
-
-<!-- footer -->
-
-
-<!-- checkbok -->
-<script>
-    function showCheckboxes() {
-        const checkboxesDiv = document.getElementById('checkboxes');
-        checkboxesDiv.style.display = 'block';
-    }
-
-    function hideCheckboxes() {
-        const checkboxesDiv = document.getElementById('checkboxes');
-        checkboxesDiv.style.display = 'none';
-    }
-
-    function toggleForm(formId) {
-        const form = document.getElementById(formId);
-        form.style.display = form.style.display === 'none' ? 'block' : 'none';
-    }
-</script>
-
-
-{{-- image --}}
-<script>
-    function setupImagePreview(inputId, previewId) {
-        document.getElementById(inputId).addEventListener('change', function(event) {
-            var image = document.getElementById(previewId);
-            image.src = URL.createObjectURL(event.target.files[0]);
-            image.style.display = 'block';
-        });
-    }
-
-    setupImagePreview('high_school_image_mark_sheet', 'highschoolMarkSheetPreview');
-    setupImagePreview('high_school_image_certificate', 'highschoolimagecertificatePreview');
-
-    setupImagePreview('higher_secondary_image_certificate', 'highersecondaryimagecertificatePreview');
-    setupImagePreview('higher_secondary_image_mark_sheet', 'highersecondaryimagemarksheetPreview');
-
-    setupImagePreview('diploma_image_certificate', 'diplomaCertificatePreview');
-    setupImagePreview('diploma_image_mark_sheet', 'diplomaMarkSheetPreview');
-
-    setupImagePreview('bachelors_image_mark_sheet', 'bachelorsimagemarksheetPreview');
-    setupImagePreview('bachelors_image_certificate', 'bachelorsimagecertificatePreview');
-
-    setupImagePreview('master_image_certificate', 'masterimagecertificatePreview');
-    setupImagePreview('master_image_mark_sheet', 'masterimagemarksheetPreview');
-
-    setupImagePreview('doctorate_image_certificate', 'doctorateimagecertificatePreview');
-    setupImagePreview('doctorate_image_mark_sheet', 'doctorateimagemarksheetPreview');
-</script>
-
-
-{{-- bootstrap --}}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-</script>
-
-
-<!-- MDB -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 </body>
 
 </html>

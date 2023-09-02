@@ -137,6 +137,6 @@ Route::post('disclaimer', [DisclaimerController::class, 'store'])->name('disclai
 Route::view('/employment', 'career.employment.create')->name('employment');
 Route::post('employment', [EmploymentController::class, 'store'])->name('employment.store');
 
-// //  demo
-// Route::view('/demo', 'demo');
-// Route::post('demo', [EducationController::class, 'store'])->name('education.store');
+//  demo
+Route::view('/demo', 'demo');
+Route::post('demo', [EducationController::class, 'store'])->name('education.store');

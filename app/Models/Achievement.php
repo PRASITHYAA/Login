@@ -9,6 +9,7 @@ class Achievement extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'job_application_id',
         'achievement',
 
         'open-input',

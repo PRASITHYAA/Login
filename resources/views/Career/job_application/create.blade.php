@@ -811,10 +811,10 @@
                                  class="  ">
                                 <!-- button  -->
                                 <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                                   href="">Previous</a>
+                                   href="instruction">Previous</a>
                                 <button class="btn btn-primary m-1 " type="submit">Save</button>
                                 <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                                   href="">Next</a>
+                                   href="card">Next</a>
                             </div>
 
                         </div>

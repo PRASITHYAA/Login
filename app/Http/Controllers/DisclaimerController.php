@@ -12,6 +12,7 @@ class DisclaimerController extends Controller
         // dd($request->all());
 
         $disclaimer = $request->validate([
+            'job_application_id' => 'required',
             'expected_date_to_join' => 'required|date',
             'current_salary' => 'required|numeric',
             'expected_salary' => 'required|numeric',
@@ -31,7 +32,7 @@ class DisclaimerController extends Controller
 
         Disclaimer::create($disclaimer);
 
-        return redirect()->back()->with('success', 'Disclaimer submitted successfully!');
+        return redirect()->back()->with(['id' => $request->job_application_id])->with('success', ' Disclaimer And All The Forms Are created successfully');
     }
 
 }

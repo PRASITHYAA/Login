@@ -9,6 +9,8 @@ class Employment extends Model
 {
     use HasFactory;
     protected $fillable = [
+        
+        'job_application_id',
         'open-input',
         // experience
         'employer_company',

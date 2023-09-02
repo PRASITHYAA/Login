@@ -199,7 +199,7 @@
             <h2>PREVIOUS EMPLOYMENT</h2>
             <form action="{{ route('employment.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-
+                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
 
                 <!-- Do you have any previous experience? yes or no -->
 
@@ -377,7 +377,7 @@
                 <!-- button -->
                 <div style="display:flex;justify-content:center;align-items: center;" class="mt-5">
                     <a class="btn btn-secondary mx-2" href="education">Previous</a>
-                    <button class="btn btn-primary mx-2" >Save </button>
+                    <button class="btn btn-primary mx-2">Save </button>
                     <a class="btn btn-secondary mx-2" href="achievement">Next</a>
                 </div>
 

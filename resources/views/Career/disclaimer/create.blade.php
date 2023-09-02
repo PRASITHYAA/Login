@@ -196,7 +196,7 @@
             <form action="{{ route('disclaimer.store') }}" class="row g-3" method="POST"
                 enctype="multipart/form-data">
                 @csrf
-
+                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
                 <!-- Expected date to join -->
                 <div class="col-md-4">
                     <label class="form-label">Expected date to join <span class="red">*</span></label>
