@@ -38,6 +38,7 @@ Route::get('logout', [LoginController::class, 'logout']);
 
 // dashboard
 Route::view('/home', 'auth.Home')->middleware('auth')->name('home');
+Route::view('/admin', 'admin')->middleware('auth')->name('admin');
 
 //  forget password form
 Route::get('forgetpassword', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
@@ -106,12 +107,13 @@ Route::view('/career_home', 'Career.home');
 
 
 //   instruction
-Route::view('/instruction', 'Career.instruction');
+Route::view('/instruction', 'Career.instruction')->name('Career.instruction');
 
-//  position-application
+//  job-application
 
-Route::view('/position_application', 'career.position_application.create');
-Route::post('position_application', [PositionApplicationController::class, 'store'])->name('position_application.store');
+Route::view('/job_application', 'career.job_application.create');
+Route::post('job_application', [JobApplicationController::class, 'store'])->name('job_application.store');
+Route::get('/positions-ajax', [PositionController::class, 'getPositions'])->name('positions.ajax');
 
 // card
 Route::view('/card', 'Career.card.create')->name('card.view');
