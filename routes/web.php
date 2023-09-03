@@ -13,7 +13,7 @@ use App\Http\Controllers\CardsController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\PositionApplicationController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\EmploymentController;
 
 /*
