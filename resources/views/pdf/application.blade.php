@@ -41,8 +41,8 @@
 
 <h2>Personal Information</h2>
 <ul>
-    <li><strong>Sector:</strong> {{ $sector }}</li>
-    <li><strong>Position:</strong> {{ $position }}</li>
+    <li><strong>Sector:</strong> {{ \App\Models\Sector::find($sector_id)->name }}</li>
+    <li><strong>Position:</strong> {{ \App\Models\Position::find($position_id)->name }}</li>
     <li><strong>First Name:</strong> {{ $first_name }}</li>
     <li><strong>Last Name:</strong> {{ $last_name }}</li>
     <li><strong>Date of Birth:</strong> {{ $dob }}</li>
