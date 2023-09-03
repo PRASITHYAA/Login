@@ -38,9 +38,9 @@
                 <form action="{{ route('sector.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="exampleInputname" class="form-label">sector <span style="color: red;">*</span></label>
+                        <label for="exampleInputname" class="form-label">Sector Name <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            name="sector" id="Name" aria-describedby="name">
+                            name="name" id="Name" aria-describedby="name">
                     </div>
 
                     <button type="submit" class="btn btn-success">Save</button>

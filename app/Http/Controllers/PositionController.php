@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Position;
+use App\Models\Sector;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -16,13 +17,15 @@ class PositionController extends Controller
 
     public function create()
     {
-        return view('position.create'); // Update view name
+        $sectors = Sector::all();
+        return view('position.create', compact('sectors')); // Update view name
     }
 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'position' => 'required',
+            'sector_id' => 'required',
+            'name' => 'required',
         ]);
 
         Position::create($validatedData);
@@ -40,7 +43,8 @@ class PositionController extends Controller
     public function update(Request $request, Position $position) // Update model name
     {
         $validatedData = $request->validate([
-            'position' => 'required',
+            'sector_id' => 'required',
+            'name' => 'required',
         ]);
 
         $position->update($validatedData);
@@ -58,4 +62,15 @@ class PositionController extends Controller
 
         return redirect()->route('position.index');
     }
+
+    public function getPositions(Request $request) {
+        // Retrieve positions based on the selected sector
+        $sector = $request->input('sector');
+
+        // Query your database to get positions related to the selected sector
+        $positions = Position::where('sector_id', $sector)->pluck('name', 'id');
+
+        return response()->json($positions);
+    }
+
 }

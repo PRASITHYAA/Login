@@ -16,18 +16,44 @@
         <main style="margin-top: 58px;">
             <div class="container border 2px p-4">
                 <h1 class="pb-2">Edit position deatils</h1>
+                {{-- error --}}
+                @if ($errors->any())
+                    <div class=" container text-center alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                {{-- success --}}
+
                 @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+                    <div class=" container text-center alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <form action="{{ route('position.update', $position->id) }}" method="POST">
                     @csrf
                     @method('PUT')
+                    <div class="col-lg-6">
+                        <!-- sector -->
+                        <p>Sectors <span class="red">*</span></p>
+                        <select class="form-select bg" name="sector_id" id="sector_id" required>
+                            <option value="">Please Select</option>
+                            @php
+                                $sectors = \App\Models\Sector::all();
+                            @endphp
+                            @foreach ($sectors as $sector)
+                                <option
+                                    value="{{ $sector->id }}" {{ ($position->sector_id==$sector->id)?'selected':''  }}>{{ $sector->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="mb-3">
                         <label for="positionName" class="form-label">Position Name <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            id="positionName" name="position" value="{{ $position->position }}" aria-describedby="positionName">
+                            id="name" name="name" value="{{ $position->name }}" aria-describedby="positionName">
                     </div>
 
                     <button type="submit" class="btn btn-success">Update</button>

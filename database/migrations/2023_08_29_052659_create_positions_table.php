@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('sector_id');
             $table->string('name');
             $table->timestamps();
+            $table->foreign('sector_id')->references('id')->on('sectors');
         });
     }
 

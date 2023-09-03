@@ -9,8 +9,7 @@ class Sector extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'sector',
-
+        'name',
     ];
 
 }

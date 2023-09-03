@@ -70,42 +70,7 @@
     }
   </style>
 
-  <!--Main Navigation-->
-  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-    <div class="position-sticky mt-5">
-        <div class="list-group list-group-flush mx-3 mt-4">
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-                <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-                <i class="fas fa-chart-pie fa-fw me-3"></i><span>Forms</span>
-            </a>
-            <a href="users" class="list-group-item list-group-item-action py-2 ripple">
-                <i class="fas fa-users fa-fw me-3"></i><span>Customer</span>
-            </a>
-
-
-            <a href="sector" class="list-group-item list-group-item-action py-2  ripple">
-                <i style="padding-right: 12px;" class="fa-solid fa-bezier-curve "></i><span>Sector</span>
-            </a>
-
-            <a href="position" class="list-group-item list-group-item-action py-2  ripple"><i
-                    style="padding-right: 12px;" class="fa-solid fa-user-doctor"></i>
-                <span>position</span>
-            </a>
-
-            <a href="training" class="list-group-item list-group-item-action py-2  ripple"><i
-                    style="padding-right: 12px;" class="fa-brands fa-stack-overflow"></i>
-                <span>Training</span>
-            </a>
-            <a href="energy" class="list-group-item list-group-item-action py-2  ripple"><i
-                style="padding-right: 12px;" class="fa-brands fa-stack-overflow"></i>
-            <span>Energy</span>
-        </a>
-
-        </div>
-    </div>
-</nav>
+  @include('layouts.sidebar')
 
   <main style="margin-top: 100px;">
 
@@ -125,10 +90,10 @@
       </div>
       <thead>
         <tr>
-          <th>S.NO</th>
           <th>ID</th>
-          <th>JOB</th>
-          <th>OPERATIONS</th>
+          <th>Sector</th>
+          <th>Position</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -137,9 +102,10 @@
         @endphp
         @foreach($positions as $position)
         <tr>
-          <td>{{ $counter++ }}</td>
+          {{--<td>{{ $counter++ }}</td>--}}
           <td>{{ $position->id }}</td>
-          <td>{{ $position->position }}</td>
+          <td>{{ $position->sector->name }}</td>
+          <td>{{ $position->name }}</td>
           <td>
             <!-- Edit Button -->
             <a href="{{ route('position.edit', $position->id) }}" class="btn btn-warning btn-sm">Edit</a>

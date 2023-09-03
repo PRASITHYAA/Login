@@ -14,17 +14,43 @@
         <main style="margin-top: 58px;">
             <div class="container border p-4">
                 <h1 class="pb-2">Create a New Position</h1>
+                {{-- error --}}
+                @if ($errors->any())
+                    <div class=" alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                {{-- success --}}
+
                 @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
+                    <div class=" container  alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <form action="{{ route('position.store') }}" method="POST">
                     @csrf
+                    <div class="col-lg-6">
+                        <!-- sector -->
+                        <p>Sectors <span class="red">*</span></p>
+                        <select class="form-select bg" name="sector_id" id="sector_id" required>
+                            <option value="">Please Select</option>
+                            @php
+                                $sectors = \App\Models\Sector::all();
+                            @endphp
+                            @foreach ($sectors as $sector)
+                                <option
+                                    value="{{ $sector->id }}" {{ (old('sector')==$sector->id)?'selected':''  }}>{{ $sector->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="mb-3">
                         <label for="positionName" class="form-label">Position Name <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            id="positionName" name="position" aria-describedby="positionName">
+                            id="positionName" name="name" aria-describedby="positionName">
                     </div>
 
                     <button type="submit" class="btn btn-success">Save</button>
