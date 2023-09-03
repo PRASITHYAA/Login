@@ -89,9 +89,9 @@
                 <i style="padding-right: 12px;" class="fa-solid fa-bezier-curve "></i><span>Sector</span>
             </a>
 
-            <a href="job" class="list-group-item list-group-item-action py-2  ripple"><i
+            <a href="position" class="list-group-item list-group-item-action py-2  ripple"><i
                     style="padding-right: 12px;" class="fa-solid fa-user-doctor"></i>
-                <span>job</span>
+                <span>position</span>
             </a>
 
             <a href="training" class="list-group-item list-group-item-action py-2  ripple"><i
@@ -110,7 +110,7 @@
   <main style="margin-top: 100px;">
 
     <div class="container-fluid">
-      <h1>Job List</h1>
+      <h1>Position List</h1>
       @if (session('success'))
       <div class="alert alert-success">
           {{ session('success') }}
@@ -120,7 +120,7 @@
       <table class="table table-striped table-hover">
 
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <a class="btn btn-primary me-md-2" href="{{ route('job.create') }}">Create</a>
+        <a class="btn btn-primary me-md-2" href="{{ route('position.create') }}">Create</a>
         <button class="btn btn-success" type="button" onclick="window.location.reload();">Refresh</button>
       </div>
       <thead>
@@ -135,21 +135,21 @@
         @php
         $counter = 1;
         @endphp
-        @foreach($jobs as $job)
+        @foreach($positions as $position)
         <tr>
           <td>{{ $counter++ }}</td>
-          <td>{{ $job->id }}</td>
-          <td>{{ $job->job }}</td>
+          <td>{{ $position->id }}</td>
+          <td>{{ $position->position }}</td>
           <td>
             <!-- Edit Button -->
-            <a href="{{ route('job.edit', $job->id) }}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="{{ route('position.edit', $position->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
             <!-- Delete Button -->
-            <form action="{{ route('job.destroy', $job->id) }}" method="POST" class="d-inline">
+            <form action="{{ route('position.destroy', $position->id) }}" method="POST" class="d-inline">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger btn-sm"
-                onclick="return confirm('Are you sure you want to delete this job?')">Delete</button>
+                onclick="return confirm('Are you sure you want to delete this position?')">Delete</button>
             </form>
           </td>
         </tr>

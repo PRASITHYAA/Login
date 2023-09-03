@@ -7,13 +7,13 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SectorController;
-use  App\Http\Controllers\JobController;
+use  App\Http\Controllers\PositionController;
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\CardsController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\IndexController;
-use App\Http\Controllers\JobApplicationController;
+use App\Http\Controllers\PositionApplicationController;
 use App\Http\Controllers\EmploymentController;
 
 /*
@@ -62,15 +62,15 @@ Route::get('/sector/{sector}/edit', [SectorController::class, 'edit'])->name('se
 Route::put('/sector/{sector}', [SectorController::class, 'update'])->name('sector.update');
 Route::delete('/sector/{sector}', [SectorController::class, 'destroy'])->name('sector.destroy');
 
-// job
+// position
 
-Route::get('/job', [JobController::class, 'index'])->name('job.index');
-Route::get('/job/create', [JobController::class, 'create'])->name('job.create');
-Route::post('/job', [JobController::class, 'store'])->name('job.store');
-Route::get('/job/{job}', [JobController::class, 'show'])->name('job.show');
-Route::get('/job/{job}/edit', [JobController::class, 'edit'])->name('job.edit');
-Route::put('/job/{job}', [JobController::class, 'update'])->name('job.update');
-Route::delete('/job/{job}', [JobController::class, 'destroy'])->name('job.destroy');
+Route::get('/position', [PositionController::class, 'index'])->name('position.index');
+Route::get('/position/create', [PositionController::class, 'create'])->name('position.create');
+Route::post('/position', [PositionController::class, 'store'])->name('position.store');
+Route::get('/position/{position}', [PositionController::class, 'show'])->name('position.show');
+Route::get('/position/{position}/edit', [PositionController::class, 'edit'])->name('position.edit');
+Route::put('/position/{position}', [PositionController::class, 'update'])->name('position.update');
+Route::delete('/position/{position}', [PositionController::class, 'destroy'])->name('position.destroy');
 
 // energy
 
@@ -108,10 +108,10 @@ Route::view('/career_home', 'Career.home');
 //   instruction
 Route::view('/instruction', 'Career.instruction');
 
-//  job-application
+//  position-application
 
-Route::view('/job_application', 'career.job_application.create');
-Route::post('job_application', [JobApplicationController::class, 'store'])->name('job_application.store');
+Route::view('/position_application', 'career.position_application.create');
+Route::post('position_application', [PositionApplicationController::class, 'store'])->name('position_application.store');
 
 // card
 Route::view('/card', 'Career.card.create')->name('card.view');

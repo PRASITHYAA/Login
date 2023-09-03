@@ -15,25 +15,25 @@
 
         <main style="margin-top: 58px;">
             <div class="container border 2px p-4">
-                <h1 class="pb-2">Edit job deatils</h1>
+                <h1 class="pb-2">Edit position deatils</h1>
                 @if (session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
                 </div>
             @endif
-                <form action="{{ route('job.update', $job->id) }}" method="POST">
+                <form action="{{ route('position.update', $position->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="jobName" class="form-label">Job Name <span style="color: red;">*</span></label>
+                        <label for="positionName" class="form-label">Position Name <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            id="jobName" name="job" value="{{ $job->job }}" aria-describedby="jobName">
+                            id="positionName" name="position" value="{{ $position->position }}" aria-describedby="positionName">
                     </div>
 
                     <button type="submit" class="btn btn-success">Update</button>
-                    <a class="btn btn-secondary" href="{{ route('job.index') }}">Back</a>
+                    <a class="btn btn-secondary" href="{{ route('position.index') }}">Back</a>
 
-                    
+
 
                 </form>
             </div>
