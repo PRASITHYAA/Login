@@ -44,7 +44,7 @@ class DisclaimerController extends Controller
     public function acknowledgement(Request $request)
     {
         $data = JobApplication::find($request->id);
-        return view('Career.acknowledgement.view', compact('data'));
+        return view('career.acknowledgement.view', compact('data'));
     }
 
     public function downloadPdf(Request $request) {

@@ -86,7 +86,7 @@ Route::delete('/energy/{energy}', [EnergyController::class, 'destroy'])->name('e
 // training
 
  // card
- Route::view('/card', 'Career.card.create')->name('card.view');
+ Route::view('/card', 'career.card.create')->name('card.view');
  Route::post('/card', [CardsController::class, 'store'])->name('card.store');
 
  //  education
@@ -103,11 +103,11 @@ Route::put('/training/{training}', [TrainingController::class, 'update'])->name(
 Route::delete('/training/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
 
 // career home page
-Route::view('/career_home', 'Career.home');
+Route::view('/career_home', 'career.home');
 
 
 //   instruction
-Route::view('/instruction', 'Career.instruction')->name('Career.instruction');
+Route::view('/instruction', 'career.instruction')->name('career.instruction');
 
 //  job-application
 
@@ -116,7 +116,7 @@ Route::post('job_application', [JobApplicationController::class, 'store'])->name
 Route::get('/positions-ajax', [PositionController::class, 'getPositions'])->name('positions.ajax');
 
 // card
-Route::view('/card', 'Career.card.create')->name('card.view');
+Route::view('/card', 'career.card.create')->name('card.view');
 Route::post('/card', [CardsController::class, 'store'])->name('card.store');
 
 //  education
