@@ -72,36 +72,7 @@
 
     <header>
         <!-- Sidebar -->
-        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-            <div class="position-sticky mt-5">
-                <div class="list-group list-group-flush mx-3 mt-4">
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-chart-pie fa-fw me-3"></i><span>Forms</span>
-                    </a>
-                    <a href="users" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-users fa-fw me-3"></i><span>Customer</span>
-                    </a>
-
-
-                    <a href="sector" class="list-group-item list-group-item-action py-2  ripple">
-                        <i style="padding-right: 12px;" class="fa-solid fa-bezier-curve "></i><span>Sector</span>
-                    </a>
-
-                    <a href="job" class="list-group-item list-group-item-action py-2  ripple"><i
-                            style="padding-right: 12px;" class="fa-solid fa-user-doctor"></i>
-                        <span>job</span>
-                    </a>
-
-                    <a href="#" class="list-group-item list-group-item-action py-2  ripple"><i
-                            style="padding-right: 12px;" class="fa-brands fa-stack-overflow"></i>
-                        <span>Training</span>
-                    </a>
-                </div>
-            </div>
-        </nav>
+        @include('layouts.sidebar')
         <!-- Navbar -->
         <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top ">
             <!-- Container wrapper -->
@@ -174,10 +145,10 @@
 
                             <td>
                                 <!-- Edit Button -->
-                                <a href="{{ route('job.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
 
                                 <!-- Delete Button -->
-                                <form action="{{ route('job.destroy', $user->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"
