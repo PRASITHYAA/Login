@@ -32,7 +32,7 @@ Route::view('/', 'auth.Registration');
 Route::Post('store', [StoreController::class, 'store']);
 
 // login
-Route::view('/login', 'auth.Login');
+Route::view('/login', 'auth.Login')->name('login');
 Route::Post('authenticate', [LoginController::class, 'authenticate']);
 Route::get('logout', [LoginController::class, 'logout']);
 
