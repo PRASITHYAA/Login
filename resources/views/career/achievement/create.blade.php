@@ -56,7 +56,7 @@
     <div class="container-fluid ">
         <div class="row nav-top ">
             <div class=" container col-lg-2 text-center navtop" style="background-color: white;">
-                <img class="" style="width: 180px;height: 140px;" src="./img/NEW-LOGO-FINAL-1 (1).png"
+                <img class="" style="width: 180px;height: 140px;" src="{{ asset('img/logo.png') }}"
                     alt="">
             </div>
             <div class=" container-fluid  col-lg-10 text-white  navtop">
