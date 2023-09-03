@@ -1,48 +1,41 @@
-<div class="container-fluid">
-    <div class="container">
-        <form action="{{ route('achievement.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <!-- first one -->
+@extends('layouts.front.master')
+@section('content')
+    <!-- percentage -->
+    <div class="container mt-2">
+        {{-- error --}}
+        @if ($errors->any())
+            <div class=" alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- success --}}
 
-            <label>
-                <input type="radio" name="open-input" value="yes" id="yesRadio1" onclick="showInputs()" >
-                Yes
-            </label>
-            <br>
-            <label>
-                <input type="radio" name="open-input" value="no"  id="noRadio1 " onclick="hideInputs()" >
-                No
-            </label>
-            <div id="input-field" style="display: none;">
-                <!-- Conference -->
-                <div class="mb-3">
-                    <p class="border-bottom ">Please use this section to indicate the Conference Details. Please
-                        limit
-                        your writing for this part to a maximum of 500 words.</p>
-                    <label for="exampleFormControlInput1" class="form-label">Conference</label>
-                    <input style="background-color: rgba(248, 235, 235, 0.726);" type=""
-                        class="form-control Conference" name="Conference" id="Conference" placeholder="">
+        @if (session('success'))
+            <div class=" container  alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+    </div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-10">
+                    <p>Hi {{ auth()->user()->name }},</p>
+                    <p>Welcome to TISE Job Application Dashboard!</p>
+                    <p>We're thrilled to have you here on your journey to career success. This personalized dashboard is
+                        your central hub for managing your job applications, exploring exciting opportunities, and
+                        fine-tuning your job search.</p>
+                    <a href="{{ route('job_application') }}">Apply For a Job</a>
                 </div>
             </div>
+        </div>
+
 
     </div>
-    <!-- buttons -->
-        <button class="btn btn-primary m-1">Save </button>
-    </div>
-    </form>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-{{-- yes or no --}}
-<script>
-    $(document).ready(function () {
-       $('#yesRadio1').click(function () {
-        $('.Conference').attr('required', true);
-       });
-        $('#noRadio1').click(function () {
-            $('.Conference').attr('required', false);
-        });
-
-    });
-</script>
+@endsection
