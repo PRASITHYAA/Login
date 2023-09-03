@@ -14,7 +14,7 @@ class AchievementController extends Controller
     {
         $achievement = $request->validate([
 
-            // 'job_application_id' => 'required',
+             'job_application_id' => 'required',
 
             'achievement' => 'required',
 

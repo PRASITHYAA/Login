@@ -9,8 +9,8 @@ class JobApplication extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'sector',
-        'position',
+        'sector_id',
+        'position_id',
         'first_name',
         'last_name',
         'image',
@@ -59,4 +59,14 @@ class JobApplication extends Model
         'siblings_phone',
         'siblings_image',
     ];
+
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class);
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
 }

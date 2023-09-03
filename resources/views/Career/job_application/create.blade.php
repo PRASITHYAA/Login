@@ -204,28 +204,28 @@
                     <div class="col-lg-6">
                         <!-- sector -->
                         <p>Sectors <span class="red">*</span></p>
-                        <select class="form-select bg" name="sector" id="sector" required>
-                            <option selected>Open this select menu</option>
+                        <select class="form-select bg" name="sector_id" id="sector_id" required>
+                            <option value="">--Please Select Sector--</option>
                             @php
                                 $sectors = \App\Models\Sector::all();
                             @endphp
                             @foreach ($sectors as $sector)
                                 <option
-                                    value="{{ $sector->id }}" {{ (old('sector')==$sector->id)?'selected':''  }}>{{ $sector->sector }}</option>
+                                    value="{{ $sector->id }}" {{ (old('sector')==$sector->id)?'selected':''  }}>{{ $sector->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <!-- Position -->
                     <div class="col-lg-6">
                         <p>Position Applied For<span class="red">*</span></p>
-                        <select class="form-select bg" name="position" id="position" required>
-                            <option selected>Open this select menu</option>
+                        <select class="form-select bg" name="position_id" id="position_id" required>
+                            <option value="">--Please Select Position--</option>
                             @php
-                                $jobs = \App\Models\Position::all();
+                                $positions = \App\Models\Position::all();
                             @endphp
-                            @foreach ($jobs as $job)
+                            @foreach ($positions as $position)
                                 <option
-                                    value="{{ $job->id }}" {{ (old('position')==$job->id)?'selected':''  }}>{{ $job->job }}</option>
+                                    value="{{ $position->id }}" {{ (old('position')==$position->id)?'selected':''  }}>{{ $position->name }}</option>
                             @endforeach
                         </select>
 
@@ -1086,6 +1086,30 @@
 {{-- yes or no --}}
 <script>
     $(document).ready(function () {
+        // Sector dropdown change event
+        $('#sector_id').change(function() {
+            var selectedSector = $(this).val();
+
+            // Make an AJAX request to the Laravel API to fetch positions based on the selected sector
+            $.ajax({
+                url: "{{ route('positions.ajax') }}", // Replace with your Laravel API endpoint
+                type: 'GET',
+                data: { sector: selectedSector },
+                dataType: 'json',
+                success: function(data) {
+                    // Clear and populate the position dropdown with the retrieved data
+                    $('#position_id').empty();
+                    $.each(data, function(key, value) {
+                        $('#position_id').append($('<option>').text(value).val(key));
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    // Handle errors here
+                }
+            });
+        });
+
         $('#yesRadio1').click(function () {
             $('.permanent-address-input').attr('required', true);
         });

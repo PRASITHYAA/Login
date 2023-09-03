@@ -11,8 +11,8 @@ class JobApplicationController extends Controller
     {
         //dd($request->all());
         $jobApplication = $request->validate([
-            'sector' => 'required',
-            'position' => 'required',
+            'sector_id' => 'required',
+            'position_id' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
             'image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
