@@ -21,13 +21,16 @@ class LoginController extends Controller
 
         // Hash the password before attempting authentication
 
+
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $user = User::where('email', $email)->first();
 
             Auth::login($user);
-
-            // return redirect('home');
-            return redirect()->route('users.index')->with('success', 'Your Login successfully!');
+            if(in_array('Admin', $user->roles()->pluck('name')->toArray())) {
+                return redirect()->route('admin')->with('success', 'Your Login successfully!');
+            } else {
+                return redirect()->route('dashboard')->with('success', 'Your Login successfully!');
+            }
         } else {
             return back()->with('error', 'Invalid email or password')->withInput();
         }
