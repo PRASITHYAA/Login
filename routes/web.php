@@ -94,7 +94,10 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::get('/training/{training}/edit', [TrainingController::class, 'edit'])->name('training.edit');
     Route::put('/training/{training}', [TrainingController::class, 'update'])->name('training.update');
     Route::delete('/training/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
-
+});
+Route::group(['middleware' => ['auth']], function () {
+// home
+    Route::view('/home', 'home')->name('dashboard');
 });
 // training
 
@@ -150,6 +153,4 @@ Route::view('/demo', 'demo');
 Route::post('demo', [AchievementController::class, 'store'])->name('achievement.store');
 
 
-// home
-Route::view('/home', 'home');
 Route::post('home', [AchievementController::class, 'store'])->name('achievement.store');
