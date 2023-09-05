@@ -38,7 +38,7 @@ class StoreController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('career.instruction')->with('success', ' Your Account is created successfully!');
+        return redirect()->route('dashboard')->with('success', 'Your Account is created successfully!');
     }
 
     public function messages()

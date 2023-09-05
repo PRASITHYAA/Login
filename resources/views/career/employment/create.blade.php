@@ -228,21 +228,21 @@
                                 Company / Individual <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="employer_company" id="employer_company"
-                                placeholder="Company / Individual" required>
+                                placeholder="Company / Individual" >
                         </div>
                         <!-- E-MAIL -->
                         <div class="col-md-4">
                             <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
                                 class="form-control" name="employer_email" id="employer_email"
-                                placeholder="email.com" required>
+                                placeholder="email.com" >
                         </div>
                         <!-- Address -->
                         <div class="col-md-4">
                             <label class="form-label">Address <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="employer_address" id="employer_address"
-                                placeholder="Address" required>
+                                placeholder="Address" >
                         </div>
                         <!-- Phone -->
                         <div class="col-md-4">
@@ -256,35 +256,35 @@
                             <label class="form-label">Job Title <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="employer_job_title" id="employer_job_title"
-                                placeholder="Job Title	" required>
+                                placeholder="Job Title	" >
                         </div>
                         <!-- From Date  -->
                         <div class="col-md-4">
                             <label class="form-label">From Date <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                 name="employer_from_date" class="form-control" placeholder="" id="fromDate"
-                                onchange="validateDateRange()" required>
+                                onchange="validateDateRange()" >
                         </div>
                         <!-- To Date -->
                         <div class="col-md-4">
                             <label class="form-label">To Date <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                 name="employer_to_date" class="form-control" placeholder="" id="toDate"
-                                onchange="validateDateRange()" required>
+                                onchange="validateDateRange()" >
                             <p style="color: red;" id="validationMessage" class="error"></p>
                         </div>
                         <!-- Experience -->
                         <div class="col-md-4">
                             <label class="form-label">Experience <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" name="employer_experience"
-                                id="employer_experience" class="form-control" placeholder="10 Year" required>
+                                id="employer_experience" class="form-control" placeholder="10 Year" >
                         </div>
                         <!-- Responsibilities -->
                         <div class="col-md-4">
                             <label class="form-label">Responsibilities <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="Responsibilities"
                                 class="form-control" name=" employer_responsibilities" id="employer_responsibilities"
-                                placeholder="Responsibilities " required>
+                                placeholder="Responsibilities " >
                         </div>
                         <!-- REFERENCE DETAILS FROM PREVIOUS EMPLOYER -->
                         <h4 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER</h4>
@@ -293,28 +293,28 @@
                             <label class="form-label">Name <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="reference_name" id="reference_name" placeholder="Name	"
-                                required>
+                                >
                         </div>
                         <!-- company -->
                         <div class="col-md-4">
                             <label class="form-label">Company <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="reference_company" id="reference_company"
-                                placeholder="Company	" required>
+                                placeholder="Company	" >
                         </div>
                         <!-- position -->
                         <div class="col-md-4">
                             <label class="form-label">Position <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="reference_position" id="reference_position"
-                                placeholder="Position	" required>
+                                placeholder="Position	" >
                         </div>
                         <!-- E-MAIL -->
                         <div class="col-md-4">
                             <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
                                 class="form-control" name="reference_email" id="reference_email"
-                                placeholder="email.com" required>
+                                placeholder="email.com" >
                         </div>
                         <!-- Phone -->
                         <div class="col-md-4">
@@ -330,7 +330,7 @@
                             <label class="form-label">Address <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="reference_address" id="reference_address"
-                                placeholder="Address" required>
+                                placeholder="Address" >
                         </div>
                     </div>
                     <br>

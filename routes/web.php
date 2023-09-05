@@ -1,20 +1,20 @@
 <?php
-use App\Http\Controllers\EnergyController;
-use App\Http\Controllers\TrainingController;
-use App\Http\Controllers\ForgetPasswordController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\StoreController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SectorController;
-use  App\Http\Controllers\PositionController;
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\CardsController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\EducationController;
+use App\Http\Controllers\EmploymentController;
+use App\Http\Controllers\EnergyController;
+use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\JobApplicationController;
-use App\Http\Controllers\EmploymentController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PositionController;
+use App\Http\Controllers\SectorController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,10 +46,9 @@ Route::get('reset-password/{token}', [ForgetPasswordController::class, 'showRese
 Route::post('reset-password', [ForgetPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::group(['middleware' => ['auth', 'role:Admin']], function () {
-
-//dashboard
+    //dashboard
     Route::view('/admin', 'admin')->middleware('auth')->name('admin');
-//  customer(user)
+    //  customer(user)
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     Route::get('users/create', [UserController::class, 'create'])->name('users.create');
     Route::post('users', [UserController::class, 'store'])->name('users.store');
@@ -57,7 +56,7 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
-// sector
+    // sector
     Route::get('/sector', [SectorController::class, 'index'])->name('sector.index');
     Route::get('/sector/create', [SectorController::class, 'create'])->name('sector.create');
     Route::post('/sector', [SectorController::class, 'store'])->name('sector.store');
@@ -66,7 +65,7 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::put('/sector/{sector}', [SectorController::class, 'update'])->name('sector.update');
     Route::delete('/sector/{sector}', [SectorController::class, 'destroy'])->name('sector.destroy');
 
-// position
+    // position
 
     Route::get('/position', [PositionController::class, 'index'])->name('position.index');
     Route::get('/position/create', [PositionController::class, 'create'])->name('position.create');
@@ -76,7 +75,7 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::put('/position/{position}', [PositionController::class, 'update'])->name('position.update');
     Route::delete('/position/{position}', [PositionController::class, 'destroy'])->name('position.destroy');
 
-// energy
+    // energy
 
     Route::get('/energy', [EnergyController::class, 'index'])->name('energy.index');
     Route::get('/energy/create', [EnergyController::class, 'create'])->name('energy.create');
@@ -94,21 +93,16 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::get('/training/{training}/edit', [TrainingController::class, 'edit'])->name('training.edit');
     Route::put('/training/{training}', [TrainingController::class, 'update'])->name('training.update');
     Route::delete('/training/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
-
 });
-// training
+Route::group(['middleware' => ['auth']], function () {
+    // home
 
- // card
- Route::view('/card', 'career.card.create')->name('card.view');
- Route::post('/card', [CardsController::class, 'store'])->name('card.store');
+    Route::view('/home', 'home')->name('dashboard');
+});
 
- //  education
- Route::view('/education', 'career.education.create')->name('education.view');
- Route::post('education', [EducationController::class, 'store'])->name('education.store');
-
-// career home page
-Route::view('/career_home', 'career.home');
-
+// card
+Route::view('/card', 'career.card.create')->name('card.view');
+Route::post('/card', [CardsController::class, 'store'])->name('card.store');
 
 //   instruction
 Route::view('/instruction', 'career.instruction')->name('career.instruction');
@@ -147,9 +141,4 @@ Route::post('employment', [EmploymentController::class, 'store'])->name('employm
 
 //  demo
 Route::view('/demo', 'demo');
-Route::post('demo', [AchievementController::class, 'store'])->name('achievement.store');
-
-
-// home
-Route::view('/home', 'home');
-Route::post('home', [AchievementController::class, 'store'])->name('achievement.store');
+Route::post('demo', [EducationController::class, 'store'])->name('education.store');

@@ -79,7 +79,8 @@
     <div class="container-fluid ">
         <div class="row nav-top ">
             <div class=" container col-lg-2 text-center navtop" style="background-color: white;">
-                <img class="" style="width: 180px;height: 140px;" src="./img/NEW-LOGO-FINAL-1.png" alt="">
+                <img class="" style="width: 180px;height: 140px;" src="{{ asset('img/logo.png') }}"
+                    alt="">
             </div>
             <div class=" container-fluid  col-lg-10 text-white  navtop">
                 <section style="background-color: #111c3a; "
@@ -225,7 +226,8 @@
                 <div id="checkboxes" style="display: none;">
 
                     <!-- High School -->
-                    <input type="checkbox" onchange="toggleForm('form1')" name="qualification" value="high_school"> High School
+                    <input type="checkbox" onchange="toggleForm('form1')" name="qualification" value="high_school">
+                    High School
                     <div id="form1" style="display: none;">
                         <h4>
                             High School
@@ -340,7 +342,8 @@
                     <br>
                     <!-- Higher Secondary -->
 
-                    <input type="checkbox" onchange="toggleForm('form2')" name="qualification" value="higher_secondary"> Higher Secondary
+                    <input type="checkbox" onchange="toggleForm('form2')" name="qualification"
+                        value="higher_secondary"> Higher Secondary
 
                     <div id="form2" style="display: none;">
                         <!-- Higher Secondary -->
@@ -460,490 +463,489 @@
                         </div>
 
                     </div>
-                    <br>
 
 
-                    {{-- Diploma --}}
-                    <input type="checkbox" onchange="toggleForm('form3')" name="qualification" value="diploma"> Diploma
+                <br>
 
-                    <div id="form3" style="display: none;">
-                        <!-- Diploma -->
-                        <h4>
-                            Diploma
-                        </h4>
-                        <!-- Diploma Institution Name -->
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <label class="form-label">Institution Name <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Institution Name" id="diploma_institution_name"
-                                    name="diploma_institution_name">
-                            </div>
-                            <!-- Diploma city -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Town/City <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Town/City" id="diploma_city"
-                                    name="diploma_city">
-                            </div>
-                            <!-- Diploma address -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Address <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Address" id="diploma_address"
-                                    name="diploma_address">
-                            </div>
-                            <!-- Diploma From Date -->
-                            <div class="col-lg-2">
-                                <label class="form-label">From (Date)
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    class="form-control" placeholder="From (Date)" id="diploma_form_date"
-                                    name="diploma_form_date">
-                            </div>
-                            <!-- Diploma to Date -->
-                            <div class="col-lg-2">
-                                <label class="form-label">To (Date)
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    class="form-control" placeholder="To (Date)" id="diploma_to_date"
-                                    name="diploma_to_date">
-                            </div>
-                            <!-- Diploma Year of Passing -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Year of Passing
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    class="form-control" placeholder="Year of Passing" id="diploma_year_of_passing"
-                                    name="diploma_year_of_passing">
-                            </div>
-                            <!-- Diploma  GPAPercentage-->
-                            <div class="col-lg-2">
-                                <label class="form-label">GPA/Percentage
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                    class="form-control" placeholder="9 GPA" id="diploma_percentage"
-                                    name="diploma_percentage">
-                            </div>
-                            <!-- Diploma Diploma -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Diploma <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Course" id="diploma_course"
-                                    name="diploma_course">
-                            </div>
-                            <!-- Diploma Major -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Major <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="CSE" id="diploma_major" name="diploma_major">
-                            </div>
-                            <!-- Diploma Filed of Interest -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Filed of Interest"
-                                    id="diploma_filed_of_interest" name="diploma_filed_of_interest">
-                            </div>
-                            <!-- Diploma image Certificate -->
-                            <div class="col-lg-2">
-                                <label for="diplomaimagecertificate" class="form-label">Upload Certificate <span
-                                        style="color: red;">*</span></label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="diploma_image_certificate"
-                                        name="diploma_image_certificate">
-                                </div>
-                                <!-- Preview for Diploma image Certificate -->
-                                <div class="col-lg-2">
-                                    <img id="diplomaCertificatePreview" src="#" alt="Preview"
-                                        style="width:150px; height: auto; display: none;">
-                                </div>
-                            </div>
 
-                            <div class="col-lg-2">
-                                <label for="diplomaimagemarksheet" class="form-label">Upload Mark Sheet <span
-                                        style="color: red;">*</span></label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="diploma_image_mark_sheet"
-                                        name="diploma_image_mark_sheet">
-                                </div>
-                                <!-- Preview for Diploma image Mark Sheet -->
-                                <div class="col-lg-2">
-                                    <img id="diplomaMarkSheetPreview" src="#" alt="Preview"
-                                        style="width: 150px; height: auto; display: none;">
-                                </div>
-                            </div>
+                {{-- Diploma --}}
+                <input type="checkbox" onchange="toggleForm('form3')" name="qualification" value="diploma">
+                Diploma
+
+                <div id="form3" style="display: none;">
+                    <!-- Diploma -->
+                    <h4>
+                        Diploma
+                    </h4>
+                    <!-- Diploma Institution Name -->
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <label class="form-label">Institution Name <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Institution Name" id="diploma_institution_name"
+                                name="diploma_institution_name">
                         </div>
-                    </div>
-
-                    <br>
-                    {{-- Bachelors Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form4')" name="qualification" value="bachelor_degree"> Bachelors Degree
-                    <div id="form4" style="display: none;">
-                        <!-- Bachelors Degree -->
-                        <h4>
-                            Bachelors Degree
-                        </h4>
-                        <!-- Bachelors Institution Name -->
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <label class="form-label">Institution Name <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Institution Name"
-                                    id="bachelors_institution_name" name="bachelors_institution_name">
+                        <!-- Diploma city -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Town/City <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Town/City" id="diploma_city" name="diploma_city">
+                        </div>
+                        <!-- Diploma address -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Address <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Address" id="diploma_address"
+                                name="diploma_address">
+                        </div>
+                        <!-- Diploma From Date -->
+                        <div class="col-lg-2">
+                            <label class="form-label">From (Date)
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                class="form-control" placeholder="From (Date)" id="diploma_form_date"
+                                name="diploma_form_date">
+                        </div>
+                        <!-- Diploma to Date -->
+                        <div class="col-lg-2">
+                            <label class="form-label">To (Date)
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                class="form-control" placeholder="To (Date)" id="diploma_to_date"
+                                name="diploma_to_date">
+                        </div>
+                        <!-- Diploma Year of Passing -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Year of Passing
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                class="form-control" placeholder="Year of Passing" id="diploma_year_of_passing"
+                                name="diploma_year_of_passing">
+                        </div>
+                        <!-- Diploma  GPAPercentage-->
+                        <div class="col-lg-2">
+                            <label class="form-label">GPA/Percentage
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
+                                class="form-control" placeholder="9 GPA" id="diploma_percentage"
+                                name="diploma_percentage">
+                        </div>
+                        <!-- Diploma Diploma -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Diploma <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Course" id="diploma_course" name="diploma_course">
+                        </div>
+                        <!-- Diploma Major -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Major <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="CSE" id="diploma_major" name="diploma_major">
+                        </div>
+                        <!-- Diploma Filed of Interest -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Filed of Interest" id="diploma_filed_of_interest"
+                                name="diploma_filed_of_interest">
+                        </div>
+                        <!-- Diploma image Certificate -->
+                        <div class="col-lg-2">
+                            <label for="diplomaimagecertificate" class="form-label">Upload Certificate <span
+                                    style="color: red;">*</span></label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="diploma_image_certificate"
+                                    name="diploma_image_certificate">
                             </div>
-                            <!-- Bachelors city -->
+                            <!-- Preview for Diploma image Certificate -->
                             <div class="col-lg-2">
-                                <label class="form-label">Town/City <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Town/City" id="bachelors_city"
-                                    name="bachelors_city">
-                            </div>
-                            <!-- Bachelors address -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Address <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Address" id="bachelors_address"
-                                    name="bachelors_address">
-                            </div>
-                            <!-- Bachelors From Date -->
-                            <div class="col-lg-2">
-                                <label class="form-label">From (Date)
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    class="form-control" placeholder="From (Date)" id="bachelor_form_date"
-                                    name="bachelors_form_date">
-                            </div>
-                            <!-- Bachelors To Date -->
-                            <div class="col-lg-2">
-                                <label class="form-label">To (Date)
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    class="form-control" placeholder="To (Date)" id="bachelors_to_date"
-                                    name="bachelors_to_date">
-                            </div>
-                            <!-- Bachelors Year of Passing -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Year of Passing
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    class="form-control" placeholder="Year of Passing" id="bachelors_year_of_passing"
-                                    name="bachelors_year_of_passing">
-                            </div>
-                            <!-- Bachelors GPA Percentage -->
-                            <div class="col-lg-2">
-                                <label class="form-label">GPA/Percentage
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                    class="form-control" placeholder="9 GPA" id="bachelors_percentage"
-                                    name="bachelors_percentage">
-                            </div>
-                            <!-- Bachelors Course -->
-                            <div class="col-lg-2">
-                                <label for="" class="form-label">Course <span
-                                        style="color: red;">*</span></label>
-                                <select class="form-select" id="bachelors_course" name="bachelors_course">
-                                    <option selected disabled value="">Choose...</option>
-                                    <option>Bachelor of Engineering</option>
-                                    <option>BSc</option>
-                                    <option>BCom</option>
-                                    <option>BA</option>
-                                    <option>Bachelor of Technology</option>
-                                    <option> Other</option>
-                                </select>
-
-                            </div>
-                            <!-- Bachelors Major -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Major <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Major" id="bachelors_major"
-                                    name="bachelors_major">
-                            </div>
-                            <!-- Bachelors Filed of Interest -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Filed of Interest"
-                                    id="bachelors_filed_of_interest" name="bachelors_filed_of_interest">
-                            </div>
-                            {{-- image --}}
-                            <div class="col-lg-2">
-                                <label class="form-label">Upload Certificate <span
-                                        style="color: red;">*</span></label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="bachelors_image_certificate"
-                                        name="bachelors_image_certificate">
-                                </div>
-                                <!-- Preview for Bachelors image Certificate -->
-                                <div class="form-group">
-                                    <img id="bachelorsimagecertificatePreview" src="#" alt="Image Preview"
-                                        style="width: 150px; height: auto; display: none;">
-                                </div>
-                            </div>
-                            {{-- marksheet --}}
-
-                            <div class="col-lg-2">
-                                <label class="form-label">Upload Mark Sheet <span style="color: red;">*</span></label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="bachelors_image_mark_sheet"
-                                        name="bachelors_image_mark_sheet">
-                                </div>
-                                <!-- Preview for Bachelors image Mark Sheet -->
-                                <div class="form-group">
-                                    <img id="bachelorsimagemarksheetPreview" src="#" alt="Image Preview"
-                                        style="width: 150px; height: auto; display: none;">
-                                </div>
+                                <img id="diplomaCertificatePreview" src="#" alt="Preview"
+                                    style="width:150px; height: auto; display: none;">
                             </div>
                         </div>
 
-                    </div>
-                    <br>
-
-                    {{-- Master's Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form5')" name="qualification" value="master_degree"> Master's Degree
-                    <div id="form5" style="display: none;">
-                        <!-- Master's Degree -->
-                        <h4>
-                            Master's Degree
-                        </h4>
-                        <!-- Institution Name -->
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <label class="form-label">Institution Name <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="master_institution_name" name="master_institution_name" class="form-control"
-                                    placeholder="Institution Name">
+                        <div class="col-lg-2">
+                            <label for="diplomaimagemarksheet" class="form-label">Upload Mark Sheet <span
+                                    style="color: red;">*</span></label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="diploma_image_mark_sheet"
+                                    name="diploma_image_mark_sheet">
                             </div>
-                            <!-- city -->
+                            <!-- Preview for Diploma image Mark Sheet -->
                             <div class="col-lg-2">
-                                <label class="form-label">Town/City <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="master_city" name="master_city" class="form-control"
-                                    placeholder="Town/City">
-                            </div>
-                            <!-- address -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Address <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    name="master_address" class="form-control" placeholder="Address"
-                                    id="master_address">
-                            </div>
-                            <!-- date -->
-                            <div class="col-lg-2">
-                                <label class="form-label">From (Date)
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    name="master_from_date" class="form-control" id="master_from_date"
-                                    placeholder="From (Date)">
-                            </div>
-                            <!-- date -->
-                            <div class="col-lg-2">
-                                <label class="form-label">To (Date)
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    id="master_to_date" name="master_to_date" class="form-control"
-                                    placeholder="To (Date)">
-                            </div>
-                            <!-- years of passing -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Year of Passing
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    id="master_years_of_passing" name="master_years_of_passing" class="form-control"
-                                    placeholder="Year of Passing">
-                            </div>
-                            <!-- percentage -->
-                            <div class="col-lg-2">
-                                <label class="form-label">GPA/Percentage
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                    name="master_percentage" class="form-control" placeholder="9 GPA"
-                                    id="master_percentage">
-                            </div>
-                            <!-- class -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Class <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="master_class" name="master_class" class="form-control" placeholder="Class">
-                            </div>
-                            <!--  Filed of Specialization-->
-                            <div class="col-lg-2">
-                                <label class="form-label">Specialization
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    name="master_filed_of_specialization" class="form-control"
-                                    id="master_filed_of_specialization" placeholder="Filed of Specialization">
-                            </div>
-                            <!-- filed of interest -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="master_filed_of_interest" name="master_filed_of_interest"
-                                    class="form-control" placeholder="Filed of Interest">
-                            </div>
-                            <div class="col-lg-2">
-                                <label for="masterimagecertificate" class="form-label">Upload Certificate <span
-                                        style="color: red;">*</span></label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="master_image_certificate"
-                                        name="master_image_certificate">
-                                </div>
-                                <!-- Preview for Master's image Certificate -->
-                                <div class="form-group">
-                                    <img id="masterimagecertificatePreview" src="#" alt="Image Preview"
-                                        style="width: 150px; height: auto; display: none;">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-2">
-                                <label for="masterimagemarksheet" class="form-label">Upload Mark Sheet <span
-                                        style="color: red;">*</span></label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="master_image_mark_sheet"
-                                        name="master_image_mark_sheet">
-                                </div>
-                                <!-- Preview for Master's image Mark Sheet -->
-                                <div class="form-group">
-                                    <img id="masterimagemarksheetPreview" src="#"
-                                        alt="Image Preview "style="width:150px; height: auto; display: none;">
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <br>
-
-                    {{-- Doctorate Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form6')" name="qualification" value="doctorate_degree"> Doctorate Degree
-
-                    <div id="form6" style="display: none;">
-                        <!-- Doctorate Degree -->
-                        <h4>
-                            Doctorate Degree
-                        </h4>
-                        <!-- doctoratename -->
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <label class="form-label">Institution Name <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    name="doctorate_name" name=" doctorate_name" class="form-control"
-                                    placeholder="Institution Name">
-                            </div>
-                            <!-- doctoratecity -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Town/City <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="doctorate_city" name="doctorate_city" class="form-control"
-                                    placeholder="Town/City">
-                            </div>
-                            <!-- doctorateaddress -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Address <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="doctorate_address" name="doctorate_address" class="form-control"
-                                    placeholder="Address">
-                            </div>
-                            <!-- doctoratefromdate -->
-                            <div class="col-lg-2">
-                                <label class="form-label">From (Date)
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    id="doctorate_from_date" name="doctorate_from_date" class="form-control"
-                                    placeholder="From (Date)">
-                            </div>
-                            <!-- doctoratetodate -->
-                            <div class="col-lg-2">
-                                <label class="form-label">To (Date)
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    id="doctorate_to_date" name="doctorate_to_date" class="form-control"
-                                    placeholder="To (Date)">
-                            </div>
-                            <!-- doctorateyearofpassing -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Year of Passing
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                    id="doctorate_year_of_passing" name="doctorate_year_of_passing"
-                                    class="form-control" placeholder="Year of Passing">
-                            </div>
-                            <!-- doctoratepercentage -->
-                            <div class="col-lg-2">
-                                <label class="form-label">GPA/Percentage
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                    id="doctorate_percentage" name=" doctorate_percentage" class="form-control"
-                                    placeholder="9 GPA">
-                            </div>
-                            <!-- doctorateclass -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Class <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="doctorate_class" class="form-control" name="doctorate_class"
-                                    placeholder="Class">
-                            </div>
-
-                            <!-- doctoratefiledofspecialization -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Specialization
-                                    <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Filed of Specialization"
-                                    id="doctorate_filed_of_specialization" name="doctorate_filed_of_specialization">
-                            </div>
-                            <!-- doctoratefiledofinterest -->
-                            <div class="col-lg-2">
-                                <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" name="doctorate_filed_of_interest"
-                                    id="doctorate_filed_of_interest" placeholder="Filed of Interest">
-                            </div>
-                            <div class="col-lg-2">
-                                <label for="doctorateimagecertificate" class="form-label">Upload Certificate <span
-                                        style="color: red;">*</span></label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="doctorate_image_certificate"
-                                        name="doctorate_image_certificate">
-                                </div>
-                                <!-- Preview for Doctorate image Certificate -->
-                                <div class="form-group">
-                                    <img id="doctorateimagecertificatePreview" src="#" alt="Image Preview"
-                                        style="width: 150px; height: auto; display: none;">
-                                </div>
-                            </div>
-                            {{-- mark sheet --}}
-                            <div class="col-lg-2">
-                                <label for="doctorateimagemarksheet" class="form-label">Upload Mark Sheet <span
-                                        style="color: red;">*</span></label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="doctorate_image_mark_sheet"
-                                        name="doctorate_image_mark_sheet">
-                                </div>
-                                <!-- Preview for Doctorate image Mark Sheet -->
-                                <div class="form-group">
-                                    <img id="doctorateimagemarksheetPreview" src="#" alt="Image Preview"
-                                        style="width: 150px; height: auto; display: none;">
-                                </div>
+                                <img id="diplomaMarkSheetPreview" src="#" alt="Preview"
+                                    style="width: 150px; height: auto; display: none;">
                             </div>
                         </div>
                     </div>
-                    <br>
+                </div>
 
+                <br>
+                {{-- Bachelors Degree --}}
+                <input type="checkbox" onchange="toggleForm('form4')" name="qualification" value="bachelor_degree">
+                Bachelors Degree
+                <div id="form4" style="display: none;">
+                    <!-- Bachelors Degree -->
+                    <h4>
+                        Bachelors Degree
+                    </h4>
+                    <!-- Bachelors Institution Name -->
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <label class="form-label">Institution Name <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Institution Name" id="bachelors_institution_name"
+                                name="bachelors_institution_name">
+                        </div>
+                        <!-- Bachelors city -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Town/City <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Town/City" id="bachelors_city"
+                                name="bachelors_city">
+                        </div>
+                        <!-- Bachelors address -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Address <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Address" id="bachelors_address"
+                                name="bachelors_address">
+                        </div>
+                        <!-- Bachelors From Date -->
+                        <div class="col-lg-2">
+                            <label class="form-label">From (Date)
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                class="form-control" placeholder="From (Date)" id="bachelor_form_date"
+                                name="bachelors_form_date">
+                        </div>
+                        <!-- Bachelors To Date -->
+                        <div class="col-lg-2">
+                            <label class="form-label">To (Date)
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                class="form-control" placeholder="To (Date)" id="bachelors_to_date"
+                                name="bachelors_to_date">
+                        </div>
+                        <!-- Bachelors Year of Passing -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Year of Passing
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                class="form-control" placeholder="Year of Passing" id="bachelors_year_of_passing"
+                                name="bachelors_year_of_passing">
+                        </div>
+                        <!-- Bachelors GPA Percentage -->
+                        <div class="col-lg-2">
+                            <label class="form-label">GPA/Percentage
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
+                                class="form-control" placeholder="9 GPA" id="bachelors_percentage"
+                                name="bachelors_percentage">
+                        </div>
+                        <!-- Bachelors Course -->
+                        <div class="col-lg-2">
+                            <label for="" class="form-label">Course <span
+                                    style="color: red;">*</span></label>
+                            <select class="form-select" id="bachelors_course" name="bachelors_course">
+                                <option selected disabled value="">Choose...</option>
+                                <option>Bachelor of Engineering</option>
+                                <option>BSc</option>
+                                <option>BCom</option>
+                                <option>BA</option>
+                                <option>Bachelor of Technology</option>
+                                <option> Other</option>
+                            </select>
+
+                        </div>
+                        <!-- Bachelors Major -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Major <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Major" id="bachelors_major"
+                                name="bachelors_major">
+                        </div>
+                        <!-- Bachelors Filed of Interest -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Filed of Interest" id="bachelors_filed_of_interest"
+                                name="bachelors_filed_of_interest">
+                        </div>
+                        {{-- image --}}
+                        <div class="col-lg-2">
+                            <label class="form-label">Upload Certificate <span style="color: red;">*</span></label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="bachelors_image_certificate"
+                                    name="bachelors_image_certificate">
+                            </div>
+                            <!-- Preview for Bachelors image Certificate -->
+                            <div class="form-group">
+                                <img id="bachelorsimagecertificatePreview" src="#" alt="Image Preview"
+                                    style="width: 150px; height: auto; display: none;">
+                            </div>
+                        </div>
+                        {{-- marksheet --}}
+
+                        <div class="col-lg-2">
+                            <label class="form-label">Upload Mark Sheet <span style="color: red;">*</span></label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="bachelors_image_mark_sheet"
+                                    name="bachelors_image_mark_sheet">
+                            </div>
+                            <!-- Preview for Bachelors image Mark Sheet -->
+                            <div class="form-group">
+                                <img id="bachelorsimagemarksheetPreview" src="#" alt="Image Preview"
+                                    style="width: 150px; height: auto; display: none;">
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-                <!-- BUTTONS -->
-                <div style="display: flex;justify-content: end; align-items: center;" class="">
-                    <a style="font-weight: bold; " class="btn btn-secondary mt-5" href="card">Previous</a>
-                    <button class="btn btn-primary mx-4 mt-5" type="submit">Save </button>
-                    <a style="font-weight: bold;" class="btn btn-secondary mt-5 " href="employment">Next</a>
+                <br>
+
+                {{-- Master's Degree --}}
+                <input type="checkbox" onchange="toggleForm('form5')" name="qualification" value="master_degree">
+                Master's Degree
+                <div id="form5" style="display: none;">
+                    <!-- Master's Degree -->
+                    <h4>
+                        Master's Degree
+                    </h4>
+                    <!-- Institution Name -->
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <label class="form-label">Institution Name <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                id="master_institution_name" name="master_institution_name" class="form-control"
+                                placeholder="Institution Name">
+                        </div>
+                        <!-- city -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Town/City <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                id="master_city" name="master_city" class="form-control" placeholder="Town/City">
+                        </div>
+                        <!-- address -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Address <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                name="master_address" class="form-control" placeholder="Address"
+                                id="master_address">
+                        </div>
+                        <!-- date -->
+                        <div class="col-lg-2">
+                            <label class="form-label">From (Date)
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                name="master_from_date" class="form-control" id="master_from_date"
+                                placeholder="From (Date)">
+                        </div>
+                        <!-- date -->
+                        <div class="col-lg-2">
+                            <label class="form-label">To (Date)
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                id="master_to_date" name="master_to_date" class="form-control"
+                                placeholder="To (Date)">
+                        </div>
+                        <!-- years of passing -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Year of Passing
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                id="master_years_of_passing" name="master_years_of_passing" class="form-control"
+                                placeholder="Year of Passing">
+                        </div>
+                        <!-- percentage -->
+                        <div class="col-lg-2">
+                            <label class="form-label">GPA/Percentage
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
+                                name="master_percentage" class="form-control" placeholder="9 GPA"
+                                id="master_percentage">
+                        </div>
+                        <!-- class -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Class <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                id="master_class" name="master_class" class="form-control" placeholder="Class">
+                        </div>
+                        <!--  Filed of Specialization-->
+                        <div class="col-lg-2">
+                            <label class="form-label">Specialization
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                name="master_filed_of_specialization" class="form-control"
+                                id="master_filed_of_specialization" placeholder="Filed of Specialization">
+                        </div>
+                        <!-- filed of interest -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                id="master_filed_of_interest" name="master_filed_of_interest" class="form-control"
+                                placeholder="Filed of Interest">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="masterimagecertificate" class="form-label">Upload Certificate <span
+                                    style="color: red;">*</span></label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="master_image_certificate"
+                                    name="master_image_certificate">
+                            </div>
+                            <!-- Preview for Master's image Certificate -->
+                            <div class="form-group">
+                                <img id="masterimagecertificatePreview" src="#" alt="Image Preview"
+                                    style="width: 150px; height: auto; display: none;">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <label for="masterimagemarksheet" class="form-label">Upload Mark Sheet <span
+                                    style="color: red;">*</span></label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="master_image_mark_sheet"
+                                    name="master_image_mark_sheet">
+                            </div>
+                            <!-- Preview for Master's image Mark Sheet -->
+                            <div class="form-group">
+                                <img id="masterimagemarksheetPreview" src="#"
+                                    alt="Image Preview "style="width:150px; height: auto; display: none;">
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </form>
+                <br>
+
+                {{-- Doctorate Degree --}}
+                <input type="checkbox" onchange="toggleForm('form6')" name="qualification" value="doctorate_degree">
+                Doctorate Degree
+
+                <div id="form6" style="display: none;">
+                    <!-- Doctorate Degree -->
+                    <h4>
+                        Doctorate Degree
+                    </h4>
+                    <!-- doctoratename -->
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <label class="form-label">Institution Name <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                name="doctorate_name" name=" doctorate_name" class="form-control"
+                                placeholder="Institution Name">
+                        </div>
+                        <!-- doctoratecity -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Town/City <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                id="doctorate_city" name="doctorate_city" class="form-control"
+                                placeholder="Town/City">
+                        </div>
+                        <!-- doctorateaddress -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Address <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                id="doctorate_address" name="doctorate_address" class="form-control"
+                                placeholder="Address">
+                        </div>
+                        <!-- doctoratefromdate -->
+                        <div class="col-lg-2">
+                            <label class="form-label">From (Date)
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                id="doctorate_from_date" name="doctorate_from_date" class="form-control"
+                                placeholder="From (Date)">
+                        </div>
+                        <!-- doctoratetodate -->
+                        <div class="col-lg-2">
+                            <label class="form-label">To (Date)
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                id="doctorate_to_date" name="doctorate_to_date" class="form-control"
+                                placeholder="To (Date)">
+                        </div>
+                        <!-- doctorateyearofpassing -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Year of Passing
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                id="doctorate_year_of_passing" name="doctorate_year_of_passing" class="form-control"
+                                placeholder="Year of Passing">
+                        </div>
+                        <!-- doctoratepercentage -->
+                        <div class="col-lg-2">
+                            <label class="form-label">GPA/Percentage
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
+                                id="doctorate_percentage" name=" doctorate_percentage" class="form-control"
+                                placeholder="9 GPA">
+                        </div>
+                        <!-- doctorateclass -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Class <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                id="doctorate_class" class="form-control" name="doctorate_class"
+                                placeholder="Class">
+                        </div>
+
+                        <!-- doctoratefiledofspecialization -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Specialization
+                                <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" placeholder="Filed of Specialization"
+                                id="doctorate_filed_of_specialization" name="doctorate_filed_of_specialization">
+                        </div>
+                        <!-- doctoratefiledofinterest -->
+                        <div class="col-lg-2">
+                            <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control" name="doctorate_filed_of_interest"
+                                id="doctorate_filed_of_interest" placeholder="Filed of Interest">
+                        </div>
+                        <div class="col-lg-2">
+                            <label for="doctorateimagecertificate" class="form-label">Upload Certificate <span
+                                    style="color: red;">*</span></label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="doctorate_image_certificate"
+                                    name="doctorate_image_certificate">
+                            </div>
+                            <!-- Preview for Doctorate image Certificate -->
+                            <div class="form-group">
+                                <img id="doctorateimagecertificatePreview" src="#" alt="Image Preview"
+                                    style="width: 150px; height: auto; display: none;">
+                            </div>
+                        </div>
+                        {{-- mark sheet --}}
+                        <div class="col-lg-2">
+                            <label for="doctorateimagemarksheet" class="form-label">Upload Mark Sheet <span
+                                    style="color: red;">*</span></label>
+                            <div class="input-group">
+                                <input type="file" class="form-control" id="doctorate_image_mark_sheet"
+                                    name="doctorate_image_mark_sheet">
+                            </div>
+                            <!-- Preview for Doctorate image Mark Sheet -->
+                            <div class="form-group">
+                                <img id="doctorateimagemarksheetPreview" src="#" alt="Image Preview"
+                                    style="width: 150px; height: auto; display: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+
         </div>
+        <!-- BUTTONS -->
+        <div style="display: flex;justify-content: end; align-items: center;" class="">
+            <a style="font-weight: bold; " class="btn btn-secondary mt-5" href="card">Previous</a>
+            <button class="btn btn-primary mx-4 mt-5" type="submit">Save </button>
+            <a style="font-weight: bold;" class="btn btn-secondary mt-5 " href="employment">Next</a>
+        </div>
+        </form>
     </div>
-
-
-
+    </div>
 
 
     <footer class="bg-dark  text-white mt-4">
@@ -1038,8 +1040,8 @@
 
 
 
-    <!-- checkbok -->
-    <script>
+     <!-- checkbok -->
+ <script>
         function showCheckboxes() {
             const checkboxesDiv = document.getElementById('checkboxes');
             checkboxesDiv.style.display = 'block';
@@ -1055,6 +1057,46 @@
             form.style.display = form.style.display === 'none' ? 'block' : 'none';
         }
     </script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    {{-- <script>
+        $(document).ready(function () {
+            // Function to show checkboxes
+            function showCheckboxes() {
+                $('#checkboxes').show();
+            }
+
+            // Function to hide checkboxes and form1
+            function hideCheckboxes() {
+                $('#checkboxes').hide();
+                $('#form1').hide();
+            }
+
+            // Function to toggle form1 based on checkbox selection
+            function toggleForm1() {
+                $('#form1').toggle();
+            }
+
+            // Handle radio button click events
+            $('input[name="radio_option"]').on('change', function () {
+                if ($(this).val() === 'yes') {
+                    showCheckboxes();
+                } else {
+                    hideCheckboxes();
+                }
+            });
+
+            // Handle checkbox change event
+            $('input[name="qualification"]').on('change', function () {
+                if ($(this).is(':checked')) {
+                    toggleForm1();
+                }
+            });
+        });
+    </script> --}}
+
+
 
 
     {{-- image --}}

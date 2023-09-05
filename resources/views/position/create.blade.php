@@ -10,6 +10,7 @@
 </head>
 
 <body>
+
     <div class="container">
         <main style="margin-top: 58px;">
             <div class="container border p-4">
@@ -33,10 +34,10 @@
                 @endif
                 <form action="{{ route('position.store') }}" method="POST">
                     @csrf
-                    <div class="col-lg-6">
+                    <div class="mb-3">
                         <!-- sector -->
-                        <p>Sectors <span class="red">*</span></p>
-                        <select class="form-select bg" name="sector_id" id="sector_id" required>
+                        <label  class="form-label">sector <span style="color: red;">*</span></label>
+                        <select class="form-select " name="sector_id" id="sector_id" style="background-color: rgba(248, 235, 235, 0.726);"  required>
                             <option value="">Please Select</option>
                             @php
                                 $sectors = \App\Models\Sector::all();
@@ -47,11 +48,18 @@
                             @endforeach
                         </select>
                     </div>
+                    <br>
                     <div class="mb-3">
-                        <label for="positionName" class="form-label">Position Name <span style="color: red;">*</span></label>
+                        <label  class="form-label">Position Name <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            id="positionName" name="name" aria-describedby="positionName">
+                            id="positionName" name="name" >
                     </div>
+                    <div class="mb-3">
+                        <label  class="form-label">Description <span style="color: red;">*</span></label>
+                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
+                            id="description" name="description" >
+                    </div>
+
 
                     <button type="submit" class="btn btn-success">Save</button>
                     <a class="btn btn-secondary" href="{{ route('position.index') }}">Back</a>
