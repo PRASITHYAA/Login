@@ -95,8 +95,7 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::delete('/training/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
 });
 Route::group(['middleware' => ['auth']], function () {
-    // home
-
+// home
     Route::view('/home', 'home')->name('dashboard');
 });
 
@@ -141,4 +140,5 @@ Route::post('employment', [EmploymentController::class, 'store'])->name('employm
 
 //  demo
 Route::view('/demo', 'demo');
-Route::post('demo', [EducationController::class, 'store'])->name('education.store');
+
+Route::post('demo-edu', [EducationController::class, 'store'])->name('education.store');
