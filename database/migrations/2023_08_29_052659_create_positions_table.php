@@ -16,7 +16,6 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('sector_id');
             $table->string('name');
-            // $table->string('description');
             $table->timestamps();
             $table->foreign('sector_id')->references('id')->on('sectors');
         });
