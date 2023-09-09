@@ -55,13 +55,13 @@
                             id="positionName" name="name" >
                     </div>
 
-~
-                    {{-- <div class="mb-3">
+
+                  <div class="mb-3">
                         <label  class="form-label">Description <span style="color: red;">*</span></label>
                             <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" id="description"
                             name="description" rows="3"></textarea>
 
-                    </div> --}}
+                    </div>
 
 
                     <button type="submit" class="btn btn-success">Save</button>
