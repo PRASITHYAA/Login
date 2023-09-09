@@ -11,5 +11,10 @@ class Sector extends Model
     protected $fillable = [
         'name',
     ];
+    
+    public function positions()
+    {
+        return $this->hasMany(Position::class);
+    }
 
 }

@@ -22,7 +22,7 @@ class Education extends Model
         'high_school_Year_of_Passing',
         'high_school_percentage',
         'high_school_class',
-        'high_school_stream',
+        'high_school_curriculum',
         'high_school_image_certificate',
         'high_school_image_mark_sheet',
 
@@ -96,4 +96,9 @@ class Education extends Model
         'doctorate_image_certificate',
         'doctorate_image_mark_sheet',
     ];
+    public function jobApplication()
+    {
+        return $this->belongsTo(JobApplication::class);
+    }
+
 }

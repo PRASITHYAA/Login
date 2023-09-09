@@ -1,10 +1,10 @@
 @extends('layouts.front.master')
+
 @section('content')
-    <!-- percentage -->
     <div class="container mt-2">
-        {{-- error --}}
+        {{-- Display validation errors --}}
         @if ($errors->any())
-            <div class=" alert alert-danger">
+            <div class="alert alert-danger">
                 <ul>
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -12,102 +12,89 @@
                 </ul>
             </div>
         @endif
-        {{-- success --}}
 
+        {{-- Display success message --}}
         @if (session('success'))
-            <div class=" container  alert alert-success">
+            <div class="alert alert-success">
                 {{ session('success') }}
             </div>
         @endif
-
     </div>
-    {{-- <div class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-10">
-                    <p>Hi {{ auth()->user()->name }},</p>
-                    <p>Welcome to TISE Job Application Dashboard!</p>
-                    <p>We're thrilled to have you here on your journey to career success. This personalized dashboard is
-                        your central hub for managing your job applications, exploring exciting opportunities, and
-                        fine-tuning your job search.</p>
-                    <a href="{{ route('job_application') }}">Apply For a Job</a>
-                </div>
-            </div>
-        </div>
 
-
-    </div> --}}
     <div class="container-fluid careers-back-img">
-
         <div class="row">
+            <div class="col-lg-2"></div>
             <div class="col-lg-2">
+                <h1 class="text-center text-white" style="padding-top: 150px;">Careers</h1>
             </div>
-            <div class="col-lg-2 ">
-                <h1 style="color  : white;display: flex;justify-content: center;align-items: center; padding-top: 150px;">
-                    Careers</h1>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-2 d-flex align-items-center justify-content-center" style="padding-top: 150px;">
+                <a href="#" class="text-decoration-none font-weight-bold text-white" style="font-size: 20px;">
+                    Home
+                </a>
+                <i class="fa-regular fa-circle-right text-warning" style="font-size: 20px;"></i>
+                <span class="font-weight-bold text-white" style="font-size: 20px;">Careers</span>
             </div>
-            <div class="col-lg-4">
-
-            </div>
-            <div style="display: flex;align-items: center;justify-content: center;padding-top: 150px;" class="col-lg-2">
-                <a style="text-decoration: none;font-weight: bold;color: white;font-size: 20px;padding-right: 20px;"
-                    href="">Home</a>
-                <i class="fa-regular fa-circle-right" style="color: yellow;"></i>
-                <span style="color:white ;font-weight: bold;font-size: 20px;padding-left: 10px;"> Careers</span>
-            </div>
-            <div class="col-lg-2">
-            </div>
+            <div class="col-lg-2"></div>
         </div>
     </div>
 
     <div class="container-fluid">
-        <h3 style="font-weight: bold;display: flex;justify-content: center;padding-top: 38px;">Grow With TISE</h3>
-
-        <p style="padding-top: 10px;" class="text-center">Join our team at TISE! With a commitment to investing in our
-            employees’ growth and development, you’ll work on challenging projects and gain valuable experience. <br>
-            <span style="padding-bottom: 28px;" class="text-center"> Browse our open positions and apply now.</span>
+        <h3 class="text-center font-weight-bold mt-4">Grow With TISE</h3>
+        <p class="text-center">
+            Join our team at TISE! With a commitment to investing in our employees’ growth and development, you’ll work on
+            challenging projects and gain valuable experience.
+            <br>
+            <span class="font-weight-bold">Browse our open positions and apply now.</span>
         </p>
-
     </div>
 
     <div class="container-fluid">
-        <div class="container  ">
-            <h3 style="font-weight: bold;display: flex;justify-content: start;padding-top: 38px;">Information Technology
-            </h3>
-        </div>
-        <div class="container border">
-            <div class="accordion" id="accordionPanelsStayOpenExample">
-                <div class="row py-3 px-3">
-                    <div class="col-lg-10">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    style="background-color:rgb(212, 149, 31);color: black;font-weight: bold;"
-                                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
-                                    aria-controls="panelsStayOpen-collapseOne">
-                                    Financial Advisor
+        @php
+            $sectors = \App\Models\Sector::with('positions')->get();
+        @endphp
 
-                                </button>
-                            </h2>
-                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse none"
-                                aria-labelledby="panelsStayOpen-headingOne">
-                                <div class="accordion-body">
-                                    ₹ 10,000/- to 15,000/-
-                                    <br>
-                                    Experience: 2 Years to 3 Years
+        @foreach ($sectors as $sector)
+            <div class="container mt-4 px-4">
+                <h3 class="font-weight-bold">{{ $sector->name }}</h3>
+            </div>
 
+            <div class="container border">
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    @foreach ($sector->positions as $position)
+                        <div class="row py-3 px-3">
+                            <div class="col-lg-10">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-heading-{{ $position->id }}">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#panelsStayOpen-collapse-{{ $position->id }}"
+                                                style="background-color:#bf9855;color: black;font-weight: bold;"
+                                                aria-expanded="false">
+
+                                                {{ $position->name }}
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapse-{{ $position->id }}" class="accordion-collapse collapse none"
+                                         aria-labelledby="panelsStayOpen-heading-{{ $position->id }}">
+                                        <div class="accordion-body">
+                                            <!-- Add content for the accordion panel here -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-lg-2">
+                               <a href="instruction" class="btn btn-warning text-center"
+                                   style="display: flex; justify-content: center; align-items: flex-end; padding: 14px; text-decoration: none; color: white; height: 50px; font-weight: bold; background-color:#bf9855  ">
+                                    Apply Now
+                                </a>
+                                {{-- <a href="{{ route('', $position->id) }}" class="btn btn-warning btn-sm">Edit</a> --}}
+
+
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <a style="color: white; display: flex ;justify-content: center;align-items: end;padding: 13PX; text-decoration: none ;"
-                            type="button" class=" btn01 text-center" href="./instruction.html">Apply Now</a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
-
 @endsection

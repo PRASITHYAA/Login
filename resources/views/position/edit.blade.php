@@ -36,10 +36,10 @@
                 <form action="{{ route('position.update', $position->id) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <div class="col-lg-6">
+                    <div class="mb-3">
                         <!-- sector -->
-                        <p>Sectors <span class="red">*</span></p>
-                        <select class="form-select bg" name="sector_id" id="sector_id" required>
+                        <label  class="form-label">sector <span style="color: red;">*</span></label>
+                        <select class="form-select " name="sector_id" id="sector_id" style="background-color: rgba(248, 235, 235, 0.726);"  required>
                             <option value="">Please Select</option>
                             @php
                                 $sectors = \App\Models\Sector::all();
@@ -53,8 +53,15 @@
                     <div class="mb-3">
                         <label for="positionName" class="form-label">Position Name <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            id="name" name="name" value="{{ $position->name }}" aria-describedby="positionName">
+                            id="name" name="name" value="{{ $position->name }}" >
                     </div>
+                    {{-- <div class="mb-3">
+                        <label  class="form-label">Description <span style="color: red;">*</span></label>
+                            <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" id="description"
+                            name="description"  value="{{ $position->description }}" rows="3"></textarea>
+
+                    </div>
+ --}}
 
                     <button type="submit" class="btn btn-success">Update</button>
                     <a class="btn btn-secondary" href="{{ route('position.index') }}">Back</a>

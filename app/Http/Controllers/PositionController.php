@@ -11,14 +11,14 @@ class PositionController extends Controller
 {
     public function index()
     {
-        $positions = Position::all(); // Update variable name
-        return view('position.index', compact('positions')); // Update view name
+        $positions = Position::all();  // Update variable name
+        return view('position.index', compact('positions'));  // Update view name
     }
 
     public function create()
     {
         $sectors = Sector::all();
-        return view('position.create', compact('sectors')); // Update view name
+        return view('position.create', compact('sectors'));  // Update view name
     }
 
     public function store(Request $request)
@@ -26,6 +26,7 @@ class PositionController extends Controller
         $validatedData = $request->validate([
             'sector_id' => 'required',
             'name' => 'required',
+            // 'description' => 'required',
         ]);
 
         Position::create($validatedData);
@@ -35,16 +36,17 @@ class PositionController extends Controller
         return redirect()->route('position.index');
     }
 
-    public function edit(Position $position) // Update model name
+    public function edit(Position $position)  // Update model name
     {
         return view('position.edit', compact('position'));
     }
 
-    public function update(Request $request, Position $position) // Update model name
+    public function update(Request $request, Position $position)  // Update model name
     {
         $validatedData = $request->validate([
             'sector_id' => 'required',
             'name' => 'required',
+            // 'description' => 'required',
         ]);
 
         $position->update($validatedData);
@@ -54,7 +56,12 @@ class PositionController extends Controller
         return redirect()->route('position.index');
     }
 
-    public function destroy(Position $position) // Update model name
+    // public function show(Position $position)
+    // {
+    //     return view('demo', compact('position'));
+    // }
+
+    public function destroy(Position $position)  // Update model name
     {
         $position->delete();
 
@@ -63,7 +70,8 @@ class PositionController extends Controller
         return redirect()->route('position.index');
     }
 
-    public function getPositions(Request $request) {
+    public function getPositions(Request $request)
+    {
         // Retrieve positions based on the selected sector
         $sector = $request->input('sector');
 
@@ -72,5 +80,4 @@ class PositionController extends Controller
 
         return response()->json($positions);
     }
-
 }

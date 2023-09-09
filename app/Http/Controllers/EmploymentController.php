@@ -9,7 +9,7 @@ class EmploymentController extends Controller
 {
     public function store(Request $request)
     {
-        $request->validate([
+    $employment=  $request->validate([
             'job_application_id' => 'required',
             'open-input' => 'required|in:yes,no',
             'nested-option' => 'required_if:open-input,yes|in:nested-yes,nested-no',
@@ -38,7 +38,7 @@ class EmploymentController extends Controller
         ]);
 
 
-        Employment::create($employmentData);
+        Employment::create($employment);
 
         return redirect()->route('achievement', ['id' => $request->job_application_id])->with('success', 'Employment created successfully!');
     }

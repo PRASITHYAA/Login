@@ -97,9 +97,6 @@
         </tr>
       </thead>
       <tbody>
-        @php
-        $counter = 1;
-        @endphp
         @foreach($positions as $position)
         <tr>
           {{--<td>{{ $counter++ }}</td>--}}

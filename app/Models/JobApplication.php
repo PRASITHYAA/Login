@@ -69,4 +69,18 @@ class JobApplication extends Model
     {
         return $this->belongsTo(Position::class);
     }
+
+    public function cards()
+    {
+        return $this->hasMany(Card::class);
+    }
+    public function educations()
+    {
+        return $this->hasMany(Education::class);
+    }
+    public function disclaimers()
+    {
+        return $this->hasMany(Disclaimer::class);
+    }
+
 }

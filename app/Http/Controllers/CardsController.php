@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
+use App\Models\JobApplication;
+
 use Illuminate\Http\Request;
 
 class CardsController extends Controller
@@ -14,7 +16,7 @@ class CardsController extends Controller
 
     public function store(Request $request)
     {
-         //dd($request->all());
+        //dd($request->all());
 
         $card = $request->validate([
             'job_application_id' => 'required',
@@ -62,5 +64,12 @@ class CardsController extends Controller
         Card::create($card);
 
         return redirect()->route('education.view', ['id' => $request->job_application_id])->with('success', 'Card created successfully!');
+    }
+
+    public function show($id)
+    {
+        $jobApplication = JobApplication::find($id);
+
+        return view('career.card.show', ['jobApplication' => $jobApplication]);
     }
 }

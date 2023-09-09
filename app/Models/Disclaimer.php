@@ -20,4 +20,9 @@ class Disclaimer extends Model
         'disclaimer_print_name',
         'disclaimer_place',
     ];
+    public function jobApplication()
+    {
+        return $this->belongsTo(JobApplication::class);
+    }
+
 }

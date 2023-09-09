@@ -94,32 +94,53 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::put('/training/{training}', [TrainingController::class, 'update'])->name('training.update');
     Route::delete('/training/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
 });
+
 Route::group(['middleware' => ['auth']], function () {
-// home
+    // home
     Route::view('/home', 'home')->name('dashboard');
 });
-
-// card
-Route::view('/card', 'career.card.create')->name('card.view');
-Route::post('/card', [CardsController::class, 'store'])->name('card.store');
 
 //   instruction
 Route::view('/instruction', 'career.instruction')->name('career.instruction');
 
 //  job-application
+// Route::get('/job_application', [JobApplicationController::class, 'index'])->name('career.job_application.index');
+// Route::view('/job_application', 'career.job_application.create')->name('job_application');
+// Route::post('job_application', [JobApplicationController::class, 'store'])->name('job_application.store');
+// Route::get('/positions-ajax', [PositionController::class, 'getPositions'])->name('positions.ajax');
+// Route::get('/job_application/{id}', [JobApplicationController::class, 'show'])->name('job_application.show');
 
+Route::get('/job_applications', [JobApplicationController::class, 'index'])->name('career.job_application.index');
 Route::view('/job_application', 'career.job_application.create')->name('job_application');
-Route::post('job_application', [JobApplicationController::class, 'store'])->name('job_application.store');
+Route::post('/job_application', [JobApplicationController::class, 'store'])->name('career.job_application.store');
+Route::get('/job_application/{id}', [JobApplicationController::class, 'show'])->name('career.job_application.show');
+Route::get('/job_application/{id}/edit', [JobApplicationController::class, 'edit'])->name('career.job_application.edit');
+Route::put('/job_application/{id}', [JobApplicationController::class, 'update'])->name('career.job_application.update');
+Route::delete('/job_application/{id}', [JobApplicationController::class, 'destroy'])->name('career.job_application.destroy');
 Route::get('/positions-ajax', [PositionController::class, 'getPositions'])->name('positions.ajax');
 
 // card
+
+Route::get('/card', [CardsController::class, 'index'])->name('career.card.index');
 Route::view('/card', 'career.card.create')->name('card.view');
-Route::post('/card', [CardsController::class, 'store'])->name('card.store');
+Route::post('/card', [CardsController::class, 'store'])->name('career.card.store');
+Route::get('/card/{id}', [CardsController::class, 'show'])->name('career.card.show');
+Route::get('/card/{id}/edit', [CardsController::class, 'edit'])->name('career.card.edit');
+Route::put('/card/{id}', [CardsController::class, 'update'])->name('career.card.update');
+Route::delete('/card/{id}', [CardsController::class, 'destroy'])->name('career.card.destroy');
 
 //  education
+Route::get('/education', [EducationController::class, 'index'])->name('career.education.index');
+Route::view('/education', 'career.education.create')->name('card.view');
+Route::post('/education', [EducationController::class, 'store'])->name('career.education.store');
+Route::get('/education/{id}', [EducationController::class, 'show'])->name('career.education.show');
+Route::get('/education/{id}/edit', [EducationController::class, 'edit'])->name('career.education.edit');
+Route::put('/education/{id}', [EducationController::class, 'update'])->name('career.education.update');
+Route::delete('/education/{id}', [EducationController::class, 'destroy'])->name('career.education.destroy');
 
-Route::view('/education', 'career.education.create')->name('education.view');
-Route::post('education', [EducationController::class, 'store'])->name('education.store');
+
+// Route::view('/education', 'career.education.create')->name('education.view');
+// Route::post('/education', [EducationController::class, 'store'])->name('education.store');
 
 //  achievement
 
@@ -140,5 +161,4 @@ Route::post('employment', [EmploymentController::class, 'store'])->name('employm
 
 //  demo
 Route::view('/demo', 'demo');
-
-Route::post('demo-edu', [EducationController::class, 'store'])->name('education.store');
+Route::post('/demo', [JobApplicationController::class, 'store'])->name('career.demo.store');

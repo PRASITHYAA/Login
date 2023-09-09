@@ -21,6 +21,11 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
+            {{-- phone --}}
+                <!-- phone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+
+
 </head>
 
 <body>
@@ -32,6 +37,16 @@
     body {
         overflow-x: hidden;
     }
+    .bg{
+        background-color: rgba(248, 235, 235, 0.726)
+    }
+    .careers-back-img {
+        /* background-image: url('{{ asset('img/WhatsApp Image 2023-09-05 at 2.53.01 PM') }}'); */
+                    height: 400px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
 
     /* nav bar */
     .btn-nav {
