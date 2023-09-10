@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-2">
-                               <a href="instruction" class="btn btn-warning text-center"
+                               <a href="{{ route('career.instruction', ['sector_id' => $sector->id, 'position_id' => $position->id]) }}" class="btn btn-warning text-center"
                                    style="display: flex; justify-content: center; align-items: flex-end; padding: 14px; text-decoration: none; color: white; height: 50px; font-weight: bold; background-color:#bf9855  ">
                                     Apply Now
                                 </a>

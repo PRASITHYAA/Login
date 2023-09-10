@@ -101,6 +101,14 @@ class JobApplicationController extends Controller
 
     // show
 
+    public function edit($id)
+    {
+        $jobApplication = JobApplication::find($id);
+        return view('career.job_application.create', compact('jobApplication'));
+    }
+
+    // show
+
     public function show($id)
     {
         $jobApplication = JobApplication::find($id);
