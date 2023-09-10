@@ -174,9 +174,11 @@
         <div class="container  ">
             <!-- Percentage bar -->
             <div class="container">
-                <div class="progress-bar mt-2" role="progressbar"
-                    style="width: 75%; background-color: #111;color: white; " aria-valuenow="75" aria-valuemin=""
-                    aria-valuemax="75%">75%</div>
+                <div class="progress m-2  mt-5 mb-5" style="height: 30px;">
+                    <div class="progress-bar" role="progressbar"
+                        style="width: 75%; background-color: #111;color: white; " aria-valuenow="75"
+                        aria-valuemin="0" aria-valuemax="75%">75%</div>
+                </div>
                 {{-- error --}}
                 @if ($errors->any())
                     <div class=" alert alert-danger">
@@ -204,12 +206,14 @@
                 <!-- Do you have any previous experience? yes or no -->
 
                 <label>Do you have any previous experience? <span class="f5">*</span> <br>
-                    <input type="radio" name="open-input" value="yes" onclick="showNestedOption(this)">
+                    <input type="radio" name="open-input" value="yes" onclick="showNestedOption(this)"
+                        required>
                     Yes
                 </label>
                 <br>
                 <label>
-                    <input type="radio" name="open-input" value="no" onclick="showNestedOption(this)">
+                    <input type="radio" name="open-input" value="no" onclick="showNestedOption(this)"
+                        required>
                     No
                 </label>
 
@@ -228,21 +232,21 @@
                                 Company / Individual <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="employer_company" id="employer_company"
-                                placeholder="Company / Individual" required>
+                                placeholder="Company / Individual">
                         </div>
                         <!-- E-MAIL -->
                         <div class="col-md-4">
                             <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
                                 class="form-control" name="employer_email" id="employer_email"
-                                placeholder="email.com" required>
+                                placeholder="email.com">
                         </div>
                         <!-- Address -->
                         <div class="col-md-4">
                             <label class="form-label">Address <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="employer_address" id="employer_address"
-                                placeholder="Address" required>
+                                placeholder="Address">
                         </div>
                         <!-- Phone -->
                         <div class="col-md-4">
@@ -256,35 +260,35 @@
                             <label class="form-label">Job Title <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="employer_job_title" id="employer_job_title"
-                                placeholder="Job Title	" required>
+                                placeholder="Job Title	">
                         </div>
                         <!-- From Date  -->
                         <div class="col-md-4">
                             <label class="form-label">From Date <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                 name="employer_from_date" class="form-control" placeholder="" id="fromDate"
-                                onchange="validateDateRange()" required>
+                                onchange="validateDateRange()">
                         </div>
                         <!-- To Date -->
                         <div class="col-md-4">
                             <label class="form-label">To Date <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                 name="employer_to_date" class="form-control" placeholder="" id="toDate"
-                                onchange="validateDateRange()" required>
+                                onchange="validateDateRange()">
                             <p style="color: red;" id="validationMessage" class="error"></p>
                         </div>
                         <!-- Experience -->
                         <div class="col-md-4">
                             <label class="form-label">Experience <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" name="employer_experience"
-                                id="employer_experience" class="form-control" placeholder="10 Year" required>
+                                id="totalExperience" class="form-control" readonly>
                         </div>
                         <!-- Responsibilities -->
                         <div class="col-md-4">
                             <label class="form-label">Responsibilities <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="Responsibilities"
                                 class="form-control" name=" employer_responsibilities" id="employer_responsibilities"
-                                placeholder="Responsibilities " required>
+                                placeholder="Responsibilities ">
                         </div>
                         <!-- REFERENCE DETAILS FROM PREVIOUS EMPLOYER -->
                         <h4 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER</h4>
@@ -292,29 +296,28 @@
                         <div class="col-md-4">
                             <label class="form-label">Name <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                class="form-control" name="reference_name" id="reference_name" placeholder="Name	"
-                                required>
+                                class="form-control" name="reference_name" id="reference_name" placeholder="Name	">
                         </div>
                         <!-- company -->
                         <div class="col-md-4">
                             <label class="form-label">Company <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="reference_company" id="reference_company"
-                                placeholder="Company	" required>
+                                placeholder="Company	">
                         </div>
                         <!-- position -->
                         <div class="col-md-4">
                             <label class="form-label">Position <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="reference_position" id="reference_position"
-                                placeholder="Position	" required>
+                                placeholder="Position	">
                         </div>
                         <!-- E-MAIL -->
                         <div class="col-md-4">
                             <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
                                 class="form-control" name="reference_email" id="reference_email"
-                                placeholder="email.com" required>
+                                placeholder="email.com">
                         </div>
                         <!-- Phone -->
                         <div class="col-md-4">
@@ -330,7 +333,7 @@
                             <label class="form-label">Address <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="reference_address" id="reference_address"
-                                placeholder="Address" required>
+                                placeholder="Address">
                         </div>
                     </div>
                     <br>
@@ -349,10 +352,8 @@
                     <!-- If Yes, Please Explain  -->
                     <div id="sub-nested-input" style="display: none;">
                         <p style="font-weight: bold;">If Yes, Please Explain <span class="f5">*</span> </p>
-                        <label>
-                            <input style="background-color:  rgba(248, 235, 235, 0.726);" type="text"
-                                name="sub-nested-input">
-                        </label>
+                        <textarea style="background-color:  rgba(248, 235, 235, 0.726);" rows="3" class="form-control"
+                            name="sub-nested-input"></textarea>
                         <br>
                         <!-- Are You Legally Eligible to Work?  -->
                         <label>Are You Legally Eligible to Work? <span class="f5">*</span>
@@ -369,16 +370,14 @@
                     <!-- If No, Please Explain -->
                     <div id="nested-input-field-div" style="display: none;font-weight: bold;">
                         If No, Please Explain <span class="f5">*</span> <br>
-                        <input style="background-color:  rgba(248, 235, 235, 0.726);" type="text"
-                            id="nested-input-field" name="nested-input-field">
-
+                        <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" id="nested-input-field"
+                            name="nested-input-field" rows="3"> </textarea>
                     </div>
                 </div>
                 <!-- button -->
                 <div style="display:flex;justify-content:center;align-items: center;" class="mt-5">
                     <a class="btn btn-secondary mx-2" href="education">Previous</a>
-                    <button class="btn btn-primary mx-2">Save </button>
-                    <a class="btn btn-secondary mx-2" href="achievement">Next</a>
+                    <button class="btn btn-primary mx-2">Save & Next </button>
                 </div>
 
             </form>
@@ -578,6 +577,34 @@
             } else {
                 validationMessage.textContent = "";
                 validationMessage.style.display = "none";
+            }
+        }
+    </script>
+    {{-- Experience --}}
+    <script>
+        const fromDateInput = document.getElementById("fromDate");
+        const toDateInput = document.getElementById("toDate");
+        const totalExperienceInput = document.getElementById("totalExperience");
+
+        fromDateInput.addEventListener("input", calculateExperience);
+        toDateInput.addEventListener("input", calculateExperience);
+
+        function calculateExperience() {
+            const fromDate = new Date(fromDateInput.value);
+            const toDate = new Date(toDateInput.value);
+
+            if (!isNaN(fromDate.getTime()) && !isNaN(toDate.getTime())) {
+                // Calculate the difference in months and years
+                const monthsDifference = (toDate.getMonth() - fromDate.getMonth()) + 12 * (toDate.getFullYear() - fromDate.getFullYear());
+                const years = Math.floor(monthsDifference / 12);
+                const months = monthsDifference % 12;
+
+                // Display the total experience in the input field
+                const totalExperience = years + " years and " + months + " months";
+                totalExperienceInput.value = totalExperience;
+            } else {
+                // If the input dates are not valid, clear the total experience field
+                totalExperienceInput.value = '';
             }
         }
     </script>

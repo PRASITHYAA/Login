@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->date('high_school_form_date')->nullable();
             $table->date('high_school_to_date')->nullable();
             $table->date('high_school_year_of_passing')->nullable();
-            $table->float('high_school_percentage')->nullable();
+            $table->decimal('high_school_percentage', 5, 2)->nullable();
             $table->string('high_school_class')->nullable();
             $table->string('high_school_stream')->nullable();
             $table->string('high_school_image_certificate')->nullable();

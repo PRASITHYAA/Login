@@ -47,7 +47,8 @@ class DisclaimerController extends Controller
         return view('career.acknowledgement.view', compact('data'));
     }
 
-    public function downloadPdf(Request $request) {
+    public function downloadPdf(Request $request)
+     {
      $application = JobApplication::find($request->id);
         $data = $application->toArray();
      $disclaimer = Disclaimer::where('job_application_id', $request->id)->first()->toArray();
@@ -56,8 +57,8 @@ class DisclaimerController extends Controller
         $data = array_merge($education,$data);
         $card = Card::where('job_application_id', $request->id)->first()->toArray();
         $data = array_merge($card,$data);
-        $achivement = Achievement::where('job_application_id', $request->id)->first()->toArray();
-        $data = array_merge($achivement,$data);
+        $achievement = Achievement::where('job_application_id', $request->id)->first()->toArray();
+        $data = array_merge($achievement,$data);
         $employment = Employment::where('job_application_id', $request->id)->first()->toArray();
         $data = array_merge($employment,$data);
         $pdf = Pdf::loadView('pdf.application', $data);

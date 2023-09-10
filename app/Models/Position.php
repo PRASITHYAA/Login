@@ -11,6 +11,7 @@ class Position extends Model
     protected $fillable = [
         'sector_id',
         'name',
+        // 'description',
 
     ];
 

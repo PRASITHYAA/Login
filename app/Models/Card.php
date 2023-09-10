@@ -29,4 +29,9 @@ class Card extends Model
         'passport_image_id',
         'passport_image_id_page',
     ];
+    
+    public function jobApplication()
+    {
+        return $this->belongsTo(JobApplication::class);
+    }
 }

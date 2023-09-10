@@ -7,6 +7,19 @@ use Illuminate\Http\Request;
 
 class JobApplicationController extends Controller
 {
+    public function index()
+    {
+        $jobApplications = JobApplication::all(); // Fetch all job applications
+
+        return view('career.job_application.index', ['jobApplications' => $jobApplications]);
+    }
+
+    public function create()
+    {
+        return view('career.job_application.create');
+    }
+
+
     public function store(Request $request)
     {
         //dd($request->all());
@@ -36,7 +49,6 @@ class JobApplicationController extends Controller
             'permanent_phone' => 'required_if:permanent_address_input,yes',
             'permanent_country' => 'required_if:permanent_address_input,yes',
             'permanent_address' => 'required_if:permanent_address_input,yes',
-
             // father name
             'father_name' => 'required',
             'father_date_of_birth' => 'required|date',
@@ -53,14 +65,13 @@ class JobApplicationController extends Controller
             'spouse_date_of_birth' => 'required_if:marital_status,married',
             'spouse_email' => 'required_if:marital_status,married',
             'spouse_phone' => 'required_if:marital_status,married',
-            'spouse_image' => 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',  // Adjust max size if needed
-            // siblings
+            'spouse_image' => 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
             'siblings' => 'required|in:yes,no',
             'siblings_name' => 'required_if:siblings,yes',
             'siblings_date_of_birth' => 'required_if:siblings,yes',
             'siblings_email' => 'required_if:siblings,yes',
             'siblings_phone' => 'required_if:siblings,yes',
-            'siblings_image' => 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',  // Adjust max size if needed
+            'siblings_image' => 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
         ]);
 
         // Upload and store father image
@@ -88,5 +99,11 @@ class JobApplicationController extends Controller
         return redirect()->route('card.view', ['id' => $jobApplication->id])->with('success', '  Job Application submitted successfully!');
     }
 
+    // show
 
+    public function show($id)
+    {
+        $jobApplication = JobApplication::find($id);
+        return view('career.job_application.show', compact('jobApplication'));
+    }
 }
