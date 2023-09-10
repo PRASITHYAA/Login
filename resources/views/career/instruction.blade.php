@@ -49,7 +49,7 @@
             </li>
         </ol>
         <div style="display: flex;justify-content: end;">
-            <a style="font-weight: bold;" class="btn btn-secondary" href="job_application">Next</a>
+            <a style="font-weight: bold;" class="btn btn-secondary" href="{{ route('job_application', ['sector_id' => request()->sector_id, 'position_id' => request()->position_id]) }}">Next</a>
             {{-- <a href="{{ route('job_application', $position->id) }}" class="btn btn-warning btn-sm">Edit</a> --}}
 
         </div>

@@ -212,7 +212,7 @@
                                 @endphp
                                 @foreach ($sectors as $sector)
                                     <option value="{{ $sector->id }}"
-                                        {{ old('sector') == $sector->id ? 'selected' : '' }}>{{ $sector->name }}</option>
+                                        {{ (old('sector') == $sector->id || request()->sector_id == $sector->id) ? 'selected' : '' }}>{{ $sector->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -226,7 +226,7 @@
                                 @endphp
                                 @foreach ($positions as $position)
                                     <option value="{{ $position->id }}"
-                                        {{ old('position') == $position->id ? 'selected' : '' }}>{{ $position->name }}
+                                        {{ (old('position') == $position->id || request()->position_id == $position->id) ? 'selected' : '' }}>{{ $position->name }}
                                     </option>
                                 @endforeach
                             </select>
