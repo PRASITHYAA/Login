@@ -118,6 +118,7 @@ Route::get('/job_application/{id}/edit', [JobApplicationController::class, 'edit
 Route::put('/job_application/{id}', [JobApplicationController::class, 'update'])->name('career.job_application.update');
 Route::delete('/job_application/{id}', [JobApplicationController::class, 'destroy'])->name('career.job_application.destroy');
 Route::get('/positions-ajax', [PositionController::class, 'getPositions'])->name('positions.ajax');
+Route::get('/cities-ajax', [JobApplicationController::class, 'getCities'])->name('cities.ajax');
 
 // card
 
