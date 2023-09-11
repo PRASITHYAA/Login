@@ -108,7 +108,7 @@
                             @endphp
 
                             <input style="background-color: rgba(248, 235, 235, 0.726);" aria-label="Print Name"
-                                id="print_name" type="text" class="form-control"
+                                id="print_name" type="text" class="form-control" name="disclaimer_print_name"
                                 value="{{ $jobApplication ? $jobApplication->first_name . ' ' . $jobApplication->last_name : '' }}"
                                 readonly>
                             @if (!$jobApplication)
@@ -117,9 +117,8 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">PLACE <span style="color: red;">*</span></label>
-
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" id="print_name" type="text"
-                                class="form-control">
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" id="disclaimer_place" type="text"
+                                class="form-control" name="disclaimer_place">
                         </div>
                         <!-- checkbox -->
                         <div class="form-check pb-3">
