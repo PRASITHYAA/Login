@@ -64,8 +64,7 @@
     <div class="container-fluid ">
         <div class="row nav-top ">
             <div class=" container col-lg-2 text-center navtop" style="background-color: white;">
-                <img class="" style="width: 180px;height: 140px;" src="{{ asset('img/logo.png') }}"
-                    alt="">
+                <img class="" style="width: 180px;height: 140px;" src="{{ asset('img/logo.png') }}" alt="">
             </div>
             <div class=" container-fluid  col-lg-10 text-white  navtop">
                 <section style="background-color: #111c3a; "
@@ -171,9 +170,8 @@
         <div class="container">
             <!-- percentage -->
             <div class="container   mt-2">
-                <div class="progress-bar" role="progressbar"
-                    style="width: 30%; background-color: #111;color: white; " aria-valuenow="90" aria-valuemin="0"
-                    aria-valuemax="30%">30%
+                <div class="progress-bar" role="progressbar" style="width: 30%; background-color: #111;color: white; "
+                    aria-valuenow="90" aria-valuemin="0" aria-valuemax="30%">30%
                 </div>
             </div>
         </div>
@@ -184,20 +182,20 @@
             <div class="container">
                 {{-- error --}}
                 @if ($errors->any())
-                    <div class=" alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                <div class=" alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
                 @endif
                 {{-- success --}}
 
                 @if (session('success'))
-                    <div class=" container  alert alert-success">
-                        {{ session('success') }}
-                    </div>
+                <div class=" container  alert alert-success">
+                    {{ session('success') }}
+                </div>
                 @endif
                 {{-- {{ print_r(old()) }} --}}
                 <form
@@ -205,7 +203,7 @@
                     method="POST" enctype="multipart/form-data">
                     @csrf
                     @if (isset($jobApplication))
-                        @method('PUT')
+                    @method('PUT')
                     @endif
                     <input type="hidden" name="job_application_id" value="{{ $jobApplication->id ?? '' }}">
                     <div class="row">
@@ -215,12 +213,13 @@
                             <select class="form-select bg" name="sector_id" id="sector_id" required>
                                 <option value="">--Please Select Sector--</option>
                                 @php
-                                    $sectors = Sector::all();
+                                $sectors = Sector::all();
                                 @endphp
                                 @foreach ($sectors as $sector)
-                                    <option value="{{ $sector->id }}"
-                                        {{ old('sector') == $sector->id || request()->sector_id == $sector->id || (isset($jobApplication) && $jobApplication->sector_id == $sector->id) ? 'selected' : '' }}>
-                                        {{ $sector->name }}</option>
+                                <option value="{{ $sector->id }}" {{ old('sector')==$sector->id || request()->sector_id
+                                    == $sector->id || (isset($jobApplication) && $jobApplication->sector_id ==
+                                    $sector->id) ? 'selected' : '' }}>
+                                    {{ $sector->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -230,13 +229,14 @@
                             <select class="form-select bg" name="position_id" id="position_id" required>
                                 <option value="">--Please Select Position--</option>
                                 @php
-                                    $positions = Position::all();
+                                $positions = Position::all();
                                 @endphp
                                 @foreach ($positions as $position)
-                                    <option value="{{ $position->id }}"
-                                        {{ old('position') == $position->id || request()->position_id == $position->id || (isset($jobApplication) && $jobApplication->position_id == $position->id) ? 'selected' : '' }}>
-                                        {{ $position->name }}
-                                    </option>
+                                <option value="{{ $position->id }}" {{ old('position')==$position->id ||
+                                    request()->position_id == $position->id || (isset($jobApplication) &&
+                                    $jobApplication->position_id == $position->id) ? 'selected' : '' }}>
+                                    {{ $position->name }}
+                                </option>
                                 @endforeach
                             </select>
 
@@ -255,8 +255,8 @@
                             <label for="validationDefault01" class="form-label">First name <span
                                     class="red">*</span></label>
                             <input type="text" class="form-control bg" name="first_name" placeholder="First Name"
-                                id="first_name"
-                                value="{{ old('first_name') ?? ($jobApplication->first_name ?? '') }}" required>
+                                id="first_name" value="{{ old('first_name') ?? ($jobApplication->first_name ?? '') }}"
+                                required>
                         </div>
                         <!-- lastname -->
                         <div class="col-md-4">
@@ -270,12 +270,12 @@
                             <label for="image" class="form-label">Upload the Latest Passport Size Photo : <span
                                     class="red">*</span></label>
                             <div class="input-group">
-                                <input type="file" class="form-control" id="image" name="image"
-                                    accept="image/*" required>
+                                <input type="file" class="form-control" id="image" name="image" accept="image/*"
+                                    required>
                             </div>
                             @if (isset($jobApplication))
-                                <img src="{{ asset('storage/' . $jobApplication->image) }}"
-                                    alt="Job Application Image" style="max-width: 100%;">
+                            <img src="{{ asset('storage/' . $jobApplication->image) }}" alt="Job Application Image"
+                                style="max-width: 100%;">
                             @endif
                             <div class="form-group">
                                 <img id="imagePreview" src="#" alt="Image Preview"
@@ -308,17 +308,16 @@
 
                         </div>
 
-                        <!-- state -->
                         <!-- State -->
                         <div class="col-md-4">
                             <label class="form-label">State <span class="red">*</span></label>
                             <select class="form-select" name="state" id="state" required>
                                 <option value="">--Select State--</option>
                                 @foreach (\App\Models\State::all() as $state)
-                                    <option value="{{ $state->id }}"
-                                        {{ isset($jobApplication) && $state->id == $jobApplication->state_id ? 'selected' : '' }}>
-                                        {{ $state->name }}
-                                    </option>
+                                <option value="{{ $state->id }}" {{ isset($jobApplication) && $state->id ==
+                                    $jobApplication->state_id ? 'selected' : '' }}>
+                                    {{ $state->name }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -327,6 +326,12 @@
                             <label class="form-label">City <span class="red">*</span></label>
                             <select class="form-select" name="city" id="city" required>
                                 <option value="">--Select City--</option>
+                                @foreach (\App\Models\City::all() as $city)
+                                <option value="{{ $city->id }}" {{ isset($jobApplication) && $city->id ==
+                                    $jobApplication->city_id ? 'selected' : '' }}>
+                                    {{ $city->name }}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                         <!--address -->
@@ -347,8 +352,8 @@
                         <!-- phone -->
                         <div class="col-md-4">
                             <label class="form-label">Phone/Mobile <span class="red">*</span></label><br>
-                            <input type="tel" class=" form-control phoneInputField" name="phone"
-                                id="phone" value="{{ old('phone') ?? ($jobApplication->phone ?? '') }}" required>
+                            <input type="tel" class=" form-control phoneInputField" name="phone" id="phone"
+                                value="{{ old('phone') ?? ($jobApplication->phone ?? '') }}" required>
                             <p class="errorText" style="color: red;"></p>
 
                         </div>
@@ -371,17 +376,15 @@
                         <!-- fblink -->
                         <div class="col-md-4">
                             <label class="form-label">FB Profile Link <span class="red">*</span></label>
-                            <input type="text" name="fb_link" class="form-control bg"
-                                placeholder="FB Profile Link" id="fb_link"
-                                value="{{ old('fb_link') ?? ($jobApplication->fb_link ?? '') }}" required>
+                            <input type="text" name="fb_link" class="form-control bg" placeholder="FB Profile Link"
+                                id="fb_link" value="{{ old('fb_link') ?? ($jobApplication->fb_link ?? '') }}" required>
                         </div>
                         <!-- instalink -->
                         <div class="col-md-4">
                             <label class="form-label">Instagram Profile Link <span class="red">*</span></label>
                             <input type="text" class="form-control bg" placeholder="Instagram Profile Link"
                                 name="instagram_link" id="instagram_link"
-                                value="{{ old('instagram_link') ?? ($jobApplication->instagram_link ?? '') }}"
-                                required>
+                                value="{{ old('instagram_link') ?? ($jobApplication->instagram_link ?? '') }}" required>
                         </div>
                         <!-- linked link -->
                         <div class="col-md-4">
@@ -397,15 +400,17 @@
                         <div class="col-md-4">
                             <label>Does Your Permanent Address is Different
                                 <br>
-                                <input type="radio" name="permanent_address_input" value="yes"
-                                    {{ old('permanent_address_input') == 'yes' || (isset($jobApplication) && $jobApplication->permanent_address_input == 'yes') ? 'checked' : '' }}
-                                    id="yesRadio1">
+                                <input type="radio" name="permanent_address_input" value="yes" {{
+                                    old('permanent_address_input')=='yes' || (isset($jobApplication) &&
+                                    $jobApplication->permanent_address_input == 'yes') ? 'checked' : '' }}
+                                id="yesRadio1">
                                 Yes
                             </label> <br>
                             <label>
-                                <input type="radio" name="permanent_address_input" value="no"
-                                    {{ old('permanent_address_input') == 'no' || (isset($jobApplication) && $jobApplication->permanent_address_input == 'no') ? 'checked' : '' }}
-                                    id="noRadio1">
+                                <input type="radio" name="permanent_address_input" value="no" {{
+                                    old('permanent_address_input')=='no' || (isset($jobApplication) &&
+                                    $jobApplication->permanent_address_input == 'no') ? 'checked' : '' }}
+                                id="noRadio1">
                                 No
                             </label>
                         </div>
@@ -423,8 +428,8 @@
                             <!-- permanentcity -->
                             <div class="col-md-4">
                                 <label class="form-label">City <span class="red">*</span></label>
-                                <input type="text" name="permanent_city"
-                                    class="form-control bg permanent-address-input" id="permanent_city"
+                                <input type="text" name="permanent_city" class="form-control bg permanent-address-input"
+                                    id="permanent_city"
                                     value="{{ old('permanent_city') ?? ($jobApplication->permanent_city ?? '') }}"
                                     placeholder="City">
                             </div>
@@ -446,7 +451,8 @@
                                     value="{{ old('permanent_postal_code') ?? ($jobApplication->permanent_postal_code ?? '') }}"
                                     placeholder="Postal Code">
                             </div>
-                            {{-- <!-- permanent phone --> --}}
+                            {{--
+                            <!-- permanent phone --> --}}
                             <div class="col-md-4">
                                 <label class="form-label">Phone/Mobile <span class="red">*</span></label>
                                 <br>
@@ -492,6 +498,10 @@
                                 <input type="file" class="form-control" id="father_image" name="father_image"
                                     accept="image/*" required>
                             </div>
+                            @if (isset($jobApplication))
+                            <img src="{{ asset('storage/' . $jobApplication->father_image) }}" alt="Job Application Image"
+                                style="max-width: 100%;">
+                            @endif
                             <!-- images  -->
                             <div class="form-group">
                                 <img id="fatherimagePreview" src="#" alt="Image Preview"
@@ -532,7 +542,11 @@
                                 <input type="file" class="form-control" name="mother_image" id="mother_image"
                                     accept="image/*" required>
                             </div>
-                            `
+                            @if (isset($jobApplication))
+                            <img src="{{ asset('storage/' . $jobApplication->mother_image) }}" alt="Job Application Image"
+                                style="max-width: 100%;">
+                            @endif
+
                             <!-- images  -->
                             <div class="form-group">
                                 <img id="motherimagePreview" src="#" alt="Image Preview"
@@ -543,14 +557,16 @@
                         <!-- marital status -->
                         <div class="col">
                             <p style="font-weight: bold;">Marital Status :</p>
-                            <input type="radio" name="marital_status" value="married"
-                                {{ old('marital_status') == 'married' || (isset($jobApplication) && $jobApplication->marital_status == 'married') ? 'checked' : '' }}
-                                id="marital_status_yes" onclick="showInputs()" required>
+                            <input type="radio" name="marital_status" value="married" {{
+                                old('marital_status')=='married' || (isset($jobApplication) &&
+                                $jobApplication->marital_status == 'married') ? 'checked' : '' }}
+                            id="marital_status_yes" onclick="showInputs()" required>
                             Married
                             <br>
-                            <input type="radio" name="marital_status" value="single"
-                                {{ old('marital_status') == 'single' || (isset($jobApplication) && $jobApplication->marital_status == 'single') ? 'checked' : '' }}
-                                id="marital_status_no" onclick="hideInputs()" required>
+                            <input type="radio" name="marital_status" value="single" {{ old('marital_status')=='single'
+                                || (isset($jobApplication) && $jobApplication->marital_status == 'single') ? 'checked' :
+                            '' }}
+                            id="marital_status_no" onclick="hideInputs()" required>
                             Single
                             <div id="singleInputs" style="display: none;">
                             </div>
@@ -560,18 +576,15 @@
                                 <div class="row g-3">
                                     <div class="col-md-3">
                                         <!-- spousename -->
-                                        <label class="form-label pt-2">Spouse Name <span
-                                                class="red">*</span></label>
-                                        <input type="text" class="form-control bg marital-status-input"
-                                            id="spouse_name"
+                                        <label class="form-label pt-2">Spouse Name <span class="red">*</span></label>
+                                        <input type="text" class="form-control bg marital-status-input" id="spouse_name"
                                             value="{{ old('spouse_name') ?? ($jobApplication->spouse_name ?? '') }}"
                                             name="spouse_name" placeholder="Spouse Name">
 
                                     </div>
                                     <!-- spousedob -->
                                     <div class="col-md-3">
-                                        <label class="form-label pt-2">Date of Birth <span
-                                                class="red">*</span></label>
+                                        <label class="form-label pt-2">Date of Birth <span class="red">*</span></label>
                                         <input type="date" class="form-control bg marital-status-input"
                                             name="spouse_date_of_birth" id="spouse_date_of_birth"
                                             value="{{ old('spouse_date_of_birth') ?? ($jobApplication->spouse_date_of_birth ?? '') }}"
@@ -590,8 +603,7 @@
                                     <div class="col-md-3">
                                         <label for="spouse_phone" class="form-label pt-2">Phone/Mobile <span
                                                 class="red">*</span></label>
-                                        <input type="tel"
-                                            class="form-control phoneInputField marital-status-input"
+                                        <input type="tel" class="form-control phoneInputField marital-status-input"
                                             name="spouse_phone" id="spouse_phone"
                                             value="{{ old('spouse_phone', $jobApplication->spouse_phone ?? '') }}">
                                         <p class="errorText" style="color: red;"></p>
@@ -602,9 +614,13 @@
                                                 class="red">*</span> </label>
                                         <div class="input-group">
                                             <input type="file" class="form-control marital-status-input"
-                                                name="spouse_image" accept="image/*" id="spouse_image"
-                                                placeholder="">
+                                                name="spouse_image" accept="image/*" id="spouse_image" placeholder="">
                                         </div>
+                                        @if (isset($jobApplication))
+                                        <img src="{{ asset('storage/' . $jobApplication->spouse_image) }}" alt="Job Application Image"
+                                            style="max-width: 100%;">
+                                        @endif
+            
                                         <div class="form-group">
                                             <img id="spouseimagePreview" src="#" alt="Image Preview"
                                                 style="max-width: 150px; display: none;">
@@ -620,13 +636,15 @@
                             <div class="col">
                                 <p style="font-weight: bold;">Siblings :</p>
                                 <label>
-                                    <input type="radio" name="siblings" value="yes" id="yesRadio2"
-                                        {{ old('siblings') == 'yes' || (isset($jobApplication) && $jobApplication->siblings == 'yes') ? 'checked' : '' }}>
+                                    <input type="radio" name="siblings" value="yes" id="yesRadio2" {{
+                                        old('siblings')=='yes' || (isset($jobApplication) && $jobApplication->siblings
+                                    == 'yes') ? 'checked' : '' }}>
                                     Yes
                                 </label> <br>
                                 <label>
-                                    <input type="radio" name="siblings" value="no" id="noRadio2"
-                                        {{ old('siblings') == 'no' || (isset($jobApplication) && $jobApplication->siblings == 'no') ? 'checked' : '' }}>
+                                    <input type="radio" name="siblings" value="no" id="noRadio2" {{
+                                        old('siblings')=='no' || (isset($jobApplication) && $jobApplication->siblings ==
+                                    'no') ? 'checked' : '' }}>
                                     No
                                 </label>
                                 <div id="formContainer2"
@@ -661,8 +679,7 @@
                                         <div class="col-md-3">
                                             <label class="form-label pt-2">Phone/Mobile <span
                                                     class="red">*</span></label><br>
-                                            <input type="tel"
-                                                class="phoneInputField  form-control sibling-name-input"
+                                            <input type="tel" class="phoneInputField  form-control sibling-name-input"
                                                 name="siblings_phone" id="siblings_phone"
                                                 value="{{ old('siblings_phone') ?? ($jobApplication->siblings_phone ?? '') }}">
                                             <p class="errorText" style="color: red;"></p>
@@ -673,6 +690,11 @@
                                                 <span class="red">*</span></label>
                                             <input type="file" class="form-control sibling-name-input"
                                                 id="siblings_image" name="siblings_image" accept="image/*">
+                                                @if (isset($jobApplication))
+                                                <img src="{{ asset('storage/' . $jobApplication->siblings_image) }}" alt="Job Application Image"
+                                                    style="max-width: 100%;">
+                                                @endif
+        
                                             <!-- images  -->
                                             <div class="form-group  ">
                                                 <img id="siblingsimagePreview" src="#" alt="Image Preview"
@@ -712,14 +734,13 @@
                         <h1>About TISE</h1>
                         <p>With over 8 years of experience in the industry, <br> we provide top-notch expertise and
                             innovative <br> solutions for your engineering needs</p>
-                        {{-- <!-- icons --> --}}
+                        {{--
+                        <!-- icons --> --}}
                         <div class="">
-                            <a style="text-decoration: none; padding-right: 10px;" href=""
-                                class="   text-reset">
+                            <a style="text-decoration: none; padding-right: 10px;" href="" class="   text-reset">
                                 <i class="icons-1  fab fa-facebook-f g-5 "></i>
                             </a>
-                            <a style="text-decoration: none; padding-right: 10px;" href=""
-                                class=" text-reset ">
+                            <a style="text-decoration: none; padding-right: 10px;" href="" class=" text-reset ">
                                 <i class="fa-brands fa-instagram  "></i>
                             </a>
                             <a style="text-decoration: none;padding-right: 10px;" href="" class=" text-reset">
