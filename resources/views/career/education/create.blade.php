@@ -30,7 +30,7 @@
 
             <form action="{{ route('career.education.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
+                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->job_application_id }}">
                 <h1 class="text-center pt-4 pb-4">EDUCATION</h1>
                 <p style="font-weight: bold;">Note: Pleasd fill all completed educational details as applicable</p>
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp <br>
@@ -763,7 +763,7 @@
         </div>
         <!-- BUTTONS -->
         <div style="display: flex;justify-content: end; align-items: center;" class="">
-            <a style="font-weight: bold; " class="btn btn-secondary mt-5" href="card">Previous</a>
+            <a style="font-weight: bold; " class="btn btn-secondary mt-5" href="{{ route('career.job_application.edit', request()->job_application_id) }}">Previous</a>
             <button class="btn btn-primary mt-5 mx-3 ">Save & Next </button>
         </div>
         </form>

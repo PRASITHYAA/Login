@@ -175,7 +175,7 @@ class EducationController extends Controller
 
         Education::create($education);
 
-        return redirect()->route('employment', ['id' => $request->job_application_id])->with('success', 'Education created successfully!');
+        return redirect()->route('employment', ['job_application_id' => $request->job_application_id])->with('success', 'Education created successfully!');
     }
 
     public function show($id)
