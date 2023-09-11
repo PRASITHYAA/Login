@@ -16,7 +16,7 @@
             </label>
 
             <label>
-                <input type="checkbox" id="passport" name="identity_type" value="passport" onchange="toggleInputFields()">
+                <input type="checkbox" id="passport" name="identity_type" value="passport" checked>
                 PASSPORT
             </label>
             <div id="inputFieldsaadharcard">
@@ -64,7 +64,7 @@
                             </div>
                             <!-- aadharimage -->
                             <div class="col mt-4">
-                                <label  class="form-label">Upload ID- 1st Page </label><br>
+                                <label class="form-label">Upload ID- 1st Page </label><br>
                                 @if ($card->aadhar_image)
                                     <img id="aadhar_image" src="{{ asset('storage/' . $card->aadhar_image) }}"
                                         alt="Job Application Image" style="max-width: 100%;">
@@ -81,113 +81,87 @@
                             </div>
                             <!-- button -->
                             <a style="font-weight: bold;" class="btn btn-secondary mt-5"
-                            href="{{ route('career.job_application.show', ['id' => $jobApplication->id - 1]) }}">Previous</a>
-                    <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                            href="{{ route('career.education.show', ['id' => $jobApplication->id]) }}">Next</a>
+                                href="{{ route('career.job_application.show', ['id' => $jobApplication->id - 1]) }}">Previous</a>
+                            <a style="font-weight: bold;" class="btn btn-secondary mt-5 mx-3"
+                                href="{{ route('career.education.show', ['id' => $jobApplication->id]) }}">Next</a>
 
                             <br>
                             <br>
                         </div>
                         <div class="col-lg-6">
-                            <div id="inputFieldspassport" style="display: none;">
-                                <!-- passport -->
-                                <h4 class="text-center" style="font-weight: bold;">PASSPORT</h4>
-                                <!-- passportname -->
-                                <div class="col mt-4">
-                                    <label class="form-label">Name as per IDs</label>
-                                    <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                        value="{{ $card->passport_name }}" readonly>
-                                </div>
-                                <!-- passport id number -->
-                                <div class="col mt-4">
-                                    <label class="form-label">IDs Number</label>
-                                    <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                        value="{{ $card->passport_id_number }}" readonly>
-                                </div>
-                                <!-- paasport issued date -->
-                                <div class="col mt-4">
-                                    <label class="form-label">Issued Date</label>
-                                    <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                        value="{{ $card->passport_issue_date }}" readonly>
-                                </div>
-                                <!-- passport expired date -->
-                                <div class="col mt-4">
-                                    <label class="form-label">Expired Date</label>
-                                    <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                        value="{{ $card->passport_expired_date }}" readonly>
+                            <!-- passport -->
+                            <h4 class="text-center" style="font-weight: bold;">PASSPORT</h4>
+                            <!-- passportname -->
+                            <div class="col mt-4">
+                                <label class="form-label">Name as per IDs</label>
+                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                    value="{{ $card->passport_name }}" readonly>
+                            </div>
+                            <!-- passport id number -->
+                            <div class="col mt-4">
+                                <label class="form-label">IDs Number</label>
+                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                    value="{{ $card->passport_id_number }}" readonly>
+                            </div>
+                            <!-- paasport issued date -->
+                            <div class="col mt-4">
+                                <label class="form-label">Issued Date</label>
+                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                    value="{{ $card->passport_issue_date }}" readonly>
+                            </div>
+                            <!-- passport expired date -->
+                            <div class="col mt-4">
+                                <label class="form-label">Expired Date</label>
+                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                    value="{{ $card->passport_expired_date }}" readonly>
 
-                                </div>
-                                <!-- passport issued country -->
-                                <div class="col mt-4">
-                                    <label class="form-label">Country</label>
-                                    <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                        value="{{ $card->passport_issued_country }}" readonly>
-                                </div>
-                                <!-- passport issued state -->
-                                <div class="col mt-4">
-                                    <label class="form-label">State</label>
-                                    <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                        value="{{ $card->passport_issued_state }}" readonly>
-                                </div>
-                                <!-- passport issued place -->
-                                <div class="col mt-4">
-                                    <label class="form-label">Issued Place
-                                    </label>
-                                    <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                        value="{{ $card->passport_issued_place }}" readonly>
-                                </div>
+                            </div>
+                            <!-- passport issued country -->
+                            <div class="col mt-4">
+                                <label class="form-label">Country</label>
+                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                    value="{{ $card->passport_issued_country }}" readonly>
+                            </div>
+                            <!-- passport issued state -->
+                            <div class="col mt-4">
+                                <label class="form-label">State</label>
+                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                    value="{{ $card->passport_issued_state }}" readonly>
+                            </div>
+                            <!-- passport issued place -->
+                            <div class="col mt-4">
+                                <label class="form-label">Issued Place
+                                </label>
+                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                    value="{{ $card->passport_issued_place }}" readonly>
+                            </div>
 
-                                <!-- passport  upload id -->
-                                <div class="col mt-4">
-                                    <label for="validationDefaultUpload" class="form-label">Upload ID- 1st Page</label>
-                                    @if ($card->passport_image_id)
-                                        <img id="passport_image_id"
-                                            src="{{ asset('storage/' . $card->passport_image_id) }}"
-                                            alt="Job Application Image" style="max-width: 100%;">
-                                    @endif
-                                </div>
-                                <!-- passport image id page -->
-                                <div class="col mt-4">
-                                    <label class="form-label">Upload ID- 2st Page </label>
-                                    <input type="file" class="form-control" style="background-color: rgba(248, 235, 235, 0.726);" id="passport_image_id_page"
-                                    name="passport_image_id_page"  readonly>
+                            <!-- passport  upload id -->
+                            <div class="col mt-4">
+                                <label for="validationDefaultUpload" class="form-label">Upload ID- 1st Page</label>
+                                @if ($card->passport_image_id)
+                                    <img id="passport_image_id" src="{{ asset('storage/' . $card->passport_image_id) }}"
+                                        alt="Job Application Image" style="max-width: 100%;">
+                                @endif
+                            </div>
+                            <!-- passport image id page -->
+                            <div class="col mt-4">
+                                <label class="form-label">Upload ID- 2st Page </label>
+                                <input type="file" class="form-control"
+                                    style="background-color: rgba(248, 235, 235, 0.726);" id="passport_image_id_page"
+                                    name="passport_image_id_page" readonly>
 
-                                    @if ($card->passport_image_id_page)
-                                        <img id="passport_image_id_page"
-                                            src="{{ asset('storage/' . $card->passport_image_id_page) }}"
-                                            alt="Job Application Image" style="max-width: 100%;">
-                                    @endif
-                                </div>
+                                @if ($card->passport_image_id_page)
+                                    <img id="passport_image_id_page"
+                                        src="{{ asset('storage/' . $card->passport_image_id_page) }}"
+                                        alt="Job Application Image" style="max-width: 100%;">
+                                @endif
                             </div>
                         </div>
-                    @endforeach
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
-    <script>
-        function toggleInputFields() {
-            const passport = document.getElementById('passport');
-            const inputFieldspassport = document.getElementById('inputFieldspassport');
-            if (passport.checked) {
-                inputFieldspassport.style.display = 'block';
-            } else {
-                inputFieldspassport.style.display = 'none';
-            }
-        }
-    </script>
-        <script>
-            function setupImagePreview(inputId, previewId) {
-                document.getElementById(inputId).addEventListener('change', function(event) {
-                    var image = document.getElementById(previewId);
-                    image.src = URL.createObjectURL(event.target.files[0]);
-                    image.style.display = 'block';
-                });
-            }
-            setupImagePreview('aadhar_image', 'aadharImagePreview');
-            setupImagePreview('aadhar_image_page', 'aadharImagePagePreview');
-            setupImagePreview('passport_image_id', 'passportImageIdPreview');
-            setupImagePreview('passport_image_id_page', 'passportImageIdPagePreview');
-        </script>
-
+    </div>
 @endsection
