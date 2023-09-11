@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Education;
 use App\Models\JobApplication;
-
 use Illuminate\Http\Request;
 
 class EducationController extends Controller
@@ -30,7 +29,6 @@ class EducationController extends Controller
                 ' high_school_curriculum ' => 'required_if:qualification,high_school',
                 'high_school_image_certificate' => 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'high_school_image_mark_sheet' => 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:2048',
-
                 // Higher
                 'higher_secondary_institution_name' => 'required_if:qualification,higher_secondary',
                 'higher_secondary_city' => 'required_if:qualification,higher_secondary',
@@ -44,7 +42,6 @@ class EducationController extends Controller
                 'higher_secondary_filed_of_interest' => 'required_if:qualification,higher_secondary',
                 'higher_secondary_image_certificate' => 'required_if:qualification,higher_secondary|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'higher_secondary_image_mark_sheet' => 'required_if:qualification,higher_secondary_if:qualification,higher_secondary|image|mimes:jpeg,png,jpg,gif|max:2048',
-
                 // diploma
                 'diploma_institution_name' => 'required_if:qualification,diploma',
                 'diploma_city' => 'required_if:qualification,diploma',
@@ -58,7 +55,6 @@ class EducationController extends Controller
                 'diploma_filed_of_interest' => 'required_if:qualification,diploma',
                 'diploma_image_certificate' => 'required_if:qualification,diploma|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'diploma_image_mark_sheet' => 'required_if:qualification,diploma|image|mimes:jpeg,png,jpg,gif|max:2048',
-
                 // Bachelors
                 'bachelors_institution_name' => 'required_if:qualification,bachelor_degree',
                 'bachelors_city' => 'required_if:qualification,bachelor_degree',
@@ -72,7 +68,6 @@ class EducationController extends Controller
                 'bachelors_filed_of_interest' => 'required_if:qualification,bachelor_degree',
                 'bachelors_image_certificate' => 'required_if:qualification,bachelor_degree|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'bachelors_image_mark_sheet' => 'required_if:qualification,bachelor_degree|image|mimes:jpeg,png,jpg,gif|max:2048',
-
                 // // master
                 'master_institution_name' => 'required_if:qualification,master_degree',
                 'master_city' => 'required_if:qualification,master_degree',
@@ -86,7 +81,6 @@ class EducationController extends Controller
                 'master_filed_of_interest' => 'required_if:qualification,master_degree',
                 'master_image_certificate' => 'required_if:qualification,master_degree|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'master_image_mark_sheet' => 'required_if:qualification,master_degree|image|mimes:jpeg,png,jpg,gif|max:2048',
-
                 // doctorate
                 'doctorate_name' => 'required_if:qualification,doctorate_degree',
                 'doctorate_city' => 'required_if:qualification,doctorate_degree',
@@ -175,7 +169,7 @@ class EducationController extends Controller
 
         Education::create($education);
 
-        return redirect()->route('employment', ['job_application_id' => $request->job_application_id])->with('success', 'Education created successfully!');
+        return redirect()->route('employment', ['id' => $request->job_application_id])->with('success', 'Education created successfully!');
     }
 
     public function show($id)
@@ -184,5 +178,4 @@ class EducationController extends Controller
 
         return view('career.education.show', ['jobApplication' => $jobApplication]);
     }
-
 }
