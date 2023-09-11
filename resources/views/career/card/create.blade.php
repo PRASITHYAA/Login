@@ -31,7 +31,7 @@
             @endif
             <form action="{{ route('career.card.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
+                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->job_application_id }}">
                 <h2 class="text-center p-4">Government-Issued Identification Cards (IDs)</h2>
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp <br>
                     Size Limit: 50KB</p>
@@ -121,11 +121,8 @@
                             </div>
                             <!-- button -->
                             <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
-                                {{-- <a style="font-weight: bold; " class="btn btn-secondary mt-5"
-                                    href="{{ route('career.job_application.edit', request()->job_application_id) }}">Previous</a> --}}
-                                    <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
-                                    href="job_applications">Previous</a>
-
+                                 <a style="font-weight: bold; " class="btn btn-secondary mt-5"
+                                    href="{{ route('career.job_application.edit', request()->job_application_id) }}">Previous</a>
                                 <button class="btn btn-primary  mx-3">Save And Next </button>
                                 <br>
                                 <br>
