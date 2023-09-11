@@ -43,7 +43,7 @@
             <!-- heading -->
             <h4 class="p-3">Joining date/Current and Expected Salary Details</h4>
 
-            <form action="{{ route('disclaimer.store') }}" class="row g-3" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('career.disclaimer.store') }}" class="row g-3" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
                 <!-- Expected date to join -->

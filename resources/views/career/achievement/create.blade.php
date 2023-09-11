@@ -29,7 +29,7 @@
     </div>
     <div class="container-fluid">
         <div class="container">
-            <form action="{{ route('achievement.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('career.achievement.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
 
@@ -178,7 +178,9 @@
 
                 <!-- buttons -->
                 <div style="display: flex;justify-content:end;" class="pt-5">
-                    <a class="btn btn-secondary m-1" href="employment">Previous</a>
+                    <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
+                        href="employment">Previous</a>
+
                     <button class="btn btn-primary mx-2">Save & Next </button>
                 </div>
             </form>

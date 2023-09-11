@@ -198,14 +198,16 @@
                 @endif
 
             </div>
-            <h2>PREVIOUS EMPLOYMENT</h2>
-            <form action="{{ route('employment.store') }}" method="POST" enctype="multipart/form-data">
+            <h2>PREVIOUS EMPLOYMENT</h2><br>
+            <br>
+            <form action="{{ route('career.employment.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
+                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->job_application_id }}">
 
                 <!-- Do you have any previous experience? yes or no -->
 
-                <label>Do you have any previous experience? <span class="f5">*</span> <br>
+                <label>
+                    <h5>Do you have any previous experience? <span class="f5">*</span> </h5><br>
                     <input type="radio" name="open-input" value="yes" onclick="showNestedOption(this)"
                         required>
                     Yes
@@ -335,56 +337,55 @@
                                 class="form-control" name="reference_address" id="reference_address"
                                 placeholder="Address">
                         </div>
-                    </div>
-                    <br>
-                    <!-- Have You Ever Been Convicted of A Crime -->
-                    <label>Have You Ever Been Convicted of A Crime? <span class="f5">*</span> <br>
-                        <input type="radio" name="nested-option" value="nested-yes"
-                            onclick="showSubNestedInput(this)">
-                        Yes
-                    </label>
-                    <br>
-                    <label>
 
-                        <input type="radio" name="nested-option" value="nested-no" onclick="hideSubNestedInput()">
-                        No
-                    </label>
-                    <!-- If Yes, Please Explain  -->
-                    <div id="sub-nested-input" style="display: none;">
+                    </div>
+                    <br>
+
+                    <label>
+                        <h4>Are You Legally Eligible to Work? <span class="f5">*</span></h4>
+                    </label><br>
+                    <input type="radio" name="open-input1" value="yes" id="yesRadio1"
+                        onclick="hideInput('sub-text-input')">Yes
+                    <br>
+                    <input type="radio" name="open-input1" value="no" id="noRadio1"
+                        onclick="showInput('sub-text-input')">No
+
+                    <div class="col-md-12" id="sub-text-input" style="display: none;">
                         <p style="font-weight: bold;">If Yes, Please Explain <span class="f5">*</span> </p>
-                        <textarea style="background-color:  rgba(248, 235, 235, 0.726);" rows="3" class="form-control"
-                            name="sub-nested-input"></textarea>
-                        <br>
-                        <!-- Are You Legally Eligible to Work?  -->
-                        <label>Are You Legally Eligible to Work? <span class="f5">*</span>
-                            <br>
-                            <input type="radio" name="sub-nested-option" value="sub-nested-yes"
-                                onclick="showNestedInput()"> Yes
-                        </label>
-                        <br>
-                        <label>
-                            <input type="radio" name="sub-nested-option" value="sub-nested-no"
-                                onclick="hideNestedInput()"> No
-                        </label>
+                        <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control sub-text-input"
+                            name="sub-text-input"></textarea>
                     </div>
-                    <!-- If No, Please Explain -->
-                    <div id="nested-input-field-div" style="display: none;font-weight: bold;">
-                        If No, Please Explain <span class="f5">*</span> <br>
-                        <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" id="nested-input-field"
-                            name="nested-input-field" rows="3"> </textarea>
+                    <br>
+                    <br>
+
+                    <label>
+                        <h4>Have You Ever Been Convicted of A Crime? <span class="f5">*</span></h4>
+                    </label><br>
+                    <input type="radio" name="open-input2" value="yes" id="yesRadio2"
+                        onclick="showInput('text-input')">Yes
+                    <br>
+                    <input type="radio" name="open-input2" value="no" id="noRadio2"
+                        onclick="hideInput('text-input')">No
+
+                    <div class="col-md-12" id="text-input" style="display: none;">
+                        <p style="font-weight: bold;">If Yes, Please Explain <span class="f5">*</span> </p>
+                        <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control text-input"
+                            name="text-input"></textarea>
                     </div>
+
                 </div>
                 <!-- button -->
-                <div style="display:flex;justify-content:center;align-items: center;" class="mt-5">
-                    <a class="btn btn-secondary mx-2" href="education">Previous</a>
-                    <button class="btn btn-primary mx-2">Save & Next </button>
+                <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
+
+                <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
+                href="education">Previous</a>
+
+            <button class="btn btn-primary  mx-3 ">Save & Next </button>
                 </div>
 
             </form>
         </div>
     </div>
-
-
     <!-- footer -->
     <footer class="bg-dark  text-white mt-4">
         <div class="container-fluid  p-4">
@@ -471,6 +472,30 @@
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#yesRadio1').click(function() {
+                $('#sub-text-input').hide();
+                $('.sub-text-input').attr('required', false);
+            });
+
+            $('#noRadio1').click(function() {
+                $('#sub-text-input').show();
+                $('.sub-text-input').attr('required', true);
+            });
+
+            $('#yesRadio2').click(function() {
+                $('#text-input').show();
+                $('.text-input').attr('required', true);
+            });
+
+            $('#noRadio2').click(function() {
+                $('#text-input').hide();
+                $('.text-input').attr('required', false);
+            });
+        });
+    </script>
 
     <script>
         function showNestedOption(selectedRadio) {
@@ -487,34 +512,6 @@
                 nestedInputFieldDiv.style.display = 'none';
                 hideSubNestedInput();
             }
-        }
-
-        function showSubNestedInput(selectedRadio) {
-            const subNestedInputDiv = document.getElementById('sub-nested-input');
-            const nestedInputFieldDiv = document.getElementById('nested-input-field-div');
-
-            if (selectedRadio.value === 'nested-yes') {
-                subNestedInputDiv.style.display = 'block';
-                nestedInputFieldDiv.style.display = 'none';
-            } else {
-                subNestedInputDiv.style.display = 'none';
-                nestedInputFieldDiv.style.display = 'none';
-            }
-        }
-
-        function hideSubNestedInput() {
-            const subNestedInputDiv = document.getElementById('sub-nested-input');
-            subNestedInputDiv.style.display = 'none';
-        }
-
-        function showNestedInput() {
-            const nestedInputFieldDiv = document.getElementById('nested-input-field-div');
-            nestedInputFieldDiv.style.display = 'none';
-        }
-
-        function hideNestedInput() {
-            const nestedInputFieldDiv = document.getElementById('nested-input-field-div');
-            nestedInputFieldDiv.style.display = 'block';
         }
     </script>
 
@@ -595,7 +592,8 @@
 
             if (!isNaN(fromDate.getTime()) && !isNaN(toDate.getTime())) {
                 // Calculate the difference in months and years
-                const monthsDifference = (toDate.getMonth() - fromDate.getMonth()) + 12 * (toDate.getFullYear() - fromDate.getFullYear());
+                const monthsDifference = (toDate.getMonth() - fromDate.getMonth()) + 12 * (toDate.getFullYear() - fromDate
+                    .getFullYear());
                 const years = Math.floor(monthsDifference / 12);
                 const months = monthsDifference % 12;
 

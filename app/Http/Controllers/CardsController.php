@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Card;
 use App\Models\JobApplication;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CardsController extends Controller
 {
@@ -62,9 +62,10 @@ class CardsController extends Controller
         }
 
         Card::create($card);
+        // return redirect()->route('education.view', ['id' => $request->job_application_id])->with('success', 'Education created successfully!');
 
-        return redirect()->route('education.view', ['job_application_id' => $jobApplication->id])->with('success', 'Card created successfully!');
-
+        return Redirect::route('education.view', ['job_application_id' => $jobApplication->id])
+            ->with('success', 'Card created successfully!');
     }
 
     public function show($id)

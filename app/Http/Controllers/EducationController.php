@@ -169,7 +169,7 @@ class EducationController extends Controller
 
         Education::create($education);
 
-        return redirect()->route('employment', ['id' => $request->job_application_id])->with('success', 'Education created successfully!');
+        return redirect()->route('employment.view', ['id' => $request->job_application_id])->with('success', 'Education created successfully!');
     }
 
     public function show($id)
@@ -177,5 +177,6 @@ class EducationController extends Controller
         $jobApplication = JobApplication::find($id);
 
         return view('career.education.show', ['jobApplication' => $jobApplication]);
+
     }
 }

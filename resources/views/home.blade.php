@@ -74,12 +74,13 @@
                                                 {{ $position->name }}
                                         </button>
                                     </h2>
-                                    <div id="panelsStayOpen-collapse-{{ $position->id }}" class="accordion-collapse collapse none"
-                                         aria-labelledby="panelsStayOpen-heading-{{ $position->id }}">
-                                        <div class="accordion-body">
-                                            <!-- Add content for the accordion panel here -->
-                                        </div>
-                                    </div>
+                                    <div id="panelsStayOpen-collapse-{{ $position->id }}" class="accordion-collapse collapse"
+                                        aria-labelledby="panelsStayOpen-heading-{{ $position->id }}">
+                                       <div class="accordion-body">
+                                           {{ $position->description }}
+                                       </div>
+                                   </div>
+
                                 </div>
                             </div>
                             <div class="col-lg-2">

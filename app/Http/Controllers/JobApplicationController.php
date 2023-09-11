@@ -98,6 +98,7 @@ class JobApplicationController extends Controller
         $jobApplication = JobApplication::create($jobApplication);
 
         return redirect()->route('card.view', ['job_application_id' => $jobApplication->id])->with('success', '  Job Application submitted successfully!');
+
     }
 
     // show
