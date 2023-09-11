@@ -121,7 +121,7 @@
 
                     <td>
                         <a href="{{ route('career.job_application.show', $jobApplication->id) }}" class="btn btn-info">View</a>
-                        <a href="{{ route('career.job_application.edit', $jobApplication->id) }}" class="btn btn-warning ">Edit</a>
+                        {{-- <a href="{{ route('career.job_application.edit', $jobApplication->id) }}" class="btn btn-warning ">Edit</a> --}}
                         <form action="{{ route('career.job_application.destroy', $jobApplication->id) }}" method="post" style="display: inline-block;">
                             @csrf
                             @method('DELETE')

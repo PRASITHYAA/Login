@@ -63,7 +63,8 @@ class CardsController extends Controller
 
         Card::create($card);
 
-        return redirect()->route('education.view', ['id' => $request->job_application_id])->with('success', 'Card created successfully!');
+        return redirect()->route('education.view', ['job_application_id' => $jobApplication->id])->with('success', 'Card created successfully!');
+
     }
 
     public function show($id)
