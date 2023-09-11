@@ -132,13 +132,12 @@ Route::delete('/card/{id}', [CardsController::class, 'destroy'])->name('career.c
 
 //  education
 Route::get('/education', [EducationController::class, 'index'])->name('career.education.index');
-Route::view('/education', 'career.education.create')->name('card.view');
+Route::view('/education', 'career.education.create')->name('education.view');
 Route::post('/education', [EducationController::class, 'store'])->name('career.education.store');
 Route::get('/education/{id}', [EducationController::class, 'show'])->name('career.education.show');
 Route::get('/education/{id}/edit', [EducationController::class, 'edit'])->name('career.education.edit');
 Route::put('/education/{id}', [EducationController::class, 'update'])->name('career.education.update');
 Route::delete('/education/{id}', [EducationController::class, 'destroy'])->name('career.education.destroy');
-
 
 // Route::view('/education', 'career.education.create')->name('education.view');
 // Route::post('/education', [EducationController::class, 'store'])->name('education.store');
