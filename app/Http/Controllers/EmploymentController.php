@@ -39,4 +39,14 @@ class EmploymentController extends Controller
 
         return redirect()->route('achievement.view', ['job_application_id' => $request->job_application_id])->with('success', 'Employment created successfully!');
     }
+    public function edit($id)
+    {
+        $jobApplication = JobApplication::find($id);
+
+        return view('career.employment.create', ['jobApplication' => $jobApplication]);
+    }
+    public function update($id, Request $request){
+        
+    }
+
     }
