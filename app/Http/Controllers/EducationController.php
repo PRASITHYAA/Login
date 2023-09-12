@@ -186,7 +186,7 @@ class EducationController extends Controller
         return view('career.education.create', ['jobApplication' => $jobApplication]);
     }
 
-    public function update($id)
+    public function update($id, Request $request)
     {
         $data = $request->validate(
             [
