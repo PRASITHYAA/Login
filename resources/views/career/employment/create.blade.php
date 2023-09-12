@@ -60,7 +60,7 @@
             color: black;
         }
 
-        .f5 {
+        .red {
             color: red;
         }
     </style>
@@ -170,7 +170,6 @@
 
     <!-- header -->
     <div class="container-fluid">
-
         <div class="container  ">
             <!-- Percentage bar -->
             <div class="container">
@@ -199,15 +198,16 @@
 
             </div>
             <h2>PREVIOUS EMPLOYMENT</h2><br>
-            <br>
+
             <form action="{{ route('career.employment.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->job_application_id }}">
+                <input type="hidden" name="job_application_id" id="job_application_id"
+                    value="{{ request()->job_application_id }}">
 
                 <!-- Do you have any previous experience? yes or no -->
 
                 <label>
-                    <h5>Do you have any previous experience? <span class="f5">*</span> </h5><br>
+                    <h6>Do you have any previous experience? <span class="red">*</span> </h6><br>
                     <input type="radio" name="open-input" value="yes" onclick="showNestedOption(this)"
                         required>
                     Yes
@@ -227,7 +227,7 @@
                         detail first</p>
                     <div class="row">
                         <!-- Employer Details -->
-                        <h4>Employer Details</h4>
+                        <h6>Employer Details</h6>
                         <!-- Company / Individual -->
                         <div class="col-md-4">
                             <label class="form-label">
@@ -293,7 +293,7 @@
                                 placeholder="Responsibilities ">
                         </div>
                         <!-- REFERENCE DETAILS FROM PREVIOUS EMPLOYER -->
-                        <h4 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER</h4>
+                        <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER</h6>
                         <!-- Name -->
                         <div class="col-md-4">
                             <label class="form-label">Name <span style="color: red;">*</span></label>
@@ -342,7 +342,7 @@
                     <br>
 
                     <label>
-                        <h4>Are You Legally Eligible to Work? <span class="f5">*</span></h4>
+                        <h6>Are You Legally Eligible to Work? <span class="red">*</span></h6>
                     </label><br>
                     <input type="radio" name="open-input1" value="yes" id="yesRadio1"
                         onclick="hideInput('sub-text-input')">Yes
@@ -351,7 +351,7 @@
                         onclick="showInput('sub-text-input')">No
 
                     <div class="col-md-12" id="sub-text-input" style="display: none;">
-                        <p style="font-weight: bold;">If Yes, Please Explain <span class="f5">*</span> </p>
+                        <p style="font-weight: bold;">If Yes, Please Explain <span class="red">*</span> </p>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control sub-text-input"
                             name="sub-text-input"></textarea>
                     </div>
@@ -359,7 +359,7 @@
                     <br>
 
                     <label>
-                        <h4>Have You Ever Been Convicted of A Crime? <span class="f5">*</span></h4>
+                        <h6>Have You Ever Been Convicted of A Crime? <span class="red">*</span></h6>
                     </label><br>
                     <input type="radio" name="open-input2" value="yes" id="yesRadio2"
                         onclick="showInput('text-input')">Yes
@@ -368,7 +368,7 @@
                         onclick="hideInput('text-input')">No
 
                     <div class="col-md-12" id="text-input" style="display: none;">
-                        <p style="font-weight: bold;">If Yes, Please Explain <span class="f5">*</span> </p>
+                        <p style="font-weight: bold;">If Yes, Please Explain <span class="red">*</span> </p>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control text-input"
                             name="text-input"></textarea>
                     </div>
@@ -377,10 +377,10 @@
                 <!-- button -->
                 <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
 
-                <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
-                href="education">Previous</a>
+                    <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
+                        href="education">Previous</a>
 
-            <button class="btn btn-primary  mx-3 ">Save & Next </button>
+                    <button class="btn btn-primary  mx-3 ">Save & Next </button>
                 </div>
 
             </form>
@@ -416,7 +416,7 @@
                     </div>
                     <!-- Quick Links  -->
                     <div class="col-lg-4 col-md-6 mt-5 mb-5">
-                        <h4 class=""> Quick Links </h4>
+                        <h6 class=""> Quick Links </h6>
                         <ul class="list-unstyled mb-4 ">
                             <li class="pb-1">
                                 <a href="#!" class="text-white">Terms and Conditions</a>
@@ -434,7 +434,7 @@
                     </div>
                     <!-- Useful Links -->
                     <div class="col-lg-2 col-md-6 mt-5 mb-5">
-                        <h4 class=""> Useful Links </h4>
+                        <h6 class=""> Useful Links </h6>
                         <ul class="list-unstyled mb-0">
                             <li class="pb-1">
                                 <a href="#!" class="text-white">Apply for Job</a>

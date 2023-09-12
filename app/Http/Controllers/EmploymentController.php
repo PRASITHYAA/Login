@@ -29,16 +29,14 @@ class EmploymentController extends Controller
             'reference_email' => 'required_if:open-input,yes',
             'reference_phone' => 'required_if:open-input,yes',
             // second
-            'open-input1' => 'required|in:yes,no',
+            'open-input1' => 'required_if:open-input,yes|in:yes,no',
             'sub-text-input' => 'required_if:open-input1,no',
-            'open-input2' => 'required|in:yes,no',
+            'open-input2' => 'required_if:open-input,yes|in:yes,no',
             'text-input' => 'required_if:open-input2,no',
-
-
         ]);
 
         Employment::create($employment);
 
-        return redirect()->route('achievement.view', ['id' => $request->job_application_id])->with('success', 'Employment created successfully!');
+        return redirect()->route('achievement.view', ['job_application_id' => $request->job_application_id])->with('success', 'Employment created successfully!');
     }
-}
+    }

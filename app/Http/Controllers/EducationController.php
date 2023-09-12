@@ -26,7 +26,7 @@ class EducationController extends Controller
                 'high_school_year_of_passing' => 'required_if:qualification,high_school',
                 'high_school_percentage' => 'required_if:qualification,high_school',
                 'high_school_class' => 'required_if:qualification,high_school',
-                ' high_school_curriculum ' => 'required_if:qualification,high_school',
+                'high_school_stream' => 'required_if:qualification,high_school',
                 'high_school_image_certificate' => 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'high_school_image_mark_sheet' => 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:2048',
                 // Higher
@@ -169,7 +169,8 @@ class EducationController extends Controller
 
         Education::create($education);
 
-        return redirect()->route('employment.view', ['id' => $request->job_application_id])->with('success', 'Education created successfully!');
+        return redirect()->route('employment.view', ['job_application_id' => $request->job_application_id])->with('success', 'Education created successfully!');
+
     }
 
     public function show($id)

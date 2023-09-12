@@ -38,18 +38,18 @@ class DisclaimerController extends Controller
 
         Disclaimer::create($disclaimer);
 
-        return redirect()->route('acknowledgement', ['id' => $request->job_application_id])->with('success', ' Disclaimer And All The Forms Are created successfully');
+        return redirect()->route('acknowledgement', ['job_application_id' => $request->job_application_id])->with('success', ' Disclaimer And All The Forms Are created successfully');
     }
 
     public function acknowledgement(Request $request)
     {
-        $data = JobApplication::find($request->id);
+        $data = JobApplication::find($request->job_application_id);
         return view('career.acknowledgement.view', compact('data'));
     }
 
     public function downloadPdf(Request $request)
      {
-     $application = JobApplication::find($request->id);
+     $application = JobApplication::find($request->job_application_id);
         $data = $application->toArray();
      $disclaimer = Disclaimer::where('job_application_id', $request->id)->first()->toArray();
         $data = array_merge($disclaimer,$data);

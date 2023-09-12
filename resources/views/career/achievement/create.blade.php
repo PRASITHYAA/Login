@@ -31,7 +31,8 @@
         <div class="container">
             <form action="{{ route('career.achievement.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
+                <input type="hidden" name="job_application_id" id="job_application_id"
+                    value="{{ request()->job_application_id }}">
 
                 <h2 class="text-center p-4">ACHEIVEMENTS, CO-CURRICULAR, EXTRA-CURRICULAR DETAILS</h2>
                 <p>Please use this section to indicate how far you meet each of the competencies required for the post.
