@@ -62,8 +62,7 @@ class CardsController extends Controller
         }
 
         Card::create($card);
-            return redirect()->route('education.view', ['job_application_id' => $jobApplication->id])->with('success', ' Card submitted successfully!');
-
+        return redirect()->route('education.view', ['job_application_id' => $jobApplication->id])->with('success', ' Card submitted successfully!');
     }
 
     public function show($id)
@@ -76,13 +75,17 @@ class CardsController extends Controller
     public function edit($id)
     {
         $jobApplication = JobApplication::find($id);
+        $card = Card::where('job_application_id', $id)->first();
 
-        return view('career.card.create', ['jobApplication' => $jobApplication]);
+        return view('career.card.create', [
+            'jobApplication' => $jobApplication,
+            'card' => $card,
+        ]);
     }
 
     public function update($id, Request $request)
     {
-        $card = $request->validate([
+        $data = $request->validate([
             'job_application_id' => 'required',
             'identity_type' => 'required|in:aadhar,passport',
             // aadhar
@@ -107,22 +110,22 @@ class CardsController extends Controller
 
         if ($request->hasFile('aadhar_image')) {
             $aadharImagePath = $request->file('aadhar_image')->store('images', 'public');
-            $cardData['aadhar_image'] = $aadharImagePath;
+            $card->aadhar_image = $aadharImagePath;
         }
 
         if ($request->hasFile('aadhar_image_page')) {
             $aadharImagePagePath = $request->file('aadhar_image_page')->store('images', 'public');
-            $cardData['aadhar_image_page'] = $aadharImagePagePath;
+            $card->aadhar_image_page = $aadharImagePagePath;
         }
 
         if ($request->hasFile('passport_image_id')) {
             $passportImageIdPath = $request->file('passport_image_id')->store('images', 'public');
-            $cardData['passport_image_id'] = $passportImageIdPath;
+            $card->passport_image_id = $passportImageIdPath;
         }
 
         if ($request->hasFile('passport_image_id_page')) {
             $passportImageIdPagePath = $request->file('passport_image_id_page')->store('images', 'public');
-            $cardData['passport_image_id_page'] = $passportImageIdPagePath;
+            $card->passport_image_id_page = $passportImageIdPagePath;
         }
 
         $card = Card::find($id);
@@ -131,6 +134,5 @@ class CardsController extends Controller
 
         return Redirect::route('education.view', ['job_application_id' => $jobApplication->id])
             ->with('success', 'Card created successfully!');
-
     }
 }

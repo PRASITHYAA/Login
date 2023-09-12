@@ -115,6 +115,9 @@ Route::delete('/job_application/{id}', [JobApplicationController::class, 'destro
 Route::get('/positions-ajax', [PositionController::class, 'getPositions'])->name('positions.ajax');
 Route::get('/cities-ajax', [JobApplicationController::class, 'getCities'])->name('cities.ajax');
 
+// Use a controller method for image preview
+Route::get('/image-preview/{id}', [JobApplicationController::class, 'showImagePreview'])->name('image.preview');
+
 // card
 
 Route::view('/card', 'career.card.create')->name('card.view');

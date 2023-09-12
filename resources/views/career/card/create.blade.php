@@ -40,19 +40,10 @@
                 <label>Does Your Permanent Address is Different</label>
                 <br><br>
                 <label>
-                    <input type="checkbox" id="aadharcard" name="identity_type" value="aadhar"
-                        {{ in_array('aadhar', old('identity_type', [])) ||
-                        (isset($card) && in_array('aadhar', explode(',', $card->identity_type)))
-                            ? 'checked'
-                            : '' }}>
-                    AADHAR CARD
+                    <input type="checkbox" id="aadharcard" name="identity_type" value="aadhar" checked> AADHAR CARD
                 </label>
                 <label>
                     <input type="checkbox" id="passport" name="identity_type" value="passport"
-                        {{ in_array('passport', old('identity_type', [])) ||
-                        (isset($card) && in_array('passport', explode(',', $card->identity_type)))
-                            ? 'checked'
-                            : '' }}
                         onchange="toggleInputFields()"> PASSPORT
                 </label>
                 <br>
@@ -163,9 +154,9 @@
                         </div>
                         <!-- button -->
                         <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
-                            <a style="font-weight: bold; " class="btn btn-secondary mt-5"
-                                href="{{ route('career.job_application.edit', request()->job_application_id) }}">Previous</a>
-                            <button class="btn btn-primary  mt-5 mx-3">Save And Next </button>
+                            <a style="font-weight: bold; " class="btn btn-secondary "
+                            href="{{ route('career.job_application.edit', request()->job_application_id) }}">Previous</a>
+                            <button class="btn btn-primary   mx-3">Save And Next </button>
                             <br>
                             <br>
                         </div>

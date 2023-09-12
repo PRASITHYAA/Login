@@ -50,6 +50,8 @@ class JobApplicationController extends Controller
             'permanent_phone' => 'required_if:permanent_address_input,yes',
             'permanent_country' => 'required_if:permanent_address_input,yes',
             'permanent_address' => 'required_if:permanent_address_input,yes',
+            'permanent_state' => 'required_if:permanent_address_input,yes',
+
             // father name
             'father_name' => 'required',
             'father_date_of_birth' => 'required|date',
@@ -76,6 +78,11 @@ class JobApplicationController extends Controller
         ]);
 
         // Upload and store father image
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
         if ($request->hasFile('father_image')) {
             $fatherImagePath = $request->file('father_image')->store('images', 'public');
             $jobApplication['father_image'] = $fatherImagePath;
@@ -164,6 +171,10 @@ class JobApplicationController extends Controller
         ]);
 
         // Upload and store father image
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $validatedData['image'] = $imagePath;
+        }
         if ($request->hasFile('father_image')) {
             $fatherImagePath = $request->file('father_image')->store('images', 'public');
             $data['father_image'] = $fatherImagePath;
@@ -208,4 +219,12 @@ class JobApplicationController extends Controller
 
         return response()->json($cities);
     }
+
+    public function showImagePreview($id)
+{
+    $jobApplication = JobApplication::find($id);
+
+    return view('image-preview', ['jobApplication' => $jobApplication]);
+}
+
 }

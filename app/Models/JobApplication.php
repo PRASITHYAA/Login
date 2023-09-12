@@ -27,13 +27,14 @@ class JobApplication extends Model
         'fb_link',
         'instagram_link',
         'linked_link',
-        //permanantaddress
+        //permanent address
         'permanent_address_input',
         'permanent_city',
         'permanent_postal_code',
         'permanent_phone',
         'permanent_country',
         'permanent_address',
+        'permanent_state',
         // father
         'father_name',
         'father_date_of_birth',
