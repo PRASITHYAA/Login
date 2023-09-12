@@ -26,7 +26,7 @@ class PositionController extends Controller
         $validatedData = $request->validate([
             'sector_id' => 'required',
             'name' => 'required',
-            // 'description' => 'required',
+            'description' => 'required',
         ]);
 
         Position::create($validatedData);
@@ -46,7 +46,7 @@ class PositionController extends Controller
         $validatedData = $request->validate([
             'sector_id' => 'required',
             'name' => 'required',
-            // 'description' => 'required',
+            'description' => 'required',
         ]);
 
         $position->update($validatedData);
