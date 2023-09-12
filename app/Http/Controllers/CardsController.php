@@ -128,7 +128,7 @@ class CardsController extends Controller
             $card->passport_image_id_page = $passportImageIdPagePath;
         }
 
-        $card = Card::find($id);
+        $jobApplication = JobApplication::find($id);
         $card = $card->fill($data);
         $card->save();
 

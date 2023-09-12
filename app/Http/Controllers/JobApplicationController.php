@@ -220,11 +220,6 @@ class JobApplicationController extends Controller
         return response()->json($cities);
     }
 
-    public function showImagePreview($id)
-{
-    $jobApplication = JobApplication::find($id);
 
-    return view('image-preview', ['jobApplication' => $jobApplication]);
-}
-
+    
 }
