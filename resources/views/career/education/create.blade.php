@@ -39,8 +39,7 @@
 
                 <p>Do you have any education qualification? <span style="color: red;">*</span></p>
 
-                <div>
-                    <label>
+                <div><label>
                         <input type="radio" name="radio_option" value="yes" onclick="showCheckboxes()"> Yes
                     </label>
                     <label>
@@ -49,6 +48,7 @@
                 </div>
 
                 <div id="checkboxes" style="display: none;">
+
                     <!-- High School -->
                     <input type="checkbox" onchange="toggleForm('form1')" name="qualification" value="high_school">
                     High School
@@ -59,127 +59,111 @@
                         <!-- High school Institution Name -->
                         <div class="row">
                             <div class="col-lg-2">
-                                <label class="form-label">Institution Name <span style="color: red;">*</span></label>
+                                <label class="form-label ">Institution Name <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control qualification" placeholder="Institution Name" id="high_school_name"
-                                    name="high_school_name"
-                                    value="{{ old('high_school_name') ?? ($card->high_school_name ?? '') }}" required>
+                                    name="high_school_name">
                             </div>
                             <!-- High school City -->
                             <div class="col-lg-2">
                                 <label class="form-label">Town/City <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control  qualification" placeholder="Town/City" id="high_school_city"
-                                    name="high_school_city"
-                                    value="{{ old('high_school_city') ?? ($card->high_school_city ?? '') }}" required>
+                                    name="high_school_city">
                             </div>
                             <!-- High school Address -->
                             <div class="col-lg-2">
                                 <label class="form-label">Address <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control" placeholder="Address" id="high_school_address"
-                                    name="high_school_address"
-                                    value="{{ old('high_school_address') ?? ($card->high_school_address ?? '') }}" required>
+                                    name="high_school_address">
                             </div>
                             <!-- High school From Date -->
                             <div class="col-lg-2">
-                                <label class="form-label">From (Date) <span style="color: red;">*</span></label>
+                                <label class="form-label">From (Date)
+                                    <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                     class="form-control" placeholder="From (Date)" id="high_school_form_date"
-                                    name="high_school_form_date"
-                                    value="{{ old('high_school_form_date') ?? ($card->high_school_form_date ?? '') }}"
-                                    required>
+                                    name="high_school_form_date">
                             </div>
                             <!-- High school To Date -->
                             <div class="col-lg-2">
-                                <label class="form-label">To (Date) <span style="color: red;">*</span></label>
+                                <label class="form-label">To (Date)
+                                    <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                     class="form-control qualification" placeholder="To (Date)" id="high_school_to_date"
-                                    name="high_school_to_date"
-                                    value="{{ old('high_school_to_date') ?? ($card->high_school_to_date ?? '') }}"
-                                    required>
+                                    name="high_school_to_date">
                             </div>
-                            <!-- High school Year of Passing -->
+                            <!-- High school Year of Passing-->
                             <div class="col-lg-2">
-                                <label class="form-label">Year of Passing <span style="color: red;">*</span></label>
+                                <label class="form-label">Year of Passing
+                                    <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                     name="high_school_year_of_passing" class="form-control" placeholder="Year of Passing"
-                                    id="high_school_year_of_passing"
-                                    value="{{ old('high_school_year_of_passing') ?? ($card->high_school_year_of_passing ?? '') }}"
-                                    required>
+                                    id="high_school_year_of_passing">
                             </div>
-                            <!-- High school GPA Percentage -->
+                            <!-- High school GPA Percentage-->
                             <div class="col-lg-2">
-                                <label class="form-label">GPA/Percentage <span style="color: red;">*</span></label>
+                                <label class="form-label">GPA/Percentage
+                                    <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
                                     class="form-control qualification" placeholder="0" id="high_school_percentage"
-                                    name="high_school_percentage"
-                                    value="{{ old('high_school_percentage') ?? ($card->high_school_percentage ?? '') }}"
-                                    required>
+                                    name="high_school_percentage">
                             </div>
                             <!-- High school Class -->
                             <div class="col-lg-2">
                                 <label class="form-label">Class <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Class" id="high_school_class"
+                                    class="form-control qualification" placeholder="Class" id="high_school_class"
                                     name="high_school_class"
-                                    value="{{ old('high_school_class') ?? ($card->high_school_class ?? '') }}" required>
+                                    value="{{ old('high_school_class') ?? ($card->high_school_class ?? '') }}">
                             </div>
-                            {{-- High school curriculum --}}
+                            {{-- high aschool curriculum --}}
                             <div class="col-lg-2">
                                 <label class="form-label">Curriculum <span style="color: red;">*</span></label>
-                                <select class="form-select" id="high_school_stream" name="high_school_stream" >
+                                <select class="form-select" id="high_school_stream" name="high_school_stream">
                                     <option selected disabled value="">Choose...</option>
-                                    <option value="CBSE"
-                                        {{ old('high_school_stream') == 'CBSE' || ($card->high_school_stream ?? '') == 'CBSE' ? 'selected' : '' }}>
-                                        CBSE</option>
-                                    <option value="ICSE"
-                                        {{ old('high_school_stream') == 'ICSE' || ($card->high_school_stream ?? '') == 'ICSE' ? 'selected' : '' }}>
-                                        ICSE</option>
-                                    <option value="IB"
-                                        {{ old('high_school_stream') == 'IB' || ($card->high_school_stream ?? '') == 'IB' ? 'selected' : '' }}>
-                                        IB</option>
-                                    <option value="IGCSE"
-                                        {{ old('high_school_stream') == 'IGCSE' || ($card->high_school_stream ?? '') == 'IGCSE' ? 'selected' : '' }}>
-                                        IGCSE</option>
-                                    <option value="STATE BOARD"
-                                        {{ old('high_school_stream') == 'STATE BOARD' || ($card->high_school_stream ?? '') == 'STATE BOARD'
-                                            ? 'selected'
-                                            : '' }}>
-                                        STATE BOARD</option>
+                                    <option>CBSE</option>
+                                    <option>ICSE</option>
+                                    <option>IB</option>
+                                    <option>IGCSE</option>
+                                    <option>STATE BOARD</option>
                                 </select>
-                            </div>
-                            <!-- High school image Mark Sheet-->
-                            <div class="col-lg-3">
-                                <label class="form-label">Upload Certificate <span style="color: red;">*</span></label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="high_school_image_certificate"
-                                        name="high_school_image_certificate">
-                                </div>
-                                <!-- Preview for High school image Certificate -->
-                                <div class="form-group">
-                                    <img id="highschoolimagecertificatePreview" src="#" alt="Image Preview"
-                                        style="width:150px; display: none;">
-                                </div>
-                            </div>
 
-                            <div class="col-lg-3">
-                                <label class="form-label">Upload Mark Sheet <span style="color: red;">*</span></label>
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="high_school_image_mark_sheet"
-                                        name="high_school_image_mark_sheet">
+                                <!-- High school image Mark Sheet-->
+                                <div class="col-lg-3">
+                                    <label class="form-label">Upload Certificate <span
+                                            style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="high_school_image_certificate"
+                                            name="high_school_image_certificate">
+                                    </div>
+                                    <!-- Preview for High school image Certificate -->
+                                    <div class="form-group">
+                                        <img id="highschoolimagecertificatePreview" src="#" alt="Image Preview"
+                                            style="width:150px; display: none;">
+                                    </div>
                                 </div>
-                                <!-- Preview for High school image Mark Sheet -->
-                                <div class="form-group">
-                                    <img id="highschoolMarkSheetPreview" src="#" alt="Preview"
-                                        style="width: 150px; height: auto; display: none;">
+
+                                <div class="col-lg-3">
+                                    <label class="form-label">Upload Mark Sheet <span style="color: red;">*</span></label>
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="high_school_image_mark_sheet"
+                                            name="high_school_image_mark_sheet">
+                                    </div>
+                                    <!-- Preview for High school image Mark Sheet -->
+                                    <div class="form-group">
+                                        <img id="highschoolMarkSheetPreview" src="#" alt="Preview"
+                                            style="width: 150px; height: auto; display: none;">
+                                    </div>
                                 </div>
+
                             </div>
 
                         </div>
-
                     </div>
                     <br>
+
 
                     <!-- Higher Secondary -->
 
@@ -772,14 +756,13 @@
                 </div>
                 <!-- BUTTONS -->
                 <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
-
-                    <a style="font-weight: bold; " class="btn btn-secondary mt-5"
-                        href="{{ route('career.card.edit', request()->job_application_id) }}">Previous</a>
-
-                    <button class="btn btn-primary mx-3 mt-5 ">Save & Next </button>
+                    <a style="font-weight: bold; " class="btn btn-secondary "
+                    href="{{ route('career.card.edit', $card->job_application_id) }}">Previous</a>
+                    <button class="btn btn-primary mx-3 mt-5 ">Save And Next </button>
                 </div>
-            </form>
         </div>
+        </form>
+    </div>
     </div>
 
     <!-- checkbok -->
