@@ -315,7 +315,7 @@
                                 <option value="">--Select State--</option>
                                 @foreach (\App\Models\State::all() as $state)
                                 <option value="{{ $state->id }}" {{ isset($jobApplication) && $state->id ==
-                                    $jobApplication->state_id ? 'selected' : '' }}>
+                                    $jobApplication->state ? 'selected' : '' }}>
                                     {{ $state->name }}
                                 </option>
                                 @endforeach
@@ -328,7 +328,7 @@
                                 <option value="">--Select City--</option>
                                 @foreach (\App\Models\City::all() as $city)
                                 <option value="{{ $city->id }}" {{ isset($jobApplication) && $city->id ==
-                                    $jobApplication->city_id ? 'selected' : '' }}>
+                                    $jobApplication->city ? 'selected' : '' }}>
                                     {{ $city->name }}
                                 </option>
                                 @endforeach
@@ -620,7 +620,7 @@
                                         <img src="{{ asset('storage/' . $jobApplication->spouse_image) }}" alt="Job Application Image"
                                             style="max-width: 100%;">
                                         @endif
-            
+
                                         <div class="form-group">
                                             <img id="spouseimagePreview" src="#" alt="Image Preview"
                                                 style="max-width: 150px; display: none;">
@@ -694,7 +694,7 @@
                                                 <img src="{{ asset('storage/' . $jobApplication->siblings_image) }}" alt="Job Application Image"
                                                     style="max-width: 100%;">
                                                 @endif
-        
+
                                             <!-- images  -->
                                             <div class="form-group  ">
                                                 <img id="siblingsimagePreview" src="#" alt="Image Preview"
