@@ -757,7 +757,7 @@
                 <!-- BUTTONS -->
                 <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
                     <a style="font-weight: bold; " class="btn btn-secondary "
-                    href="{{ route('career.card.edit', $card->job_application_id) }}">Previous</a>
+                    href="{{ route('career.card.edit', request()->card_id) }}">Previous</a>
                     <button class="btn btn-primary mx-3 mt-5 ">Save And Next </button>
                 </div>
         </div>

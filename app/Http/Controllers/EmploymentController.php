@@ -41,12 +41,12 @@ class EmploymentController extends Controller
     }
     public function edit($id)
     {
-        $jobApplication = JobApplication::find($id);
+        $employment = Employment::find($id);
 
-        return view('career.employment.create', ['jobApplication' => $jobApplication]);
+        return view('career.employment.create', ['employment' => $employment]);
     }
     public function update($id, Request $request){
-        
+
     }
 
     }

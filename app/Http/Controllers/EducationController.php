@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class EducationController extends Controller
 {
+    public function create()
+    {
+        return view('career.education.create');
+    }
+
     public function store(Request $request)
     {
         //dd($request->all());
