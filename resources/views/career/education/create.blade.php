@@ -129,39 +129,39 @@
                                     <option>IGCSE</option>
                                     <option>STATE BOARD</option>
                                 </select>
+                            </div>
 
-                                <!-- High school image Mark Sheet-->
-                                <div class="col-lg-3">
-                                    <label class="form-label">Upload Certificate <span
-                                            style="color: red;">*</span></label>
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="high_school_image_certificate"
-                                            name="high_school_image_certificate">
-                                    </div>
-                                    <!-- Preview for High school image Certificate -->
-                                    <div class="form-group">
-                                        <img id="highschoolimagecertificatePreview" src="#" alt="Image Preview"
-                                            style="width:150px; display: none;">
-                                    </div>
+                            <!-- High school image Mark Sheet-->
+                            <div class="col-lg-2">
+                                <label class="form-label">Upload Certificate <span style="color: red;">*</span></label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="high_school_image_certificate"
+                                        name="high_school_image_certificate">
                                 </div>
-
-                                <div class="col-lg-3">
-                                    <label class="form-label">Upload Mark Sheet <span style="color: red;">*</span></label>
-                                    <div class="input-group">
-                                        <input type="file" class="form-control" id="high_school_image_mark_sheet"
-                                            name="high_school_image_mark_sheet">
-                                    </div>
-                                    <!-- Preview for High school image Mark Sheet -->
-                                    <div class="form-group">
-                                        <img id="highschoolMarkSheetPreview" src="#" alt="Preview"
-                                            style="width: 150px; height: auto; display: none;">
-                                    </div>
+                                <!-- Preview for High school image Certificate -->
+                                <div class="form-group">
+                                    <img id="highschoolimagecertificatePreview" src="#" alt="Image Preview"
+                                        style="width:150px; display: none;">
                                 </div>
+                            </div>
 
+                            <div class="col-lg-2">
+                                <label class="form-label">Upload Mark Sheet <span style="color: red;">*</span></label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="high_school_image_mark_sheet"
+                                        name="high_school_image_mark_sheet">
+                                </div>
+                                <!-- Preview for High school image Mark Sheet -->
+                                <div class="form-group">
+                                    <img id="highschoolMarkSheetPreview" src="#" alt="Preview"
+                                        style="width: 150px; height: auto; display: none;">
+                                </div>
                             </div>
 
                         </div>
+
                     </div>
+
                     <br>
 
 
@@ -752,18 +752,18 @@
                         </div>
                     </div>
                     <br>
-
                 </div>
                 <!-- BUTTONS -->
                 <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
-                    <a style="font-weight: bold; " class="btn btn-secondary "
-                    href="{{ route('career.card.edit', request()->card_id) }}">Previous</a>
+                    {{-- <a style="font-weight: bold; " class="btn btn-secondary "
+                    href="{{ route('career.card.edit', request()->card_id) }}">Previous</a> --}}
                     <button class="btn btn-primary mx-3 mt-5 ">Save And Next </button>
+
                 </div>
+            </form>
         </div>
-        </form>
     </div>
-    </div>
+
 
     <!-- checkbok -->
     <script>
