@@ -115,9 +115,6 @@ Route::delete('/job_application/{id}', [JobApplicationController::class, 'destro
 Route::get('/positions-ajax', [PositionController::class, 'getPositions'])->name('positions.ajax');
 Route::get('/cities-ajax', [JobApplicationController::class, 'getCities'])->name('cities.ajax');
 
-// Use a controller method for image preview
-Route::get('/image-preview/{id}', [JobApplicationController::class, 'showImagePreview'])->name('image.preview');
-
 // card
 
 Route::view('/card', 'career.card.create')->name('card.view');
@@ -135,6 +132,14 @@ Route::get('/education/{id}/edit', [EducationController::class, 'edit'])->name('
 Route::put('/education/{id}', [EducationController::class, 'update'])->name('career.education.update');
 Route::delete('/education/{id}', [EducationController::class, 'destroy'])->name('career.education.destroy');
 
+// employment
+
+Route::view('/employment', 'career.employment.create')->name('employment.view');
+Route::post('/employment', [EmploymentController::class, 'store'])->name('career.employment.store');
+Route::get('/employment/{id}', [EmploymentController::class, 'show'])->name('career.employment.show');
+Route::get('/employment/{id}/edit', [EmploymentController::class, 'edit'])->name('career.employment.edit');
+Route::put('/employment/{id}', [EmploymentController::class, 'update'])->name('career.employment.update');
+Route::delete('/employment/{id}', [EmploymentController::class, 'destroy'])->name('career.employment.destroy');
 
 //  achievement
 
@@ -144,7 +149,6 @@ Route::get('/achievement/{id}', [AchievementController::class, 'show'])->name('c
 Route::get('/achievement/{id}/edit', [AchievementController::class, 'edit'])->name('career.achievement.edit');
 Route::put('/achievement/{id}', [AchievementController::class, 'update'])->name('career.achievement.update');
 Route::delete('/achievement/{id}', [AchievementController::class, 'destroy'])->name('career.achievement.destroy');
-
 
 //  disclaimer
 
@@ -156,16 +160,6 @@ Route::put('/disclaimer/{id}', [DisclaimerController::class, 'update'])->name('c
 Route::delete('/disclaimer/{id}', [DisclaimerController::class, 'destroy'])->name('career.disclaimer.destroy');
 Route::get('acknowledgement', [DisclaimerController::class, 'acknowledgement'])->name('acknowledgement');
 Route::get('download/pdf', [DisclaimerController::class, 'downloadPdf'])->name('download.pdf');
-
-// employment
-
-Route::view('/employment', 'career.employment.create')->name('employment.view');
-Route::post('/employment', [EmploymentController::class, 'store'])->name('career.employment.store');
-Route::get('/employment/{id}', [EmploymentController::class, 'show'])->name('career.employment.show');
-Route::get('/employment/{id}/edit', [EmploymentController::class, 'edit'])->name('career.employment.edit');
-Route::put('/employment/{id}', [EmploymentController::class, 'update'])->name('career.employment.update');
-Route::delete('/employment/{id}', [EmploymentController::class, 'destroy'])->name('career.employment.destroy');
-
 
 //  demo
 Route::view('/demo', 'demo');

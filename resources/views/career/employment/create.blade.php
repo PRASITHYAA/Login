@@ -1,172 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.front.master')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- MDB -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.css" rel="stylesheet" />
-
-    <!-- phone -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
-
-
-</head>
-
-<body>
-    <style>
-        /* img back */
-        body {
-            overflow-x: hidden;
-        }
-
-        .left-02 {
-            /* background-color: #bf9855; */
-            background-color: #ebc789;
-
-        }
-
-        .btn-00 {
-            font-weight: bold;
-            border-radius: 40px;
-            border: none;
-        }
-
-        .btn-00:hover {
-            background-color: #111c3a;
-            color: white;
-
-
-        }
-
-        /* nav bar */
-        .btn-nav {
-            background-color: #1e3060;
-            color: white;
-            border: none;
-        }
-
-        .btn-nav:hover {
-            background-color: white;
-            color: black;
-        }
-
-        .nav-bg {
-            background-color: #bf9855;
-            color: black;
-        }
-
-        .red {
-            color: red;
-        }
-    </style>
-
-    <!-- navbar -->
-
-    <div class="container-fluid ">
-        <div class="row nav-top ">
-            <div class=" container col-lg-2 text-center navtop" style="background-color: white;">
-                <img class="" style="width: 180px;height: 140px;" src="{{ asset('img/logo.png') }}"
-                    alt="">
-            </div>
-            <div class=" container-fluid  col-lg-10 text-white  navtop">
-                <section style="background-color: #111c3a; "
-                    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-                    <!-- Left -->
-                    <div class=" d-none d-lg-block ">
-                        <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
-                                class="fa-regular fa-address-book"></i> No. 5/333A, OMR Road, Thuraipakkam, Chennai,
-                            Tamil Nadu, India-600097 </span>
-                        <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
-                                class="fa-solid fa-phone-volume"></i> +91 89009 10738</span>
-                        <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
-                                class="fa-regular fa-envelope"></i> info@tisecon.com</span>
-                    </div>
-                    <!-- Right -->
-                    <div>
-                        <a style="text-decoration: none;" href="" class=" mx-2   text-reset">
-                            <i class="icons-1  fab fa-facebook-f "></i>
-                        </a>
-                        <a style="text-decoration: none;" href="" class=" mx-2 text-reset">
-                            <i class="fa-brands fa-instagram"></i>
-                        </a>
-                        <a style="text-decoration: none;" href="" class="  mx-2 text-reset">
-                            <i class="fa-brands fa-twitter"></i>
-                        </a>
-                        <a style="text-decoration: none;" href="" class=" mx-2 text-reset">
-                            <i class="fa-brands fa-youtube"></i>
-                        </a>
-                        <a style="text-decoration: none;" href="" class=" mx-2 text-reset">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </section>
-                <nav class="navbar navbar-expand-lg  nav-bg">
-                    <div class="container-fluid">
-                        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                            data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-
-                            <i class="fas fa-bars"></i>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
-                                <li class="nav-item">
-                                    <a class="nav-link  mx-2 " href="#">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link  mx-2 " href="#">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link   mx-1" href="#">Sectors</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle mx-3" href="#" id="navbarDropdownMenuLink"
-                                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                                        Services
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <li>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link  mx-2 " href="#">Expertise</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link   mx-2" href="#">Projects</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link   mx-2" href="#">Careers</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link   mx-1" href="#">Contact Us</a>
-                                </li>
-                            </ul>
-                            <div class="d-flex align-items-end btn-nav">
-                                <button type="button" class="btn btn-primary btn-nav ">
-                                    Feedback
-                                </button>
-                            </div>
-                        </div>
-                </nav>
-            </div>
-
-        </div>
-    </div>
-
+@section('content')
 
     <!-- header -->
     <div class="container-fluid">
@@ -174,9 +8,8 @@
             <!-- Percentage bar -->
             <div class="container">
                 <div class="progress m-2  mt-5 mb-5" style="height: 30px;">
-                    <div class="progress-bar" role="progressbar"
-                        style="width: 75%; background-color: #111;color: white; " aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="75%">75%</div>
+                    <div class="progress-bar" role="progressbar" style="width: 75%; background-color: #111;color: white; "
+                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="75%">75%</div>
                 </div>
                 {{-- error --}}
                 @if ($errors->any())
@@ -201,30 +34,33 @@
 
             <form action="{{ route('career.employment.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @if (isset($employment))
+                    @method('PUT')
+                @endif
+
                 <input type="hidden" name="job_application_id" id="job_application_id"
-                    value="{{ request()->job_application_id }}">
+                    value="{{ isset($employment) ? $employment->job_application_id : request()->job_application_id }}">
 
                 <!-- Do you have any previous experience? yes or no -->
 
                 <label>
                     <h6>Do you have any previous experience? <span class="red">*</span> </h6><br>
-                    <input type="radio" name="open-input" value="yes" onclick="showNestedOption(this)"
-                        required>
-                    Yes
+
+                    <input type="radio" name="open-input" value="yes"
+                        {{ old('open-input') == 'yes' || (isset($employment) && $employment->open - input == 'yes') ? 'checked' : '' }}
+                        required onclick="showNestedOption(this)">Yes
                 </label>
                 <br>
                 <label>
-                    <input type="radio" name="open-input" value="no" onclick="showNestedOption(this)"
-                        required>
-                    No
+                    <input type="radio" name="open-input" value="no"
+                        {{ old('open-input') == 'no' || (isset($employment) && $employment->open - input == 'no') ? 'checked' : '' }}
+                        required onclick="showNestedOption(this)"> No
                 </label>
 
-
-                <div id="nested-input" style="display: none;">
+                <div id="nested-input"
+                    style="{{ isset($employment) ? ($employment->radio_option == 'yes' ? '' : 'display: none;') : 'display: none;' }}">
                     <p style="font-weight: bold;">Note: Please add click (+) symbol to add more no of previous emloyers
-                        and enter
-                        recent employer
-                        detail first</p>
+                        and enter recent employer detail first</p>
                     <div class="row">
                         <!-- Employer Details -->
                         <h6>Employer Details</h6>
@@ -232,65 +68,71 @@
                         <div class="col-md-4">
                             <label class="form-label">
                                 Company / Individual <span style="color: red;">*</span></label>
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                class="form-control" name="employer_company" id="employer_company"
-                                placeholder="Company / Individual">
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
+                                name="employer_company" id="employer_company" placeholder="Company / Individual"
+                                value="{{ old('employer_company') ?? ($employment->employer_company ?? '') }}">
                         </div>
                         <!-- E-MAIL -->
                         <div class="col-md-4">
                             <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
-                                class="form-control" name="employer_email" id="employer_email"
-                                placeholder="email.com">
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="email" class="form-control"
+                                name="employer_email" id="employer_email" placeholder="email.com"
+                                value="{{ old('employer_email') ?? ($employment->employer_email ?? '') }}">
                         </div>
                         <!-- Address -->
                         <div class="col-md-4">
                             <label class="form-label">Address <span style="color: red;">*</span></label>
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                class="form-control" name="employer_address" id="employer_address"
-                                placeholder="Address">
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
+                                name="employer_address" id="employer_address" placeholder="Address"
+                                value="{{ old('employer_address') ?? ($employment->employer_address ?? '') }}">
                         </div>
                         <!-- Phone -->
                         <div class="col-md-4">
                             <label for="phoneInputField1" class="form-label">Phone
                                 <span style="color: red;">*</span></label><br>
-                            <input type="tel" class="phoneInputField" name="employer_phone" id="employer_phone">
+                            <input type="tel" class="phoneInputField" name="employer_phone" id="employer_phone"
+                                value="{{ old('employer_phone') ?? ($employment->employer_phone ?? '') }}">
                             <p class="errorText" style="color: red;"></p>
                         </div>
                         <!-- Job Title -->
                         <div class="col-md-4">
                             <label class="form-label">Job Title <span style="color: red;">*</span></label>
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                class="form-control" name="employer_job_title" id="employer_job_title"
-                                placeholder="Job Title	">
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
+                                name="employer_job_title" id="employer_job_title" placeholder="Job Title	"
+                                value="{{ old('employer_job_title') ?? ($employment->employer_job_title ?? '') }}">
                         </div>
                         <!-- From Date  -->
                         <div class="col-md-4">
                             <label class="form-label">From Date <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                 name="employer_from_date" class="form-control" placeholder="" id="fromDate"
-                                onchange="validateDateRange()">
+                                onchange="validateDateRange()"
+                                value="{{ old('employer_from_date') ?? ($employment->employer_from_date ?? '') }}">
                         </div>
                         <!-- To Date -->
                         <div class="col-md-4">
                             <label class="form-label">To Date <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                 name="employer_to_date" class="form-control" placeholder="" id="toDate"
-                                onchange="validateDateRange()">
+                                onchange="validateDateRange()"
+                                value="{{ old('employer_to_date') ?? ($employment->employer_to_date ?? '') }}">
                             <p style="color: red;" id="validationMessage" class="error"></p>
                         </div>
                         <!-- Experience -->
                         <div class="col-md-4">
                             <label class="form-label">Experience <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" name="employer_experience"
-                                id="totalExperience" class="form-control" readonly>
+                                id="totalExperience" class="form-control"
+                                value="{{ old('employer_experience') ?? ($employment->employer_experience ?? '') }}"
+                                readonly>
                         </div>
                         <!-- Responsibilities -->
                         <div class="col-md-4">
                             <label class="form-label">Responsibilities <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="Responsibilities"
                                 class="form-control" name=" employer_responsibilities" id="employer_responsibilities"
-                                placeholder="Responsibilities ">
+                                placeholder="Responsibilities "
+                                value="{{ old('employer_responsibilities') ?? ($employment->employer_responsibilities ?? '') }}">
                         </div>
                         <!-- REFERENCE DETAILS FROM PREVIOUS EMPLOYER -->
                         <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER</h6>
@@ -298,36 +140,39 @@
                         <div class="col-md-4">
                             <label class="form-label">Name <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                class="form-control" name="reference_name" id="reference_name" placeholder="Name	">
+                                class="form-control" name="reference_name" id="reference_name" placeholder="Name"
+                                value="{{ old('reference_name') ?? ($employment->reference_name ?? '') }}">
                         </div>
                         <!-- company -->
                         <div class="col-md-4">
                             <label class="form-label">Company <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="reference_company" id="reference_company"
-                                placeholder="Company	">
+                                placeholder="Company"
+                                value="{{ old('reference_company') ?? ($employment->reference_company ?? '') }}">
                         </div>
                         <!-- position -->
                         <div class="col-md-4">
                             <label class="form-label">Position <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="reference_position" id="reference_position"
-                                placeholder="Position	">
+                                placeholder="Position"
+                                value="{{ old('reference_position') ?? ($employment->reference_position ?? '') }}">
                         </div>
                         <!-- E-MAIL -->
                         <div class="col-md-4">
                             <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
-                                class="form-control" name="reference_email" id="reference_email"
-                                placeholder="email.com">
+                                class="form-control" name="reference_email" id="reference_email" placeholder="email.com"
+                                value="{{ old('reference_email') ?? ($employment->reference_email ?? '') }}">
                         </div>
                         <!-- Phone -->
                         <div class="col-md-4">
                             <label for="phoneInputField2" class="form-label">Phone
                                 <span style="color: red;">*</span></label>
                             <br>
-                            <input type="tel" class="phoneInputField " name="reference_phone"
-                                id="reference_phone">
+                            <input type="tel" class="phoneInputField " name="reference_phone" id="reference_phone"
+                                value="{{ old('reference_phone') ?? ($employment->reference_phone ?? '') }}">
                             <p class="errorText" style="color: red;"></p>
                         </div>
                         <!-- Address -->
@@ -335,40 +180,53 @@
                             <label class="form-label">Address <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                 class="form-control" name="reference_address" id="reference_address"
-                                placeholder="Address">
+                                placeholder="Address"
+                                value="{{ old('reference_address') ?? ($employment->reference_address ?? '') }}">
                         </div>
-
                     </div>
                     <br>
-
                     <label>
                         <h6>Are You Legally Eligible to Work? <span class="red">*</span></h6>
                     </label><br>
-                    <input type="radio" name="open-input1" value="yes" id="yesRadio1"
-                        onclick="hideInput('sub-text-input')">Yes
-                    <br>
-                    <input type="radio" name="open-input1" value="no" id="noRadio1"
-                        onclick="showInput('sub-text-input')">No
+<label>
+    <input type="radio" name="open-input1" value="yes" id="yesRadio1"
+        {{ old('open-input1') == 'yes' || (isset($employment) && $employment->open-input1 == 'yes') ? 'checked' : '' }}
+        required onclick="hideInput('sub-text-input')"> Yes
+</label>
+<br>
+<label>
+    <input type="radio" name="open-input1" value="no" id="noRadio1"
+        {{ old('open-input1') == 'no' || (isset($employment) && $employment->open-input1 == 'no') ? 'checked' : '' }}
+        required onclick="showInput('sub-text-input'); showNestedOption(this)"> No
+</label>
 
-                    <div class="col-md-12" id="sub-text-input" style="display: none;">
-                        <p style="font-weight: bold;">If Yes, Please Explain <span class="red">*</span> </p>
-                        <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control sub-text-input"
-                            name="sub-text-input"></textarea>
-                    </div>
-                    <br>
-                    <br>
+<div class="col-md-12" id="sub-text-input" style="{{ old('open-input1') == 'no' || (isset($employment) && $employment->open-input1 == 'no') ? 'display: block;' : 'display: none;' }}">
+    <p style="font-weight: bold;">If No, Please Explain <span class="f5">*</span> </p>
+    <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control sub-text-input"
+        name="sub-text-input">{{ old('sub-text-input') ?? ($employment->sub-text-input ?? '') }}</textarea>
+</div>
+<br>
 
                     <label>
                         <h6>Have You Ever Been Convicted of A Crime? <span class="red">*</span></h6>
                     </label><br>
-                    <input type="radio" name="open-input2" value="yes" id="yesRadio2"
-                        onclick="showInput('text-input')">Yes
+                    <label>
+                        <input type="radio" name="open-input2" id="yesRadio2" onclick="showInput('text-input')"
+                            value="yes"
+                            {{ old('open-input2') == 'yes' || (isset($employment) && $employment->open - input2 == 'yes') ? 'checked' : '' }}
+                            required> Yes
+                    </label>
                     <br>
-                    <input type="radio" name="open-input2" value="no" id="noRadio2"
-                        onclick="hideInput('text-input')">No
+                    <label>
+                        <input type="radio" name="open-input2" id="noRadio2" onclick="hideInput('text-input')"
+                            value="no"
+                            {{ old('open-input2') == 'no' || (isset($employment) && $employment->open - input2 == 'no') ? 'checked' : '' }}
+                            required> No
+                    </label>
+
 
                     <div class="col-md-12" id="text-input" style="display: none;">
-                        <p style="font-weight: bold;">If Yes, Please Explain <span class="red">*</span> </p>
+                        <p style="font-weight: bold;">If Yes, Please Explain <span class="f5">*</span> </p>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control text-input"
                             name="text-input"></textarea>
                     </div>
@@ -378,103 +236,13 @@
                 <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
 
                     <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
-                        href="{{ route('career.education.edit', request()->education_id ?? (($education_id) ?? '')) }}">Previous</a>
-
-                        {{-- <a style="font-weight: bold; " class="btn btn-secondary mx-3 mt-5"
-                        href="{{ route('career.card.edit', request()->card_id ?? (($card_id) ?? '')) }}">Previous</a> --}}
-
-
-                    <button class="btn btn-primary  mx-3 ">Save & Next </button>
+                        href="{{ route('career.education.edit', request()->education_id ?? ($education_id ?? '')) }}">Previous</a>
+                    <button class="btn btn-primary  mx-3 ">Save And Next </button>
                 </div>
 
             </form>
         </div>
     </div>
-    <!-- footer -->
-    <footer class="bg-dark  text-white mt-4">
-        <div class="container-fluid  p-4">
-            <!-- link -->
-            <section class="container">
-                <div class="row border-bottom ">
-                    <div class="col-lg-4 col-md-6 mt-5  ">
-                        <h1 class="">About TISE</h1>
-                        <p>With over 8 years of experience in the industry, <br> we provide top-notch expertise and
-                            innovative <br> solutions for your engineering needs</p>
-                        <!-- icons -->
-                        <div class="">
-                            <a style="text-decoration: none; padding-right: 10px;" href=""
-                                class="   text-reset">
-                                <i class="icons-1  fab fa-facebook-f g-5 "></i>
-                            </a>
-                            <a style="text-decoration: none; padding-right: 10px;" href=""
-                                class=" text-reset ">
-                                <i class="fa-brands fa-instagram  "></i>
-                            </a>
-                            <a style="text-decoration: none;padding-right: 10px;" href="" class=" text-reset">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                            <a style="text-decoration: none;padding-right: 10px;" href="" class=" text-reset">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Quick Links  -->
-                    <div class="col-lg-4 col-md-6 mt-5 mb-5">
-                        <h6 class=""> Quick Links </h6>
-                        <ul class="list-unstyled mb-4 ">
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Terms and Conditions</a>
-                            </li>
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Privacy Policy</a>
-                            </li>
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Cancellation & Refund Policy – Training</a>
-                            </li>
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Cancellation & Refund Policy – Job</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Useful Links -->
-                    <div class="col-lg-2 col-md-6 mt-5 mb-5">
-                        <h6 class=""> Useful Links </h6>
-                        <ul class="list-unstyled mb-0">
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Apply for Job</a>
-                            </li>
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Training Sessions</a>
-                            </li>
-                            <li class="pb-1">
-                                <a href="#!" class="text-white">Projects</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-md-6 mt-5 mb-5">
-                        <img class="pb-4 img-fluid" src="./img/TISE-Footer-Logo.png" alt="">
-                    </div>
-                </div>
-            </section>
-        </div>
-        <!-- copy -->
-        <div class="row  text-center">
-            <div class="col-lg-4 mt-2 mb-2">
-                <p style="font-weight: bold;">Copyright © 2023 TISE, All rights reserved.</p>
-            </div>
-            <div class="col-lg-4  d-flex mt-2 ">
-                <p class="m-2">Razorpay Quick Links:</p>
-                <a class="m-2" style="color: white; " href=""> Privacy Policy </a>
-                <a class="m-2" style="color: white;" href=""> T&C </a>
-                <a class="m-2" style="color: white;" href=""> Shipping </a>
-                <a class=" m-2" style="color: white;" href=""> Refund </a>
-            </div>
-            <div class="col-lg-4 mt-2 mb-2">
-                <p style="font-weight: bold;">Powered by TISE</p>
-
-            </div>
-        </div>
-    </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -534,7 +302,7 @@
                 .then((resp) => resp.json())
                 .catch(() => {
                     return {
-                        country: 'in', // Default to India
+                        country: 'in',
                     };
                 })
                 .then((resp) => callback(resp.country));
@@ -611,13 +379,4 @@
         }
     </script>
 
-    <!-- bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <!-- MDB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
-
-</body>
-
-</html>
+@endsection

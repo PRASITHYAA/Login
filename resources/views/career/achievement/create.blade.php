@@ -178,11 +178,10 @@
 
 
                 <!-- buttons -->
-                <div style="display: flex;justify-content:end;" class="pt-5">
-                    <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
-                        href="employment">Previous</a>
-
-                    <button class="btn btn-primary mx-2">Save & Next </button>
+                <div style="display: flex;justify-content: end; align-items: center;" >
+                    <a style="display: flex;align-items: center;; " class="btn btn-secondary mx-3 mt-5"
+                    href="{{ route('career.employment.edit', request()->employment_id ?? ($employment_id ?? '')) }}">Previous</a>
+                    <button class="btn btn-primary mt-5 mx-3 ">Save And Next </button>
                 </div>
             </form>
         </div>

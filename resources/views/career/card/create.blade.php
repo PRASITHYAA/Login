@@ -86,9 +86,6 @@
                         <!-- aadharissuedstate -->
                         <div class="col mt-4">
                             <label class="form-label">State <span style="color: red;">*</span></label>
-                            {{-- <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        name="aadhar_issued_state" class="form-control" placeholder="Issued Place"
-                                        id="aadhar_issued_state" required> --}}
                             <select class="form-select" name="aadhar_issued_state" id="state" required>
                                 <option value="">--Select State--</option>
                                 @foreach (\App\Models\State::all() as $state)
