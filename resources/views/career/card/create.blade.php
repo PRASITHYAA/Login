@@ -76,7 +76,7 @@
                             <select class="form-select" name="aadhar_issued_country" id="aadhar_issued_country" required>
                                 <option selected disabled value="">Choose...</option>
                                 <option value="1"
-                                    {{ ((isset($card) && $card->aadhar_issued_country == 1) || (old('aadhar_issued_country') && old('aadhar_issued_country') == 1)) ? 'selected' : '' }}>
+                                    {{ (isset($card) && $card->aadhar_issued_country == 1) || (old('aadhar_issued_country') && old('aadhar_issued_country') == 1) ? 'selected' : '' }}>
                                     India</option>
                             </select>
                         </div>
@@ -90,7 +90,7 @@
                                 <option value="">--Select State--</option>
                                 @foreach (\App\Models\State::all() as $state)
                                     <option value="{{ $state->id }}"
-                                        {{ ((isset($card) && $card->state_id == $state->id) || (old('aadhar_issued_state') && old('aadhar_issued_state') == $state->id)) ? 'selected' : '' }}>
+                                        {{ (isset($card) && $card->state_id == $state->id) || (old('aadhar_issued_state') && old('aadhar_issued_state') == $state->id) ? 'selected' : '' }}>
                                         {{ $state->name }}
                                     </option>
                                 @endforeach
@@ -105,10 +105,10 @@
                                         id="aadhar_issued_place" required> --}}
                             <select class="form-select" name="aadhar_issued_place" id="city" required>
                                 <option value="">--Select City--</option>
-                                @if(isset($card) || old('aadhar_issued_place'))
+                                @if (isset($card) || old('aadhar_issued_place'))
                                     @foreach (\App\Models\City::all() as $city)
                                         <option value="{{ $city->id }}"
-                                            {{ ((isset($card) && $card->aadhar_issued_place == $city->id) || (old('aadhar_issued_place') && old('aadhar_issued_place') == $city->id)) ? 'selected' : '' }}>
+                                            {{ (isset($card) && $card->aadhar_issued_place == $city->id) || (old('aadhar_issued_place') && old('aadhar_issued_place') == $city->id) ? 'selected' : '' }}>
                                             {{ $city->name }}
                                         </option>
                                     @endforeach
@@ -156,15 +156,15 @@
                         </div>
                         <!-- button -->
                         <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
-                            <a style="font-weight: bold; " class="btn btn-secondary "
-                            href="{{ route('career.job_application.edit', (request()->job_application_id ?? isset($card) ? $card->job_application_id : '')) }}">Previous</a>
+                            <a style="font-weight: bold;" class="btn btn-secondary"
+                                href="{{ route('career.job_application.edit', request()->job_application_id ?? isset($card) ? $card->job_application_id : '') }}">
+                                Previous
+                            </a>
                             <button class="btn btn-primary   mx-3">Save And Next </button>
                             <br>
                             <br>
                         </div>
                     </div>
-
-
                     {{-- passport --}}
                     <div class="col-lg-6">
                         <div id="inputFieldspassport" style="display: none;">
@@ -282,7 +282,7 @@
     <script>
         $(document).ready(function() {
             // City dropdown change event
-            $('#state').change(function () {
+            $('#state').change(function() {
                 var selectedSector = $(this).val();
 
                 // Make an AJAX request to the Laravel API to fetch positions based on the selected sector
@@ -293,16 +293,16 @@
                         state_id: selectedSector
                     },
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         // Clear and populate the position dropdown with the retrieved data
                         $('#city').empty();
                         //$('#city').append($('<option>').text('--Select City--').val(''));
-                        $.each(data, function (key, value) {
+                        $.each(data, function(key, value) {
                             $('#city').append($('<option>').text(value).val(
                                 key));
                         });
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         console.error(xhr.responseText);
                         // Handle errors here
                     }

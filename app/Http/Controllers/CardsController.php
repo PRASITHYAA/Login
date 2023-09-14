@@ -108,24 +108,23 @@ class CardsController extends Controller
 
         if ($request->hasFile('aadhar_image')) {
             $aadharImagePath = $request->file('aadhar_image')->store('images', 'public');
-            $data->aadhar_image = $aadharImagePath;
+            $data['aadhar_image'] = $aadharImagePath;
         }
 
         if ($request->hasFile('aadhar_image_page')) {
             $aadharImagePagePath = $request->file('aadhar_image_page')->store('images', 'public');
-            $data->aadhar_image_page = $aadharImagePagePath;
+            $data['aadhar_image_page'] = $aadharImagePagePath;
         }
 
         if ($request->hasFile('passport_image_id')) {
             $passportImageIdPath = $request->file('passport_image_id')->store('images', 'public');
-            $data->passport_image_id = $passportImageIdPath;
+            $data['passport_image_id'] = $passportImageIdPath;
         }
 
         if ($request->hasFile('passport_image_id_page')) {
             $passportImageIdPagePath = $request->file('passport_image_id_page')->store('images', 'public');
-            $data->passport_image_id_page = $passportImageIdPagePath;
+            $data['passport_image_id_page'] = $passportImageIdPagePath;
         }
-
         $card = Card::find($id);
         $card = $card->fill($data);
         $card->save();
