@@ -27,10 +27,13 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <form action="{{ route('career.card.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ isset($card) ? route('career.card.update', $card->id) : route('career.card.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @if (isset($card))
+                    @method('PUT')
+                @endif
                 <input type="hidden" name="job_application_id" id="job_application_id"
-                    value="{{ request()->job_application_id }}">
+                    value="{{ isset($card) ? $card->job_application_id : request()->job_application_id }}">
                 <h2 class="text-center p-4">Government-Issued Identification Cards (IDs)</h2>
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp <br>
                     Size Limit: 50KB</p>
@@ -90,7 +93,7 @@
                                 <option value="">--Select State--</option>
                                 @foreach (\App\Models\State::all() as $state)
                                     <option value="{{ $state->id }}"
-                                        {{ ((isset($card) && $card->state_id == $state->id) || (old('aadhar_issued_state') && old('aadhar_issued_state') == $state->id)) ? 'selected' : '' }}>
+                                        {{ ((isset($card) && $card->aadhar_issued_state == $state->id) || (old('aadhar_issued_state') && old('aadhar_issued_state') == $state->id)) ? 'selected' : '' }}>
                                         {{ $state->name }}
                                     </option>
                                 @endforeach
@@ -123,10 +126,10 @@
                                 <span style="color: red;">*</span></label>
                             <div class="input-group">
                                 <input type="file" class="form-control" id="aadhar_image" name="aadhar_image"
-                                    accept="image/*" required>
+                                    accept="image/*" {{ !isset($card->aadhar_image) ? 'required' : '' }}>
                                 @if (isset($card))
-                                    <img src="{{ asset('storage/' . $card->aadhar_image) }}" alt="Job Application Image"
-                                        style="max-width: 100%;">
+                                    <img src="{{ asset('storage/'.$card->aadhar_image) }}" alt="Job Application Image"
+                                        style="width: 150px;">
                                 @endif
 
                             </div>
@@ -142,11 +145,11 @@
                                 <span style="color: red;">*</span></label>
                             <div class="input-group">
                                 <input type="file" class="form-control" id="aadhar_image_page" accept="image/*"
-                                    name="aadhar_image_page" required>
+                                    name="aadhar_image_page" {{ !isset($card->aadhar_image_page) ? 'required' : '' }}>
                             </div>
                             @if (isset($card))
                                 <img src="{{ asset('storage/' . $card->aadhar_image_page) }}" alt="Job Application Image"
-                                    style="max-width: 100%;">
+                                     style="width: 150px;">
                             @endif
                             <div class="form-group">
                                 <img id="aadharImagePagePreview" src="#" alt="Image Preview"
@@ -157,7 +160,7 @@
                         <!-- button -->
                         <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
                             <a style="font-weight: bold; " class="btn btn-secondary "
-                            href="{{ route('career.job_application.edit', (request()->job_application_id ?? isset($card) ? $card->job_application_id : '')) }}">Previous</a>
+                            href="{{ route('career.job_application.edit', (request()->job_application_id ?? (isset($card) ? $card->job_application_id : ''))) }}">Previous</a>
                             <button class="btn btn-primary   mx-3">Save And Next </button>
                             <br>
                             <br>

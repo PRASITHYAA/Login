@@ -28,10 +28,13 @@
                 </div>
             @endif
 
-            <form action="{{ route('career.education.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ isset($education) ? route('career.education.update', $education->id) : route('career.education.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @if (isset($education))
+                    @method('PUT')
+                @endif
                 <input type="hidden" name="job_application_id" id="job_application_id"
-                    value="{{ request()->job_application_id }}">
+                    value="{{ isset($education) ? $education->job_application_id : request()->job_application_id }}">
                 <h1 class="text-center pt-4 pb-4">EDUCATION</h1>
                 <p style="font-weight: bold;">Note: Pleasd fill all completed educational details as applicable</p>
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp <br>
@@ -40,19 +43,18 @@
                 <p>Do you have any education qualification? <span style="color: red;">*</span></p>
 
                 <div><label>
-                        <input type="radio" name="radio_option" value="yes" onclick="showCheckboxes()"> Yes
+                        <input type="radio" name="radio_option" value="yes" {{ isset($education) ? ($education->radio_option == 'yes' ? 'checked' : '' ) : '' }} onclick="showCheckboxes()"> Yes
                     </label>
                     <label>
                         <input type="radio" name="radio_option" value="no" onclick="hideCheckboxes()"> No
                     </label>
                 </div>
 
-                <div id="checkboxes" style="display: none;">
-
+                <div id="checkboxes" style="{{ isset($education) ? ($education->radio_option == 'yes' ? '' : 'display: none;' ) : 'display: none;' }}">
                     <!-- High School -->
-                    <input type="checkbox" onchange="toggleForm('form1')" name="qualification" value="high_school">
+                    <input type="checkbox" onchange="toggleForm('form1')" name="qualification" value="high_school" {{ isset($education->high_school_name) ? 'checked' : '' }}>
                     High School
-                    <div id="form1" style="display: none;">
+                    <div id="form1" style="{{ isset($education->high_school_name) ? '' : 'display: none;' }}">
                         <h4>
                             High School
                         </h4>
@@ -62,21 +64,21 @@
                                 <label class="form-label ">Institution Name <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control qualification" placeholder="Institution Name" id="high_school_name"
-                                    name="high_school_name">
+                                    name="high_school_name" value="{{ $education->high_school_name ?? '' }}">
                             </div>
                             <!-- High school City -->
                             <div class="col-lg-2">
                                 <label class="form-label">Town/City <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control  qualification" placeholder="Town/City" id="high_school_city"
-                                    name="high_school_city">
+                                    name="high_school_city" value="{{ $education->high_school_city ?? '' }}">
                             </div>
                             <!-- High school Address -->
                             <div class="col-lg-2">
                                 <label class="form-label">Address <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control" placeholder="Address" id="high_school_address"
-                                    name="high_school_address">
+                                    name="high_school_address" value="{{ $education->high_school_address ?? '' }}">
                             </div>
                             <!-- High school From Date -->
                             <div class="col-lg-2">
@@ -84,7 +86,7 @@
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                     class="form-control" placeholder="From (Date)" id="high_school_form_date"
-                                    name="high_school_form_date">
+                                    name="high_school_form_date" value="{{ $education->high_school_form_date ?? '' }}">
                             </div>
                             <!-- High school To Date -->
                             <div class="col-lg-2">
@@ -92,7 +94,7 @@
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                     class="form-control qualification" placeholder="To (Date)" id="high_school_to_date"
-                                    name="high_school_to_date">
+                                    name="high_school_to_date" value="{{ $education->high_school_to_date ?? '' }}">
                             </div>
                             <!-- High school Year of Passing-->
                             <div class="col-lg-2">
@@ -100,7 +102,7 @@
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                     name="high_school_year_of_passing" class="form-control" placeholder="Year of Passing"
-                                    id="high_school_year_of_passing">
+                                    id="high_school_year_of_passing" value="{{ $education->high_school_year_of_passing ?? '' }}">
                             </div>
                             <!-- High school GPA Percentage-->
                             <div class="col-lg-2">
@@ -108,7 +110,7 @@
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
                                     class="form-control qualification" placeholder="0" id="high_school_percentage"
-                                    name="high_school_percentage">
+                                    name="high_school_percentage" value="{{ $education->high_school_percentage ?? '' }}">
                             </div>
                             <!-- High school Class -->
                             <div class="col-lg-2">
@@ -116,18 +118,18 @@
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control qualification" placeholder="Class" id="high_school_class"
                                     name="high_school_class"
-                                    value="{{ old('high_school_class') ?? ($card->high_school_class ?? '') }}">
+                                    value="{{ old('high_school_class') ?? ($education->high_school_class ?? '') }}">
                             </div>
                             {{-- high aschool curriculum --}}
                             <div class="col-lg-2">
                                 <label class="form-label">Curriculum <span style="color: red;">*</span></label>
                                 <select class="form-select" id="high_school_stream" name="high_school_stream">
                                     <option selected disabled value="">Choose...</option>
-                                    <option>CBSE</option>
-                                    <option>ICSE</option>
-                                    <option>IB</option>
-                                    <option>IGCSE</option>
-                                    <option>STATE BOARD</option>
+                                    <option value="CBSE" {{ (isset($education)? $education->high_school_stream == 'CBSE' ? 'selected' : '' : '')  }}>CBSE</option>
+                                    <option value="ICSE">ICSE</option>
+                                    <option value="IB">IB</option>
+                                    <option value="IGCSE">IGCSE</option>
+                                    <option value="STATE BOARD">STATE BOARD</option>
                                 </select>
                             </div>
 
@@ -755,8 +757,8 @@
                 </div>
                 <!-- BUTTONS -->
                 <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
-                    {{-- <a style="font-weight: bold; " class="btn btn-secondary "
-                    href="{{ route('career.card.edit', request()->card_id) }}">Previous</a> --}}
+                     <a style="font-weight: bold; " class="btn btn-secondary mx-3 mt-5"
+                    href="{{ route('career.card.edit', request()->card_id ?? (($card_id) ?? '')) }}">Previous</a>
                     <button class="btn btn-primary mx-3 mt-5 ">Save And Next </button>
 
                 </div>

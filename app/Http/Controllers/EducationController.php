@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Card;
 use App\Models\Education;
 use App\Models\JobApplication;
 use Illuminate\Http\Request;
@@ -172,9 +173,9 @@ class EducationController extends Controller
             $education['doctorate_image_mark_sheet'] = $markSheetPath;
         }
 
-        Education::create($education);
+        $education = Education::create($education);
 
-        return redirect()->route('employment.view', ['job_application_id' => $request->job_application_id])->with('success', 'Education created successfully!');
+        return redirect()->route('employment.view', ['job_application_id' => $request->job_application_id, 'education_id' => $education->id])->with('success', 'Education created successfully!');
     }
 
     public function show($id)
@@ -186,9 +187,9 @@ class EducationController extends Controller
 
     public function edit($id)
     {
-        $jobApplication = JobApplication::find($id);
-
-        return view('career.education.create', ['jobApplication' => $jobApplication]);
+        $education = Education::find($id);
+        $card = Card::where('job_application_id', $education->job_application_id)->orderBy('id', 'desc')->first();
+        return view('career.education.create', ['education' => $education, 'card_id' => $card->id]);
     }
 
     public function update($id, Request $request)
@@ -345,6 +346,7 @@ class EducationController extends Controller
             $markSheetPath = $request->file('doctorate_image_mark_sheet')->store('mark_sheets', 'public');
             $data['doctorate_image_mark_sheet'] = $markSheetPath;
         }
+        $education = Education::find($id);
         $jobApplication = JobApplication::find($id);
         $education = $education->fill($data);
         $education->save();
