@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Card;
+use App\Models\Education;
 use App\Models\JobApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -75,15 +76,12 @@ class CardsController extends Controller
     public function edit($id)
     {
         $card = Card::find($id);
-
-        return view('career.card.create', [
-            'card' => $card,
-        ]);
+        return view('career.card.create', ['card' => $card,  ]);
     }
 
     public function update($id, Request $request)
     {
-        $data = $request->validate([
+        $rules = [
             'job_application_id' => 'required',
             'identity_type' => 'required|in:aadhar,passport',
             // aadhar
@@ -92,8 +90,6 @@ class CardsController extends Controller
             'aadhar_issued_country' => 'required_if:identity_type,aadhar',
             'aadhar_issued_state' => 'required_if:identity_type,aadhar',
             'aadhar_issued_place' => 'required_if:identity_type,aadhar',
-            'aadhar_image' => 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'aadhar_image_page' => 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             // passport
             'passport_name' => 'required_if:identity_type,passport',
             'passport_id_number' => 'required_if:identity_type,passport',
@@ -104,34 +100,55 @@ class CardsController extends Controller
             'passport_issued_place' => 'required_if:identity_type,passport',
             'passport_image_id' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'passport_image_id_page' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        ];
+        if ($request->hasFile('aadhar_image')) {
+            $rules['aadhar_image'] = 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
+        }
+        if ($request->hasFile('aadhar_image_page')) {
+            $rules['aadhar_image_page'] = 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
+        }
+        if ($request->hasFile('passport_image_id')) {
+            $rules['passport_image_id'] = 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
+        }
+        if ($request->hasFile('passport_image_id_page')) {
+            $rules['passport_image_id_page'] = 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
+        }
+        $data = $request->validate($rules);
 
         if ($request->hasFile('aadhar_image')) {
             $aadharImagePath = $request->file('aadhar_image')->store('images', 'public');
-            $data->aadhar_image = $aadharImagePath;
+            $card['aadhar_image'] = $aadharImagePath;
         }
 
         if ($request->hasFile('aadhar_image_page')) {
             $aadharImagePagePath = $request->file('aadhar_image_page')->store('images', 'public');
-            $data->aadhar_image_page = $aadharImagePagePath;
+            $card['aadhar_image_page'] = $aadharImagePagePath;
         }
 
         if ($request->hasFile('passport_image_id')) {
             $passportImageIdPath = $request->file('passport_image_id')->store('images', 'public');
-            $data->passport_image_id = $passportImageIdPath;
+            $card['passport_image_id'] = $passportImageIdPath;
         }
 
         if ($request->hasFile('passport_image_id_page')) {
             $passportImageIdPagePath = $request->file('passport_image_id_page')->store('images', 'public');
-            $data->passport_image_id_page = $passportImageIdPagePath;
+            $card['passport_image_id_page'] = $passportImageIdPagePath;
         }
 
         $card = Card::find($id);
         $card = $card->fill($data);
         $card->save();
+
         $jobApplication = JobApplication::find($card->job_application_id);
 
-        return Redirect::route('education.view', ['job_application_id' => $jobApplication->id])
-            ->with('success', 'Card created successfully!');
+        $education = Education::where('job_application_id', $card->job_application_id)->orderBy('id', 'desc')->first();
+
+        if (!is_null($education)) {
+            return redirect()->route('career.education.edit', $education->id)->with('success', 'Card updated successfully!');
+        }
+        else {
+            return redirect()->route('education.view', ['job_application_id' => $jobApplication->id, 'card_id' => $card->id])
+                ->with('success', 'Card updated successfully!');
+        }
     }
 }

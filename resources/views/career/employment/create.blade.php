@@ -378,7 +378,11 @@
                 <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
 
                     <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
-                        href="education">Previous</a>
+                        href="{{ route('career.education.edit', request()->education_id ?? (($education_id) ?? '')) }}">Previous</a>
+
+                        {{-- <a style="font-weight: bold; " class="btn btn-secondary mx-3 mt-5"
+                        href="{{ route('career.card.edit', request()->card_id ?? (($card_id) ?? '')) }}">Previous</a> --}}
+
 
                     <button class="btn btn-primary  mx-3 ">Save & Next </button>
                 </div>
