@@ -135,6 +135,7 @@ Route::get('/education/{id}/edit', [EducationController::class, 'edit'])->name('
 Route::put('/education/{id}', [EducationController::class, 'update'])->name('career.education.update');
 Route::delete('/education/{id}', [EducationController::class, 'destroy'])->name('career.education.destroy');
 
+
 //  achievement
 
 Route::view('/achievement', 'career.achievement.create')->name('achievement.view');
@@ -143,6 +144,7 @@ Route::get('/achievement/{id}', [AchievementController::class, 'show'])->name('c
 Route::get('/achievement/{id}/edit', [AchievementController::class, 'edit'])->name('career.achievement.edit');
 Route::put('/achievement/{id}', [AchievementController::class, 'update'])->name('career.achievement.update');
 Route::delete('/achievement/{id}', [AchievementController::class, 'destroy'])->name('career.achievement.destroy');
+
 
 //  disclaimer
 
@@ -163,6 +165,7 @@ Route::get('/employment/{id}', [EmploymentController::class, 'show'])->name('car
 Route::get('/employment/{id}/edit', [EmploymentController::class, 'edit'])->name('career.employment.edit');
 Route::put('/employment/{id}', [EmploymentController::class, 'update'])->name('career.employment.update');
 Route::delete('/employment/{id}', [EmploymentController::class, 'destroy'])->name('career.employment.destroy');
+
 
 //  demo
 Route::view('/demo', 'demo');
