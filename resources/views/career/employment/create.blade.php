@@ -188,24 +188,25 @@
                     <label>
                         <h6>Are You Legally Eligible to Work? <span class="red">*</span></h6>
                     </label><br>
-<label>
-    <input type="radio" name="open-input1" value="yes" id="yesRadio1"
-        {{ old('open-input1') == 'yes' || (isset($employment) && $employment->open-input1 == 'yes') ? 'checked' : '' }}
-        required onclick="hideInput('sub-text-input')"> Yes
-</label>
-<br>
-<label>
-    <input type="radio" name="open-input1" value="no" id="noRadio1"
-        {{ old('open-input1') == 'no' || (isset($employment) && $employment->open-input1 == 'no') ? 'checked' : '' }}
-        required onclick="showInput('sub-text-input'); showNestedOption(this)"> No
-</label>
+                    <label>
+                        <input type="radio" name="open-input1" value="yes" id="yesRadio1"
+                            {{ old('open-input1') == 'yes' || (isset($employment) && $employment->open - input1 == 'yes') ? 'checked' : '' }}
+                            required onclick="hideInput('sub-text-input')"> Yes
+                    </label>
+                    <br>
+                    <label>
+                        <input type="radio" name="open-input1" value="no" id="noRadio1"
+                            {{ old('open-input1') == 'no' || (isset($employment) && $employment->open - input1 == 'no') ? 'checked' : '' }}
+                            required onclick="showInput('sub-text-input'); showNestedOption(this)"> No
+                    </label>
 
-<div class="col-md-12" id="sub-text-input" style="{{ old('open-input1') == 'no' || (isset($employment) && $employment->open-input1 == 'no') ? 'display: block;' : 'display: none;' }}">
-    <p style="font-weight: bold;">If No, Please Explain <span class="f5">*</span> </p>
-    <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control sub-text-input"
-        name="sub-text-input">{{ old('sub-text-input') ?? ($employment->sub-text-input ?? '') }}</textarea>
-</div>
-<br>
+                    <div class="col-md-12" id="sub-text-input"
+                        style="{{ old('open-input1') == 'no' || (isset($employment) && $employment->open - input1 == 'no') ? 'display: block;' : 'display: none;' }}">
+                        <p style="font-weight: bold;">If No, Please Explain <span class="f5">*</span> </p>
+                        <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control sub-text-input"
+                            name="sub-text-input">{{ old('sub-text-input') ?? (isset($employment) ? $employment->sub_text_input : '') }}</textarea>
+                    </div>
+                    <br>
 
                     <label>
                         <h6>Have You Ever Been Convicted of A Crime? <span class="red">*</span></h6>
