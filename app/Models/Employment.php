@@ -9,9 +9,9 @@ class Employment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        
+
         'job_application_id',
-        'open-input',
+        'previous_experience',
         // experience
         'employer_company',
         'employer_email',
@@ -30,7 +30,9 @@ class Employment extends Model
         'reference_email',
         'reference_phone',
         'reference_phone',
-
+        'reference_address',
+        'eligible_to_work',
+        'crime_status',
         // second'',
         'nested-option',
         'sub-nested-input',

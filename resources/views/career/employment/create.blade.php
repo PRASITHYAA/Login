@@ -32,7 +32,7 @@
             </div>
             <h2>PREVIOUS EMPLOYMENT</h2><br>
 
-            <form action="{{ route('career.employment.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ isset($employment) ? route('career.employment.update', $employment->id) : route('career.employment.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @if (isset($employment))
                     @method('PUT')
@@ -46,19 +46,19 @@
                 <label>
                     <h6>Do you have any previous experience? <span class="red">*</span> </h6><br>
 
-                    <input type="radio" name="open-input" value="yes"
-                        {{ old('open-input') == 'yes' || (isset($employment) && $employment->open - input == 'yes') ? 'checked' : '' }}
+                    <input type="radio" name="previous_experience" value="yes"
+                        {{ old('previous_experience') == 'yes' || (isset($employment) && $employment->previous_experience == 'yes') ? 'checked' : '' }}
                         required onclick="showNestedOption(this)">Yes
                 </label>
                 <br>
                 <label>
-                    <input type="radio" name="open-input" value="no"
-                        {{ old('open-input') == 'no' || (isset($employment) && $employment->open - input == 'no') ? 'checked' : '' }}
+                    <input type="radio" name="previous_experience" value="no"
+                        {{ old('previous_experience') == 'no' || (isset($employment) && $employment->previous_experience == 'no') ? 'checked' : '' }}
                         required onclick="showNestedOption(this)"> No
                 </label>
 
                 <div id="nested-input"
-                    style="{{ isset($employment) ? ($employment->radio_option == 'yes' ? '' : 'display: none;') : 'display: none;' }}">
+                    style="{{ isset($employment) ? ($employment->previous_experience == 'yes' ? '' : 'display: none;') : 'display: none;' }}">
                     <p style="font-weight: bold;">Note: Please add click (+) symbol to add more no of previous emloyers
                         and enter recent employer detail first</p>
                     <div class="row">
@@ -123,8 +123,7 @@
                             <label class="form-label">Experience <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" name="employer_experience"
                                 id="totalExperience" class="form-control"
-                                value="{{ old('employer_experience') ?? ($employment->employer_experience ?? '') }}"
-                                readonly>
+                                value="{{ old('employer_experience') ?? ($employment->employer_experience ?? '') }}">
                         </div>
                         <!-- Responsibilities -->
                         <div class="col-md-4">
@@ -189,19 +188,19 @@
                         <h6>Are You Legally Eligible to Work? <span class="red">*</span></h6>
                     </label><br>
                     <label>
-                        <input type="radio" name="open-input1" value="yes" id="yesRadio1"
-                            {{ old('open-input1') == 'yes' || (isset($employment) && $employment->open - input1 == 'yes') ? 'checked' : '' }}
+                        <input type="radio" name="eligible_to_work" value="yes" id="yesRadio1"
+                            {{ old('eligible_to_work') == 'yes' || (isset($employment) && $employment->eligible_to_work == 'yes') ? 'checked' : '' }}
                             required onclick="hideInput('sub-text-input')"> Yes
                     </label>
                     <br>
                     <label>
-                        <input type="radio" name="open-input1" value="no" id="noRadio1"
-                            {{ old('open-input1') == 'no' || (isset($employment) && $employment->open - input1 == 'no') ? 'checked' : '' }}
+                        <input type="radio" name="eligible_to_work" value="no" id="noRadio1"
+                            {{ old('eligible_to_work') == 'no' || (isset($employment) && $employment->eligible_to_work == 'no') ? 'checked' : '' }}
                             required onclick="showInput('sub-text-input'); showNestedOption(this)"> No
                     </label>
 
                     <div class="col-md-12" id="sub-text-input"
-                        style="{{ old('open-input1') == 'no' || (isset($employment) && $employment->open - input1 == 'no') ? 'display: block;' : 'display: none;' }}">
+                        style="{{ old('eligible_to_work') == 'no' || (isset($employment) && $employment->eligible_to_work == 'no') ? 'display: block;' : 'display: none;' }}">
                         <p style="font-weight: bold;">If No, Please Explain <span class="f5">*</span> </p>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control sub-text-input"
                             name="sub-text-input">{{ old('sub-text-input') ?? (isset($employment) ? $employment->sub_text_input : '') }}</textarea>
@@ -212,16 +211,16 @@
                         <h6>Have You Ever Been Convicted of A Crime? <span class="red">*</span></h6>
                     </label><br>
                     <label>
-                        <input type="radio" name="open-input2" id="yesRadio2" onclick="showInput('text-input')"
+                        <input type="radio" name="crime_status" id="yesRadio2" onclick="showInput('text-input')"
                             value="yes"
-                            {{ old('open-input2') == 'yes' || (isset($employment) && $employment->open - input2 == 'yes') ? 'checked' : '' }}
+                            {{ old('crime_status') == 'yes' || (isset($employment) && $employment->crime_status == 'yes') ? 'checked' : '' }}
                             required> Yes
                     </label>
                     <br>
                     <label>
-                        <input type="radio" name="open-input2" id="noRadio2" onclick="hideInput('text-input')"
+                        <input type="radio" name="crime_status" id="noRadio2" onclick="hideInput('text-input')"
                             value="no"
-                            {{ old('open-input2') == 'no' || (isset($employment) && $employment->open - input2 == 'no') ? 'checked' : '' }}
+                            {{ old('crime_status') == 'no' || (isset($employment) && $employment->crime_status == 'no') ? 'checked' : '' }}
                             required> No
                     </label>
 

@@ -19,7 +19,7 @@ class Education extends Model
         'high_school_address',
         'high_school_form_date',
         'high_school_to_date',
-        'high_school_year_of_Passing',
+        'high_school_year_of_passing',
         'high_school_percentage',
         'high_school_class',
         'high_school_stream',
