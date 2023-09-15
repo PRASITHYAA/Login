@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Validator;
 
 class AchievementController extends Controller
 {
+    public function create()
+    {
+        return view('career.achievement.create');
+    }
     public function store(Request $request)
     {
         $achievement = $request->validate([

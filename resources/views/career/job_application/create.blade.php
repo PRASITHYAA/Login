@@ -279,7 +279,7 @@
                                     class="red">*</span></label>
                             <div class="input-group">
                                 <input type="file" class="form-control" id="image" name="image"
-                                    accept="image/*" required>
+                                    accept="image/*" {{ !isset($jobApplication->image) ? 'required' : '' }}>
                             </div>
                             @if (isset($jobApplication))
                                 <img src="{{ asset('storage/' . $jobApplication->image) }}"
@@ -528,7 +528,7 @@
                             <label class="form-label">upload <span class="red">*</span></label>
                             <div class="input-group">
                                 <input type="file" class="form-control" id="father_image" name="father_image"
-                                    accept="image/*" required>
+                                    accept="image/*" {{ !isset($jobApplication->father_image) ? 'required' : '' }}>
                             </div>
                             @if (isset($jobApplication))
                                 <img src="{{ asset('storage/' . $jobApplication->father_image) }}"
@@ -572,7 +572,7 @@
                             <label class="form-label">upload <span class="red">*</span></label>
                             <div class="input-group">
                                 <input type="file" class="form-control" name="mother_image" id="mother_image"
-                                    accept="image/*" required>
+                                    accept="image/*" {{ !isset($jobApplication->mother_image) ? 'required' : '' }}>
                             </div>
                             @if (isset($jobApplication))
                                 <img src="{{ asset('storage/' . $jobApplication->mother_image) }}"

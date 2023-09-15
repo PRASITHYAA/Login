@@ -299,7 +299,7 @@ class EducationController extends Controller
         if ($request->hasFile('doctorate_image_mark_sheet')) {
             $rules['doctorate_image_mark_sheet'] = 'required_if:qualification,doctorate_degree|image|mimes:jpeg,png,jpg,gif|max:2048';
         }
-        
+
         $data = $request->validate($rules);
 
         if ($request->hasFile('high_school_image_certificate')) {
@@ -380,7 +380,7 @@ class EducationController extends Controller
         $employment = Employment::where('job_application_id', $education->job_application_id)->orderBy('id', 'desc')->first();
 
         if (!is_null($employment)) {
-            return redirect()->route('career.education.edit', $employment->id)->with('success', 'Education updated successfully!');
+            return redirect()->route('career.employment.edit', $employment->id)->with('success', 'Education updated successfully!');
         } else {
             return redirect()->route('employment.view', ['job_application_id' => $jobApplication->id, 'education_id' => $education->id])
                 ->with('success', 'Education updated successfully!');
