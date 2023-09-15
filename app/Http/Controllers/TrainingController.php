@@ -16,12 +16,12 @@ class TrainingController extends Controller
 
     public function create()
     {
-        return view('training.create'); // Replace 'trainings.create' with the actual view name
+        return view('training.create');  // Replace 'trainings.create' with the actual view name
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $training = $request->validate([
             'sector' => 'required',
             'course_level' => 'required',
             'course_title' => 'required',
@@ -60,37 +60,25 @@ class TrainingController extends Controller
             $request->merge(['passport_size_photo_upload' => $passportPhotoPath]);
         }
 
-        Training::create($request->all());
+        Training::create($training);
 
         session()->flash('success', 'Training record added successfully.');
 
-        return redirect()->route('training.view');
+        return redirect()->route('training.index');
     }
 
-
-    public function edit($id)
-    {
-        $training = Training::find($id);
-        return view('training.edit', compact('trainings'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        // Handle update logic here
-    }
 
     public function destroy(Training $training)
     {
         $training->delete();
 
-        Session::flash('success', 'Training deleted successfully!');
+        \Session::flash('success', 'Training deleted successfully!');
 
-        return redirect()->route('training.index')->with('success', 'Training deleted successfully!');
+        return redirect()->route('training.index');
     }
 
-    public function show($id)
+        public function show(Training $training)
     {
-        $training = Training::find($id);
-        return view('trainings.show', compact('training'));
+        return view('training.view', compact('training'));
     }
-}
+    }

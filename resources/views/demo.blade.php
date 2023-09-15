@@ -73,15 +73,11 @@
                         <label class="form-label">First name <span class="span-star">*</span></label>
                         <input type="text" class="form-control" id="first_name" value="" name="first_name"
                             required>
-                        <div class="valid-feedback">
-                        </div>
                     </div>
                     <!-- Last name -->
                     <div class="col-md-2 mt-2">
                         <label class="form-label">Last name <span class="span-star">*</span></label>
                         <input type="text" class="form-control" id="last_name" value="" name="last_name" required>
-                        <div class="valid-feedback">
-                        </div>
                     </div>
                     <!-- Passport Size Photo Upload -->
                     <div class="col-md-2 mt-2">
@@ -89,8 +85,6 @@
                             <span class="span-star">*</span></label>
                         <input type="file" class="form-control" id="validationDefaultUpload" value=""
                             name="passport_size_photo_upload" required>
-                        <!-- <div class="valid-feedback">
-                                </div> -->
                         <div class="pt-2" style="width: 150px;" id="imageContainer">
                         </div>
                     </div>
@@ -138,10 +132,10 @@
                         <p style="font-weight: bold;">Do You Have Any Piror Experience? <span class="span-star">*</span>
                         </p>
                         <label>
-                            <input type="radio" name="choice1" value="yes" id="yesRadio1"> Yes
+                            <input type="radio" name="choice1" value="yes" id="yesRadio1" > Yes
                         </label>
                         <label>
-                            <input type="radio" name="choice1" value="no" id="noRadio1"> No
+                            <input type="radio" name="choice1" value="no" id="noRadio1" > No
                         </label>
 
                         <div id="formContainer1" class="hidden">
@@ -184,14 +178,26 @@
                         <label class="form-label">Address Line 1<span class="span-star">*</span></label>
                         <input type="text" class="form-control" id="address_line_1" value=""
                             name="address_line_1" required>
+                        <!-- Country -->
+                        <label class="form-label">Country<span class="span-star">*</span>
+                        </label>
+                        <select class="form-select select-back-colour" id="country" name="country" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option value="1">India</option>
+                        </select>
                         <!-- City -->
                         <label class="form-label">City<span class="span-star">*</span></label>
-                        <input type="text" class="form-control select-back-colour" id="city" value=""
-                            name="city" required>
-                        <!-- Zip Code -->
-                        <label class="form-label">Zip Code<span class="span-star">*</span></label>
-                        <input type="text" class="form-control select-back-colour" id="zip_code" value=""
-                            name="zip_code" placeholder="Zip" required>
+                        <select class="form-select" name="city" id="city" required>
+                            <option value="">--Select City--</option>
+                            @foreach (\App\Models\City::all() as $city)
+                                <option value="{{ $city->id }}"
+                                    {{ isset($jobApplication) && $city->id == $jobApplication->city ? 'selected' : '' }}>
+                                    {{ $city->name }}
+                                </option>
+                            @endforeach
+                        </select>
+
+
                     </div>
                     <!-- Present Address right forms-->
                     <div class="col-lg-3">
@@ -200,15 +206,20 @@
                             name="address_line_2" required>
                         <!-- State -->
                         <label class="form-label">State<span class="span-star">*</span></label>
-                        <input type="text" class="form-control select-back-colour" id="state" value=""
-                            name="state" required>
-                        <!-- Country -->
-                        <label class="form-label">Country<span class="span-star">*</span>
-                        </label>
-                        <select class="form-select select-back-colour" id="country" name="country" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>...</option>
+                        <select class="form-select" name="state" id="state" required>
+                            <option value="">--Select State--</option>
+                            @foreach (\App\Models\State::all() as $state)
+                                <option value="{{ $state->id }}"
+                                    {{ isset($jobApplication) && $state->id == $jobApplication->state ? 'selected' : '' }}>
+                                    {{ $state->name }}
+                                </option>
+                            @endforeach
                         </select>
+
+                        <!-- Zip Code -->
+                        <label class="form-label">Zip Code<span class="span-star">*</span></label>
+                        <input type="number" class="form-control select-back-colour" id="zip_code" value=""
+                            name="zip_code" placeholder="Zip" required>
                     </div>
                     <div class="col-lg-3"></div>
 
@@ -237,34 +248,51 @@
                                         <!-- Permanent   Address Line 1 -->
                                         <label class="form-label">Address Line 1<span class="span-star">*</span></label>
                                         <input type="text" class="form-control" id="permanent_address_line_1"
-                                            value="" name="permanent_address_line_1" >
+                                            value="" name="permanent_address_line_1">
+                                        {{-- country --}}
+                                        <label class="form-label">Country<span class="span-star">*</span>
+                                        </label>
+                                        <select class="form-select select-back-colour" id="permanent_country"
+                                            name="permanent_country">
+                                            <option selected disabled value="">Choose...</option>
+                                            <option value="1">India</option>
+                                        </select>
+
                                         <!-- Permanent  City -->
                                         <label class="form-label">City<span class="span-star">*</span></label>
-                                        <input type="text" class="form-control select-back-colour" id="permanent_city"
-                                            value="" name="permanent_city" >
-                                        <!--Permanent   Zip Code -->
-                                        <label class="form-label">Zip Code<span class="span-star">*</span></label>
-                                        <input type="text" class="form-control select-back-colour"
-                                            id="permanent_zip_code" value="" name="permanent_zip_code"
-                                            placeholder="Zip" >
+                                        <select class="form-select" name="permanent_city" id="city" required>
+                                            <option value="">--Select City--</option>
+                                            @foreach (\App\Models\City::all() as $city)
+                                                <option value="{{ $city->id }}"
+                                                    {{ isset($jobApplication) && $city->id == $jobApplication->city ? 'selected' : '' }}>
+                                                    {{ $city->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <!-- Present Address right forms-->
                                     <div class="col-lg-6">
                                         <label class="form-label">Address Line 2<span class="span-star">*</span></label>
                                         <input type="text" class="form-control" id="permanent_address_line_2"
-                                            value="" name="permanent_address_line_2" >
+                                            value="" name="permanent_address_line_2">
                                         <!-- Permanent  State -->
                                         <label class="form-label">State<span class="span-star">*</span></label>
-                                        <input type="text" class="form-control select-back-colour"
-                                            id="permanent_state" value="" name="permanent_state" >
-                                        <!-- Permanent  Country -->
-                                        <label class="form-label">Country<span class="span-star">*</span>
-                                        </label>
-                                        <select class="form-select select-back-colour" id="permanent_country"
-                                            name="permanent_country" >
-                                            <option selected disabled value="">Choose...</option>
-                                            <option>...</option>
+                                        <select class="form-select" name="permanent_state" id="state" required>
+                                            <option value="">--Select State--</option>
+                                            @foreach (\App\Models\State::all() as $state)
+                                                <option value="{{ $state->id }}"
+                                                    {{ isset($jobApplication) && $state->id == $jobApplication->state ? 'selected' : '' }}>
+                                                    {{ $state->name }}
+                                                </option>
+                                            @endforeach
                                         </select>
+
+                                        <!--Permanent   Zip Code -->
+                                        <label class="form-label">Zip Code<span class="span-star">*</span></label>
+                                        <input type="number" class="form-control select-back-colour"
+                                            id="permanent_zip_code" value="" name="permanent_zip_code"
+                                            placeholder="Zip">
+
                                     </div>
 
                                 </div>
@@ -358,18 +386,22 @@
                         </span><br>
                         <br>
                         <!-- checkbox -->
-                        <div class="form-check mt-4">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <div class="form-check ">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"
+                                required>
                             <label class="form-check-label" for="flexCheckDefault">
                                 I have read and agree to the Terms and Conditions and Privacy Policy
-                            </label>
-                            <button type="button" class="btn btn-primary mt-4 mb-4">Submit Form</button>
+                            </label><br>
 
+                            <button class=" btn btn-primary mt-5">Sumbit Form</button>
                         </div>
                     </div>
                     <br>
-                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                    </div>
+
                 </div>
+
             </form>
         </div>
     </div>
@@ -398,7 +430,6 @@
         const formContainer2 = document.getElementById("formContainer2");
         setupRadioListener(yesRadio2, noRadio2, formContainer2);
     </script>
-
     {{-- country --}}
     <!-- Include the intlTelInput library and utilsScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>

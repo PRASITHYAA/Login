@@ -1,7 +1,5 @@
 @extends('layouts.front.master')
 @section('content')
-    <div class="container">
-    </div>
     <h2 class="text-center">EMPLOYMENT / JOB APPLICATION</h2>
     <div class="container-fuild">
         <div class="container">

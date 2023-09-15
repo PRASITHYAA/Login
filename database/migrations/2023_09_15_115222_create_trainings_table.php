@@ -41,8 +41,8 @@ return new class extends Migration
             $table->string('primary_email');
             $table->string('secondary_mobile_number');
             $table->string('secondary_email')->nullable();
-            $table->string('job_description');
-            $table->string('training_session');
+            $table->text('job_description');
+            $table->text('training_session');
 
             $table->timestamps();
         });

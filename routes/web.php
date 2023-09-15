@@ -165,5 +165,8 @@ Route::get('download/pdf', [DisclaimerController::class, 'downloadPdf'])->name('
 Route::view('/demo', 'demo');
 
     //  training
-    Route::view('/training', 'training.create')->name('training.view');
+    Route::get('/training', [TrainingController::class, 'index'])->name('training.index');
+    Route::get('/training/create', [TrainingController::class, 'create'])->name('training.create');
     Route::post('/training', [TrainingController::class, 'store'])->name('training.store');
+    Route::get('/training/{training}', [TrainingController::class, 'show'])->name('training.view');
+    Route::delete('/training/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
