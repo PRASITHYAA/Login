@@ -1,13 +1,15 @@
 @extends('layouts.front.master')
 @section('content')
-    <div class="container">
-        <!-- Percentage bar -->
-        <div class="progress m-2  " style="height: 20px;">
-            <div class="progress-bar" role="progressbar" style="width: 15%; background-color: #111;color: white; "
-                aria-valuenow="15" aria-valuemin="0" aria-valuemax="15%">15%</div>
+<div class="container">
+    <!-- percentage -->
+    <div class="container   mt-2">
+        <div class="progress-bar" role="progressbar"
+            style="width: 15%; background-color: #111;color: white; " aria-valuenow="90" aria-valuemin="0"
+            aria-valuemax="15%">15%
         </div>
     </div>
-    <div class="container">
+</div>
+<div class="container">
         <h1 style="font-size: 44px;" class="text-center">INSTRUCTION</h1>
         <ol class="">
             <li>Please ensure the following document are readily available prior to start the application.
