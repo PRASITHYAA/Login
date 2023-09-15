@@ -163,4 +163,7 @@ Route::get('download/pdf', [DisclaimerController::class, 'downloadPdf'])->name('
 
 //  demo
 Route::view('/demo', 'demo');
-Route::post('/demo', [JobApplicationController::class, 'store'])->name('career.demo.store');
+
+    //  training
+    Route::view('/training', 'training.create')->name('training.view');
+    Route::post('/training', [TrainingController::class, 'store'])->name('training.store');

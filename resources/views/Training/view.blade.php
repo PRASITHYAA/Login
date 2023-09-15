@@ -1,40 +1,10 @@
 @extends('layouts.front.master')
 
 @section('content')
-
     <!-- main -->
-
     <div class="container-fluid">
         <!-- back-img -->
-        <div class="container-fluid  careers-back-img">
-
-            <h1 style="padding-top: 150px; color: white;" class="text-center">Training Application Form</h1>
-
-        </div>
-        <!-- forms -->
-        <div class="container">
-
-            {{-- error --}}
-            @if ($errors->any())
-                <div class=" alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            {{-- success --}}
-            @if (session('success'))
-                <div class=" container  alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            <form action="{{ route('training.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="row mt-4 mb-2">
-                    <div class="col-lg-3 ">
-                    </div>
+                <div class="row">
                     <!-- Sector -->
                     <div class="col-lg-2">
                         <label class="form-label">Sector</label>
@@ -90,7 +60,7 @@
                         <input type="file" class="form-control" id="validationDefaultUpload" value=""
                             name="passport_size_photo_upload" required>
                         <!-- <div class="valid-feedback">
-                                </div> -->
+                                    </div> -->
                         <div class="pt-2" style="width: 150px;" id="imageContainer">
                         </div>
                     </div>
@@ -108,6 +78,7 @@
                     <!-- emty space -->
                     <div class="col-lg-3"></div>
 
+                    <!-- Select Your Qualification -->
                     <div class="col-lg-6">
                         <label class="form-label">Select Your Qualification <span class="span-star">*</span></label>
                         <select class="form-select select-back-colour" id="select_your_qualification"
@@ -128,20 +99,17 @@
                         <h1>Organization Details (if applicable)
                         </h1>
                     </div>
-                    <!-- emty space -->
                     <div class="col-lg-3"></div>
-                    <!-- radio button -->
-                    <!-- emty space -->
                     <div class="col-lg-3"></div>
                     <!-- Experience -->
                     <div class="col-lg-6 p-2">
                         <p style="font-weight: bold;">Do You Have Any Piror Experience? <span class="span-star">*</span>
                         </p>
                         <label>
-                            <input type="radio" name="choice1" value="yes" id="yesRadio1"> Yes
+                            <input type="radio" name="choice1" value="yes" id="yesRadio1" required> Yes
                         </label>
                         <label>
-                            <input type="radio" name="choice1" value="no" id="noRadio1"> No
+                            <input type="radio" name="choice1" value="no" id="noRadio1" required> No
                         </label>
 
                         <div id="formContainer1" class="hidden">
@@ -184,14 +152,18 @@
                         <label class="form-label">Address Line 1<span class="span-star">*</span></label>
                         <input type="text" class="form-control" id="address_line_1" value=""
                             name="address_line_1" required>
+                        <!-- Country -->
+                        <label class="form-label">Country<span class="span-star">*</span>
+                        </label>
+                        <select class="form-select select-back-colour" id="country" name="country" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option>...</option>
+                        </select>
+
                         <!-- City -->
                         <label class="form-label">City<span class="span-star">*</span></label>
                         <input type="text" class="form-control select-back-colour" id="city" value=""
                             name="city" required>
-                        <!-- Zip Code -->
-                        <label class="form-label">Zip Code<span class="span-star">*</span></label>
-                        <input type="text" class="form-control select-back-colour" id="zip_code" value=""
-                            name="zip_code" placeholder="Zip" required>
                     </div>
                     <!-- Present Address right forms-->
                     <div class="col-lg-3">
@@ -202,13 +174,11 @@
                         <label class="form-label">State<span class="span-star">*</span></label>
                         <input type="text" class="form-control select-back-colour" id="state" value=""
                             name="state" required>
-                        <!-- Country -->
-                        <label class="form-label">Country<span class="span-star">*</span>
-                        </label>
-                        <select class="form-select select-back-colour" id="country" name="country" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>...</option>
-                        </select>
+                        <!-- Zip Code -->
+                        <label class="form-label">Zip Code<span class="span-star">*</span></label>
+                        <input type="text" class="form-control select-back-colour" id="zip_code" value=""
+                            name="zip_code" placeholder="Zip" required>
+
                     </div>
                     <div class="col-lg-3"></div>
 
@@ -219,10 +189,10 @@
                             <p style="font-weight: bold;">Does your Permanent Address is Different? <span
                                     class="span-star">*</span></p>
                             <label>
-                                <input type="radio" name="choice2" value="yes" id="yesRadio2"> Yes
+                                <input type="radio" name="choice2" value="yes" id="yesRadio2" required> Yes
                             </label>
                             <label>
-                                <input type="radio" name="choice2" value="no" id="noRadio2"> No
+                                <input type="radio" name="choice2" value="no" id="noRadio2" required> No
                             </label>
 
                             <div id="formContainer2" class="hidden">
@@ -237,35 +207,38 @@
                                         <!-- Permanent   Address Line 1 -->
                                         <label class="form-label">Address Line 1<span class="span-star">*</span></label>
                                         <input type="text" class="form-control" id="permanent_address_line_1"
-                                            value="" name="permanent_address_line_1" >
+                                            value="" name="permanent_address_line_1">
+                                        <!-- Permanent  Country -->
+                                        <label class="form-label">Country<span class="span-star">*</span>
+                                        </label>
+                                        <select class="form-select select-back-colour" id="permanent_country"
+                                            name="permanent_country">
+                                            <option selected disabled value="">Choose...</option>
+                                            <option>...</option>
+                                        </select>
+
                                         <!-- Permanent  City -->
                                         <label class="form-label">City<span class="span-star">*</span></label>
                                         <input type="text" class="form-control select-back-colour" id="permanent_city"
-                                            value="" name="permanent_city" >
-                                        <!--Permanent   Zip Code -->
-                                        <label class="form-label">Zip Code<span class="span-star">*</span></label>
-                                        <input type="text" class="form-control select-back-colour"
-                                            id="permanent_zip_code" value="" name="permanent_zip_code"
-                                            placeholder="Zip" >
+                                            value="" name="permanent_city">
                                     </div>
                                     <!-- Present Address right forms-->
                                     <div class="col-lg-6">
                                         <label class="form-label">Address Line 2<span class="span-star">*</span></label>
                                         <input type="text" class="form-control" id="permanent_address_line_2"
-                                            value="" name="permanent_address_line_2" >
+                                            value="" name="permanent_address_line_2">
                                         <!-- Permanent  State -->
                                         <label class="form-label">State<span class="span-star">*</span></label>
                                         <input type="text" class="form-control select-back-colour"
-                                            id="permanent_state" value="" name="permanent_state" >
-                                        <!-- Permanent  Country -->
-                                        <label class="form-label">Country<span class="span-star">*</span>
-                                        </label>
-                                        <select class="form-select select-back-colour" id="permanent_country"
-                                            name="permanent_country" >
-                                            <option selected disabled value="">Choose...</option>
-                                            <option>...</option>
-                                        </select>
+                                            id="permanent_state" value="" name="permanent_state">
+
+                                        <!--Permanent   Zip Code -->
+                                        <label class="form-label">Zip Code<span class="span-star">*</span></label>
+                                        <input type="number" class="form-control select-back-colour"
+                                            id="permanent_zip_code" value="" name="permanent_zip_code"
+                                            placeholder="Zip">
                                     </div>
+
 
                                 </div>
                             </div>
@@ -358,132 +331,20 @@
                         </span><br>
                         <br>
                         <!-- checkbox -->
-                        <div class="form-check ">
+                        <div class="form-check mt-4">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                             <label class="form-check-label" for="flexCheckDefault">
                                 I have read and agree to the Terms and Conditions and Privacy Policy
-                            </label><br>
-
-                        <button class=" btn btn-primary mt-5">Sumbit Form</button>
+                            </label>
+                            <button type="button" class="btn btn-primary mt-4 mb-4">Submit Form</button>
 
                         </div>
                     </div>
                     <br>
-                    <div class="col-lg-3">
-                    </div>
-
+                    <div class="col-lg-3"></div>
                 </div>
-
             </form>
         </div>
     </div>
-
-
-    <!-- yes or no radio  -->
-
-    <script>
-        function setupRadioListener(yesRadio, noRadio, formContainer) {
-            yesRadio.addEventListener("change", () => {
-                formContainer.style.display = "block";
-            });
-
-            noRadio.addEventListener("change", () => {
-                formContainer.style.display = "none";
-            });
-        }
-
-        const yesRadio1 = document.getElementById("yesRadio1");
-        const noRadio1 = document.getElementById("noRadio1");
-        const formContainer1 = document.getElementById("formContainer1");
-        setupRadioListener(yesRadio1, noRadio1, formContainer1);
-
-        const yesRadio2 = document.getElementById("yesRadio2");
-        const noRadio2 = document.getElementById("noRadio2");
-        const formContainer2 = document.getElementById("formContainer2");
-        setupRadioListener(yesRadio2, noRadio2, formContainer2);
-    </script>
-    {{-- country --}}
-    <!-- Include the intlTelInput library and utilsScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
-
-    <!-- Your JavaScript code -->
-    <script>
-        function getIp(callback) {
-            fetch('https://ipinfo.io/json?token=<your token>', {
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                })
-                .then((resp) => resp.json())
-                .catch(() => {
-                    return {
-                        country: 'in', // Default to India
-                    };
-                })
-                .then((resp) => callback(resp.country));
-        }
-
-        const phoneInputFields = document.querySelectorAll('.phoneInputField');
-        const errorTexts = document.querySelectorAll('.errorText');
-
-        phoneInputFields.forEach((phoneInputField, index) => {
-            const phoneInput = window.intlTelInput(phoneInputField, {
-                initialCountry: "in", // Set the initial country code to India (+91)
-                geoIpLookup: getIp,
-                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-            });
-
-            // Add an event listener to validate the phone number on input
-            phoneInputField.addEventListener('input', function() {
-                const selectedCountryData = phoneInput.getSelectedCountryData();
-                const isValid = phoneInput.isValidNumber();
-
-                if (isValid && selectedCountryData) {
-                    errorTexts[index].textContent = ''; // Clear error message
-                    phoneInputField.setCustomValidity('');
-                } else {
-                    errorTexts[index].textContent = 'Invalid phone number';
-                    phoneInputField.setCustomValidity('Invalid phone number');
-                }
-            });
-        });
-    </script>
-
-    <!-- image upload down showing -->
-
-    <script>
-        // Get the file input element
-        const fileInput = document.getElementById('validationDefaultUpload');
-
-        // Get the image container
-        const imageContainer = document.getElementById('imageContainer');
-
-        // Event listener for file input change
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0]; // Get the selected file
-
-            if (file) {
-                // Create a FileReader to read the selected file
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    // Create an image element
-                    const img = document.createElement('img');
-                    img.src = e.target.result; // Set the image source to the loaded data
-
-                    // Apply styling to the image element
-                    img.style.maxWidth = '100%'; // Adjust the desired maximum width
-
-                    // Append the image to the container
-                    imageContainer.innerHTML = ''; // Clear previous content
-                    imageContainer.appendChild(img);
-                };
-
-                // Read the selected file as a data URL
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
 
 @endsection
