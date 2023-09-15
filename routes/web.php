@@ -4,7 +4,8 @@ use App\Http\Controllers\CardsController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EmploymentController;
-use App\Http\Controllers\EnergyController;
+use App\Http\Controllers\CourseLevelController;
+use App\Http\Controllers\CourseTitleController;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\JobApplicationController;
@@ -75,24 +76,28 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::put('/position/{position}', [PositionController::class, 'update'])->name('position.update');
     Route::delete('/position/{position}', [PositionController::class, 'destroy'])->name('position.destroy');
 
-    // energy
-
-    Route::get('/energy', [EnergyController::class, 'index'])->name('energy.index');
-    Route::get('/energy/create', [EnergyController::class, 'create'])->name('energy.create');
-    Route::post('/energy', [EnergyController::class, 'store'])->name('energy.store');
-    Route::get('/energy/{energy}', [EnergyController::class, 'show'])->name('energy.show');
-    Route::get('/energy/{energy}/edit', [EnergyController::class, 'edit'])->name('energy.edit');
-    Route::put('/energy/{energy}', [EnergyController::class, 'update'])->name('energy.update');
-    Route::delete('/energy/{energy}', [EnergyController::class, 'destroy'])->name('energy.destroy');
-
     //  training
     Route::get('/training', [TrainingController::class, 'index'])->name('training.index');
     Route::get('/training/create', [TrainingController::class, 'create'])->name('training.create');
     Route::post('/training', [TrainingController::class, 'store'])->name('training.store');
-    Route::get('/training/{training}', [TrainingController::class, 'show'])->name('training.show');
-    Route::get('/training/{training}/edit', [TrainingController::class, 'edit'])->name('training.edit');
-    Route::put('/training/{training}', [TrainingController::class, 'update'])->name('training.update');
+    Route::get('/training/{training}', [TrainingController::class, 'show'])->name('training.view');
     Route::delete('/training/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
+//
+    Route::get('/course_level', [CourseLevelController::class, 'index'])->name('course_level.index');
+    Route::view('/course_level', 'course_level.create')->name('course_title.view');
+    Route::post('/course_level', [CourseLevelController::class, 'store'])->name('course_level.store');
+    Route::get('/course_level/{course_level}', [CourseLevelController::class, 'show'])->name('course_level.show');
+    Route::get('/course_level/{course_level}/edit', [CourseLevelController::class, 'edit'])->name('course_level.edit');
+    Route::put('/course_level/{course_level}', [CourseLevelController::class, 'update'])->name('course_level.update');
+    Route::delete('/course_level/{course_level}', [CourseLevelController::class, 'destroy'])->name('course_level.destroy');
+
+    Route::get('/course_title', [CourseTitleController::class, 'index'])->name('course_title.index');
+    Route::view('/course_title', 'course_title.create')->name('course_title.view');
+    Route::post('/course_title', [CourseTitleController::class, 'store'])->name('course_title.store');
+    Route::get('/course_title/{course_title}', [CourseTitleController::class, 'show'])->name('course_title.show');
+    Route::get('/course_title/{course_title}/edit', [CourseTitleController::class, 'edit'])->name('course_title.edit');
+    Route::put('/course_title/{course_title}', [CourseTitleController::class, 'update'])->name('course_title.update');
+    Route::delete('/course_title/{course_title}', [CourseTitleController::class, 'destroy'])->name('course_title.destroy');
 });
 
 Route::group(['middleware' => ['auth']], function () {
@@ -163,10 +168,3 @@ Route::get('download/pdf', [DisclaimerController::class, 'downloadPdf'])->name('
 
 //  demo
 Route::view('/demo', 'demo');
-
-    //  training
-    Route::get('/training', [TrainingController::class, 'index'])->name('training.index');
-    Route::get('/training/create', [TrainingController::class, 'create'])->name('training.create');
-    Route::post('/training', [TrainingController::class, 'store'])->name('training.store');
-    Route::get('/training/{training}', [TrainingController::class, 'show'])->name('training.view');
-    Route::delete('/training/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
