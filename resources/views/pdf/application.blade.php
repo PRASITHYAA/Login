@@ -228,7 +228,7 @@
 <h2>Open Input and Conference</h2>
 <ul>
     {{--<li><strong>Open Input:</strong> {{ $open-input }}</li>--}}
-    <li><strong>Conference:</strong> {{ $Conference }}</li>
+    <li><strong>Conference:</strong> {{ $conference }}</li>
 </ul>
 
 <!-- Open Input 2 and Final Year Project -->

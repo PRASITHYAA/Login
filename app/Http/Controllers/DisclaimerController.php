@@ -17,7 +17,7 @@ class DisclaimerController extends Controller
     {
         // dd($request->all());
 
-        $disclaimer = $request->validate([
+        $data = $request->validate([
             'job_application_id' => 'required',
             'expected_date_to_join' => 'required|date',
             'current_salary' => 'required|numeric',
@@ -27,18 +27,16 @@ class DisclaimerController extends Controller
             'disclaimer_time' => 'required',
             'disclaimer_print_name' => 'required',
             'disclaimer_place' => 'required',
-
-
         ]);
 
-        if ($request->hasFile('Signature')) {
-            $signatureImagePath = $request->file('Signature')->store('images', 'public');
-            $disclaimer['Signature'] = $signatureImagePath;
+        if ($request->hasFile('disclaimer_signature')) {
+            $signatureImagePath = $request->file('disclaimer_signature')->store('images', 'public');
+            $data['disclaimer_signature'] = $signatureImagePath;
         }
 
-        Disclaimer::create($disclaimer);
+        $disclaimer = Disclaimer::create($data);
 
-        return redirect()->route('acknowledgement', ['job_application_id' => $request->job_application_id])->with('success', ' Disclaimer And All The Forms Are created successfully');
+        return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer And All The Forms Are created successfully');
     }
 
     public function acknowledgement(Request $request)
@@ -49,7 +47,7 @@ class DisclaimerController extends Controller
 
     public function downloadPdf(Request $request)
      {
-     $application = JobApplication::find($request->job_application_id);
+     $application = JobApplication::find($request->id);
         $data = $application->toArray();
      $disclaimer = Disclaimer::where('job_application_id', $request->id)->first()->toArray();
         $data = array_merge($disclaimer,$data);

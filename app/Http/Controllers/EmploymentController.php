@@ -86,9 +86,7 @@ class EmploymentController extends Controller
         ]);
 
         $employment = Employment::find($id);
-
-        $employment = $employment->fill($data);
-
+        $employment->fill($data);
         $employment->save();
 
         $jobApplication = JobApplication::find($employment->job_application_id);
@@ -99,7 +97,7 @@ class EmploymentController extends Controller
             return redirect()->route('career.achievement.edit', $achievement->id)->with('success', 'Employment updated successfully!');
         }
         else {
-            return redirect()->route('employment.view', ['job_application_id' => $jobApplication->id, 'employment_id' => $employment->id])
+            return redirect()->route('achievement.view', ['job_application_id' => $jobApplication->id, 'employment_id' => $employment->id])
                 ->with('success', ' Employment updated successfully!');
         }
 

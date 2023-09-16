@@ -73,9 +73,9 @@
                 <div class="row ">
                     <!-- Signature -->
                     <div class="col-md-4">
-                        <label for="disclaimer_Signature" class="form-label">Signature <span class="red">*</span></label>
+                        <label for="disclaimer_signature" class="form-label">Signature <span class="red">*</span></label>
                         <div class="input-group">
-                            <input type="file" class="form-control" id="disclaimer_Signature" name="disclaimer_signature"
+                            <input type="file" class="form-control" id="disclaimer_signature" name="disclaimer_signature"
                                 accept="image/*" required>
                         </div>
                         <div class="form-group mt-2">
@@ -140,7 +140,7 @@
                 <!-- buttons -->
                 <div style="display: flex;justify-content: end;  " class="groupfinal">
                     <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
-                        href="achievement">Previous</a>
+                       href="{{ route('career.achievement.edit', request()->achievement_id ?? ($achievement_id ?? '')) }}">Previous</a>
                     <button class="btn btn-primary m-1 ">Submit Form</button>
 
                 </div>
@@ -178,7 +178,7 @@
 
     {{-- image --}}
     <script>
-        const signatureInput = document.getElementById('disclaimer_Signature');
+        const signatureInput = document.getElementById('disclaimer_signature');
         const signaturePreview = document.getElementById('disclaimer_SignaturePreview');
         // signature
         signatureInput.addEventListener('change', function() {
