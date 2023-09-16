@@ -33,18 +33,37 @@
                 <button class="btn btn-success" type="button" onclick="window.location.reload();">Refresh</button>
             </div>
 
-            <!-- Add your table code here -->
             <table class="table">
                 <thead>
                     <tr>
-                        <!-- Add table header columns here -->
+                        <th>ID</th>
+                        <th>Sector</th>
+                        <th>Course Level</th>
+                        <th>Course Code</th>
+                        <th>Course Title</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($coursetitles as $coursetitle)
-                    <tr>
-                        <!-- Populate table rows with data from $coursetitles -->
-                    </tr>
+                        <tr>
+                            <td>{{ $coursetitle->id }}</td>
+                            <td>{{ $coursetitle->sector->name }}</td>
+                            <td>{{ $coursetitle->course_level }}</td>
+                            <td>{{ $coursetitle->course_Code }}</td>
+                            <td>{{ $coursetitle->name }}</td>
+                            <td>
+                                <a href="{{ route('course_title.edit', $coursetitle->id) }}"
+                                    class="btn btn-warning">Edit</a>
+                                <form action="{{ route('course_title.destroy', $coursetitle->id) }}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Are you sure you want to delete this course title?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

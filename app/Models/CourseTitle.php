@@ -23,5 +23,9 @@ class CourseTitle extends Model
         'course_training_schedule',
         'eligible_to_participate',
     ];
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class);
+    }
 
 }

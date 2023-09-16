@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CourseTitle; // Import the CourseTitle model
+use App\Models\CourseTitle;
+use App\Models\CourseLevel;
+
 
 class CourseTitleController extends Controller
 {
@@ -16,7 +18,8 @@ class CourseTitleController extends Controller
 
     public function create()
     {
-        return view('course_title.create');
+        $courselevels = CourseLevel::all();
+    return view('course_title.create')->with('courselevels', $courselevels);
     }
 
 

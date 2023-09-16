@@ -12,26 +12,26 @@
 <body>
     <!--Main layout-->
     <div class="container">
-        @if ($errors->any())
-            <div class=" alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        {{-- success --}}
-
-        @if (session('success'))
-            <div class=" alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
 
         <main style="margin-top: 58px;">
             <div class="container border 2px p-4">
-                <h1 class="pb-2">Create a new course level</h1>
+                <h1 class="pb-2">Create A New Course Level</h1>
+                @if ($errors->any())
+                <div class=" alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            {{-- success --}}
+
+            @if (session('success'))
+                <div class=" alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
                 <form action="{{ route('course_title.store') }}" method="POST">
                     @csrf
@@ -53,23 +53,28 @@
 
                     <div class="mb-3">
                         <label class="form-label">Course Level <span style="color: red;">*</span></label>
-                        <select style="background-color: rgba(248, 235, 235, 0.726);" class="form-select"
-                            name="course_level" id="course_level">
-                            <option value="level1">Level 1</option>
+                        <select class="form-select" name="course_level" id="courselevel" style="background-color: rgba(248, 235, 235, 0.726);" required>
+                            <option value="">Please Select</option>
+                            @foreach ($courselevels as $courselevel)
+                                <option value="{{ $courselevel->id }}" {{ old('courselevel') == $courselevel->id ? 'selected' : '' }}>
+                                    {{ $courselevel->name }}
+                                </option>
+                            @endforeach
                         </select>
+
                     </div>
 
 
                     <div class="mb-3">
                         <label class="form-label">Course Title <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            name="name" id="Name">
+                            name="name" id="Name" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Course Code <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            name="course_Code" id="course_Code">
+                            name="course_Code" id="course_Code" required>
                     </div>
                     <div class="row" id="experienceForm">
                         <div class=" col-md-4 mb-3">
@@ -109,20 +114,20 @@
                     <div class="mb-3">
                         <label class="form-label">Course Description <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control" name="course_description" id="myeditorinstance"></textarea>
+                            class="form-control" name="course_description" id="myeditorinstance" required></textarea>
                     </div>
 
 
                     <div class="mb-3">
                         <label class="form-label">Training Schedule <span style="color: red;">*</span></label>
-                        <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;"" type="text"
-                            class="form-control" rows="5" name="course_training_schedule" id="myeditorinstance"></textarea>
+                        <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
+                            class="form-control" rows="5" name="course_training_schedule" id="myeditorinstance" required></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Eligible To Participate <span style="color: red;">*</span></label>
-                        <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;"" type="text"
-                            class="form-control" rows="5" name="eligible_to_participate" id="myeditorinstance"></textarea>
+                        <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
+                            class="form-control" rows="5" name="eligible_to_participate" id="myeditorinstance" required></textarea>
                     </div>
 
 
@@ -152,7 +157,7 @@
                 const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
                 // Display the total experience in the input field
-                totalExperienceInput.value = daysDifference + " days";
+                totalExperienceInput.value = daysDifference ;
             } else {
                 // If the input dates are not valid, clear the total experience field
                 totalExperienceInput.value = '';

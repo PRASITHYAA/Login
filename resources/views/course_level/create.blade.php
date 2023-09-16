@@ -31,7 +31,7 @@
 
         <main style="margin-top: 58px;">
             <div class="container border 2px p-4">
-                <h1 class="pb-2">Create a new course level</h1>
+                <h1 class="pb-2">Create A New Course Level</h1>
 
                 <form action="{{ route('course_level.store') }}" method="POST">
                     @csrf
@@ -40,7 +40,7 @@
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control" name="name"
                             id="Name" >
                     </div>
-                    
+
 
 
                         <button class="btn btn-success" >Save</button>
