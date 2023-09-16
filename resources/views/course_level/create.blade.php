@@ -12,21 +12,39 @@
 <body>
     <!--Main layout-->
     <div class="container">
+        @if ($errors->any())
+            <div class=" container text-center alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- success --}}
+
+        @if (session('success'))
+            <div class=" container text-center alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
         <main style="margin-top: 58px;">
             <div class="container border 2px p-4">
                 <h1 class="pb-2">Create a new course level</h1>
 
-                <form action="">
+                <form action="{{ route('course_level.store') }}" method="POST">
+                    @csrf
                     <div class="mb-3">
-                        <label for="exampleInputname" class="form-label">sector <span style="color: red;">*</span></label>
-                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            id="Name" aria-describedby="name">
+                        <label  class="form-label">Course Level <span  style="color: red;">*</span></label>
+                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control" name="name"
+                            id="Name" >
                     </div>
+                    
 
 
-                        <a class="btn btn-success" href="">Save</a>
-                        <a class="btn btn-secondary " href="course_level.html">Back</a>
+                        <button class="btn btn-success" >Save</button>
+                        <a class="btn btn-secondary " href={{route('course_level.index')}}>Back</a>
 
                 </form>
             </div>

@@ -16,7 +16,7 @@ class TrainingController extends Controller
 
     public function create()
     {
-        return view('training.create');  // Replace 'trainings.create' with the actual view name
+        return view('training.create');  
     }
 
     public function store(Request $request)
