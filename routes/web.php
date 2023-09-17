@@ -1,11 +1,11 @@
 <?php
 use App\Http\Controllers\AchievementController;
 use App\Http\Controllers\CardsController;
+use App\Http\Controllers\CourseLevelController;
+use App\Http\Controllers\CourseTitleController;
 use App\Http\Controllers\DisclaimerController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\EmploymentController;
-use App\Http\Controllers\CourseLevelController;
-use App\Http\Controllers\CourseTitleController;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\JobApplicationController;
@@ -77,22 +77,25 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
     Route::delete('/position/{position}', [PositionController::class, 'destroy'])->name('position.destroy');
 
     //  training
+
     Route::get('/training', [TrainingController::class, 'index'])->name('training.index');
     Route::get('/training/create', [TrainingController::class, 'create'])->name('training.create');
     Route::post('/training', [TrainingController::class, 'store'])->name('training.store');
     Route::get('/training/{training}', [TrainingController::class, 'show'])->name('training.view');
     Route::delete('/training/{training}', [TrainingController::class, 'destroy'])->name('training.destroy');
-//
+
+    //course_level
     Route::get('/course_level', [CourseLevelController::class, 'index'])->name('course_level.index');
-    Route::view('/course_level', 'course_level.create')->name('course_title.view');
+    Route::get('/course_level/create', [CourseLevelController::class, 'create'])->name('course_level.create');
     Route::post('/course_level', [CourseLevelController::class, 'store'])->name('course_level.store');
-    Route::get('/course_level/{course_level}', [CourseLevelController::class, 'show'])->name('course_level.show');
     Route::get('/course_level/{course_level}/edit', [CourseLevelController::class, 'edit'])->name('course_level.edit');
     Route::put('/course_level/{course_level}', [CourseLevelController::class, 'update'])->name('course_level.update');
     Route::delete('/course_level/{course_level}', [CourseLevelController::class, 'destroy'])->name('course_level.destroy');
 
+    // course_title
+
     Route::get('/course_title', [CourseTitleController::class, 'index'])->name('course_title.index');
-    Route::view('/course_title', 'course_title.create')->name('course_title.view');
+    Route::get('/course_title/create', [CourseTitleController::class, 'create'])->name('course_title.create');
     Route::post('/course_title', [CourseTitleController::class, 'store'])->name('course_title.store');
     Route::get('/course_title/{course_title}', [CourseTitleController::class, 'show'])->name('course_title.show');
     Route::get('/course_title/{course_title}/edit', [CourseTitleController::class, 'edit'])->name('course_title.edit');
@@ -165,6 +168,3 @@ Route::put('/disclaimer/{id}', [DisclaimerController::class, 'update'])->name('c
 Route::delete('/disclaimer/{id}', [DisclaimerController::class, 'destroy'])->name('career.disclaimer.destroy');
 Route::get('acknowledgement', [DisclaimerController::class, 'acknowledgement'])->name('acknowledgement');
 Route::get('download/pdf', [DisclaimerController::class, 'downloadPdf'])->name('download.pdf');
-
-//  demo
-Route::view('/demo', 'demo');
