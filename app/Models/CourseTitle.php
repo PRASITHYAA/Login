@@ -10,9 +10,9 @@ class CourseTitle extends Model
     use HasFactory;
     protected $fillable = [
         'sector_id',
-        'course_level',
+        'course_level_id',
         'name',
-        'course_Code',
+        'course_code',
         'from_date',
         'to_date',
         'time',
@@ -23,9 +23,14 @@ class CourseTitle extends Model
         'course_training_schedule',
         'eligible_to_participate',
     ];
+
     public function sector()
     {
         return $this->belongsTo(Sector::class);
     }
 
+    public function course_level()
+    {
+        return $this->belongsTo(CourseLevel::class);
+    }
 }

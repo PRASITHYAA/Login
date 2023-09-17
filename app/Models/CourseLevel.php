@@ -10,6 +10,12 @@ class CourseLevel extends Model
     use HasFactory;
 
     protected $fillable = [
+        'sector_id',
         'name',
     ];
+
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class);
+    }
 }

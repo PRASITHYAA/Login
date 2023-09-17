@@ -46,6 +46,7 @@
                     @foreach ($courselevels as $courselevel)
                         <tr>
                             <td>{{ $courselevel->id }}</td>
+                            <td>{{ $courselevel->sector->name }}</td>
                             <td>{{ $courselevel->name }}</td>
                             <td>
                                 <!-- Edit Button -->

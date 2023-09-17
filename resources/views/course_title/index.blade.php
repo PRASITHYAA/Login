@@ -18,7 +18,7 @@
 
     <main style="margin-top: 100px;">
         <div class="container-fluid">
-            <h1>Course Level List</h1>
+            <h1>Course Title List</h1>
 
             <!-- Display success message if available -->
             @if (session('success'))
@@ -49,8 +49,8 @@
                         <tr>
                             <td>{{ $coursetitle->id }}</td>
                             <td>{{ $coursetitle->sector->name }}</td>
-                            <td>{{ $coursetitle->course_level }}</td>
-                            <td>{{ $coursetitle->course_Code }}</td>
+                            <td>{{ $coursetitle->course_level->name }}</td>
+                            <td>{{ $coursetitle->course_code }}</td>
                             <td>{{ $coursetitle->name }}</td>
                             <td>
                                 <a href="{{ route('course_title.edit', $coursetitle->id) }}"

@@ -36,6 +36,21 @@
                 <form action="{{ route('course_level.store') }}" method="POST">
                     @csrf
                     <div class="mb-3">
+                        <!-- sector -->
+                        <label  class="form-label">sector <span style="color: red;">*</span></label>
+                        <select class="form-select " name="sector_id" id="sector_id" style="background-color: rgba(248, 235, 235, 0.726);"  required>
+                            <option value="">Please Select</option>
+                            @php
+                                $sectors = \App\Models\Sector::all();
+                            @endphp
+                            @foreach ($sectors as $sector)
+                                <option
+                                    value="{{ $sector->id }}" {{ (old('sector')==$sector->id)?'selected':''  }}>{{ $sector->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <br>
+                    <div class="mb-3">
                         <label  class="form-label">Course Level <span  style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control" name="name"
                             id="Name" >

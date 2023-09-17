@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CourseLevel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CourseLevelController extends Controller
 {
@@ -21,6 +22,7 @@ class CourseLevelController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'sector_id' => 'required',
             'name' => 'required',
         ]);
 
@@ -31,4 +33,42 @@ class CourseLevelController extends Controller
         return redirect()->route('course_level.index');
     }
 
+    public function edit(CourseLevel $courseLevel)  // Update model name
+    {
+        return view('course_level.edit', compact('courseLevel'));
+    }
+
+    public function update(Request $request, CourseLevel $courseLevel)  // Update model name
+    {
+        $validatedData = $request->validate([
+            'sector_id' => 'required',
+            'name' => 'required'
+        ]);
+
+        $courseLevel->update($validatedData);
+
+        Session::flash('success', 'Course Level updated successfully!');
+
+        return redirect()->route('course_level.index');
+    }
+
+    public function destroy(CourseLevel $courseLevel)  // Update model name
+    {
+        $courseLevel->delete();
+
+        Session::flash('success', 'Course Level deleted successfully!');
+
+        return redirect()->route('course_level.index');
+    }
+
+    public function getCourseLevels(Request $request)
+    {
+        // Retrieve positions based on the selected sector
+        $sector = $request->input('sector');
+
+        // Query your database to get positions related to the selected sector
+        $courseLevels = CourseLevel::where('sector_id', $sector)->pluck('name', 'id');
+
+        return response()->json($courseLevels);
+    }
 }

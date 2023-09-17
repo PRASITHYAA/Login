@@ -9,14 +9,14 @@ class Training extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'sector',
-        'course_level',
-        'course_title',
+        'sector_id',
+        'course_level_id',
+        'course_title_id',
         'first_name',
         'last_name',
-        'passport_size_photo_upload',
-        'select_your_qualification',
-        'choice1',
+        'photo',
+        'qualification',
+        'experience_status',
         'job_title',
         'gender',
         'year_of_experience',
@@ -26,9 +26,9 @@ class Training extends Model
         'address_line_2',
         'state',
         'country',
-        'choice2',
+        'address_status',
         'permanent_address_line_1',
-        'permanent_City',
+        'permanent_city',
         'permanent_zip_code',
         'permanent_address_line_2',
         'permanent_state',
@@ -39,11 +39,7 @@ class Training extends Model
         'secondary_email',
         'job_description',
         'training_session',
-        'sector',
-        'course_level',
-        'course_title',
-
-
+        'expectations'
     ];
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\CourseTitle;
 use App\Models\Training;
 use Illuminate\Http\Request;
 
@@ -16,20 +17,21 @@ class TrainingController extends Controller
 
     public function create()
     {
-        return view('training.create');  
+        return view('training.create');
     }
 
     public function store(Request $request)
     {
-        $training = $request->validate([
-            'sector' => 'required',
-            'course_level' => 'required',
-            'course_title' => 'required',
+        //dd($request->all());
+        /*$training = $request->validate([
+            'sector_id' => 'required',
+            'course_level_id' => 'required',
+            'course_title_id' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'passport_size_photo_upload' => 'required',
-            'select_your_qualification' => 'required',
-            'choice1' => 'required|in:yes,no',
+            'photo' => 'required',
+            'qualification' => 'required',
+            'experience_status' => 'required|in:yes,no',
             'job_title' => 'required_if:choice1,yes',
             'gender' => 'required_if:choice1,yes',
             'year_of_experience' => 'required_if:choice1,yes',
@@ -39,7 +41,7 @@ class TrainingController extends Controller
             'address_line_2' => 'required',
             'state' => 'required',
             'country' => 'required',
-            'choice2' => 'required|in:yes,no',
+            'address_status' => 'required|in:yes,no',
             'permanent_address_line_1' => 'required_if:choice2,yes',
             'permanent_city' => 'required_if:choice2,yes',
             'permanent_zip_code' => 'required_if:choice2,yes',
@@ -51,20 +53,22 @@ class TrainingController extends Controller
             'secondary_mobile_number' => 'required',
             'secondary_email' => 'required|email',
             'job_description' => 'required',
-            'training_session' => 'required',
-        ]);
+            'expectations' => 'required',
+            //'training_session' => 'required',
+        ]);*/
+        $training = $request->all();
 
         // Upload image
-        if ($request->hasFile('passport_size_photo_upload')) {
-            $passportPhotoPath = $request->file('passport_size_photo_upload')->store('passport_photos', 'public');
-            $request->merge(['passport_size_photo_upload' => $passportPhotoPath]);
+        if ($request->hasFile('photo')) {
+            $passportPhotoPath = $request->file('photo')->store('photos', 'public');
+            $request->merge(['photo' => $passportPhotoPath]);
         }
 
         Training::create($training);
 
-        session()->flash('success', 'Training record added successfully.');
+        session()->flash('success', 'Training form submitted successfully.');
 
-        return redirect()->route('training.index');
+        return redirect()->route('dashboard');
     }
 
 
@@ -81,4 +85,10 @@ class TrainingController extends Controller
     {
         return view('training.view', compact('training'));
     }
+
+    public function trainingView($id)
+    {
+        $courseTitle = CourseTitle::find($id);
+        return view('trainings_view', compact('courseTitle'));
     }
+}

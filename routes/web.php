@@ -16,6 +16,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ Route::Post('store', [StoreController::class, 'store']);
 // login
 Route::view('/login', 'auth.Login')->name('login');
 Route::Post('authenticate', [LoginController::class, 'authenticate']);
-Route::get('logout', [LoginController::class, 'logout']);
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 // dashboard
 //Route::view('/home', 'auth.Home')->middleware('auth')->name('home');
@@ -105,7 +106,16 @@ Route::group(['middleware' => ['auth', 'role:Admin']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     // home
-    Route::view('/home', 'home')->name('dashboard');
+    Route::view('/home', 'overview')->name('dashboard');
+    Route::view('/careers', 'home')->name('careers');
+    Route::view('/trainings', 'trainings')->name('trainings');
+    Route::get('/user-careers-list', [FrontController::class, 'userCareers'])->name('user.careers.list');
+    Route::get('/user-trainings-list', [FrontController::class, 'userTrainings'])->name('user.trainings.list');
+    Route::view('/change-password', 'change_password')->name('change.password');
+    Route::view('/profile', 'profile')->name('profile');
+    Route::get('/trainings/view/{id}', [TrainingController::class ,'trainingView'])->name('trainings.view');
+    Route::view('/trainings/apply', 'trainings_apply')->name('trainings.apply');
+    Route::post('/trainings/apply/store', [TrainingController::class, 'store'])->name('trainings.apply.store');
 });
 
 //   instruction
@@ -122,6 +132,8 @@ Route::put('/job_application/{id}', [JobApplicationController::class, 'update'])
 Route::delete('/job_application/{id}', [JobApplicationController::class, 'destroy'])->name('career.job_application.destroy');
 Route::get('/positions-ajax', [PositionController::class, 'getPositions'])->name('positions.ajax');
 Route::get('/cities-ajax', [JobApplicationController::class, 'getCities'])->name('cities.ajax');
+Route::get('/course-levels-ajax', [CourseLevelController::class, 'getCourseLevels'])->name('course.levels.ajax');
+Route::get('/course-titles-ajax', [CourseTitleController::class, 'getCourseTitles'])->name('course.titles.ajax');
 
 // card
 

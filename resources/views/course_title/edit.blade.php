@@ -15,7 +15,7 @@
 
         <main style="margin-top: 58px;">
             <div class="container border 2px p-4">
-                <h1 class="pb-2">Create A New Course Title</h1>
+                <h1 class="pb-2">Create A New Course Level</h1>
                 @if ($errors->any())
                 <div class=" alert-danger">
                     <ul>
@@ -33,8 +33,9 @@
                 </div>
             @endif
 
-                <form action="{{ route('course_title.store') }}" method="POST">
+                <form action="{{ route('course_title.update', $courseTitle->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="mb-3">
                         <label class="form-label">sector <span style="color: red;">*</span></label>
                         <select class="form-select " name="sector_id" id="sector_id"
@@ -45,7 +46,7 @@
                             @endphp
                             @foreach ($sectors as $sector)
                                 <option value="{{ $sector->id }}"
-                                    {{ old('sector') == $sector->id ? 'selected' : '' }}>
+                                    {{ (old('sector') == $sector->id || $courseTitle->sector_id == $sector->id) ? 'selected' : '' }}>
                                     {{ $sector->name }}</option>
                             @endforeach
                         </select>
@@ -55,6 +56,14 @@
                         <label class="form-label">Course Level <span style="color: red;">*</span></label>
                         <select class="form-select" name="course_level_id" id="course_level" style="background-color: rgba(248, 235, 235, 0.726);" required>
                             <option value="">Please Select</option>
+                            @php
+                                $courseLevels = \App\Models\CourseLevel::where('sector_id', $courseTitle->sector_id)->get();
+                            @endphp
+                            @foreach ($courseLevels as $courseLevel)
+                                <option value="{{ $courseLevel->id }}"
+                                    {{ (old('sector') == $courseLevel->id || $courseTitle->course_level_id == $courseLevel->id) ? 'selected' : '' }}>
+                                    {{ $courseLevel->name }}</option>
+                            @endforeach
                         </select>
 
                     </div>
@@ -63,70 +72,70 @@
                     <div class="mb-3">
                         <label class="form-label">Course Title <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            name="name" id="Name" required>
+                            name="name" id="Name" value="{{ $courseTitle->name }}" required>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Course Code <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            name="course_code" id="course_code" required>
+                            name="course_code" id="course_code" value="{{ $courseTitle->course_code }}" required>
                     </div>
                     <div class="row" id="experienceForm">
                         <div class=" col-md-4 mb-3">
                             <label class="form-label"> From Date <span style="color: red;">*</span></label>
-                            <input class="form-control" type="date" id="fromDate" name="from_date"
+                            <input class="form-control" type="date" id="fromDate" name="from_date" value="{{ $courseTitle->from_date }}"
                                 style="background-color: rgba(248, 235, 235, 0.726);" required>
                         </div>
 
                         <div class=" col-md-4 mb-3">
                             <label class="form-label"> From Date <span style="color: red;">*</span></label>
-                            <input class="form-control" type="date"  id="toDate" name="to_date"
+                            <input class="form-control" type="date"  id="toDate" name="to_date" value="{{ $courseTitle->to_date }}"
                                 style="background-color: rgba(248, 235, 235, 0.726);" required>
                         </div>
 
                         <div class=" col-md-4 mb-3">
                             <label class="form-label">Duration <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);"
-                                class="form-control" name="duration"  id="totalExperience" readonly>
+                                class="form-control" name="duration" value="{{ $courseTitle->duration }}" id="totalExperience" readonly>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Time <span style="color: red;">*</span></label>
-                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="time" class="form-control" min="00:00" max="23:59" name="time" id="time">
+                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="time" class="form-control" min="00:00" max="23:59" name="time" value="{{ date('H:i', strtotime($courseTitle->time)) }}" id="time">
                     </div>
                     <div class="mb-3">
                         <label class="form-label"> Course Location <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            name="course_location" id="course_location">
+                            name="course_location" value="{{ $courseTitle->course_location }}" id="course_location">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Course Registration Fee <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            name="course_registration_fee" id="course_registration_fee">
+                            name="course_registration_fee" value="{{ $courseTitle->course_registration_fee }}" id="course_registration_fee">
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Course Description <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control" name="course_description" id="myeditorinstance" required></textarea>
+                            class="form-control" name="course_description" id="myeditorinstance" required>{{ $courseTitle->course_description }}</textarea>
                     </div>
 
 
                     <div class="mb-3">
                         <label class="form-label">Training Schedule <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control" rows="5" name="course_training_schedule" id="myeditorinstance" required></textarea>
+                            class="form-control" rows="5" name="course_training_schedule" id="myeditorinstance" required>{{ $courseTitle->course_training_schedule }}</textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Eligible To Participate <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control" rows="5" name="eligible_to_participate" id="myeditorinstance" required></textarea>
+                            class="form-control" rows="5" name="eligible_to_participate" id="myeditorinstance" required>{{ $courseTitle->eligible_to_participate }}</textarea>
                     </div>
 
 
-                    <button class="btn btn-success">Save</button>
+                    <button class="btn btn-success">Update</button>
                     <a class="btn btn-secondary" href="{{ route('course_title.index') }}">Back</a>
 
                 </form>
