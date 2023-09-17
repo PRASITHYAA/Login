@@ -16,7 +16,7 @@ class EmploymentController extends Controller
     }
     public function store(Request $request)
     {
-        $employment = $request->validate([
+        $data = $request->validate([
             'job_application_id' => 'required',
             'previous_experience' => 'required|in:yes,no',
             // experience
@@ -35,16 +35,19 @@ class EmploymentController extends Controller
             'reference_position' => 'required_if:previous_experience,yes',
             'reference_email' => 'required_if:previous_experience,yes',
             'reference_phone' => 'required_if:previous_experience,yes',
+            'reference_address' => 'required_if:previous_experience,yes',
             // second
             'eligible_to_work' => 'required_if:previous_experience,yes|in:yes,no',
-            'sub-text-input' => 'required_if:eligible_to_work,no',
+            'eligible_to_work_text' => 'required_if:eligible_to_work,no',
             'crime_status' => 'required_if:previous_experience,yes|in:yes,no',
-            'text-input' => 'required_if:crime_status,yes',
+            'crime_status_text' => 'required_if:crime_status,yes',
         ]);
 
-        Employment::create($employment);
+        $employment = Employment::create($data);
+        $employment->reference_name = $data['reference_name'];
+        $employment->save();
 
-        return redirect()->route('achievement.view', ['job_application_id' => $request->job_application_id])->with('success', 'Employment created successfully!');
+        return redirect()->route('achievement.view', ['job_application_id' => $request->job_application_id, 'employment_id' => $employment->id])->with('success', 'Employment created successfully!');
     }
 
     public function edit($id)
@@ -80,9 +83,9 @@ class EmploymentController extends Controller
             'reference_address' => 'required_if:previous_experience,yes',
             // second
             'eligible_to_work' => 'required_if:previous_experience,yes|in:yes,no',
-            'sub-text-input' => 'required_if:eligible_to_work,no',
+            'eligible_to_work_text' => 'required_if:eligible_to_work,no',
             'crime_status' => 'required_if:previous_experience,yes|in:yes,no',
-            'text-input' => 'required_if:crime_status,yes',
+            'crime_status_text' => 'required_if:crime_status,yes',
         ]);
 
         $employment = Employment::find($id);

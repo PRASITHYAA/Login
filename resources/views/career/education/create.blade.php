@@ -59,9 +59,9 @@
                     style="{{ isset($education) ? ($education->radio_option == 'yes' ? '' : 'display: none;') : 'display: none;' }}">
                     <!-- High School -->
                     <input type="checkbox" onchange="toggleForm('form1')" name="qualification" value="high_school"
-                        {{ isset($education->high_school_name) ? 'checked' : '' }}>
+                        {{ (old('qualification') == 'high_school_name' || isset($education) && $education->qualification == 'high_school_name') ? 'checked' : '' }}>
                     High School
-                    <div id="form1" style="{{ isset($education->high_school_name) ? '' : 'display: none;' }}">
+                    <div id="form1" style="{{ (old('qualification') == 'high_school_name' || isset($education) && $education->qualification == 'high_school_name') ? '' : 'display: none;' }}">
                         <h4>
                             High School
                         </h4>
@@ -192,8 +192,8 @@
 
                     <!-- Higher Secondary -->
                     <input type="checkbox" onchange="toggleForm('form2')" name="qualification" value="higher_secondary"
-                        {{ isset($education->higher_secondary) ? 'checked' : '' }}>Higher Secondary
-                    <div id="form2" style="{{ isset($education->higher_secondary) ? '' : 'display: none;' }}">
+                        {{ (old('qualification') == 'higher_secondary' || isset($education) && $education->qualification == 'higher_secondary') ? 'checked' : '' }}>Higher Secondary
+                    <div id="form2" style="{{ (old('qualification') == 'higher_secondary' || isset($education) && $education->qualification == 'higher_secondary') ? '' : 'display: none;' }}">
                         <!-- Higher Secondary -->
                         <h4> Higher Secondary</h4>
                         <!-- Higher Secondary Institution Name-->
@@ -337,9 +337,9 @@
 
                     {{-- Diploma --}}
                     <input type="checkbox" onchange="toggleForm('form3')" name="qualification" value="diploma"
-                        {{ isset($education->diploma) ? 'checked' : '' }}>Diploma
+                        {{ (old('qualification') == 'diploma' || isset($education) && $education->qualification == 'diploma') ? 'checked' : '' }}>Diploma
 
-                    <div id="form3" style="{{ isset($education->diploma) ? '' : 'display: none;' }}">
+                    <div id="form3" style="{{ (old('qualification') == 'diploma' || isset($education) && $education->qualification == 'diploma') ? '' : 'display: none;' }}">
                         <!-- Diploma -->
                         <h4>
                             Diploma
@@ -469,9 +469,9 @@
 
                     {{-- Bachelors Degree --}}
                     <input type="checkbox" onchange="toggleForm('form4')" name="qualification" value="bachelor_degree"
-                        {{ isset($education->bachelor_degree) ? 'checked' : '' }}>Bachelors Degree
+                        {{ (old('qualification') == 'bachelor_degree' || isset($education) && $education->qualification == 'bachelor_degree') ? 'checked' : '' }}>Bachelors Degree
 
-                    <div id="form4" style="{{ isset($education->bachelor_degree) ? '' : 'display: none;' }}">
+                    <div id="form4" style="{{ (old('qualification') == 'bachelor_degree' || isset($education) && $education->qualification == 'bachelor_degree') ? '' : 'display: none;' }}">
 
                         <!-- Bachelors Degree -->
                         <h4>
@@ -622,8 +622,8 @@
 
                     {{-- Master's Degree --}}
                     <input type="checkbox" onchange="toggleForm('form5')" name="qualification" value="master_degree"
-                        {{ isset($education->master_degree) ? 'checked' : '' }}>Master's Degree
-                    <div id="form5" style="{{ isset($education->master_degree) ? '' : 'display: none;' }}">
+                        {{ (old('qualification') == 'master_degree' || isset($education) && $education->qualification == 'master_degree') ? 'checked' : '' }}>Master's Degree
+                    <div id="form5" style="{{ (old('qualification') == 'master_degree' || isset($education) && $education->qualification == 'master_degree') ? '' : 'display: none;' }}">
 
                         <!-- Master's Degree -->
                         <h4>
@@ -757,8 +757,8 @@
 
                     {{-- Doctorate Degree --}}
                     <input type="checkbox" onchange="toggleForm('form6')" name="qualification" value="doctorate_degree"
-                        {{ isset($education->doctorate_degree) ? 'checked' : '' }}> Doctorate Degree
-                    <div id="form6" style="{{ isset($education->doctorate_degree) ? '' : 'display: none;' }}">
+                        {{ (old('qualification') == 'doctorate_degree' || isset($education) && $education->qualification == 'doctorate_degree') ? 'checked' : '' }}> Doctorate Degree
+                    <div id="form6" style="{{ (old('qualification') == 'doctorate_degree' || isset($education) && $education->qualification == 'doctorate_degree') ? '' : 'display: none;' }}">
                         <!-- Doctorate Degree -->
                         <h4>
                             Doctorate Degree

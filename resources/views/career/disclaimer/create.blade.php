@@ -41,11 +41,13 @@
             <!-- heading -->
             <h4 class="p-3">Joining date/Current and Expected Salary Details</h4>
 
-            <form action="{{ route('career.disclaimer.store') }}" class="row g-3" method="POST"
+            <form action="{{ isset($disclaimer) ? route('career.disclaimer.update', $disclaimer->id) : route('career.disclaimer.store') }}" class="row g-3" method="POST"
                 enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="job_application_id" id="job_application_id"
-                    value="{{ request()->job_application_id }}">
+                @if (isset($disclaimer))
+                    @method('PUT')
+                @endif
+                <input type="hidden" name="job_application_id" value="{{ isset($disclaimer) ? $disclaimer->job_application_id : request()->job_application_id }}">
                 <!-- Expected date to join -->
                 <div class="col-md-4">
                     <label class="form-label">Expected date to join <span class="red">*</span></label>
@@ -63,7 +65,7 @@
                 <div class="col-md-4">
                     <label class="form-label">Expected Salary <span style="color: red;">*</span></label>
                     <input type="number" class="form-control" id="expected_salary" name="expected_salary"
-                        placeholder="Expected Salary" value="{{ old('expected_salary') }}" required>
+                        placeholder="Expected Salary" value="{{ old('expected_salary') ?? ($disclaimer->expected_salary ?? '') }}" required>
                 </div>
                 <!-- paragraph -->
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp
@@ -76,8 +78,12 @@
                         <label for="disclaimer_signature" class="form-label">Signature <span class="red">*</span></label>
                         <div class="input-group">
                             <input type="file" class="form-control" id="disclaimer_signature" name="disclaimer_signature"
-                                accept="image/*" required>
+                                accept="image/*" {{ !isset($disclaimer->disclaimer_signature) ? 'required' : '' }}>
                         </div>
+                        @if (isset($disclaimer) && $disclaimer->disclaimer_signature)
+                            <img src="{{ asset('storage/'.$disclaimer->disclaimer_signature) }}" alt="Disclaimer Image"
+                                 style="width: 150px;">
+                        @endif
                         <div class="form-group mt-2">
                             <img id="disclaimer_SignaturePreview" src="#" alt="Image Preview"
                                 style="max-width:150px; display: none;">
@@ -100,7 +106,7 @@
                         <div class="col-md-6">
                             <label class="form-label">Print Name</label>
                             @php
-                                $jobApplication = \App\Models\JobApplication::find(request()->job_application_id);
+                                $jobApplication = \App\Models\JobApplication::find(request()->job_application_id ?? $disclaimer->job_application_id ?? '');
                             @endphp
                             <input style="background-color: rgba(248, 235, 235, 0.726);" aria-label="Print Name"
                                 id="print_name" type="text" class="form-control" name="disclaimer_print_name"
@@ -115,7 +121,7 @@
                             <label class="form-label">PLACE <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" id="disclaimer_place"
                                 type="text" class="form-control" name="disclaimer_place"
-                                value="{{ old('disclaimer_place') }}" required>
+                                   value="{{ old('disclaimer_place') ?? ($disclaimer->disclaimer_place ?? '') }}" required>
                         </div>
                         <!-- checkbox -->
                         <div class="form-check pb-3">

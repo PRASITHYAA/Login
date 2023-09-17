@@ -11,6 +11,7 @@ class Card extends Model
 
     protected $fillable = [
         'job_application_id',
+        'identity_type',
         'aadhar_name',
         'aadhar_id_number',
         'aadhar_issued_country',
@@ -29,7 +30,7 @@ class Card extends Model
         'passport_image_id',
         'passport_image_id_page',
     ];
-    
+
     public function jobApplication()
     {
         return $this->belongsTo(JobApplication::class);

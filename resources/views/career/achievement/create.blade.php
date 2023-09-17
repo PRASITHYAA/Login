@@ -179,7 +179,7 @@
                         No
                     </label>
 
-                    <div id="input-field-4" class="{{ old('background_check_status') == 'yes' || (isset($achievement) && $achievement->{'background_check_status'} == 'yes') ? '' : 'hidden' }}">
+                    <div id="input-field-4" class="{{ old('background_check_status') == 'no' || (isset($achievement) && $achievement->{'background_check_status'} == 'no') ? '' : 'hidden' }}">
                         <div class="p-2">
                             <div class="mb-3">
                                 <label class="form-label">Please explain here</label>

@@ -97,9 +97,7 @@ class CardsController extends Controller
             'passport_expired_date' => 'required_if:identity_type,passport',
             'passport_issued_country' => 'required_if:identity_type,passport',
             'passport_issued_state' => 'required_if:identity_type,passport',
-            'passport_issued_place' => 'required_if:identity_type,passport',
-            'passport_image_id' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'passport_image_id_page' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'passport_issued_place' => 'required_if:identity_type,passport'
         ];
         if ($request->hasFile('aadhar_image')) {
             $rules['aadhar_image'] = 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048';

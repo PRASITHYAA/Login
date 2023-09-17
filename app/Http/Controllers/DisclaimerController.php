@@ -39,6 +39,49 @@ class DisclaimerController extends Controller
         return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer And All The Forms Are created successfully');
     }
 
+    public function edit($id)
+    {
+        $disclaimer = Disclaimer::find($id);
+
+        $achievement = Achievement::where('job_application_id', $disclaimer->job_application_id)->orderBy('id', 'desc')->first();
+
+        return view('career.disclaimer.create', ['disclaimer' => $disclaimer, 'achievement_id' => $achievement->id]);
+    }
+
+
+    public function update($id, Request $request)
+    {
+        // dd($request->all());
+
+        $rules = [
+            'job_application_id' => 'required',
+            'expected_date_to_join' => 'required|date',
+            'current_salary' => 'required|numeric',
+            'expected_salary' => 'required|numeric',
+            'disclaimer_date' => 'required',
+            'disclaimer_time' => 'required',
+            'disclaimer_print_name' => 'required',
+            'disclaimer_place' => 'required',
+        ];
+
+        if ($request->hasFile('disclaimer_signature')) {
+            $rules['disclaimer_signature'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
+        }
+
+        $data = $request->validate($rules);
+
+        if ($request->hasFile('disclaimer_signature')) {
+            $signatureImagePath = $request->file('disclaimer_signature')->store('images', 'public');
+            $data['disclaimer_signature'] = $signatureImagePath;
+        }
+
+        $disclaimer = Disclaimer::find($id);
+        $disclaimer->fill($data);
+        $disclaimer->save();
+
+        return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer And All The Forms Are created successfully');
+    }
+
     public function acknowledgement(Request $request)
     {
         $data = JobApplication::find($request->job_application_id);

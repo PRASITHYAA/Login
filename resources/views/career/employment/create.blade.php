@@ -203,7 +203,7 @@
                         style="{{ old('eligible_to_work') == 'no' || (isset($employment) && $employment->eligible_to_work == 'no') ? 'display: block;' : 'display: none;' }}">
                         <p style="font-weight: bold;">If No, Please Explain <span class="f5">*</span> </p>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control sub-text-input"
-                            name="sub-text-input">{{ old('sub-text-input') ?? (isset($employment) ? $employment->sub_text_input : '') }}</textarea>
+                            name="eligible_to_work_text">{{ old('eligible_to_work_text') ?? (isset($employment) ? $employment->eligible_to_work_text : '') }}</textarea>
                     </div>
                     <br>
 
@@ -225,10 +225,10 @@
                     </label>
 
 
-                    <div class="col-md-12" id="text-input" style="display: none;">
+                    <div class="col-md-12" id="text-input" style="{{ old('crime_status') == 'yes' || (isset($employment) && $employment->crime_status == 'yes') ? 'display: block;' : 'display: none;' }}">
                         <p style="font-weight: bold;">If Yes, Please Explain <span class="f5">*</span> </p>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726);" rows="3" class="form-control text-input"
-                            name="text-input"></textarea>
+                            name="crime_status_text">{{ old('crime_status_text') ?? (isset($employment) ? $employment->crime_status_text : '') }}</textarea>
                     </div>
 
                 </div>

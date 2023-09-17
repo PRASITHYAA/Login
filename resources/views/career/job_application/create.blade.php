@@ -770,7 +770,7 @@
                             <div style="display: flex;justify-content: end; align-items: center; " class="  ">
                                 <!-- button  -->
                                 <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                                    href="instruction">Previous</a>
+                                    href="{{ route('career.instruction', ['job_application_id' => $jobApplication->id ?? '']) }}">Previous</a>
                                 <button class="btn btn-primary mx-2">Save And Next</button>
                             </div>
 

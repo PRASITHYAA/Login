@@ -79,10 +79,9 @@ class JobApplicationController extends Controller
         ]);
 
         // Upload and store father image
-
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public');
-            $validatedData['image'] = $imagePath;
+            $jobApplication['image'] = $imagePath;
         }
         if ($request->hasFile('father_image')) {
             $fatherImagePath = $request->file('father_image')->store('images', 'public');
@@ -94,11 +93,11 @@ class JobApplicationController extends Controller
             $jobApplication['mother_image'] = $motherImagepath;
         }
 
-        if ($request->hasFile('spouse_image ')) {
+        if ($request->hasFile('spouse_image')) {
             $spouseImagepath = $request->file('spouse_image')->store('images', 'public');
             $jobApplication['spouse_image'] = $spouseImagepath;
         }
-        if ($request->hasFile('siblings_image ')) {
+        if ($request->hasFile('siblings_image')) {
             $siblingsImagepath = $request->file('siblings_image')->store('images', 'public');
             $jobApplication['siblings_image'] = $siblingsImagepath;
         }
@@ -197,11 +196,11 @@ class JobApplicationController extends Controller
             $data['mother_image'] = $motherImagepath;
         }
 
-        if ($request->hasFile('spouse_image ')) {
-            $spouseImagepath = $request->file('spouse_image')->store('images', 'public');
-            $data['spouse_image'] = $spouseImagepath;
+        if ($request->hasFile('spouse_image')) {
+            $spouseImagePath = $request->file('spouse_image')->store('images', 'public');
+            $data['spouse_image'] = $spouseImagePath;
         }
-        if ($request->hasFile('siblings_image ')) {
+        if ($request->hasFile('siblings_image')) {
             $siblingsImagepath = $request->file('siblings_image')->store('images', 'public');
             $data['siblings_image'] = $siblingsImagepath;
         }

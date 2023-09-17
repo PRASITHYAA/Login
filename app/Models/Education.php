@@ -13,6 +13,7 @@ class Education extends Model
     protected $fillable = [
         'job_application_id',
         'radio_option',
+        'qualification',
         // high school
         'high_school_name',
         'high_school_city',
@@ -59,7 +60,7 @@ class Education extends Model
         'bachelors_institution_name',
         'bachelors_city',
         'bachelors_address',
-        'bachelor_form_date',
+        'bachelors_form_date',
         'bachelors_to_date',
         'bachelors_year_of_passing',
         'bachelors_percentage',

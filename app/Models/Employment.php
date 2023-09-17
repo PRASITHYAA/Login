@@ -22,8 +22,6 @@ class Employment extends Model
         'employer_to_date',
         'employer_experience',
         'employer_responsibilities',
-
-        // REFERENCE
         'reference_name ',
         'reference_company',
         'reference_position',
@@ -34,11 +32,7 @@ class Employment extends Model
         'eligible_to_work',
         'crime_status',
         // second'',
-        'nested-option',
-        'sub-nested-input',
-
-        'sub-nested-option',
-        'nested-input-field',
-
+        'eligible_to_work_text',
+        'crime_status_text',
     ];
 }
