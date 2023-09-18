@@ -112,8 +112,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/user-careers-list', [FrontController::class, 'userCareers'])->name('user.careers.list');
     Route::get('/user-trainings-list', [FrontController::class, 'userTrainings'])->name('user.trainings.list');
     Route::view('/change-password', 'change_password')->name('change.password');
+    Route::post('/change-password',  [UserController::class, 'changePassword'])->name('change.password');
     Route::view('/profile', 'profile')->name('profile');
+    Route::post('/profile', [UserController::class, 'updateProfile'])->name('profile');
     Route::get('/trainings/view/{id}', [TrainingController::class ,'trainingView'])->name('trainings.view');
+    Route::delete('/trainings/view/{id}', [TrainingController::class ,'trainingView'])->name('trainings.destroy');
     Route::view('/trainings/apply', 'trainings_apply')->name('trainings.apply');
     Route::post('/trainings/apply/store', [TrainingController::class, 'store'])->name('trainings.apply.store');
 });

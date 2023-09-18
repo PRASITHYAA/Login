@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -61,5 +62,35 @@ class UserController extends Controller
         Session::flash('success', 'User deleted successfully!');
 
         return redirect()->route('users.index')->with('success', 'User deleted successfully!');
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|confirmed|min:6',
+        ],
+            [
+                'password.confirmed' => 'The password confirmation does not match.',
+            ]);
+        $user = auth()->user();
+        if (Hash::check($request->old_password, $user->password)) {
+            $user->password = Hash::make($request->input('password'));
+            $user->save();
+            return redirect()->route('change.password')->with('success', 'Password changed successfully!');
+        } else {
+            return redirect()->route('change.password')->withErrors(['old_password' =>'Invalid old password!']);
+        }
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = auth()->user();
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+        ]);
+        $user->update($request->all());
+        return redirect()->route('profile')->with('success', 'Profile updated successfully!');
     }
 }
