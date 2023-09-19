@@ -345,7 +345,7 @@
 
                     {{-- Diploma --}}
                     <input type="checkbox" onchange="toggleForm('form3')" name="qualification" value="diploma"
-                        {{ old('qualification') == 'diploma' || (isset($education) && $education->qualification == 'diploma') ? 'checked' : '' }}>Diploma
+                        {{ old('qualification') == 'diploma' || (isset($education) && $education->qualification == 'diploma') ? 'checked' : '' }}> Diploma
 
                     <div id="form3"
                         style="{{ old('qualification') == 'diploma' || (isset($education) && $education->qualification == 'diploma') ? '' : 'display: none;' }}">
@@ -478,7 +478,7 @@
 
                     {{-- Bachelors Degree --}}
                     <input type="checkbox" onchange="toggleForm('form4')" name="qualification" value="bachelor_degree"
-                        {{ old('qualification') == 'bachelor_degree' || (isset($education) && $education->qualification == 'bachelor_degree') ? 'checked' : '' }}>Bachelors
+                        {{ old('qualification') == 'bachelor_degree' || (isset($education) && $education->qualification == 'bachelor_degree') ? 'checked' : '' }}> Bachelors
                     Degree
 
                     <div id="form4"
@@ -633,7 +633,7 @@
 
                     {{-- Master's Degree --}}
                     <input type="checkbox" onchange="toggleForm('form5')" name="qualification" value="master_degree"
-                        {{ old('qualification') == 'master_degree' || (isset($education) && $education->qualification == 'master_degree') ? 'checked' : '' }}>Master's
+                        {{ old('qualification') == 'master_degree' || (isset($education) && $education->qualification == 'master_degree') ? 'checked' : '' }}> Master's
                     Degree
                     <div id="form5"
                         style="{{ old('qualification') == 'master_degree' || (isset($education) && $education->qualification == 'master_degree') ? '' : 'display: none;' }}">
