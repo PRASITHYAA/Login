@@ -30,7 +30,7 @@ class JobApplicationController extends Controller
             'position_id' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100 ',
             'dob' => 'required|date',
             'age' => 'required|integer|min:18|max:99',
             'country' => 'required',

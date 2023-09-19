@@ -114,7 +114,8 @@
                     <h5 class="head-gold">Registration Fee</h5>
                     <p>Registration Fee of Rs.{{ $courseTitle->course_registration_fee }}/- Applicable</p>
                     <i style="font-size: 70px; display: flex;justify-content: end;color: white; " class="fa-solid fa-pen-to-square  fly-out-up    "></i>
-                    <div class="ekit-wid-con">		<div class="ekit-btn-wraper">
+                    <div class="ekit-wid-con">
+                        	<div class="ekit-btn-wraper">
                             <a href="{{ route('trainings.apply', ['sector_id' => $courseTitle->sector_id, 'course_level_id' => $courseTitle->course_level_id, 'course_title_id' => $courseTitle->id]) }}" class="btn btn-primary">
                                 <i aria-hidden="true" class="far fa-building"></i>
                                 Apply For Training</a>
