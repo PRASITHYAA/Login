@@ -105,13 +105,13 @@
           <td>{{ $position->name }}</td>
           <td>
             <!-- Edit Button -->
-            <a href="{{ route('position.edit', $position->id) }}" class="btn btn-warning btn-sm">Edit</a>
+            <a href="{{ route('position.edit', $position->id) }}" class="btn btn-warning mx-1">Edit</a>
 
             <!-- Delete Button -->
             <form action="{{ route('position.destroy', $position->id) }}" method="POST" class="d-inline">
               @csrf
               @method('DELETE')
-              <button type="submit" class="btn btn-danger btn-sm"
+              <button type="submit" class="btn btn-danger "
                 onclick="return confirm('Are you sure you want to delete this position?')">Delete</button>
             </form>
           </td>

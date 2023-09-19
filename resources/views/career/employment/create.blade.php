@@ -68,7 +68,7 @@
                         <div class="col-md-4">
                             <label class="form-label">
                                 Company / Individual <span style="color: red;">*</span></label>
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control "
                                 name="employer_company" id="employer_company" placeholder="Company / Individual"
                                 value="{{ old('employer_company') ?? ($employment->employer_company ?? '') }}">
                         </div>
@@ -97,7 +97,7 @@
                         <!-- Job Title -->
                         <div class="col-md-4">
                             <label class="form-label">Job Title <span style="color: red;">*</span></label>
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control alphabetic-input"
                                 name="employer_job_title" id="employer_job_title" placeholder="Job Title	"
                                 value="{{ old('employer_job_title') ?? ($employment->employer_job_title ?? '') }}">
                         </div>
@@ -123,13 +123,13 @@
                             <label class="form-label">Experience <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" name="employer_experience"
                                 id="totalExperience" class="form-control"
-                                value="{{ old('employer_experience') ?? ($employment->employer_experience ?? '') }}">
+                                value="{{ old('employer_experience') ?? ($employment->employer_experience ?? '') }}" readonly>
                         </div>
                         <!-- Responsibilities -->
                         <div class="col-md-4">
                             <label class="form-label">Responsibilities <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="Responsibilities"
-                                class="form-control" name=" employer_responsibilities" id="employer_responsibilities"
+                                class="form-control alphabetic-input" name=" employer_responsibilities" id="employer_responsibilities"
                                 placeholder="Responsibilities "
                                 value="{{ old('employer_responsibilities') ?? ($employment->employer_responsibilities ?? '') }}">
                         </div>
@@ -139,14 +139,14 @@
                         <div class="col-md-4">
                             <label class="form-label">Name <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                class="form-control" name="reference_name" id="reference_name" placeholder="Name"
+                                class="form-control alphabetic-input" name="reference_name" id="reference_name" placeholder="Name"
                                 value="{{ old('reference_name') ?? ($employment->reference_name ?? '') }}">
                         </div>
                         <!-- company -->
                         <div class="col-md-4">
                             <label class="form-label">Company <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                class="form-control" name="reference_company" id="reference_company"
+                                class="form-control " name="reference_company" id="reference_company"
                                 placeholder="Company"
                                 value="{{ old('reference_company') ?? ($employment->reference_company ?? '') }}">
                         </div>
@@ -154,7 +154,7 @@
                         <div class="col-md-4">
                             <label class="form-label">Position <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                class="form-control" name="reference_position" id="reference_position"
+                                class="form-control alphabetic-input" name="reference_position" id="reference_position"
                                 placeholder="Position"
                                 value="{{ old('reference_position') ?? ($employment->reference_position ?? '') }}">
                         </div>
@@ -178,7 +178,7 @@
                         <div class="col-md-4">
                             <label class="form-label">Address <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                class="form-control" name="reference_address" id="reference_address"
+                                class="form-control alphabetic-input" name="reference_address" id="reference_address"
                                 placeholder="Address"
                                 value="{{ old('reference_address') ?? ($employment->reference_address ?? '') }}">
                         </div>

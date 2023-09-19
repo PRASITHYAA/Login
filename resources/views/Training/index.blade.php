@@ -113,7 +113,7 @@
                         <th>Sector</th>
                         <th>Course Level  </th>
                         <th>Course Title</th>
-                        <th>OPERATIONS</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 {{-- table body --}}

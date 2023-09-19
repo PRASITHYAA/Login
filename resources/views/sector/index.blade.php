@@ -106,14 +106,14 @@
                             <td>
                                 <!-- Edit Button -->
                                 <a href="{{ route('sector.edit', $sector->id) }}"
-                                    class="btn btn-warning btn-sm">Edit</a>
+                                    class="btn btn-warning mx-1">Edit</a>
 
                                 <!-- Delete Button -->
                                 <form action="{{ route('sector.destroy', $sector->id) }}" method="POST"
                                     class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm"
+                                    <button type="submit" class="btn btn-danger "
                                         onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
                                 </form>
                             </td>

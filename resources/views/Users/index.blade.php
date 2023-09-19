@@ -95,7 +95,7 @@
                         <th>Id</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>OPERATIONS</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 {{-- table body --}}
@@ -109,13 +109,13 @@
 
                             <td>
                                 <!-- Edit Button -->
-                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-warning mx-1">Edit</a>
 
                                 <!-- Delete Button -->
                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm"
+                                    <button type="submit" class="btn btn-danger "
                                         onclick="return confirm('Are you sure you want to delete this job?')">Delete</button>
                                 </form>
                             </td>
