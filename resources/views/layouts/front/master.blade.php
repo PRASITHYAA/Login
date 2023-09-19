@@ -88,6 +88,9 @@
         .hidden {
             display: none;
         }
+        .btn-right{
+            float:right;
+        }
     </style>
 
 
