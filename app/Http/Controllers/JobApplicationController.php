@@ -234,4 +234,11 @@ class JobApplicationController extends Controller
 
         return response()->json($cities);
     }
+    public function destroy(JobApplication $jobApplication)
+    {
+        $jobApplication->delete();
+
+        return redirect()->route('career.job_application.index')->with('success', 'Job application deleted successfully!');
+    }
+
 }

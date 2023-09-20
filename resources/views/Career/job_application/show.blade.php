@@ -203,8 +203,8 @@
                 </div>
                 <br>
             </div>
-            <div class="row">
-                <div class="col">
+            <div class="row mt-5">
+                <div class="col ">
                     <label class="form-label">Marital Status </label>
                     <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
                         value="{{ $jobApplication->marital_status }}" readonly>
@@ -234,13 +234,11 @@
                         @endif
                     </div>
                 </div>
-
-                <div class="col">
+                <div class="col ">
                     <!-- single -->
                     <label class="form-label"> Siblings</label>
                     <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
                         value="{{ $jobApplication->siblings }}" readonly>
-
                     <!-- Siblings name -->
                     <label class="form-label pt-2">Siblings name</label>
                     <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
