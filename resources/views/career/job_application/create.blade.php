@@ -197,7 +197,6 @@
                             <input type="tel" class=" form-control phoneInputField" name="phone"
                                 id="phone" value="{{ old('phone') ?? ($jobApplication->phone ?? '') }}" required>
                             <p class="errorText" style="color: red;"></p>
-
                         </div>
                         <!-- Alternative Phone -->
                         <div class="col-md-4">
@@ -207,7 +206,6 @@
                                 id="alternative_phone"
                                 value="{{ old('alternative_phone') ?? ($jobApplication->alternative_phone ?? '') }}">
                             <p class="errorText" style="color: red;"></p>
-
                         </div>
                         <!-- email -->
                         <div class="col-md-4">
@@ -744,8 +742,10 @@
         phoneInputFields.forEach((phoneInputField, index) => {
             const phoneInput = window.intlTelInput(phoneInputField, {
                 initialCountry: "in", // Set the initial country code to India (+91)
-                geoIpLookup: getIp,
+                //geoIpLookup: getIp,
                 utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                separateDialCode: true,
+                autoInsertDialCode: true
             });
 
             // Add an event listener to validate the phone number on input

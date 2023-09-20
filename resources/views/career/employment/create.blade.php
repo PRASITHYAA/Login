@@ -314,8 +314,10 @@
         phoneInputFields.forEach((phoneInputField, index) => {
             const phoneInput = window.intlTelInput(phoneInputField, {
                 initialCountry: "in", // Set the initial country code to India (+91)
-                geoIpLookup: getIp,
+                //geoIpLookup: getIp,
                 utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                separateDialCode: true,
+                autoInsertDialCode: true
             });
 
             // Add an event listener to validate the phone number on input
