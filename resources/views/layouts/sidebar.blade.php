@@ -105,13 +105,13 @@
                         style="padding-right: 12px;" class="fa-brands fa-stack-overflow"></i>
                     <span>Training</span>
                 </a>
-                <a href="course_title" class="list-group-item list-group-item-action py-2  ripple"><i
-                    style="padding-right: 12px;" class="fa-brands fa-stack-overflow"></i>
-                <span>Course </span>
-            </a>
                 <a href="course_level" class="list-group-item list-group-item-action py-2  ripple"><i
                         style="padding-right: 12px;" class="fa-brands fa-stack-overflow"></i>
                     <span>Course Level</span>
+                </a>
+                <a href="course_title" class="list-group-item list-group-item-action py-2  ripple"><i
+                        style="padding-right: 12px;" class="fa-brands fa-stack-overflow"></i>
+                    <span>Course Title</span>
                 </a>
 
 
