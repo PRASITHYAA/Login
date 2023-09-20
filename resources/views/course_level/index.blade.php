@@ -1,4 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Level List</title>
+    <!-- Include CSS libraries here -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Include other CSS styles if needed -->
+    <link rel="stylesheet" href="your-custom-styles.css">
+</head>
+
+<body>
     <!-- Include your sidebar -->
     @include('layouts.sidebar')
 
@@ -38,7 +52,7 @@
                             <td>
                                 <!-- Edit Button -->
                                 <a href="{{ route('course_level.edit', $courselevel->id) }}"
-                                    class="btn btn-warning mx-1">Edit</a>
+                                    class="btn btn-warning">Edit</a>
 
                                 <!-- Delete Button -->
                                 <form action="{{ route('course_level.destroy', $courselevel->id) }}" method="POST"
@@ -56,6 +70,7 @@
             </table>
         </div>
     </main>
+
     <script>
         document.addEventListener("click", function(event) {
             const dropdowns = document.getElementsByClassName("dropdown-content");
