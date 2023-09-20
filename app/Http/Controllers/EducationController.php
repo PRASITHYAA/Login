@@ -34,8 +34,8 @@ class EducationController extends Controller
                 'high_school_percentage' => 'required_if:qualification,high_school',
                 'high_school_class' => 'required_if:qualification,high_school',
                 'high_school_stream' => 'required_if:qualification,high_school',
-                'high_school_image_certificate' => 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'high_school_image_mark_sheet' => 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'high_school_image_certificate' => 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:100',
+                'high_school_image_mark_sheet' => 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:100',
                 // Higher
                 'higher_secondary_institution_name' => 'required_if:qualification,higher_secondary',
                 'higher_secondary_city' => 'required_if:qualification,higher_secondary',
@@ -47,8 +47,8 @@ class EducationController extends Controller
                 'higher_secondary_class' => 'required_if:qualification,higher_secondary',
                 'higher_secondary_stream' => 'required_if:qualification,higher_secondary',
                 'higher_secondary_filed_of_interest' => 'required_if:qualification,higher_secondary',
-                'higher_secondary_image_certificate' => 'required_if:qualification,higher_secondary|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'higher_secondary_image_mark_sheet' => 'required_if:qualification,higher_secondary_if:qualification,higher_secondary|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'higher_secondary_image_certificate' => 'required_if:qualification,higher_secondary|image|mimes:jpeg,png,jpg,gif|max:100',
+                'higher_secondary_image_mark_sheet' => 'required_if:qualification,higher_secondary_if:qualification,higher_secondary|image|mimes:jpeg,png,jpg,gif|max:100',
                 // diploma
                 'diploma_institution_name' => 'required_if:qualification,diploma',
                 'diploma_city' => 'required_if:qualification,diploma',
@@ -60,8 +60,8 @@ class EducationController extends Controller
                 'diploma_course' => 'required_if:qualification,diploma',
                 'diploma_major' => 'required_if:qualification,diploma',
                 'diploma_filed_of_interest' => 'required_if:qualification,diploma',
-                'diploma_image_certificate' => 'required_if:qualification,diploma|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'diploma_image_mark_sheet' => 'required_if:qualification,diploma|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'diploma_image_certificate' => 'required_if:qualification,diploma|image|mimes:jpeg,png,jpg,gif|max:100',
+                'diploma_image_mark_sheet' => 'required_if:qualification,diploma|image|mimes:jpeg,png,jpg,gif|max:100',
                 // Bachelors
                 'bachelors_institution_name' => 'required_if:qualification,bachelor_degree',
                 'bachelors_city' => 'required_if:qualification,bachelor_degree',
@@ -73,8 +73,8 @@ class EducationController extends Controller
                 'bachelors_course' => 'required_if:qualification,bachelor_degree',
                 'bachelors_major' => 'required_if:qualification,bachelor_degree',
                 'bachelors_filed_of_interest' => 'required_if:qualification,bachelor_degree',
-                'bachelors_image_certificate' => 'required_if:qualification,bachelor_degree|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'bachelors_image_mark_sheet' => 'required_if:qualification,bachelor_degree|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'bachelors_image_certificate' => 'required_if:qualification,bachelor_degree|image|mimes:jpeg,png,jpg,gif|max:100',
+                'bachelors_image_mark_sheet' => 'required_if:qualification,bachelor_degree|image|mimes:jpeg,png,jpg,gif|max:100',
                 // // master
                 'master_institution_name' => 'required_if:qualification,master_degree',
                 'master_city' => 'required_if:qualification,master_degree',
@@ -86,8 +86,8 @@ class EducationController extends Controller
                 'master_class' => 'required_if:qualification,master_degree',
                 'master_filed_of_specialization' => 'required_if:qualification,master_degree',
                 'master_filed_of_interest' => 'required_if:qualification,master_degree',
-                'master_image_certificate' => 'required_if:qualification,master_degree|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'master_image_mark_sheet' => 'required_if:qualification,master_degree|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'master_image_certificate' => 'required_if:qualification,master_degree|image|mimes:jpeg,png,jpg,gif|max:100',
+                'master_image_mark_sheet' => 'required_if:qualification,master_degree|image|mimes:jpeg,png,jpg,gif|max:100',
                 // doctorate
                 'doctorate_name' => 'required_if:qualification,doctorate_degree',
                 'doctorate_city' => 'required_if:qualification,doctorate_degree',
@@ -99,8 +99,8 @@ class EducationController extends Controller
                 'doctorate_class' => 'required_if:qualification,doctorate_degree',
                 'doctorate_filed_of_specialization' => 'required_if:qualification,doctorate_degree',
                 'doctorate_filed_of_interest' => 'required_if:qualification,doctorate_degree',
-                'doctorate_image_certificate' => 'required_if:qualification,doctorate_degree|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'doctorate_image_mark_sheet' => 'required_if:qualification,doctorate_degree|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'doctorate_image_certificate' => 'required_if:qualification,doctorate_degree|image|mimes:jpeg,png,jpg,gif|max:100',
+                'doctorate_image_mark_sheet' => 'required_if:qualification,doctorate_degree|image|mimes:jpeg,png,jpg,gif|max:100',
             ]
         );
         //dd($request->all());
@@ -267,37 +267,37 @@ class EducationController extends Controller
                 'doctorate_filed_of_interest' => 'required_if:qualification,doctorate_degree',
             ];
         if ($request->hasFile('high_school_image_certificate')) {
-            $rules['high_school_image_certificate'] = 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['high_school_image_certificate'] = 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('high_school_image_mark_sheet')) {
-            $rules['high_school_image_mark_sheet'] = 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['high_school_image_mark_sheet'] = 'required_if:qualification,high_school|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('higher_secondary_image_certificate')) {
-            $rules['higher_secondary_image_certificate'] = 'required_if:qualification,higher_secondary|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['higher_secondary_image_certificate'] = 'required_if:qualification,higher_secondary|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('higher_secondary_image_mark_sheet')) {
-            $rules['higher_secondary_image_mark_sheet'] = 'required_if:qualification,higher_secondary|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['higher_secondary_image_mark_sheet'] = 'required_if:qualification,higher_secondary|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('diploma_image_certificate')) {
-            $rules['diploma_image_certificate'] = 'required_if:qualification,diploma|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['diploma_image_certificate'] = 'required_if:qualification,diploma|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('diploma_image_mark_sheet')) {
-            $rules['diploma_image_mark_sheet'] = 'required_if:qualification,diploma|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['diploma_image_mark_sheet'] = 'required_if:qualification,diploma|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('bachelors_image_certificate')) {
-            $rules['bachelors_image_certificate'] = 'required_if:qualification,bachelor_degree|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['bachelors_image_certificate'] = 'required_if:qualification,bachelor_degree|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('master_image_certificate')) {
-            $rules['master_image_certificate'] = 'required_if:qualification,bachelor_degree|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['master_image_certificate'] = 'required_if:qualification,bachelor_degree|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('master_image_mark_sheet')) {
-            $rules['master_image_mark_sheet'] = 'required_if:qualification,master_degree|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['master_image_mark_sheet'] = 'required_if:qualification,master_degree|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('doctorate_image_certificate')) {
-            $rules['doctorate_image_certificate'] = 'required_if:qualification,doctorate_degree|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['doctorate_image_certificate'] = 'required_if:qualification,doctorate_degree|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('doctorate_image_mark_sheet')) {
-            $rules['doctorate_image_mark_sheet'] = 'required_if:qualification,doctorate_degree|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['doctorate_image_mark_sheet'] = 'required_if:qualification,doctorate_degree|image|mimes:jpeg,png,jpg,gif|max:100';
         }
 
         $data = $request->validate($rules);

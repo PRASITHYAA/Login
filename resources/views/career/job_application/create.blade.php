@@ -95,15 +95,16 @@
                         <div class="col-md-4">
                             <label for="validationDefault01" class="form-label">First name <span
                                     class="red">*</span></label>
-                            <input type="text" class="form-control bg alphabetic-input" name="first_name" placeholder="First Name"
-                                id="inputFields" value="{{ old('first_name') ?? ($jobApplication->first_name ?? '') }}"
-                                required>
+                            <input type="text" class="form-control bg alphabetic-input" name="first_name"
+                                placeholder="First Name" id="inputFields"
+                                value="{{ old('first_name') ?? ($jobApplication->first_name ?? '') }}" required>
                         </div>
                         <!-- lastname -->
                         <div class="col-md-4">
                             <label for="validationDefault02" class="form-label">Last name <span
                                     class="red">*</span></label>
-                            <input type="text" class="form-control bg alphabetic-input" name="last_name" id="inputFields" placeholder="Last Name"
+                            <input type="text" class="form-control bg alphabetic-input" name="last_name" id="inputFields"
+                                placeholder="Last Name"
                                 value="{{ old('last_name') ?? ($jobApplication->last_name ?? '') }}" required>
                         </div>
                         <!-- upload -->
@@ -329,7 +330,8 @@
                         <div class="col-md-3">
                             <label class="form-label">Father’s Name <span class="red">*</span></label>
                             <div class="input-group">
-                                <input type="text" name="father_name" class="form-control bg alphabetic-input" id="inputField"
+                                <input type="text" name="father_name" class="form-control bg alphabetic-input"
+                                    id="inputField"
                                     value="{{ old('father_name') ?? ($jobApplication->father_name ?? '') }}"
                                     placeholder="Father's Name" required>
                             </div>
@@ -441,8 +443,8 @@
                                     <div class="col-md-3">
                                         <!-- spousename -->
                                         <label class="form-label pt-2">Spouse Name <span class="red">*</span></label>
-                                        <input type="text" class="form-control bg marital-status-input alphabetic-input"
-                                            id="inputFields"
+                                        <input type="text"
+                                            class="form-control bg marital-status-input alphabetic-input" id="inputFields"
                                             value="{{ old('spouse_name') ?? ($jobApplication->spouse_name ?? '') }}"
                                             name="spouse_name" placeholder="Spouse Name">
 
@@ -522,7 +524,8 @@
                                                     <div class="col-md-3">
                                                         <label class="form-label pt-2">Siblings name<span
                                                                 class="red">*</span></label>
-                                                        <input type="text" class="form-control bg sibling-name-input alphabetic-input"
+                                                        <input type="text"
+                                                            class="form-control bg sibling-name-input alphabetic-input"
                                                             id="inputFields"
                                                             value="{{ old('siblings_name') ?? ($jobApplication->siblings_name ?? '') }}"
                                                             placeholder="Siblings Name" name="siblings_name">
@@ -557,7 +560,7 @@
                                                         <p class="errorText" style="color: red;"></p>
                                                     </div>
                                                     <!--siblings  Upload the Latest Passport Size Photo -->
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4 ">
                                                         <label class="form-label pt-2">Upload the Latest Passport Size
                                                             Photo
                                                             <span class="red">*</span></label>
@@ -854,6 +857,4 @@
             });
         });
     </script>
-
-
 @endsection
