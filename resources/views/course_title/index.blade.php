@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 
     <!-- Include your sidebar -->
     @include('layouts.sidebar')
@@ -58,14 +56,3 @@
         </div>
     </main>
 
-
-    <script>
-        document.addEventListener("click", function(event) {
-            const dropdowns = document.getElementsByClassName("dropdown-content");
-            for (const dropdown of dropdowns) {
-                if (!dropdown.contains(event.target)) {
-                    dropdown.style.display = "none";
-                }
-            }
-        });
-    </script>
