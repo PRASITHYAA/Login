@@ -50,7 +50,7 @@
 
                     <input type="radio" name="previous_experience" value="yes"
                         {{ old('previous_experience') == 'yes' || (isset($employment) && $employment->previous_experience == 'yes') ? 'checked' : '' }}
-                        required onclick="showNestedOption(this)">Yes
+                        required onclick="showNestedOption(this)"> Yes
                 </label>
                 <br>
                 <label>
@@ -202,8 +202,8 @@
                                 <div class="col-md-4">
                                     <label class="form-label">Address <span style="color: red;">*</span></label>
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        class="form-control alphabetic-input" name="reference_address"
-                                        id="reference_address" placeholder="Address"
+                                        class="form-control" name="reference_address" id="reference_address"
+                                        placeholder="Address"
                                         value="{{ old('reference_address') ?? ($employment->reference_address ?? '') }}">
                                 </div>
                             </div>
@@ -218,7 +218,7 @@
 
                     <br>
                     <label>
-                        <h6>Are You Legally Eligible to Work? <span class="red">*</span></h6>
+                        <h6 class="mb-3">Are You Legally Eligible to Work? <span class="red">*</span></h6>
                     </label><br>
                     <label>
                         <input type="radio" name="eligible_to_work" value="yes" id="yesRadio1"
@@ -241,7 +241,7 @@
                     <br>
 
                     <label>
-                        <h6>Have You Ever Been Convicted of A Crime? <span class="red">*</span></h6>
+                        <h6 class="mt-3">Have You Ever Been Convicted of A Crime? <span class="red">*</span></h6>
                     </label><br>
                     <label>
                         <input type="radio" name="crime_status" id="yesRadio2" onclick="showInput('text-input')"
@@ -266,6 +266,7 @@
                     </div>
 
                 </div>
+
                 <!-- button -->
                 <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
 
@@ -306,22 +307,14 @@
     <script>
         function showNestedOption(selectedRadio) {
             const nestedInputDiv = document.getElementById('nested-input');
-            const nestedInputFieldDiv = document.getElementById('nested-input-field-div');
-            const subNestedInputDiv = document.getElementById('sub-nested-input');
 
             if (selectedRadio.value === 'yes') {
                 nestedInputDiv.style.display = 'block';
-                nestedInputFieldDiv.style.display = 'none';
-                hideSubNestedInput();
             } else {
                 nestedInputDiv.style.display = 'none';
-                nestedInputFieldDiv.style.display = 'none';
-                hideSubNestedInput();
             }
         }
     </script>
-
-
     <!-- phone -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
