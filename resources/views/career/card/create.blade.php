@@ -57,7 +57,7 @@
                         <!-- aadharname -->
                         <div class="col mt-4">
                             <label class="form-label">Name as per IDs <span style="color: red;">*</span></label>
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control alphabetic-input"
                                 placeholder="Name as per IDs" name="aadhar_name" id="aadhar_name"
                                 value="{{ old('aadhar_name') ?? ($card->aadhar_name ?? '') }}" required="true">
                         </div>
@@ -163,14 +163,14 @@
                             <div class="col mt-4">
                                 <label class="form-label">Name as per IDs <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="passport_name" name="passport_name" class="form-control"
+                                    id="passport_name" name="passport_name" class="form-control alphabetic-input"
                                     placeholder="Name as per IDs"
                                     value="{{ old('passport_name') ?? ($card->passport_name ?? '') }}">
                             </div>
                             <!-- passport id number -->
                             <div class="col mt-4">
                                 <label class="form-label">IDs Number <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
+                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     id="passport_id_number" name="passport_id_number" class="form-control"
                                     placeholder="Passport ID Number"
                                     value="{{ old('passport_id_number') ?? ($card->passport_id_number ?? '') }}">
