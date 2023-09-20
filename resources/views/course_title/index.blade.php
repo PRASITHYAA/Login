@@ -4,7 +4,7 @@
 
     <main style="margin-top: 100px;">
         <div class="container-fluid">
-            <h1>Course Title List</h1>
+            <h1>Course  List</h1>
 
             <!-- Display success message if available -->
             @if (session('success'))
