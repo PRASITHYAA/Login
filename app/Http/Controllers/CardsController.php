@@ -68,9 +68,9 @@ class CardsController extends Controller
 
     public function show($id)
     {
-        $jobApplication = JobApplication::find($id);
-
-        return view('career.card.show', ['jobApplication' => $jobApplication]);
+        $card = Card::find($id);
+        
+        return view('career.card.show', ['card' => $card,  ]);
     }
 
     public function edit($id)
