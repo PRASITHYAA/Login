@@ -69,7 +69,7 @@
                         </div>
                         <div class="col d-flex justify-content-end">
                             <label>
-                                <a href="{{ route('forget.password.get') }}"> Forget Password</a>
+                                <a href="{{ route('forget.password.get') }}"> Forget Password?</a>
                             </label>
                         </div>
                         {{-- button --}}
