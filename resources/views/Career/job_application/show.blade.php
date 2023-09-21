@@ -138,7 +138,7 @@
                     <div class="col-md-4 mt-3">
                         <label class="form-label">Permanent Country </label>
                         <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                        value="{{ $jobApplication->permanent_country }}" readonly>
+                            value="{{ $jobApplication->permanent_country }}" readonly>
 
                     </div>
 
@@ -146,7 +146,7 @@
                     <div class="col-md-4 mt-3">
                         <label class="form-label"> Permanent State </label>
                         <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                        value="{{ $jobApplication->permanent_state }}" readonly>
+                            value="{{ $jobApplication->permanent_state }}" readonly>
 
                     </div>
 
