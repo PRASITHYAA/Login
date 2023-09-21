@@ -63,7 +63,7 @@
                     <div class="row">
                         <div class="col  ">
                             <div class="mb-3 form-check ">
-                                <input type="checkbox" class="form-check-input bg " id="autoSizingCheck" required>
+                                <input type="checkbox" class="form-check-input bg " id="autoSizingCheck" >
                                 <label class="form-check-label" for="exampleCheck1">Remember me</label>
                             </div>
                         </div>

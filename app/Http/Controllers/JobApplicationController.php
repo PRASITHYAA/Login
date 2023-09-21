@@ -234,11 +234,16 @@ class JobApplicationController extends Controller
 
         return response()->json($cities);
     }
-    public function destroy(JobApplication $jobApplication)
+    public function destroy($id)
     {
+        $jobApplication = JobApplication::find($id);
+
+        if (!$jobApplication) {
+            return redirect()->route('career.job_application.index')->with('error', 'Form not found.');
+        }
+
         $jobApplication->delete();
 
-        return redirect()->route('career.job_application.index')->with('success', 'Job application deleted successfully!');
+        return redirect()->route('career.job_application.index')->with('success', 'Form deleted successfully!');
     }
-
 }

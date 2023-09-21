@@ -498,7 +498,7 @@
                         </div>
                         <!-- single -->
                         <div id="singleInputs"
-                            class="{{ old('marital_status') == 'married' || (isset($jobApplication) && $jobApplication->marital_status == 'married') ? 'hidden' : '' }}">
+                            class="{{ old('marital_status') == 'married' || (isset($jobApplication) && $jobApplication->marital_status == 'married') ? 'hidden' : '' }}"></div>
                             <!-- Siblings -->
                             <div class="col">
                                 <p style="font-weight: bold;">Siblings :</p>
