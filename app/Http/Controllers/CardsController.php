@@ -69,7 +69,7 @@ class CardsController extends Controller
     public function show($id)
     {
         $card = Card::find($id);
-        
+
         return view('career.card.show', ['card' => $card,  ]);
     }
 
