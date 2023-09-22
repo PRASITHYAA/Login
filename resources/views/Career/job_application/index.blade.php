@@ -10,7 +10,6 @@
         @endif
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a class="btn btn-primary me-md-2" href="{{ route('position.create') }}">Create</a>
             <button class="btn btn-success" type="button" onclick="window.location.reload();">Refresh</button>
         </div>
 
