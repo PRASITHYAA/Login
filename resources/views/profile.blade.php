@@ -7,11 +7,9 @@
             <div class="container pt-4">
 
                 <div class="row ">
-                    <div class="col-lg-4">
                         @include('layouts.front.user_sidebar')
-                    </div>
                     <!-- main -->
-                    <div class="col-lg-8 pt-4">
+                    <div class="col-lg-9 pt-4">
                         {{-- error --}}
                         @if ($errors->any())
                             <div class=" alert alert-danger">
@@ -28,10 +26,9 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        <!-- <div class="container  col-lg-6 pt-4"> -->
-                        <form class="container border" method="POST" action="{{ route('profile') }}">
+                        <form class="container border  " method="POST" action="{{ route('profile') }}">
                             @csrf
-                            <p style="font-weight: bold;">Account Details</p>
+                            <h3 class="mt-4">  Account Details</h3>
                             <div class="mb-3">
                                 <label for="formGroupExampleInput" class="form-label"> Name:</label>
                                 <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="{{ auth()->user()->name }}">
@@ -40,7 +37,7 @@
                                 <label for="formGroupExampleInput2" class="form-label">Email:</label>
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ auth()->user()->email }}">
                             </div>
-                            <button type="submit" style="border-radius: 40px;" class="btn btn-warning mb-3">Update</button>
+                            <button type="submit" style="border-radius: 30px;" class="btn btn-warning mb-3">Update</button>
                         </form>
                     </div>
 
