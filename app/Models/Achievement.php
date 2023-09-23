@@ -24,5 +24,9 @@ class Achievement extends Model
         'background_check_status',
         'no_curriculum_explain',
     ];
+    public function jobApplication()
+    {
+        return $this->belongsTo(JobApplication::class);
+    }
 
 }

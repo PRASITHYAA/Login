@@ -53,6 +53,12 @@ class AchievementController extends Controller
         return redirect()->route('disclaimer.view', ['job_application_id' => $request->job_application_id, 'achievement_id' => $achievement->id ])->with('success', 'Achievement created successfully!');
     }
 
+    public function show($id)
+    {
+        $achievement = Achievement::find($id);
+
+        return view('career.achievement.show', ['achievement' => $achievement]);
+    }
     public function edit($id)
     {
         $achievement = Achievement::find($id);
