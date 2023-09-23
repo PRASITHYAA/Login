@@ -79,6 +79,17 @@ class JobApplication extends Model
     {
         return $this->hasMany(Education::class);
     }
+
+    public function employments()
+    {
+        return $this->hasMany(Employment::class);
+    }
+
+    public function achievements()
+    {
+        return $this->hasMany(Achievement::class);
+    }
+
     public function disclaimers()
     {
         return $this->hasMany(Disclaimer::class);

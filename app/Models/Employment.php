@@ -35,4 +35,9 @@ class Employment extends Model
         'eligible_to_work_text',
         'crime_status_text',
     ];
+    public function jobApplication()
+    {
+        return $this->belongsTo(JobApplication::class);
+    }
+
 }
