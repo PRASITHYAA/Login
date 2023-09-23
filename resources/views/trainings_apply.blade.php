@@ -18,54 +18,51 @@
                     <div class="col-lg-3 ">
                     </div>
                     <!-- Sector -->
-                        <div class="col-lg-2">
-                            <label for="validationCustom04" class="form-label">Sector</label>
-                            <select class="form-select select-back-colour" id="sector_id" name="sector_id"
-                                required>
-                                <option value="">Please Select</option>
-                                @php
-                                    $sectors = \App\Models\Sector::all();
-                                @endphp
-                                @foreach ($sectors as $sector)
-                                    <option value="{{ $sector->id }}"
-                                        {{ (old('sector') == $sector->id || request()->sector_id == $sector->id) ? 'selected' : '' }}>
-                                        {{ $sector->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <!-- Course Level -->
-                        <div class="col-lg-2">
-                            <label for="validationCustom04" class="form-label">Course Level</label>
-                            <select class="form-select select-back-colour" id="course_level_id" name="course_level_id"
-                                required>
-                                <option value="">Please Select</option>
-                                @php
-                                    $courseLevels = \App\Models\CourseLevel::where('sector_id', request()->sector_id)->get();
-                                @endphp
-                                @foreach ($courseLevels as $courseLevel)
-                                    <option value="{{ $courseLevel->id }}"
-                                        {{ (old('sector') == $courseLevel->id || request()->course_level_id == $courseLevel->id) ? 'selected' : '' }}>
-                                        {{ $courseLevel->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <!-- Course Title -->
-                        <div class="col-lg-2">
-                            <label for="validationCustom04" class="form-label">Course Title
-                            </label>
-                            <select class="form-select select-back-colour" id="course_title_id" name="course_title_id"
-                                required>
-                                <option value="">Please Select</option>
-                                @php
-                                    $courseTitles = \App\Models\CourseTitle::where('course_level_id', request()->course_level_id)->get();
-                                @endphp
-                                @foreach ($courseTitles as $courseTitle)
-                                    <option value="{{ $courseTitle->id }}"
-                                        {{ (old('course_title_id') == $courseTitle->id || request()->course_title_id == $courseTitle->id) ? 'selected' : '' }}>
-                                        {{ $courseTitle->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                    <div class="col-lg-2">
+                        <label for="validationCustom04" class="form-label">Sector</label>
+                        <select class="form-select select-back-colour" id="sector_id" name="sector_id" required>
+                            <option value="">Please Select</option>
+                            @php
+                                $sectors = \App\Models\Sector::all();
+                            @endphp
+                            @foreach ($sectors as $sector)
+                                <option value="{{ $sector->id }}"
+                                    {{ old('sector') == $sector->id || request()->sector_id == $sector->id ? 'selected' : '' }}>
+                                    {{ $sector->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- Course Level -->
+                    <div class="col-lg-2">
+                        <label for="validationCustom04" class="form-label">Course Level</label>
+                        <select class="form-select select-back-colour" id="course_level_id" name="course_level_id" required>
+                            <option value="">Please Select</option>
+                            @php
+                                $courseLevels = \App\Models\CourseLevel::where('sector_id', request()->sector_id)->get();
+                            @endphp
+                            @foreach ($courseLevels as $courseLevel)
+                                <option value="{{ $courseLevel->id }}"
+                                    {{ old('sector') == $courseLevel->id || request()->course_level_id == $courseLevel->id ? 'selected' : '' }}>
+                                    {{ $courseLevel->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <!-- Course Title -->
+                    <div class="col-lg-2">
+                        <label for="validationCustom04" class="form-label">Course Title
+                        </label>
+                        <select class="form-select select-back-colour" id="course_title_id" name="course_title_id" required>
+                            <option value="">Please Select</option>
+                            @php
+                                $courseTitles = \App\Models\CourseTitle::where('course_level_id', request()->course_level_id)->get();
+                            @endphp
+                            @foreach ($courseTitles as $courseTitle)
+                                <option value="{{ $courseTitle->id }}"
+                                    {{ old('course_title_id') == $courseTitle->id || request()->course_title_id == $courseTitle->id ? 'selected' : '' }}>
+                                    {{ $courseTitle->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <!-- emty space -->
                     <div class="col-lg-3">
@@ -76,29 +73,24 @@
                     </div>
                     <!-- First name -->
                     <div class="col-md-2 mt-2 ">
-                        <label for="validationCustom01" class="form-label">First name <span
-                                class="span-star">*</span></label>
-                        <input type="text" class="form-control" id="validationCustom01" value="" name="first_name"
-                            required>
-                        <div class="valid-feedback">
-                        </div>
+                        <label class="form-label">First name <span class="span-star">*</span></label>
+                        <input type="text" class="form-control alphabetic-input" id="first_name" value=""
+                            name="first_name" required>
                     </div>
                     <!-- Last name -->
                     <div class="col-md-2 mt-2">
-                        <label for="validationCustom02" class="form-label">Last name <span
-                                class="span-star">*</span></label>
-                        <input type="text" class="form-control" id="validationCustom02" value="" name="last_name"
-                            required>
-                        <div class="valid-feedback">
-                        </div>
+                        <label class="form-label">Last name <span class="span-star">*</span></label>
+                        <input type="text" class="form-control alphabetic-input " id="last_name" value=""
+                            name="last_name" required>
                     </div>
                     <!-- Passport Size Photo Upload -->
                     <div class="col-md-2 mt-2">
-                        <label for="validationCustom02" class="form-label">Passport Size Photo
+                        <label class="form-label">Passport Size Photo
                             <span class="span-star">*</span></label>
-                        <input type="file" class="form-control" id="validationDefaultUpload" value="" name="photo" required>
+                        <input type="file" class="form-control" id="validationDefaultUpload" value=""
+                            name="photo" required>
                         <!-- <div class="valid-feedback">
-                            </div> -->
+                                                    </div> -->
                         <div class="pt-2" style="width: 150px;" id="imageContainer">
                             <!-- Placeholder for displaying uploaded image -->
                         </div>
@@ -122,8 +114,8 @@
                     <div class="col-lg-6">
                         <label for="validationCustom04" class="form-label">Select Your Qualification <span
                                 class="span-star">*</span></label>
-                        <select class="form-select select-back-colour" id="validationCustom04"
-                            name="qualification" required>
+                        <select class="form-select select-back-colour" id="validationCustom04" name="qualification"
+                            required>
                             <option value="">Please Select</option>
                             <option value="high_school">High School</option>
                             <option value="higher_secondary">Higher Secondary</option>
@@ -164,8 +156,8 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Job Title <span
                                         class="span-star">*</span></label>
-                                <input type="text" class="form-control select-back-colour" name="job_title" id="exampleFormControlInput1"
-                                    placeholder="Job Title">
+                                <input type="text" class="form-control select-back-colour" name="job_title"
+                                    id="exampleFormControlInput1" placeholder="Job Title">
                             </div>
                             <!-- gender -->
                             <label>
@@ -198,30 +190,9 @@
                     <!-- Present Address left forms-->
                     <div class="col-lg-3">
                         <!-- Address Line 1 -->
-                        <label for="validationCustom02" class="form-label">Address Line 1<span
-                                class="span-star">*</span></label>
-                        <input type="text" class="form-control" id="validationCustom02" value="" name="address_line_1"
-                            required>
-                        <!-- City -->
-                        <label for="validationCustom02" class="form-label">City<span class="span-star">*</span></label>
-                        <input type="text" class="form-control select-back-colour" id="validationCustom02" value=""
-                            name="city" required>
-                        <!-- Zip Code -->
-                        <label for="validationCustom02" class="form-label">Zip Code<span
-                                class="span-star">*</span></label>
-                        <input type="text" class="form-control select-back-colour" id="validationCustom02" value=""
-                            name="zip_code" placeholder="Zip" required>
-                    </div>
-                    <!-- Present Address right forms-->
-                    <div class="col-lg-3">
-                        <label for="validationCustom02" class="form-label">Address Line 2<span
-                                class="span-star">*</span></label>
-                        <input type="text" class="form-control" id="validationCustom02" value="" name="address_line_2"
-                            required>
-                        <!-- State -->
-                        <label for="validationCustom02" class="form-label">State<span class="span-star">*</span></label>
-                        <input type="text" class="form-control select-back-colour" id="validationCustom02" value=""
-                            name="state" required>
+                        <label class="form-label">Address Line 1<span class="span-star">*</span></label>
+                        <input type="text" class="form-control" id="validationCustom02" value=""
+                            name="address_line_1" required>
                         <!-- Country -->
                         <label for="validationCustom04" class="form-label">Country<span class="span-star">*</span>
                         </label>
@@ -229,6 +200,25 @@
                             <option value="">Please Select</option>
                             <option value="india">India</option>
                         </select>
+                        <!-- City -->
+                        <label class="form-label">City<span class="span-star">*</span></label>
+                        <input type="text" class="form-control select-back-colour" id="validationCustom02"
+                            value="" name="city" required>
+
+                    </div>
+                    <!-- Present Address right forms-->
+                    <div class="col-lg-3">
+                        <label class="form-label">Address Line 2<span class="span-star">*</span></label>
+                        <input type="text" class="form-control" id="validationCustom02" value=""
+                            name="address_line_2" required>
+                        <!-- State -->
+                        <label class="form-label">State<span class="span-star">*</span></label>
+                        <input type="text" class="form-control select-back-colour" id="validationCustom02"
+                            value="" name="state" required>
+                        <!-- Zip Code -->
+                        <label class="form-label">Zip Code<span class="span-star">*</span></label>
+                        <input type="text" class="form-control select-back-colour" id="validationCustom02"
+                            value="" name="zip_code" placeholder="Zip" required>
                     </div>
                     <div class="col-lg-3"></div>
 
@@ -255,32 +245,9 @@
                                     </p>
                                     <div class="col-lg-6">
                                         <!-- Address Line 1 -->
-                                        <label for="validationCustom02" class="form-label">Address Line 1<span
-                                                class="span-star">*</span></label>
-                                        <input type="text" class="form-control" id="validationCustom02" value=""
-                                            name="permanent_address_line_1">
-                                        <!-- City -->
-                                        <label for="validationCustom02" class="form-label">City<span
-                                                class="span-star">*</span></label>
-                                        <input type="text" class="form-control select-back-colour"
-                                            id="validationCustom02" value="" name="permanent_city">
-                                        <!-- Zip Code -->
-                                        <label for="validationCustom02" class="form-label">Zip Code<span
-                                                class="span-star">*</span></label>
-                                        <input type="text" class="form-control select-back-colour"
-                                            id="validationCustom02" value="" name="permanent_zip_code" placeholder="Zip">
-                                    </div>
-                                    <!-- Present Address right forms-->
-                                    <div class="col-lg-6">
-                                        <label for="validationCustom02" class="form-label">Address Line 2<span
-                                                class="span-star">*</span></label>
-                                        <input type="text" class="form-control" id="validationCustom02" value=""
-                                            name="permanent_address_line_2">
-                                        <!-- State -->
-                                        <label for="validationCustom02" class="form-label">State<span
-                                                class="span-star">*</span></label>
-                                        <input type="text" class="form-control select-back-colour"
-                                            id="validationCustom02" value="" name="permanent_state">
+                                        <label class="form-label">Address Line 1<span class="span-star">*</span></label>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            value="" name="permanent_address_line_1">
                                         <!-- Country -->
                                         <label for="validationCustom04" class="form-label">Country<span
                                                 class="span-star">*</span>
@@ -290,6 +257,26 @@
                                             <option value="">Please Select</option>
                                             <option value="india">India</option>
                                         </select>
+                                        <!-- City -->
+                                        <label class="form-label">City<span class="span-star">*</span></label>
+                                        <input type="text" class="form-control select-back-colour"
+                                            id="validationCustom02" value="" name="permanent_city">
+
+                                    </div>
+                                    <!-- Present Address right forms-->
+                                    <div class="col-lg-6">
+                                        <label class="form-label">Address Line 2<span class="span-star">*</span></label>
+                                        <input type="text" class="form-control" id="validationCustom02"
+                                            value="" name="permanent_address_line_2">
+                                        <!-- State -->
+                                        <label class="form-label">State<span class="span-star">*</span></label>
+                                        <input type="text" class="form-control select-back-colour"
+                                            id="validationCustom02" value="" name="permanent_state">
+                                        <!-- Zip Code -->
+                                        <label class="form-label">Zip Code<span class="span-star">*</span></label>
+                                        <input type="text" class="form-control select-back-colour"
+                                            id="validationCustom02" value="" name="permanent_zip_code"
+                                            placeholder="Zip">
                                     </div>
 
                                 </div>
@@ -306,29 +293,25 @@
                     <div class="col-lg-3"></div>
                     <!-- Primary Mobile Number  -->
                     <div class="col-lg-3 ">
-                        <label for="validationCustom02" class="form-label">Primary Mobile Number<span
-                                class="span-star">*</span></label><br>
-                        <input type="tel" class="phoneInputField" name="primary_mobile_number"
-                            required>
-                            <p class="errorText" style="color: red;"></p>
-                            <!-- Primary Email -->
-                        <label for="validationCustom02" class="form-label">Primary Email
+                        <label class="form-label">Primary Mobile Number<span class="span-star">*</span></label><br>
+                        <input type="tel" class="phoneInputField" name="primary_mobile_number" required>
+                        <p class="errorText" style="color: red;"></p>
+                        <!-- Primary Email -->
+                        <label class="form-label">Primary Email
                             <span class="span-star">*</span></label>
-                        <input type="email" class="form-control select-back-colour" id="validationCustom02" value=""
-                            placeholder="email address" name="primary_email" required>
+                        <input type="email" class="form-control select-back-colour" id="validationCustom02"
+                            value="" placeholder="email address" name="primary_email" required>
                     </div>
                     <!-- Secondary Mobile Number  -->
                     <div class="col-lg-3 ">
-                        <label for="validationCustom02" class="form-label">Secondary Mobile Number<span
-                                class="span-star">*</span></label>
-                        <input type="tel" class="phoneInputField" name="secondary_mobile_number"
-                            required>
-                            <p class="errorText" style="color: red;"></p>
+                        <label class="form-label">Secondary Mobile Number<span class="span-star">*</span></label>
+                        <input type="tel" class="phoneInputField" name="secondary_mobile_number" required>
+                        <p class="errorText" style="color: red;"></p>
 
                         <!-- Secondary Email -->
-                        <label for="validationCustom02" class="form-label">Secondary Email </label>
-                        <input type="email" class="form-control select-back-colour" id="validationCustom02" value=""
-                            placeholder="email address" name="secondary_email" required>
+                        <label class="form-label">Secondary Email </label>
+                        <input type="email" class="form-control select-back-colour" id="validationCustom02"
+                            value="" placeholder="email address" name="secondary_email" required>
                     </div>
                     <!-- emty space -->
                     <div class="col-lg-3"></div>
@@ -357,17 +340,19 @@
                     <div class="col-lg-3"></div>
                     <!-- Sector -->
                     <div class="col-lg-2">
-                        <label for="validationCustom02" class="form-label">Sector </label>
-                        <input class="form-control" type="text" value="" aria-label="Disabled input example" name="sector_text" id="sector_text" disabled readonly>
+                        <label class="form-label">Sector </label>
+                        <input class="form-control" type="text" value="{{ $sector->name }}" readonly id="sector_id"
+                            name="sector_id" disabled>
                     </div>
                     <!-- Course Level -->
                     <div class="col-lg-2">
-                        <label for="validationCustom02" class="form-label">Course Level </label>
-                        <input class="form-control" type="text" name="course_level_text" id="course_level_text" value="" aria-label="Disabled input example" disabled readonly>
+                        <label class="form-label">Course Level </label>
+                        <input class="form-control" type="text" name="course_level_text" id="course_level_text"
+                            value="" aria-label="Disabled input example" disabled readonly>
                     </div>
                     <!-- Course Title -->
                     <div class="col-lg-2">
-                        <label for="validationCustom02" class="form-label">Course Title</label>
+                        <label class="form-label">Course Title</label>
                         <input class="form-control" type="text" value="I-Computer Aided Design"
                             aria-label="Disabled input example" name="course_title_text" id="course_title_text" readonly>
                     </div>
@@ -390,7 +375,7 @@
                         <!-- checkbox -->
                         <div class="form-check mt-4">
                             <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault " required>
                                 I have read and agree to the Terms and Conditions and Privacy Policy
                             </label>
                         </div>
@@ -402,10 +387,7 @@
             </form>
         </div>
 
-
-
     </div>
-@endsection
 @section('script')
     <script>
         function setupRadioListener(yesRadio, noRadio, formContainer) {
@@ -430,55 +412,49 @@
     </script>
 
 
-    <!-- bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <!-- MDB -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 
-   <!-- Include the intlTelInput library and utilsScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
-
-  <!-- Your JavaScript code -->
-  <script>
-    function getIp(callback) {
-      fetch('https://ipinfo.io/json?token=<your token>', { headers: { 'Accept': 'application/json' }})
-        .then((resp) => resp.json())
-        .catch(() => {
-          return {
-            country: 'in', // Default to India
-          };
-        })
-        .then((resp) => callback(resp.country));
-    }
-
-    const phoneInputFields = document.querySelectorAll('.phoneInputField');
-    const errorTexts = document.querySelectorAll('.errorText');
-
-    phoneInputFields.forEach((phoneInputField, index) => {
-      const phoneInput = window.intlTelInput(phoneInputField, {
-        initialCountry: "in", // Set the initial country code to India (+91)
-        geoIpLookup: getIp,
-        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-      });
-
-      // Add an event listener to validate the phone number on input
-      phoneInputField.addEventListener('input', function () {
-        const selectedCountryData = phoneInput.getSelectedCountryData();
-        const isValid = phoneInput.isValidNumber();
-
-        if (isValid && selectedCountryData) {
-          errorTexts[index].textContent = ''; // Clear error message
-          phoneInputField.setCustomValidity('');
-        } else {
-          errorTexts[index].textContent = 'Invalid phone number';
-          phoneInputField.setCustomValidity('Invalid phone number');
+    <!-- Your JavaScript code -->
+    <script>
+        function getIp(callback) {
+            fetch('https://ipinfo.io/json?token=<your token>', {
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then((resp) => resp.json())
+                .catch(() => {
+                    return {
+                        country: 'in', // Default to India
+                    };
+                })
+                .then((resp) => callback(resp.country));
         }
-      });
-    });
-  </script>
+
+        const phoneInputFields = document.querySelectorAll('.phoneInputField');
+        const errorTexts = document.querySelectorAll('.errorText');
+
+        phoneInputFields.forEach((phoneInputField, index) => {
+            const phoneInput = window.intlTelInput(phoneInputField, {
+                initialCountry: "in", // Set the initial country code to India (+91)
+                geoIpLookup: getIp,
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            });
+
+            // Add an event listener to validate the phone number on input
+            phoneInputField.addEventListener('input', function() {
+                const selectedCountryData = phoneInput.getSelectedCountryData();
+                const isValid = phoneInput.isValidNumber();
+
+                if (isValid && selectedCountryData) {
+                    errorTexts[index].textContent = ''; // Clear error message
+                    phoneInputField.setCustomValidity('');
+                } else {
+                    errorTexts[index].textContent = 'Invalid phone number';
+                    phoneInputField.setCustomValidity('Invalid phone number');
+                }
+            });
+        });
+    </script>
 
     <!-- image upload down showing -->
 
@@ -490,14 +466,14 @@
         const imageContainer = document.getElementById('imageContainer');
 
         // Event listener for file input change
-        fileInput.addEventListener('change', function (event) {
+        fileInput.addEventListener('change', function(event) {
             const file = event.target.files[0]; // Get the selected file
 
             if (file) {
                 // Create a FileReader to read the selected file
                 const reader = new FileReader();
 
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     // Create an image element
                     const img = document.createElement('img');
                     img.src = e.target.result; // Set the image source to the loaded data
@@ -531,7 +507,7 @@
                 $('#formContainer2 input,select').attr('required', false);
             });
             // Sector dropdown change event
-            $('#sector_id').change(function () {
+            $('#sector_id').change(function() {
                 var selectedSector = $(this).val();
 
                 // Make an AJAX request to the Laravel API to fetch positions based on the selected sector
@@ -542,21 +518,21 @@
                         sector: selectedSector
                     },
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         // Clear and populate the position dropdown with the retrieved data
                         $('#course_level_id').empty();
-                        $.each(data, function (key, value) {
+                        $.each(data, function(key, value) {
                             $('#course_level_id').append($('<option>').text(value).val(
                                 key));
                         });
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         console.error(xhr.responseText);
                         // Handle errors here
                     }
                 });
             });
-            $('#course_level_id').change(function () {
+            $('#course_level_id').change(function() {
                 var selectedCourseLevel = $(this).val();
 
                 // Make an AJAX request to the Laravel API to fetch positions based on the selected sector
@@ -567,15 +543,15 @@
                         course_level_id: selectedCourseLevel
                     },
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         // Clear and populate the position dropdown with the retrieved data
                         $('#course_title_id').empty();
-                        $.each(data, function (key, value) {
+                        $.each(data, function(key, value) {
                             $('#course_title_id').append($('<option>').text(value).val(
                                 key));
                         });
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         console.error(xhr.responseText);
                         // Handle errors here
                     }

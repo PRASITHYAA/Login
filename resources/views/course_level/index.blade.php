@@ -38,6 +38,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Sector</th>
                         <th>Course Level</th>
                         <th>Actions</th>
                     </tr>
@@ -70,22 +71,3 @@
         </div>
     </main>
 
-    <!-- Include JavaScript libraries here -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-
-    <script>
-        document.addEventListener("click", function(event) {
-            const dropdowns = document.getElementsByClassName("dropdown-content");
-            for (const dropdown of dropdowns) {
-                if (!dropdown.contains(event.target)) {
-                    dropdown.style.display = "none";
-                }
-            }
-        });
-    </script>
-</body>
-
-</html>

@@ -67,25 +67,27 @@
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="panelsStayOpen-heading-{{ $position->id }}">
                                         <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#panelsStayOpen-collapse-{{ $position->id }}"
-                                                style="background-color:#bf9855;color: black;font-weight: bold;"
-                                                aria-expanded="false">
+                                            data-bs-target="#panelsStayOpen-collapse-{{ $position->id }}"
+                                            style="background-color:#bf9855;color: black;font-weight: bold;"
+                                            aria-expanded="false">
 
-                                                {{ $position->name }}
+                                            {{ $position->name }}
                                         </button>
                                     </h2>
-                                    <div id="panelsStayOpen-collapse-{{ $position->id }}" class="accordion-collapse collapse"
+                                    <div id="panelsStayOpen-collapse-{{ $position->id }}"
+                                        class="accordion-collapse collapse"
                                         aria-labelledby="panelsStayOpen-heading-{{ $position->id }}">
-                                       <div class="accordion-body">
-                                           {{ $position->description }}
-                                       </div>
-                                   </div>
+                                        <div class="accordion-body">
+                                            {{ $position->description }}
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
                             <div class="col-lg-2">
-                               <a href="{{ route('career.instruction', ['sector_id' => $sector->id, 'position_id' => $position->id]) }}" class="btn btn-warning text-center"
-                                   style="display: flex; justify-content: center; align-items: flex-end; padding: 14px; text-decoration: none; color: white; height: 50px; font-weight: bold; background-color:#bf9855  ">
+                                <a href="{{ route('career.instruction', ['sector_id' => $sector->id, 'position_id' => $position->id]) }}"
+                                    class="btn btn-warning text-center"
+                                    style="display: flex; justify-content: center; align-items: flex-end; padding: 14px; text-decoration: none; color: white; height: 50px; font-weight: bold; background-color:#bf9855  ">
                                     Apply Now
                                 </a>
                                 {{-- <a href="{{ route('', $position->id) }}" class="btn btn-warning btn-sm">Edit</a> --}}

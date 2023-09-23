@@ -11,7 +11,7 @@ class JobApplicationController extends Controller
 {
     public function index()
     {
-        $jobApplications = JobApplication::all(); // Fetch all job applications
+        $jobApplications = JobApplication::all();  // Fetch all job applications
 
         return view('career.job_application.index', ['jobApplications' => $jobApplications]);
     }
@@ -21,7 +21,6 @@ class JobApplicationController extends Controller
         return view('career.job_application.create');
     }
 
-
     public function store(Request $request)
     {
         //dd($request->all());
@@ -30,7 +29,7 @@ class JobApplicationController extends Controller
             'position_id' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100 ',
             'dob' => 'required|date',
             'age' => 'required|integer|min:18|max:99',
             'country' => 'required',
@@ -52,30 +51,29 @@ class JobApplicationController extends Controller
             'permanent_country' => 'required_if:permanent_address_input,yes',
             'permanent_address' => 'required_if:permanent_address_input,yes',
             'permanent_state' => 'required_if:permanent_address_input,yes',
-
             // father name
             'father_name' => 'required',
             'father_date_of_birth' => 'required|date',
             'father_phone' => ['required', 'regex:/^[0-9\s]+$/'],
-            'father_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
+            'father_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
             // mother name
             'mother_name' => 'required',
             'mother_date_of_birth' => 'required|date',
             'mother_phone' => ['required', 'regex:/^[0-9\s]+$/'],
-            'mother_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
+            'mother_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
             // maritalStatus
             'marital_status' => 'required|in:married,single',
             'spouse_name' => 'required_if:marital_status,married',
             'spouse_date_of_birth' => 'required_if:marital_status,married',
             'spouse_email' => 'required_if:marital_status,married',
             'spouse_phone' => 'required_if:marital_status,married',
-            'spouse_image' => 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
+            'spouse_image' => 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
             'siblings' => 'required|in:yes,no',
             'siblings_name' => 'required_if:siblings,yes',
             'siblings_date_of_birth' => 'required_if:siblings,yes',
             'siblings_email' => 'required_if:siblings,yes',
             'siblings_phone' => 'required_if:siblings,yes',
-            'siblings_image' => 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:50000',
+            'siblings_image' => 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
         ]);
 
         // Upload and store father image
@@ -105,7 +103,6 @@ class JobApplicationController extends Controller
         $jobApplication = JobApplication::create($jobApplication);
 
         return redirect()->route('card.view', ['job_application_id' => $jobApplication->id])->with('success', '  Job Application submitted successfully!');
-
     }
 
     // show
@@ -132,7 +129,7 @@ class JobApplicationController extends Controller
             'address' => 'required',
             'postal_code' => 'required',
             'phone' => ['required', 'regex:/^[0-9\s]+$/'],
-            'alternative_phone' => [ 'regex:/^[0-9\s]+$/'],
+            'alternative_phone' => ['regex:/^[0-9\s]+$/'],
             'email' => 'required|email',
             'fb_link' => 'required',
             'linked_link' => 'required',
@@ -165,19 +162,19 @@ class JobApplicationController extends Controller
             'siblings_phone' => 'required_if:siblings,yes',
         ];
         if ($request->hasFile('image')) {
-            $rules['image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000';
+            $rules['image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
         }
         if ($request->hasFile('father_image')) {
-            $rules['father_image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000';
+            $rules['father_image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
         }
         if ($request->hasFile('mother_image')) {
-            $rules['mother_image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:50000';
+            $rules['mother_image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
         }
         if ($request->hasFile('spouse_image')) {
-            $rules['spouse_image'] = 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:50000';
+            $rules['spouse_image'] = 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
         }
         if ($request->hasFile('siblings_image')) {
-            $rules['siblings_image'] = 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:50000';
+            $rules['siblings_image'] = 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
         }
         $data = $request->validate($rules);
 
@@ -237,7 +234,16 @@ class JobApplicationController extends Controller
 
         return response()->json($cities);
     }
+    public function destroy($id)
+    {
+        $jobApplication = JobApplication::find($id);
 
+        if (!$jobApplication) {
+            return redirect()->route('career.job_application.index')->with('error', 'Form not found.');
+        }
 
+        $jobApplication->delete();
 
+        return redirect()->route('career.job_application.index')->with('success', 'Form deleted successfully!');
+    }
 }

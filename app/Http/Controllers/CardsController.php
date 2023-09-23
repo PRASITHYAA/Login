@@ -28,8 +28,8 @@ class CardsController extends Controller
             'aadhar_issued_country' => 'required_if:identity_type,aadhar',
             'aadhar_issued_state' => 'required_if:identity_type,aadhar',
             'aadhar_issued_place' => 'required_if:identity_type,aadhar',
-            'aadhar_image' => 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'aadhar_image_page' => 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'aadhar_image' => 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:100',
+            'aadhar_image_page' => 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:100',
             // passport
             'passport_name' => 'required_if:identity_type,passport',
             'passport_id_number' => 'required_if:identity_type,passport',
@@ -38,8 +38,8 @@ class CardsController extends Controller
             'passport_issued_country' => 'required_if:identity_type,passport',
             'passport_issued_state' => 'required_if:identity_type,passport',
             'passport_issued_place' => 'required_if:identity_type,passport',
-            'passport_image_id' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'passport_image_id_page' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'passport_image_id' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:100',
+            'passport_image_id_page' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:100',
         ]);
 
         if ($request->hasFile('aadhar_image')) {
@@ -68,9 +68,9 @@ class CardsController extends Controller
 
     public function show($id)
     {
-        $jobApplication = JobApplication::find($id);
+        $card = Card::find($id);
 
-        return view('career.card.show', ['jobApplication' => $jobApplication]);
+        return view('career.card.show', ['card' => $card,  ]);
     }
 
     public function edit($id)
@@ -100,16 +100,16 @@ class CardsController extends Controller
             'passport_issued_place' => 'required_if:identity_type,passport'
         ];
         if ($request->hasFile('aadhar_image')) {
-            $rules['aadhar_image'] = 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['aadhar_image'] = 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('aadhar_image_page')) {
-            $rules['aadhar_image_page'] = 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['aadhar_image_page'] = 'required_if:identity_type,aadhar|nullable|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('passport_image_id')) {
-            $rules['passport_image_id'] = 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['passport_image_id'] = 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         if ($request->hasFile('passport_image_id_page')) {
-            $rules['passport_image_id_page'] = 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['passport_image_id_page'] = 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:100';
         }
         $data = $request->validate($rules);
 

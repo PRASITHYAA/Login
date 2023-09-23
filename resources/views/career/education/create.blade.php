@@ -59,9 +59,10 @@
                     style="{{ isset($education) ? ($education->radio_option == 'yes' ? '' : 'display: none;') : 'display: none;' }}">
                     <!-- High School -->
                     <input type="checkbox" onchange="toggleForm('form1')" name="qualification" value="high_school"
-                        {{ (old('qualification') == 'high_school_name' || isset($education) && $education->qualification == 'high_school_name') ? 'checked' : '' }}>
+                        {{ old('qualification') == 'high_school_name' || (isset($education) && $education->qualification == 'high_school_name') ? 'checked' : '' }}>
                     High School
-                    <div id="form1" style="{{ (old('qualification') == 'high_school_name' || isset($education) && $education->qualification == 'high_school_name') ? '' : 'display: none;' }}">
+                    <div id="form1" class="mt-3"
+                        style="{{ old('qualification') == 'high_school_name' || (isset($education) && $education->qualification == 'high_school_name') ? '' : 'display: none;' }}">
                         <h4>
                             High School
                         </h4>
@@ -70,14 +71,14 @@
                             <div class="col-lg-2">
                                 <label class="form-label ">Institution Name <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control qualification" placeholder="Institution Name" id="high_school_name"
+                                    class="form-control qualification alphabetic-input" placeholder="Institution Name" id="high_school_name"
                                     name="high_school_name" value="{{ $education->high_school_name ?? '' }}">
                             </div>
                             <!-- High school City -->
                             <div class="col-lg-2">
                                 <label class="form-label">Town/City <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control  qualification" placeholder="Town/City" id="high_school_city"
+                                    class="form-control  qualification alphabetic-input" placeholder="Town/City" id="high_school_city"
                                     name="high_school_city" value="{{ $education->high_school_city ?? '' }}">
                             </div>
                             <!-- High school Address -->
@@ -113,7 +114,7 @@
                                     value="{{ $education->high_school_year_of_passing ?? '' }}">
                             </div>
                             <!-- High school GPA Percentage-->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
@@ -121,7 +122,7 @@
                                     name="high_school_percentage" value="{{ $education->high_school_percentage ?? '' }}">
                             </div>
                             <!-- High school Class -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Class <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control qualification" placeholder="Class" id="high_school_class"
@@ -129,7 +130,7 @@
                                     value="{{ old('high_school_class') ?? ($education->high_school_class ?? '') }}">
                             </div>
                             {{-- high aschool curriculum --}}
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Curriculum <span style="color: red;">*</span></label>
                                 <select class="form-select" id="high_school_stream" name="high_school_stream">
                                     <option selected disabled value="">Choose...</option>
@@ -152,7 +153,7 @@
                             </div>
 
                             <!-- High school image Mark Sheet-->
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 mt-3">
                                 <label class="form-label">Upload Certificate <span style="color: red;">*</span></label>
                                 <div class="input-group">
                                     <input type="file" class="form-control" id="high_school_image_certificate"
@@ -170,7 +171,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-3">
+                            <div class="col-lg-3 mt-3">
                                 <label class="form-label">Upload Mark Sheet <span style="color: red;">*</span></label>
                                 <div class="input-group">
                                     <input type="file" class="form-control" id="high_school_image_mark_sheet"
@@ -192,16 +193,19 @@
 
                     <!-- Higher Secondary -->
                     <input type="checkbox" onchange="toggleForm('form2')" name="qualification" value="higher_secondary"
-                        {{ (old('qualification') == 'higher_secondary' || isset($education) && $education->qualification == 'higher_secondary') ? 'checked' : '' }}>Higher Secondary
-                    <div id="form2" style="{{ (old('qualification') == 'higher_secondary' || isset($education) && $education->qualification == 'higher_secondary') ? '' : 'display: none;' }}">
+                        {{ old('qualification') == 'higher_secondary' || (isset($education) && $education->qualification == 'higher_secondary') ? 'checked' : '' }}>
+                    Higher Secondary
+                    <div id="form2" class="mt-3"
+                        style="{{ old('qualification') == 'higher_secondary' || (isset($education) && $education->qualification == 'higher_secondary') ? '' : 'display: none;' }}">
                         <!-- Higher Secondary -->
                         <h4> Higher Secondary</h4>
                         <!-- Higher Secondary Institution Name-->
                         <div class="row">
                             <div class="col-lg-2">
                                 <label class="form-label">Institution Name <span style="color: red;">*</span></label>
+
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Institution Name"
+                                    class="form-control alphabetic-input" placeholder="Institution Name"
                                     id="higher_secondary_institution_name" name="higher_secondary_institution_name"
                                     value="{{ old('higher_secondary_institution_name') ?? ($education->higher_secondary_institution_name ?? '') }}">
                             </div>
@@ -209,7 +213,7 @@
                             <div class="col-lg-2">
                                 <label class="form-label">Town/City <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Town/City" id="higher_secondary_city"
+                                    class="form-control alphabetic-input" placeholder="Town/City" id="higher_secondary_city"
                                     name="higher_secondary_city"
                                     value="{{ old('higher_secondary_city') ?? ($education->higher_secondary_city ?? '') }}">
                             </div>
@@ -249,7 +253,7 @@
                                     value="{{ old('higher_secondary_year_of_passing') ?? ($education->higher_secondary_year_of_passing ?? '') }}">
                             </div>
                             <!-- Higher Secondary GPAPercentage-->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
@@ -258,7 +262,7 @@
                                     value="{{ old('higher_secondary_percentage') ?? ($education->higher_secondary_percentage ?? '') }}">
                             </div>
                             <!-- Higher Secondary Class-->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Class <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control" placeholder="Class" id="higher_secondary_class"
@@ -266,7 +270,7 @@
                                     value="{{ old('higher_secondary_class') ?? ($education->higher_secondary_class ?? '') }}">
                             </div>
                             <!-- Higher Secondary Stream -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Stream <span style="color: red;">*</span></label>
                                 <select class="form-select" id="higher_secondary_stream" name="higher_secondary_stream">
                                     <option selected disabled value="">Choose...</option>
@@ -285,15 +289,15 @@
                                 </select>
                             </div>
                             <!-- Higher Secondary Filed of Interest -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Filed of Interest"higher_secondary_filed_of_interest
-                                    id="higher_secondary_filed_of_interest" name="higher_secondary_filed_of_interest"
+                                    class="form-control alphabetic-input" placeholder="Filed of Interest"higher_secondary_filed_of_interest
+                                    id="higher_secondary_filed_of_interest " name="higher_secondary_filed_of_interest"
                                     value="{{ old('higher_secondary_filed_of_interest') ?? ($education->higher_secondary_filed_of_interest ?? '') }}">
                             </div>
                             <!-- Higher Secondary image Certificate -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Upload Certificate
                                     <span style="color: red;">*</span></label>
                                 <div class="input-group">
@@ -313,7 +317,7 @@
                             </div>
 
                             <!-- Higher Secondary image Mark Sheet -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Upload Mark Sheet <span style="color: red;">*</span></label>
                                 <div class="input-group">
                                     <input type="file" class="form-control" id="higher_secondary_image_mark_sheet"
@@ -337,9 +341,11 @@
 
                     {{-- Diploma --}}
                     <input type="checkbox" onchange="toggleForm('form3')" name="qualification" value="diploma"
-                        {{ (old('qualification') == 'diploma' || isset($education) && $education->qualification == 'diploma') ? 'checked' : '' }}>Diploma
+                        {{ old('qualification') == 'diploma' || (isset($education) && $education->qualification == 'diploma') ? 'checked' : '' }}>
+                    Diploma
 
-                    <div id="form3" style="{{ (old('qualification') == 'diploma' || isset($education) && $education->qualification == 'diploma') ? '' : 'display: none;' }}">
+                    <div id="form3" class="mt-3"
+                        style="{{ old('qualification') == 'diploma' || (isset($education) && $education->qualification == 'diploma') ? '' : 'display: none;' }}">
                         <!-- Diploma -->
                         <h4>
                             Diploma
@@ -349,7 +355,7 @@
                             <div class="col-lg-2">
                                 <label class="form-label">Institution Name <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Institution Name" id="diploma_institution_name"
+                                    class="form-control alphabetic-input" placeholder="Institution Name" id="diploma_institution_name"
                                     name="diploma_institution_name"
                                     value="{{ old('diploma_institution_name') ?? ($education->diploma_institution_name ?? '') }}">
                             </div>
@@ -357,7 +363,7 @@
                             <div class="col-lg-2">
                                 <label class="form-label">Town/City <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Town/City" id="diploma_city" name="diploma_city"
+                                    class="form-control alphabetic-input" placeholder="Town/City" id="diploma_city" name="diploma_city"
                                     value="{{ old('diploma_city') ?? ($education->diploma_city ?? '') }}">
                             </div>
                             <!-- Diploma address -->
@@ -396,7 +402,7 @@
                                     value="{{ old('diploma_year_of_passing') ?? ($education->diploma_year_of_passing ?? '') }}">
                             </div>
                             <!-- Diploma  GPAPercentage-->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
@@ -405,29 +411,29 @@
                                     value="{{ old('diploma_percentage') ?? ($education->diploma_percentage ?? '') }}">
                             </div>
                             <!-- Diploma Diploma -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Diploma <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Course" id="diploma_course" name="diploma_course"
+                                    class="form-control alphabetic-input" placeholder="Course" id="diploma_course" name="diploma_course"
                                     value="{{ old('diploma_course') ?? ($education->diploma_course ?? '') }}">
                             </div>
                             <!-- Diploma Major -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Major <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control" placeholder="CSE" id="diploma_major" name="diploma_major"
                                     value="{{ old('diploma_major') ?? ($education->diploma_major ?? '') }}">
                             </div>
                             <!-- Diploma Filed of Interest -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Filed of Interest" id="diploma_filed_of_interest"
+                                    class="form-control alphabetic-input" placeholder="Filed of Interest" id="diploma_filed_of_interest"
                                     name="diploma_filed_of_interest"
                                     value="{{ old('diploma_filed_of_interest') ?? ($education->diploma_filed_of_interest ?? '') }}">
                             </div>
                             <!-- Diploma image Certificate -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label for="diplomaimagecertificate" class="form-label">Upload Certificate <span
                                         style="color: red;">*</span></label>
                                 <div class="input-group">
@@ -445,7 +451,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label for="diplomaimagemarksheet" class="form-label">Upload Mark Sheet <span
                                         style="color: red;">*</span></label>
                                 <div class="input-group">
@@ -469,9 +475,10 @@
 
                     {{-- Bachelors Degree --}}
                     <input type="checkbox" onchange="toggleForm('form4')" name="qualification" value="bachelor_degree"
-                        {{ (old('qualification') == 'bachelor_degree' || isset($education) && $education->qualification == 'bachelor_degree') ? 'checked' : '' }}>Bachelors Degree
-
-                    <div id="form4" style="{{ (old('qualification') == 'bachelor_degree' || isset($education) && $education->qualification == 'bachelor_degree') ? '' : 'display: none;' }}">
+                        {{ old('qualification') == 'bachelor_degree' || (isset($education) && $education->qualification == 'bachelor_degree') ? 'checked' : '' }}>
+                    Bachelors Degree
+                    <div id="form4" class="mt-3"
+                        style="{{ old('qualification') == 'bachelor_degree' || (isset($education) && $education->qualification == 'bachelor_degree') ? '' : 'display: none;' }}">
 
                         <!-- Bachelors Degree -->
                         <h4>
@@ -482,7 +489,7 @@
                             <div class="col-lg-2">
                                 <label class="form-label">Institution Name <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Institution Name" id="bachelors_institution_name"
+                                    class="form-control alphabetic-input" placeholder="Institution Name" id="bachelors_institution_name"
                                     name="bachelors_institution_name"
                                     value="{{ old('bachelors_institution_name') ?? ($education->bachelors_institution_name ?? '') }}">
                             </div>
@@ -490,7 +497,7 @@
                             <div class="col-lg-2">
                                 <label class="form-label">Town/City <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Town/City" id="bachelors_city"
+                                    class="form-control alphabetic-input" placeholder="Town/City" id="bachelors_city"
                                     name="bachelors_city"
                                     value="{{ old('bachelors_city') ?? ($education->bachelors_city ?? '') }}">
                             </div>
@@ -530,7 +537,7 @@
                                     value="{{ old('bachelors_year_of_passing') ?? ($education->bachelors_year_of_passing ?? '') }}">
                             </div>
                             <!-- Bachelors GPA Percentage -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
@@ -539,7 +546,7 @@
                                     value="{{ old('bachelors_percentage') ?? ($education->bachelors_percentage ?? '') }}">
                             </div>
                             <!-- Bachelors Course -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label for="" class="form-label">Course <span
                                         style="color: red;">*</span></label>
                                 <select class="form-select" id="bachelors_course" name="bachelors_course">
@@ -565,22 +572,22 @@
                                 </select>
                             </div>
                             <!-- Bachelors Major -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Major <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Major" id="bachelors_major" name="bachelors_major"
+                                    class="form-control alphabetic-input" placeholder="Major" id="bachelors_major" name="bachelors_major"
                                     value="{{ old('bachelors_major') ?? ($education->bachelors_major ?? '') }}">
                             </div>
                             <!-- Bachelors Filed of Interest -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Filed of Interest" id="bachelors_filed_of_interest"
+                                    class="form-control alphabetic-input" placeholder="Filed of Interest" id="bachelors_filed_of_interest"
                                     name="bachelors_filed_of_interest"
                                     value="{{ old('bachelors_filed_of_interest') ?? ($education->bachelors_filed_of_interest ?? '') }}">
                             </div>
                             {{-- image --}}
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Upload Certificate <span style="color: red;">*</span></label>
                                 <div class="input-group">
                                     <input type="file" class="form-control" id="bachelors_image_certificate"
@@ -599,7 +606,7 @@
                             </div>
                             {{-- marksheet --}}
 
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Upload Mark Sheet <span style="color: red;">*</span></label>
                                 <div class="input-group">
                                     <input type="file" class="form-control" id="bachelors_image_mark_sheet"
@@ -622,19 +629,19 @@
 
                     {{-- Master's Degree --}}
                     <input type="checkbox" onchange="toggleForm('form5')" name="qualification" value="master_degree"
-                        {{ (old('qualification') == 'master_degree' || isset($education) && $education->qualification == 'master_degree') ? 'checked' : '' }}>Master's Degree
-                    <div id="form5" style="{{ (old('qualification') == 'master_degree' || isset($education) && $education->qualification == 'master_degree') ? '' : 'display: none;' }}">
+                        {{ old('qualification') == 'master_degree' || (isset($education) && $education->qualification == 'master_degree') ? 'checked' : '' }}>
+                    Master's Degree
+                    <div id="form5" class="mt-3"
+                        style="{{ old('qualification') == 'master_degree' || (isset($education) && $education->qualification == 'master_degree') ? '' : 'display: none;' }}">
 
                         <!-- Master's Degree -->
-                        <h4>
-                            Master's Degree
-                        </h4>
+                        <h4> Master's Degree </h4>
                         <!-- Institution Name -->
-                        <div class="row">
+                        <div class="row ">
                             <div class="col-lg-2">
                                 <label class="form-label">Institution Name <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="master_institution_name" name="master_institution_name" class="form-control"
+                                    id="master_institution_name" name="master_institution_name" class="form-control alphabetic-input"
                                     placeholder="Institution Name"
                                     value="{{ old('master_institution_name') ?? ($education->master_institution_name ?? '') }}">
                             </div>
@@ -642,7 +649,7 @@
                             <div class="col-lg-2">
                                 <label class="form-label">Town/City <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="master_city" name="master_city" class="form-control" placeholder="Town/City"
+                                    id="master_city" name="master_city" class="form-control alphabetic-input" placeholder="Town/City"
                                     value="{{ old('master_city') ?? ($education->master_city ?? '') }}">
                             </div>
                             <!-- address -->
@@ -670,8 +677,8 @@
                                     placeholder="To (Date)"
                                     value="{{ old('master_to_date') ?? ($education->master_to_date ?? '') }}">
                             </div>
-                            <!-- years of passing -->master_to_date
-                            <div class="col-lg-2">
+                            <!-- years of passing -->
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Year of Passing
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
@@ -680,7 +687,7 @@
                                     value="{{ old('master_years_of_passing') ?? ($education->master_years_of_passing ?? '') }}">
                             </div>
                             <!-- percentage -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
@@ -689,30 +696,30 @@
                                     value="{{ old('master_percentage') ?? ($education->master_percentage ?? '') }}">
                             </div>
                             <!-- class -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Class <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     id="master_class" name="master_class" class="form-control" placeholder="Class"
                                     value="{{ old('master_class') ?? ($education->master_class ?? '') }}">
                             </div>
                             <!--  Filed of Specialization-->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Specialization
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    name="master_filed_of_specialization" class="form-control"
+                                    name="master_filed_of_specialization" class="form-control alphabetic-input"
                                     id="master_filed_of_specialization" placeholder="Filed of Specialization"
                                     value="{{ old('master_filed_of_specialization') ?? ($education->master_filed_of_specialization ?? '') }}">
                             </div>
                             <!-- filed of interest -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="master_filed_of_interest" name="master_filed_of_interest" class="form-control"
+                                    id="master_filed_of_interest" name="master_filed_of_interest" class="form-control alphabetic-input"
                                     placeholder="Filed of Interest"
                                     value="{{ old('master_filed_of_interest') ?? ($education->master_filed_of_interest ?? '') }}">
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label for="masterimagecertificate" class="form-label">Upload Certificate <span
                                         style="color: red;">*</span></label>
                                 <div class="input-group">
@@ -731,7 +738,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label for="masterimagemarksheet" class="form-label">Upload Mark Sheet <span
                                         style="color: red;">*</span></label>
                                 <div class="input-group">
@@ -757,8 +764,10 @@
 
                     {{-- Doctorate Degree --}}
                     <input type="checkbox" onchange="toggleForm('form6')" name="qualification" value="doctorate_degree"
-                        {{ (old('qualification') == 'doctorate_degree' || isset($education) && $education->qualification == 'doctorate_degree') ? 'checked' : '' }}> Doctorate Degree
-                    <div id="form6" style="{{ (old('qualification') == 'doctorate_degree' || isset($education) && $education->qualification == 'doctorate_degree') ? '' : 'display: none;' }}">
+                        {{ old('qualification') == 'doctorate_degree' || (isset($education) && $education->qualification == 'doctorate_degree') ? 'checked' : '' }}>
+                    Doctorate Degree
+                    <div id="form6" class="mt-3"
+                        style="{{ old('qualification') == 'doctorate_degree' || (isset($education) && $education->qualification == 'doctorate_degree') ? '' : 'display: none;' }}">
                         <!-- Doctorate Degree -->
                         <h4>
                             Doctorate Degree
@@ -766,9 +775,9 @@
                         <!-- doctoratename -->
                         <div class="row">
                             <div class="col-lg-2">
-                                <label class="form-label">Institution Name <span style="color: red;">*</span></label>
+                                <label class="form-label ">Institution Name <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    name="doctorate_name" name=" doctorate_name" class="form-control"
+                                    name="doctorate_name" name=" doctorate_name" class="form-control alphabetic-input"
                                     placeholder="Institution Name"
                                     value="{{ old('doctorate_name') ?? ($education->doctorate_name ?? '') }}">
                             </div>
@@ -776,7 +785,7 @@
                             <div class="col-lg-2">
                                 <label class="form-label">Town/City <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="doctorate_city" name="doctorate_city" class="form-control"
+                                    id="doctorate_city" name="doctorate_city" class="form-control alphabetic-input"
                                     placeholder="Town/City"
                                     value="{{ old('doctorate_city') ?? ($education->doctorate_city ?? '') }}">
                             </div>
@@ -806,7 +815,7 @@
                                     value="{{ old('doctorate_to_date') ?? ($education->doctorate_to_date ?? '') }}">
                             </div>
                             <!-- doctorateyearofpassing -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Year of Passing
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
@@ -814,7 +823,7 @@
                                     placeholder="Year of Passing"value="{{ old('doctorate_year_of_passing') ?? ($education->doctorate_year_of_passing ?? '') }}">
                             </div>
                             <!-- doctoratepercentage -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
@@ -823,7 +832,7 @@
                                     value="{{ old('doctorate_percentage') ?? ($education->doctorate_percentage ?? '') }}">
                             </div>
                             <!-- doctorateclass -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Class <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     id="doctorate_class" class="form-control" name="doctorate_class" placeholder="Class"
@@ -831,23 +840,23 @@
                             </div>
 
                             <!-- doctoratefiledofspecialization -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Specialization
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="Filed of Specialization"
+                                    class="form-control alphabetic-input" placeholder="Filed of Specialization"
                                     id="doctorate_filed_of_specialization" name="doctorate_filed_of_specialization"
                                     value="{{ old('doctorate_filed_of_specialization') ?? ($education->doctorate_filed_of_specialization ?? '') }}">
                             </div>
                             <!-- doctoratefiledofinterest -->
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" name="doctorate_filed_of_interest"
+                                    class="form-control alphabetic-input" name="doctorate_filed_of_interest"
                                     id="doctorate_filed_of_interest" placeholder="Filed of Interest"
                                     value="{{ old('doctorate_filed_of_interest') ?? ($education->doctorate_filed_of_interest ?? '') }}">
                             </div>
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label for="doctorateimagecertificate" class="form-label">Upload Certificate <span
                                         style="color: red;">*</span></label>
                                 <div class="input-group">
@@ -867,7 +876,7 @@
                                 </div>
                             </div>
                             {{-- mark sheet --}}
-                            <div class="col-lg-2">
+                            <div class="col-lg-2 mt-3">
                                 <label for="doctorateimagemarksheet" class="form-label">Upload Mark Sheet <span
                                         style="color: red;">*</span></label>
                                 <div class="input-group">
