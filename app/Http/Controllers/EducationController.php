@@ -181,10 +181,14 @@ class EducationController extends Controller
 
     public function show($id)
     {
-        $jobApplication = JobApplication::find($id);
+        $education = Education::find($id);
 
-        return view('career.education.show', ['jobApplication' => $jobApplication]);
+
+
+        return view('career.education.show', ['education' => $education, ]);
     }
+
+
 
     public function edit($id)
     {

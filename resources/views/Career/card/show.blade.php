@@ -20,22 +20,22 @@
             @foreach ($cards as $card)
                 <br><br>
                 <label>
-                    <input type="checkbox" id="aadhar" class="address-type" name="identity_type[]" value="aadhar"
-                        {{ in_array('aadhar', old('identity_type', [])) || (isset($card) && in_array('aadhar', explode(',', $card->identity_type))) ? 'checked' : '' }}
-                        disabled>
-                    AADHAR CARD
+                    <input type="checkbox" id="aadhar" class="address-type" name="identity_type" value="aadhar"
+                        {{ old('identity_type') == 'aadhar' || (isset($card) && $card->identity_type == 'aadhar') ? 'checked' : (old('identity_type') == '' && !isset($card) ? 'checked' : '') }}
+                        disabled> AADHAR CARD
                 </label>
                 <label>
-                    <input type="checkbox" id="passport" class="address-type" name="identity_type[]" value="passport"
-                        {{ in_array('passport', old('identity_type', [])) || (isset($card) && in_array('passport', explode(',', $card->identity_type))) ? 'checked' : '' }}
-                        disabled>
-                    PASSPORT
+                    <input type="checkbox" id="passport" class="address-type" name="identity_type" value="passport"
+                        {{ old('identity_type') == 'passport' || (isset($card) && $card->identity_type == 'passport') ? 'checked' : '' }}
+                        disabled> PASSPORT
                 </label>
                 <br>
                 <br>
+
                 <div class="row">
                     <!-- aadhar card -->
-                    <div class="col-lg-6">
+                    <div id="inputFieldsaadharcard"
+                        class="col-lg-6 {{ old('identity_type') == 'aadhar' || (isset($card) && $card->identity_type == 'aadhar') ? '' : 'hidden' }}">
                         <h4 class="text-center" style="font-weight: bold;">AADHAR CARD</h4>
 
                         <div class="col mt-4">
@@ -75,7 +75,6 @@
                                 <img id="aadhar_image" src="{{ asset('storage/' . $card->aadhar_image) }}"
                                     alt="Aadhar Card Image" style="max-width: 100%;">
                             @endif
-
                         </div>
                         <!-- aadharimagepage  -->
                         <div class="col mt-4">
@@ -86,19 +85,17 @@
                             @endif
                         </div>
                         <!-- button -->
-
                         <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
                             <a style="font-weight: bold; " class="btn btn-secondary "
                                 href="{{ route('career.job_application.show', request()->job_application_id ?? (isset($card) ? $card->job_application_id : '')) }}">Previous</a>
                             <a style="font-weight: bold;" class="btn btn-secondary  mx-3"
                                 href="{{ route('career.education.show', ['id' => $jobApplication->id]) }}">Next</a>
-
                             <br>
                             <br>
                         </div>
                     </div>
-                    @if (in_array('passport', old('identity_type', [])) ||
-                            (isset($card) && in_array('passport', explode(',', $card->identity_type))))
+                    <div id="inputFieldspassport"
+                        class="{{ old('identity_type') == 'passport' || (isset($card) && $card->identity_type == 'passport') ? '' : 'hidden' }}">
                         <div class="col-lg-6">
                             <h4 class="text-center" style="font-weight: bold;">PASSPORT</h4>
                             <!-- passportname -->
@@ -168,11 +165,9 @@
                                 @endif
                             </div>
                         </div>
+                    </div>
                 </div>
-            @endif
         </div>
-    </div>
         @endforeach
     </div>
-
 @endsection
