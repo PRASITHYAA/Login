@@ -4,16 +4,13 @@
         <div class="row ">
             @include('layouts.front.user_sidebar')
             <!-- main -->
-            <div class="col-lg-8 pt-4">
+            <div class="col-lg-9 pt-4">
                 <!-- <div class="container  col-lg-6 pt-4"> -->
                 <div class="container">
-                    <h1 class="">Forms List</h1>
+                    <h1 class="">Careers Form List</h1>
+                    <p style="font-weight: bold;">( Scroll Right to More) <span style="color: red;">*</span> </p>
                     <div class="scroll-container">
                         <table class="table table-striped table-hover">
-                            <div style="margin-bottom: 10px;" class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button class="btn btn-success" type="button"
-                                    onclick="window.location.reload();">Refresh</button>
-                            </div>
                             <!-- head line -->
                             <tr>
                                 <th>ID</th>
