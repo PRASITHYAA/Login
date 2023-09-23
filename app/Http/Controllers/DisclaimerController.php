@@ -39,6 +39,13 @@ class DisclaimerController extends Controller
         return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer And All The Forms Are created successfully');
     }
 
+    public function show($id)
+    {
+        $disclaimer = Disclaimer::find($id);
+
+        return view('career.disclaimer.show', ['disclaimer' => $disclaimer,]);
+    }
+
     public function edit($id)
     {
         $disclaimer = Disclaimer::find($id);
