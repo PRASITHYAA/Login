@@ -35,4 +35,14 @@ class Employment extends Model
         'eligible_to_work_text',
         'crime_status_text',
     ];
+
+    public function employers()
+    {
+        return $this->hasMany(EmploymentEmployer::class);
+    }
+
+    public function references()
+    {
+        return $this->hasMany(EmploymentReference::class);
+    }
 }

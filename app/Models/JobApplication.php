@@ -9,6 +9,7 @@ class JobApplication extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'sector_id',
         'position_id',
         'first_name',
@@ -53,12 +54,7 @@ class JobApplication extends Model
         'spouse_phone',
         'spouse_image',
         // Siblings
-        'siblings',
-        'siblings_name',
-        'siblings_date_of_birth',
-        'siblings_email',
-        'siblings_phone',
-        'siblings_image',
+        'siblings'
     ];
 
     public function sector()
@@ -82,6 +78,11 @@ class JobApplication extends Model
     public function disclaimers()
     {
         return $this->hasMany(Disclaimer::class);
+    }
+
+    public function siblingsList()
+    {
+        return $this->hasMany(Sibling::class);
     }
 
 }

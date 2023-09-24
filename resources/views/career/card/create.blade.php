@@ -42,17 +42,17 @@
 
                 <label>Does Your Permanent Address is Different</label>
                 <br><br>
+                {{--<label>
+                    <input type="checkbox" id="aadhar" class="address-type" name="identity_type[]" value="aadhar" {{ (old('identity_type') && in_array('aadhar', old('identity_type'))) || (isset($card) && in_array('aadhar', explode(',', $card->identity_type))) ? 'checked' : ((old('identity_type') == '' && !isset($card)) ? 'checked' : '') }}> AADHAR CARD
+                </label>--}}
                 <label>
-                    <input type="radio" id="aadhar" class="address-type" name="identity_type" value="aadhar" {{ old('identity_type') == 'aadhar' || (isset($card) && $card->identity_type == 'aadhar') ? 'checked' : ((old('identity_type') == '' && !isset($card)) ? 'checked' : '') }}> AADHAR CARD
-                </label>
-                <label>
-                    <input type="radio" id="passport" class="address-type" name="identity_type" value="passport" {{ old('identity_type') == 'passport' || (isset($card) && $card->identity_type == 'passport') ? 'checked' : '' }}> PASSPORT
+                    <input type="checkbox" id="passport" class="address-type-passport" name="identity_type" value="passport" {{ old('identity_type') == 'passport' || (isset($card) && $card->identity_type == 'passport') ? 'checked' : '' }}> PASSPORT
                 </label>
                 <br>
 
                 <div class="row">
                     <!-- aadhar card -->
-                    <div id="inputFieldsaadharcard" class="col-lg-6 {{ old('identity_type') == 'aadhar' || (isset($card) && $card->identity_type == 'aadhar') ? '' : 'hidden' }}">
+                    <div id="inputFieldsaadharcard" class="col-lg-6">
                         <h4 class="text-center" style=" font-weight: bold;">AADHAR CARD</h4>
                         <!-- aadharname -->
                         <div class="col mt-4">
@@ -337,25 +337,28 @@
                 $('#inputFieldspassport input, #inputFieldspassport select').attr('required', false);
                 $('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', true);
                 $('#aadhar_image, #aadhar_image_page').attr('required', false);
-            } else {
+            } else if(identity_type == 'passport') {
                 $('#inputFieldspassport input, #inputFieldspassport select').attr('required', true);
                 $('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', false);
                 $('#passport_image_id, #passport_image_id_page').attr('required', false);
             }
-           $('.address-type').change(function () {
-              if($(this).val() == 'passport') {
+           $('.address-type-passport').change(function () {
+              if($(this).is(':checked') == true) {
                 $('#inputFieldspassport').removeClass('hidden');
-                $('#inputFieldsaadharcard').addClass('hidden');
+                //$('#inputFieldsaadharcard').addClass('hidden');
                   $('#inputFieldspassport input, #inputFieldspassport select').attr('required', true);
-                  $('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', false);
-                  $('#aadhar_image, #aadhar_image_page').attr('required', false);
+                  //$('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', false);
+                  //$('#aadhar_image, #aadhar_image_page').attr('required', false);
                } else {
+                  $('#inputFieldspassport').addClass('hidden');
+                  $('#inputFieldspassport input, #inputFieldspassport select').attr('required', false);
+              }/* else if($(this).val() == 'aadhar') {
                   $('#inputFieldspassport').addClass('hidden');
                   $('#inputFieldsaadharcard').removeClass('hidden');
                   $('#inputFieldspassport input, #inputFieldspassport select').attr('required', false);
                   $('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', true);
                   $('#passport_image_id, #passport_image_id_page').attr('required', false);
-              }
+              }*/
            });
         });
     </script>
