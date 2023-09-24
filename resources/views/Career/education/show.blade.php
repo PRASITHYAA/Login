@@ -20,23 +20,22 @@
 
 
         @foreach ($educations as $education)
-            <div>
-                <label>
-                    <input type="radio" name="radio_option" value="yes"
-                        {{ isset($education) ? ($education->radio_option == 'yes' ? 'checked' : '') : '' }}
-                        onclick="showCheckboxes()" disabled> Yes
-                </label>
-                <label>
-                    <input type="radio" name="radio_option" value="no"
-                        {{ isset($education) ? ($education->radio_option == 'no' ? 'checked' : '') : '' }}
-                        onclick="hideCheckboxes()"disabled> No
-                </label>
-            </div>
+            <label>
+                <input type="radio" name="radio_option" value="yes"
+                    {{ isset($education) ? ($education->radio_option == 'yes' ? 'checked' : '') : '' }}
+                    onclick="showCheckboxes()" disabled> Yes
+            </label>
+            <label>
+                <input type="radio" name="radio_option" value="no"
+                    {{ isset($education) ? ($education->radio_option == 'no' ? 'checked' : '') : '' }}
+                    onclick="hideCheckboxes()"disabled> No
+            </label>
+
             <br>
             <div id="checkboxes"
                 style="{{ isset($education) && $education->radio_option == 'yes' ? '' : 'display: none;' }}">
 
-                <h4> High School </h4>
+                <h4 class="mt-3"> High School </h4>
                 <!-- High school Institution Name -->
                 <div class="row mt-3 ">
                     <div class="col-lg-2">
@@ -570,7 +569,7 @@
             </div>
 
             <div style="display: flex;justify-content: end;" class="mt-5 mx-3">
-                <a style="font-weight: bold;" class="btn btn-secondary mx-5"
+                <a style="font-weight: bold;" class="btn btn-secondary mx-2"
                     href="{{ route('career.card.show', ['id' => $jobApplication->id]) }}">Previous</a>
                 <a style="font-weight: bold;" class="btn btn-secondary "
                     href="{{ route('career.employment.show', ['id' => $jobApplication->id]) }}">Next</a>
