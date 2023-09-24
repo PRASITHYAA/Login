@@ -45,4 +45,9 @@ class Employment extends Model
     {
         return $this->hasMany(EmploymentReference::class);
     }
+
+    public function jobApplication()
+    {
+        return $this->belongsTo(JobApplication::class);
+    }
 }

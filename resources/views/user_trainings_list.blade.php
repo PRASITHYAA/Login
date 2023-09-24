@@ -15,9 +15,6 @@
                             <div class="scroll-container">
 
                                 <table class="table table-striped table-hover">
-                                    <div style="margin-bottom: 10px;" class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                         <button class="btn btn-success mb-3" type="button">Refresh</button>
-                                    </div>
                                     <!-- head line -->
                                     <tr>
                                         <th>ID</th>
