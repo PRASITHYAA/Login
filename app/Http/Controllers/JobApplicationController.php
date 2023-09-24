@@ -14,12 +14,12 @@ class JobApplicationController extends Controller
     {
         $jobApplications = JobApplication::all();  // Fetch all job applications
 
-        return view('career.job_application.index', ['jobApplications' => $jobApplications]);
+        return view('Career.job_application.index', ['jobApplications' => $jobApplications]);
     }
 
     public function create()
     {
-        return view('career.job_application.create');
+        return view('Career.job_application.create');
     }
 
     public function store(Request $request)
@@ -124,7 +124,7 @@ class JobApplicationController extends Controller
     public function edit($id)
     {
         $jobApplication = JobApplication::find($id);
-        return view('career.job_application.create', compact('jobApplication'));
+        return view('Career.job_application.create', compact('jobApplication'));
     }
 
     public function update($id, Request $request)
@@ -248,7 +248,7 @@ class JobApplicationController extends Controller
     public function show($id)
     {
         $jobApplication = JobApplication::find($id);
-        return view('career.job_application.show', compact('jobApplication'));
+        return view('Career.job_application.show', compact('jobApplication'));
     }
 
     public function getCities(Request $request)
@@ -266,11 +266,11 @@ class JobApplicationController extends Controller
         $jobApplication = JobApplication::find($id);
 
         if (!$jobApplication) {
-            return redirect()->route('career.job_application.index')->with('error', 'Form not found.');
+            return redirect()->route('Career.job_application.index')->with('error', 'Form not found.');
         }
 
         $jobApplication->delete();
 
-        return redirect()->route('career.job_application.index')->with('success', 'Form deleted successfully!');
+        return redirect()->route('Career.job_application.index')->with('success', 'Form deleted successfully!');
     }
 }
