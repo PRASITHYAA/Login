@@ -19,7 +19,7 @@ class JobApplicationController extends Controller
 
     public function create()
     {
-        return view('Career.job_application.create');
+        return view('career.job_application.create');
     }
 
     public function store(Request $request)
@@ -124,7 +124,7 @@ class JobApplicationController extends Controller
     public function edit($id)
     {
         $jobApplication = JobApplication::find($id);
-        return view('Career.job_application.create', compact('jobApplication'));
+        return view('career.job_application.create', compact('jobApplication'));
     }
 
     public function update($id, Request $request)
