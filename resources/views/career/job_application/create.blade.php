@@ -500,78 +500,154 @@
                                     {{ old('siblings') == 'no' || (isset($jobApplication) && $jobApplication->siblings == 'no') ? 'checked' : '' }}>
                                 No
                             </label>
-                            <div id="form-container">
-                                <div class="form-fields">
-                                    <!-- Initial set of form fields -->
-                                    <div class="col-lg-12">
-                                        <div id="formContainer2"
-                                            class="{{ old('siblings') == 'no' || (isset($jobApplication) && $jobApplication->siblings == 'no') ? 'hidden' : '' }}">
-
-                                            <!-- Siblings name -->
-                                            <div class="row g-3">
-                                                <div class="col-md-3">
-                                                    <label class="form-label pt-2">Siblings name<span
-                                                            class="red">*</span></label>
-                                                    <input type="text"
-                                                        class="form-control bg sibling-name-input alphabetic-input"
-                                                        id="inputFields"
-                                                        value="{{ old('siblings_name') ?? ($jobApplication->siblings_name ?? '') }}"
-                                                        placeholder="Siblings Name" name="siblings_name">
-                                                </div>
-                                                <!--Siblings  Date of Birth-->
-                                                <div class="col-md-3">
-                                                    <label class="form-label pt-2">Date of Birth <span
-                                                            class="red">*</span></label>
-                                                    <input type="date" name="siblings_date_of_birth"
-                                                        class="form-control sibling-name-input bg"
-                                                        id="siblings_date_of_birth"
-                                                        value="{{ old('siblings_date_of_birth') ?? ($jobApplication->siblings_date_of_birth ?? '') }}"
-                                                        placeholder="Date of Birth">
-                                                </div>
-                                                <!-- siblings  email -->
-                                                <div class="col-md-3">
-                                                    <label class="form-label pt-2">Email <span
-                                                            class="red">*</span></label>
-                                                    <input type="email" class="form-control bg sibling-name-input"
-                                                        placeholder="Email-Id" name="siblings_email" id="siblings_email"
-                                                        value="{{ old('siblings_email') ?? ($jobApplication->siblings_email ?? '') }}">
-                                                </div>
-                                                <!--siblings  phone -->
-                                                <div class="col-md-3">
-                                                    <label class="form-label pt-2">Phone/Mobile <span
-                                                            class="red">*</span></label><br>
-                                                    <input type="tel"
-                                                        class="phoneInputField  form-control sibling-name-input"
-                                                        name="siblings_phone" id="siblings_phone"
-                                                        value="{{ old('siblings_phone') ?? ($jobApplication->siblings_phone ?? '') }}">
-                                                    <p class="errorText" style="color: red;"></p>
-                                                </div>
-                                                <!--siblings  Upload the Latest Passport Size Photo -->
-                                                <div class="col-md-4 ">
-                                                    <label class="form-label pt-2">Upload the Latest Passport Size
-                                                        Photo
-                                                        <span class="red">*</span></label>
-                                                    <input type="file" class="form-control sibling-name-input"
-                                                        id="siblings_image" name="siblings_image" accept="image/*">
-                                                    @if (isset($jobApplication))
-                                                        <img src="{{ asset('storage/' . $jobApplication->siblings_image) }}"
-                                                            alt="Job Application Image" style="max-width: 100%;">
-                                                    @endif
-                                                    <!-- images  -->
-                                                    <div class="form-group  ">
-                                                        <img id="siblingsimagePreview" src="#" alt="Image Preview"
-                                                            style="max-width: 150px; display: none;">
+                            <div id="formContainer2" class="{{ old('siblings') == 'no' || (isset($jobApplication) && $jobApplication->siblings == 'no') ? 'hidden' : '' }}">
+                                @if(isset($jobApplication) && count($jobApplication->siblingsList))
+                                    @foreach($jobApplication->siblingsList as $skey => $sibling)
+                                        <div class="form-fields">
+                                            <!-- Initial set of form fields -->
+                                            <div class="col-lg-12">
+                                                <div>
+                                                    <!-- Siblings name -->
+                                                    <div class="row g-3">
+                                                        <div class="col-md-3">
+                                                            <label class="form-label pt-2">Siblings name<span
+                                                                    class="red">*</span></label>
+                                                            <input type="text"
+                                                                class="form-control bg sibling-name-input alphabetic-input"
+                                                                id="siblings_name_1"
+                                                                value="{{ old('siblings_name') ?? ($sibling->name ?? '') }}"
+                                                                placeholder="Siblings Name" name="siblings_name[]">
+                                                        </div>
+                                                        <!--Siblings  Date of Birth-->
+                                                        <div class="col-md-3">
+                                                            <label class="form-label pt-2">Date of Birth <span
+                                                                    class="red">*</span></label>
+                                                            <input type="date" name="siblings_date_of_birth[]"
+                                                                class="form-control sibling-dob-input bg"
+                                                                id="siblings_date_of_birth_1"
+                                                                value="{{ old('siblings_date_of_birth') ?? ($sibling->dob ?? '') }}"
+                                                                placeholder="Date of Birth">
+                                                        </div>
+                                                        <!-- siblings  email -->
+                                                        <div class="col-md-3">
+                                                            <label class="form-label pt-2">Email <span
+                                                                    class="red">*</span></label>
+                                                            <input type="email" class="form-control bg sibling-email-input"
+                                                                placeholder="Email-Id" name="siblings_email[]" id="siblings_email_1"
+                                                                value="{{ old('siblings_email') ?? ($sibling->email ?? '') }}">
+                                                        </div>
+                                                        <!--siblings  phone -->
+                                                        <div class="col-md-3">
+                                                            <label class="form-label pt-2">Phone/Mobile <span
+                                                                    class="red">*</span></label><br>
+                                                            <input type="tel"
+                                                                class="phoneInputField  form-control sibling-phone-input"
+                                                                name="siblings_phone[]" id="siblings_phone_1"
+                                                                value="{{ old('siblings_phone') ?? ($sibling->phone ?? '') }}">
+                                                            <p class="errorText" style="color: red;"></p>
+                                                        </div>
+                                                        <!--siblings  Upload the Latest Passport Size Photo -->
+                                                        <div class="col-md-4 ">
+                                                            <label class="form-label pt-2">Upload the Latest Passport Size
+                                                                Photo
+                                                                <span class="red">*</span></label>
+                                                            <input type="file" class="form-control sibling-image-input"
+                                                                id="siblings_image_1" name="siblings_image[]" accept="image/*">
+                                                            @if (isset($sibling->photo))
+                                                                <img src="{{ asset('storage/' . $sibling->photo) }}" class="edit-prev-img"
+                                                                    alt="Job Application Image" style="max-width: 100%;">
+                                                                <input type="text" class="form-control sibling-image-input"
+                                                                       id="siblings_image_old_1" name="siblings_image_old[]" value="{{ $sibling->photo }}">
+                                                            @endif
+                                                            <!-- images  -->
+                                                            <div class="form-group  ">
+                                                                <img id="siblingsimagePreview" src="#" alt="Image Preview"
+                                                                    style="max-width: 150px; display: none;">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 mt-5">
+                                                            <button class="remove-field-button">-</button>
+                                                            <!-- Add Remove button -->
+                                                            @if($skey+1 == count($jobApplication->siblingsList))
+                                                                <button class="add-field-button">+</button>
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 mt-5">
-                                                    <button class="remove-field-button " style="display: none;">-</button>
-                                                    <!-- Add Remove button -->
-                                                    <button id="add-field-button">+</button>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="form-fields">
+                                        <!-- Initial set of form fields -->
+                                        <div class="col-lg-12">
+                                            <div>
+                                                <!-- Siblings name -->
+                                                <div class="row g-3">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label pt-2">Siblings name<span
+                                                                class="red">*</span></label>
+                                                        <input type="text"
+                                                               class="form-control bg sibling-name-input alphabetic-input"
+                                                               id="siblings_name_1"
+                                                               value="{{ old('siblings_name')[0] ?? '' }}"
+                                                               placeholder="Siblings Name" name="siblings_name[]">
+                                                    </div>
+                                                    <!--Siblings  Date of Birth-->
+                                                    <div class="col-md-3">
+                                                        <label class="form-label pt-2">Date of Birth <span
+                                                                class="red">*</span></label>
+                                                        <input type="date" name="siblings_date_of_birth[]"
+                                                               class="form-control sibling-dob-input bg"
+                                                               id="siblings_date_of_birth_1"
+                                                               value="{{ old('siblings_date_of_birth')[0] ?? '' }}"
+                                                               placeholder="Date of Birth">
+                                                    </div>
+                                                    <!-- siblings  email -->
+                                                    <div class="col-md-3">
+                                                        <label class="form-label pt-2">Email <span
+                                                                class="red">*</span></label>
+                                                        <input type="email" class="form-control bg sibling-email-input"
+                                                               placeholder="Email-Id" name="siblings_email[]" id="siblings_email_1"
+                                                               value="{{ old('siblings_email')[0] ?? '' }}">
+                                                    </div>
+                                                    <!--siblings  phone -->
+                                                    <div class="col-md-3">
+                                                        <label class="form-label pt-2">Phone/Mobile <span
+                                                                class="red">*</span></label><br>
+                                                        <input type="tel"
+                                                               class="phoneInputField  form-control sibling-phone-input"
+                                                               name="siblings_phone[]" id="siblings_phone_1"
+                                                               value="{{ old('siblings_phone')[0] ?? '' }}">
+                                                        <p class="errorText" style="color: red;"></p>
+                                                    </div>
+                                                    <!--siblings  Upload the Latest Passport Size Photo -->
+                                                    <div class="col-md-4 ">
+                                                        <label class="form-label pt-2">Upload the Latest Passport Size
+                                                            Photo
+                                                            <span class="red">*</span></label>
+                                                        <input type="file" class="form-control sibling-image-input"
+                                                               id="siblings_image_1" name="siblings_image[]" accept="image/*">
+                                                        @if(isset(old('siblings_phone')[0]))
+                                                            <img src="" class="edit-prev-img"
+                                                                 alt="Job Application Image" style="max-width: 100%;">
+                                                        @endif
+                                                        <!-- images  -->
+                                                        <div class="form-group  ">
+                                                            <img id="siblingsimagePreview" src="#" alt="Image Preview"
+                                                                 style="max-width: 150px; display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 mt-5">
+                                                        <button class="remove-field-button" style="display:none;">-</button>
+                                                        <!-- Add Remove button -->
+                                                        <button class="add-field-button">+</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -825,13 +901,21 @@
 
     <script>
         $(document).ready(function() {
-            const formContainer = $("#form-container");
-            const addFieldButton = $("#add-field-button");
+            const formContainer = $("#formContainer2");
+            const addFieldButton = $(".add-field-button");
 
             addFieldButton.click(function() {
                 const clonedFields = formContainer.find(".form-fields:last").clone(true);
-                clonedFields.find(".remove-field-button").show(); // Show the Remove button
+                $(".remove-field-button").show(); // Show the Remove button
+                var input_name = clonedFields.find(".sibling-name-input").attr('id');
+                input_name = input_name.split('siblings_name_');
+                var siblings_id = parseInt(input_name[1])+1;
+                clonedFields.find(".sibling-name-input").attr('id', 'siblings_name_'+siblings_id);
+                clonedFields.find("input").val('');
+                clonedFields.find(".edit-prev-img").remove();
                 formContainer.append(clonedFields);
+                // Remove all buttons with the class "add-field-button" except for the last one
+                $('.add-field-button:not(:last)').hide();
             });
 
             formContainer.on("click", ".remove-field-button", function() {

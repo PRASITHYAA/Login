@@ -19,9 +19,9 @@ class CardsController extends Controller
     {
         //dd($request->all());
         $jobApplication = JobApplication::find($request->input('job_application_id'));
-        $card = $request->validate([
+        $request->validate([
             'job_application_id' => 'required',
-            'identity_type' => 'required|in:aadhar,passport',
+            //'identity_type' => 'required|in:aadhar,passport',
             // aadhar
             'aadhar_name' => 'required_if:identity_type,aadhar',
             'aadhar_id_number' => 'required_if:identity_type,aadhar',
@@ -41,7 +41,7 @@ class CardsController extends Controller
             'passport_image_id' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:100',
             'passport_image_id_page' => 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:100',
         ]);
-
+        $card = $request->all();
         if ($request->hasFile('aadhar_image')) {
             $aadharImagePath = $request->file('aadhar_image')->store('images', 'public');
             $card['aadhar_image'] = $aadharImagePath;
@@ -81,9 +81,10 @@ class CardsController extends Controller
 
     public function update($id, Request $request)
     {
+        //dd($request->all());
         $rules = [
             'job_application_id' => 'required',
-            'identity_type' => 'required|in:aadhar,passport',
+            //'identity_type' => 'required|in:aadhar,passport',
             // aadhar
             'aadhar_name' => 'required_if:identity_type,aadhar',
             'aadhar_id_number' => 'required_if:identity_type,aadhar',
@@ -111,26 +112,28 @@ class CardsController extends Controller
         if ($request->hasFile('passport_image_id_page')) {
             $rules['passport_image_id_page'] = 'required_if:identity_type,passport|nullable|image|mimes:jpeg,png,jpg,gif|max:100';
         }
-        $data = $request->validate($rules);
+        $request->validate($rules);
+
+        $data = $request->all();
 
         if ($request->hasFile('aadhar_image')) {
             $aadharImagePath = $request->file('aadhar_image')->store('images', 'public');
-            $card['aadhar_image'] = $aadharImagePath;
+            $data['aadhar_image'] = $aadharImagePath;
         }
 
         if ($request->hasFile('aadhar_image_page')) {
             $aadharImagePagePath = $request->file('aadhar_image_page')->store('images', 'public');
-            $card['aadhar_image_page'] = $aadharImagePagePath;
+            $data['aadhar_image_page'] = $aadharImagePagePath;
         }
 
         if ($request->hasFile('passport_image_id')) {
             $passportImageIdPath = $request->file('passport_image_id')->store('images', 'public');
-            $card['passport_image_id'] = $passportImageIdPath;
+            $data['passport_image_id'] = $passportImageIdPath;
         }
 
         if ($request->hasFile('passport_image_id_page')) {
             $passportImageIdPagePath = $request->file('passport_image_id_page')->store('images', 'public');
-            $card['passport_image_id_page'] = $passportImageIdPagePath;
+            $data['passport_image_id_page'] = $passportImageIdPagePath;
         }
 
         $card = Card::find($id);

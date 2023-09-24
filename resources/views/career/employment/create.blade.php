@@ -63,159 +63,310 @@
                     style="{{ isset($employment) ? ($employment->previous_experience == 'yes' ? '' : 'display: none;') : 'display: none;' }}">
                     <p style="font-weight: bold;">Note: Please add click (+) symbol to add more no of previous emloyers
                         and enter recent employer detail first</p>
-                    <div id="form-container">
-                        <div class="form-fields">
+                    @if(isset($employment) && count($employment->employers))
+                        @foreach($employment->employers as $ekey => $employer)
+                            <div id="form-container">
+                                <div class="form-fields">
+                                    <div class="row">
+                                        <!-- Employer Details -->
+                                        <h6>Employer Details</h6>
+                                        <!-- Company / Individual -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">
+                                                Company / Individual <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                                   class="form-control employer-name-input" name="employer_name[]" id="employer_name_1"
+                                                   placeholder="Company / Individual"
+                                                   value="{{ old('name') ?? ($employer->name ?? '') }}">
+                                        </div>
+                                        <!-- E-MAIL -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
+                                                   class="form-control" name="employer_email[]" id="employer_email_1"
+                                                   placeholder="email.com"
+                                                   value="{{ old('email') ?? ($employer->email ?? '') }}">
+                                        </div>
+                                        <!-- Address -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">Address <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                                   class="form-control" name="employer_address[]" id="employer_address_1"
+                                                   placeholder="Address"
+                                                   value="{{ old('address') ?? ($employer->address ?? '') }}">
+                                        </div>
+                                        <!-- Phone -->
+                                        <div class="col-md-4">
+                                            <label for="phoneInputField1" class="form-label">Phone
+                                                <span style="color: red;">*</span></label><br>
+                                            <input type="tel" class="phoneInputField" name="employer_phone[]" id="employer_phone_1"
+                                                   value="{{ old('phone') ?? ($employer->phone ?? '') }}">
+                                            <p class="errorText" style="color: red;"></p>
+                                        </div>
+                                        <!-- Job Title -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">Job Title <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                                   class="form-control alphabetic-input" name="employer_job_title_1"
+                                                   id="employer_job_title[]" placeholder="Job Title	"
+                                                   value="{{ old('employer_job_title') ?? ($employer->job_title ?? '') }}">
+                                        </div>
+                                        <!-- From Date  -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">From Date <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                                   name="employer_from_date[]" class="form-control fromDate" placeholder="" id="employer_fromDate_1"
+                                                   value="{{ old('from_date') ?? ($employer->from_date ?? '') }}">
+                                        </div>
+                                        <!-- To Date -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">To Date <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                                   name="employer_to_date[]" class="form-control toDate" placeholder="" id="employer_toDate_1"
+                                                   value="{{ old('to_date') ?? ($employer->to_date ?? '') }}">
+                                        </div>
+                                        <!-- Experience -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">Experience <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);"
+                                                   name="employer_experience[]" id="employer_totalExperience_1" class="form-control"
+                                                   value="{{ old('experience') ?? ($employer->experience ?? '') }}"
+                                                   readonly>
+                                        </div>
+                                        <!-- Responsibilities -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">Responsibilities <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="Responsibilities"
+                                                   class="form-control alphabetic-input" name="employer_responsibilities[]"
+                                                   id="employer_responsibilities_1" placeholder="Responsibilities "
+                                                   value="{{ old('responsibilities') ?? ($employer->responsibilities ?? '') }}">
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;justify-content: end;" class="">
+                                        <button class="remove-field-button m-1">-</button>
+                                        @if($ekey+1 == count($employment->employers))
+                                            <button class="add-field-button">+</button>
+                                        @endif
+                                    </div>
 
-                            <div class="row">
-                                <!-- Employer Details -->
-                                <h6>Employer Details</h6>
-                                <!-- Company / Individual -->
-                                <div class="col-md-4">
-                                    <label class="form-label">
-                                        Company / Individual <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        class="form-control " name="employer_company" id="employer_company"
-                                        placeholder="Company / Individual"
-                                        value="{{ old('employer_company') ?? ($employment->employer_company ?? '') }}">
-                                </div>
-                                <!-- E-MAIL -->
-                                <div class="col-md-4">
-                                    <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
-                                        class="form-control" name="employer_email" id="employer_email"
-                                        placeholder="email.com"
-                                        value="{{ old('employer_email') ?? ($employment->employer_email ?? '') }}">
-                                </div>
-                                <!-- Address -->
-                                <div class="col-md-4">
-                                    <label class="form-label">Address <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        class="form-control" name="employer_address" id="employer_address"
-                                        placeholder="Address"
-                                        value="{{ old('employer_address') ?? ($employment->employer_address ?? '') }}">
-                                </div>
-                                <!-- Phone -->
-                                <div class="col-md-4">
-                                    <label for="phoneInputField1" class="form-label">Phone
-                                        <span style="color: red;">*</span></label><br>
-                                    <input type="tel" class="phoneInputField" name="employer_phone" id="employer_phone"
-                                        value="{{ old('employer_phone') ?? ($employment->employer_phone ?? '') }}">
-                                    <p class="errorText" style="color: red;"></p>
-                                </div>
-                                <!-- Job Title -->
-                                <div class="col-md-4">
-                                    <label class="form-label">Job Title <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        class="form-control alphabetic-input" name="employer_job_title"
-                                        id="employer_job_title" placeholder="Job Title	"
-                                        value="{{ old('employer_job_title') ?? ($employment->employer_job_title ?? '') }}">
-                                </div>
-                                <!-- From Date  -->
-                                <div class="col-md-4">
-                                    <label class="form-label">From Date <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                        name="employer_from_date" class="form-control" placeholder="" id="fromDate"
-                                        onchange="validateDateRange()"
-                                        value="{{ old('employer_from_date') ?? ($employment->employer_from_date ?? '') }}">
-                                </div>
-                                <!-- To Date -->
-                                <div class="col-md-4">
-                                    <label class="form-label">To Date <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                        name="employer_to_date" class="form-control" placeholder="" id="toDate"
-                                        onchange="validateDateRange()"
-                                        value="{{ old('employer_to_date') ?? ($employment->employer_to_date ?? '') }}">
-                                    <p style="color: red;" id="validationMessage" class="error"></p>
-                                </div>
-                                <!-- Experience -->
-                                <div class="col-md-4">
-                                    <label class="form-label">Experience <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);"
-                                        name="employer_experience" id="totalExperience" class="form-control"
-                                        value="{{ old('employer_experience') ?? ($employment->employer_experience ?? '') }}"
-                                        readonly>
-                                </div>
-                                <!-- Responsibilities -->
-                                <div class="col-md-4">
-                                    <label class="form-label">Responsibilities <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="Responsibilities"
-                                        class="form-control alphabetic-input" name=" employer_responsibilities"
-                                        id="employer_responsibilities" placeholder="Responsibilities "
-                                        value="{{ old('employer_responsibilities') ?? ($employment->employer_responsibilities ?? '') }}">
                                 </div>
                             </div>
-                            <div style="display: flex;justify-content: end;" class="">
-                                <button class="remove-field-button m-1" style="display: none;">-</button>
-                                <button id="add-field-button">+</button>
-                            </div>
+                        @endforeach
+                    @else
+                        <div id="form-container">
+                            <div class="form-fields">
+                                <div class="row">
+                                    <!-- Employer Details -->
+                                    <h6>Employer Details</h6>
+                                    <!-- Company / Individual -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">
+                                            Company / Individual <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                            class="form-control " name="employer_name[]" id="employer_name_1"
+                                            placeholder="Company / Individual"
+                                            value="{{ old('company') ?? ($employment->company ?? '') }}">
+                                    </div>
+                                    <!-- E-MAIL -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
+                                            class="form-control" name="employer_email[]" id="employer_email_1"
+                                            placeholder="email.com"
+                                            value="{{ old('email') ?? ($employment->email ?? '') }}">
+                                    </div>
+                                    <!-- Address -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">Address <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                            class="form-control" name="employer_address[]" id="employer_address_1"
+                                            placeholder="Address"
+                                            value="{{ old('address') ?? ($employment->address ?? '') }}">
+                                    </div>
+                                    <!-- Phone -->
+                                    <div class="col-md-4">
+                                        <label for="phoneInputField1" class="form-label">Phone
+                                            <span style="color: red;">*</span></label><br>
+                                        <input type="tel" class="phoneInputField" name="employer_phone[]" id="employer_phone_1"
+                                            value="{{ old('phone') ?? ($employment->phone ?? '') }}">
+                                        <p class="errorText" style="color: red;"></p>
+                                    </div>
+                                    <!-- Job Title -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">Job Title <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                            class="form-control alphabetic-input" name="employer_job_title[]"
+                                            id="employer_job_title_1" placeholder="Job Title	"
+                                            value="{{ old('job_title') ?? ($employment->job_title ?? '') }}">
+                                    </div>
+                                    <!-- From Date  -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">From Date <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                            name="employer_from_date[]" class="form-control fromDate" placeholder="" id="employer_fromDate_1"
+                                            value="{{ old('from_date') ?? ($employment->from_date ?? '') }}">
+                                    </div>
+                                    <!-- To Date -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">To Date <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
+                                            name="employer_to_date[]" class="form-control toDate" placeholder="" id="employer_toDate_1"
+                                            value="{{ old('to_date') ?? ($employment->to_date ?? '') }}">
+                                        <p style="color: red;" id="validationMessage" class="error"></p>
+                                    </div>
+                                    <!-- Experience -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">Experience <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);"
+                                            name="employer_experience[]" id="employer_totalExperience_1" class="form-control"
+                                            value="{{ old('experience') ?? ($employment->experience ?? '') }}"
+                                            readonly>
+                                    </div>
+                                    <!-- Responsibilities -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">Responsibilities <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="Responsibilities"
+                                            class="form-control alphabetic-input" name="employer_responsibilities[]"
+                                            id="employer_responsibilities_1" placeholder="Responsibilities "
+                                            value="{{ old('responsibilities') ?? ($employment->responsibilities ?? '') }}">
+                                    </div>
+                                </div>
+                                <div style="display: flex;justify-content: end;" class="">
+                                    <button class="remove-field-button m-1" style="display: none;">-</button>
+                                    <button class="add-field-button">+</button>
+                                </div>
 
+                            </div>
                         </div>
-                    </div>
+                    @endif
                     <!-- REFERENCE DETAILS FROM PREVIOUS EMPLOYER -->
                     <div id="form-container2">
-                        <div class="form-fields">
-                            <div class="row">
-                                <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER</h6>
-                                <!-- Name -->
-                                <div class="col-md-4">
-                                    <label class="form-label">Name <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        class="form-control alphabetic-input" name="reference_name" id="reference_name"
-                                        placeholder="Name"
-                                        value="{{ old('reference_name') ?? ($employment->reference_name ?? '') }}">
+                        @if(isset($employment) && count($employment->references))
+                            @foreach($employment->references as $rkey => $reference)
+                                <div class="form-fields">
+                                    <div class="row">
+                                        <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER</h6>
+                                        <!-- Name -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">Name <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                                   class="form-control alphabetic-input" name="reference_name[]" id="reference_name_1"
+                                                   placeholder="Name"
+                                                   value="{{ old('name') ?? ($reference->name ?? '') }}">
+                                        </div>
+                                        <!-- company -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">Company <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                                   class="form-control " name="reference_company[]" id="reference_company_1"
+                                                   placeholder="Company"
+                                                   value="{{ old('company') ?? ($reference->company ?? '') }}">
+                                        </div>
+                                        <!-- position -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">Position <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                                   class="form-control alphabetic-input" name="reference_position[]"
+                                                   id="reference_position_1" placeholder="Position"
+                                                   value="{{ old('position') ?? ($reference->position ?? '') }}">
+                                        </div>
+                                        <!-- E-MAIL -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
+                                                   class="form-control" name="reference_email[]" id="reference_email_1"
+                                                   placeholder="email.com"
+                                                   value="{{ old('email') ?? ($reference->email ?? '') }}">
+                                        </div>
+                                        <!-- Phone -->
+                                        <div class="col-md-4">
+                                            <label for="phoneInputField2" class="form-label">Phone
+                                                <span style="color: red;">*</span></label>
+                                            <br>
+                                            <input type="tel" class="phoneInputField" name="reference_phone[]"
+                                                   id="reference_phone_1"
+                                                   value="{{ old('phone') ?? ($reference->phone ?? '') }}">
+                                            <p class="errorText" style="color: red;"></p>
+                                        </div>
+                                        <!-- Address -->
+                                        <div class="col-md-4">
+                                            <label class="form-label">Address <span style="color: red;">*</span></label>
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                                   class="form-control" name="reference_address[]" id="reference_address_1"
+                                                   placeholder="Address"
+                                                   value="{{ old('address') ?? ($reference->address ?? '') }}">
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;justify-content: end;" class="">
+                                        <button class="remove-field-button2 m-1">-</button>
+                                        @if($rkey+1 == count($employment->references))
+                                            <button class="add-field-button2">+</button>
+                                        @endif
+                                    </div>
                                 </div>
-                                <!-- company -->
-                                <div class="col-md-4">
-                                    <label class="form-label">Company <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        class="form-control " name="reference_company" id="reference_company"
-                                        placeholder="Company"
-                                        value="{{ old('reference_company') ?? ($employment->reference_company ?? '') }}">
+                            @endforeach
+                        @else
+                            <div class="form-fields">
+                                <div class="row">
+                                    <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER</h6>
+                                    <!-- Name -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">Name <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                            class="form-control alphabetic-input" name="reference_name[]" id="reference_name_1"
+                                            placeholder="Name"
+                                            value="{{ old('name') ?? '' }}">
+                                    </div>
+                                    <!-- company -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">Company <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                            class="form-control " name="reference_company[]" id="reference_company_1"
+                                            placeholder="Company"
+                                            value="{{ old('company') ?? '' }}">
+                                    </div>
+                                    <!-- position -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">Position <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                            class="form-control alphabetic-input" name="reference_position[]"
+                                            id="reference_position_1" placeholder="Position"
+                                            value="{{ old('position') ?? '' }}">
+                                    </div>
+                                    <!-- E-MAIL -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
+                                            class="form-control" name="reference_email[]" id="reference_email_1"
+                                            placeholder="email.com"
+                                            value="{{ old('email') ?? '' }}">
+                                    </div>
+                                    <!-- Phone -->
+                                    <div class="col-md-4">
+                                        <label for="phoneInputField2" class="form-label">Phone
+                                            <span style="color: red;">*</span></label>
+                                        <br>
+                                        <input type="tel" class="phoneInputField" name="reference_phone[]"
+                                            id="reference_phone_1"
+                                            value="{{ old('phone') ?? '' }}">
+                                        <p class="errorText" style="color: red;"></p>
+                                    </div>
+                                    <!-- Address -->
+                                    <div class="col-md-4">
+                                        <label class="form-label">Address <span style="color: red;">*</span></label>
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                            class="form-control" name="reference_address[]" id="reference_address_1"
+                                            placeholder="Address"
+                                            value="{{ old('address') ?? '' }}">
+                                    </div>
                                 </div>
-                                <!-- position -->
-                                <div class="col-md-4">
-                                    <label class="form-label">Position <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        class="form-control alphabetic-input" name="reference_position"
-                                        id="reference_position" placeholder="Position"
-                                        value="{{ old('reference_position') ?? ($employment->reference_position ?? '') }}">
-                                </div>
-                                <!-- E-MAIL -->
-                                <div class="col-md-4">
-                                    <label class="form-label">E-MAIL <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="email"
-                                        class="form-control" name="reference_email" id="reference_email"
-                                        placeholder="email.com"
-                                        value="{{ old('reference_email') ?? ($employment->reference_email ?? '') }}">
-                                </div>
-                                <!-- Phone -->
-                                <div class="col-md-4">
-                                    <label for="phoneInputField2" class="form-label">Phone
-                                        <span style="color: red;">*</span></label>
-                                    <br>
-                                    <input type="tel" class="phoneInputField " name="reference_phone"
-                                        id="reference_phone"
-                                        value="{{ old('reference_phone') ?? ($employment->reference_phone ?? '') }}">
-                                    <p class="errorText" style="color: red;"></p>
-                                </div>
-                                <!-- Address -->
-                                <div class="col-md-4">
-                                    <label class="form-label">Address <span style="color: red;">*</span></label>
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        class="form-control" name="reference_address" id="reference_address"
-                                        placeholder="Address"
-                                        value="{{ old('reference_address') ?? ($employment->reference_address ?? '') }}">
+                                <div style="display: flex;justify-content: end;" class="">
+                                    <button class="remove-field-button2 m-1" style="display: none;">-</button>
+                                    <button class="add-field-button2">+</button>
                                 </div>
                             </div>
-                            <div style="display: flex;justify-content: end;" class="">
-                                <button class="remove-field-button m-1" style="display: none;">-</button>
-                                <button id="add-field-button2">+</button>
-                            </div>
-                        </div>
+                        @endif
                     </div>
-
-
-
                     <br>
                     <label>
                         <h6 class="mb-3">Are You Legally Eligible to Work? <span class="red">*</span></h6>
@@ -223,13 +374,13 @@
                     <label>
                         <input type="radio" name="eligible_to_work" value="yes" id="yesRadio1"
                             {{ old('eligible_to_work') == 'yes' || (isset($employment) && $employment->eligible_to_work == 'yes') ? 'checked' : '' }}
-                            required onclick="hideInput('sub-text-input')"> Yes
+                            onclick="hideInput('sub-text-input')"> Yes
                     </label>
                     <br>
                     <label>
                         <input type="radio" name="eligible_to_work" value="no" id="noRadio1"
                             {{ old('eligible_to_work') == 'no' || (isset($employment) && $employment->eligible_to_work == 'no') ? 'checked' : '' }}
-                            required onclick="showInput('sub-text-input'); showNestedOption(this)"> No
+                            onclick="showInput('sub-text-input'); showNestedOption(this)"> No
                     </label>
 
                     <div class="col-md-12" id="sub-text-input"
@@ -246,15 +397,13 @@
                     <label>
                         <input type="radio" name="crime_status" id="yesRadio2" onclick="showInput('text-input')"
                             value="yes"
-                            {{ old('crime_status') == 'yes' || (isset($employment) && $employment->crime_status == 'yes') ? 'checked' : '' }}
-                            required> Yes
+                            {{ old('crime_status') == 'yes' || (isset($employment) && $employment->crime_status == 'yes') ? 'checked' : '' }}> Yes
                     </label>
                     <br>
                     <label>
                         <input type="radio" name="crime_status" id="noRadio2" onclick="hideInput('text-input')"
                             value="no"
-                            {{ old('crime_status') == 'no' || (isset($employment) && $employment->crime_status == 'no') ? 'checked' : '' }}
-                            required> No
+                            {{ old('crime_status') == 'no' || (isset($employment) && $employment->crime_status == 'no') ? 'checked' : '' }}> No
                     </label>
 
 
@@ -361,61 +510,81 @@
                 }
             });
         });
-    </script>
-    <!-- from date to date validation -->
-    <script>
-        function validateDateRange() {
-            const fromDate = new Date(document.getElementById("fromDate").value);
-            const toDate = new Date(document.getElementById("toDate").value);
-            const validationMessage = document.getElementById("validationMessage");
-
-            if (fromDate > toDate) {
-                validationMessage.textContent = "'The 'Issued Date' must be before the 'Expired Date.'";
-                validationMessage.style.display = "block";
-            } else {
-                validationMessage.textContent = "";
-                validationMessage.style.display = "none";
+        $(document).ready(function () {
+            <!-- from date to date validation -->
+            $(".fromDate, .toDate").on("input", validateDateRange);
+            function validateDateRange() {
+                var input_id = $(this).attr('id');
+                var idPartsFrom = input_id.match(/^employer_fromDate_(\d+)$/);
+                var idPartsTo = input_id.match(/^employer_toDate_(\d+)$/);
+                var incPart = 1;
+                if(idPartsFrom != null) {
+                    incPart = input_id.split('employer_fromDate_');
+                } else if(idPartsTo != null) {
+                    incPart = input_id.split('employer_toDate_');
+                }
+                const fromDate = new Date($("#employer_fromDate_"+incPart[1]).val());
+                const toDate = new Date($("#employer_toDate_"+incPart[1]).val());
+                var validationMessage = $("#validationMessage");
+                if (fromDate > toDate) {
+                    $('<p style="color: red;" id="validationMessage" class="error">The From Date must be before the To Date</p>').insertAfter("#employer_toDate_"+incPart[1]);
+                    validationMessage.show();
+                } else {
+                    validationMessage.remove();
+                    calculateExperience($("#employer_fromDate_"+incPart[1]), $("#employer_toDate_"+incPart[1]), incPart);
+                }
             }
-        }
-    </script>
-    {{-- Experience --}}
-    <script>
-        const fromDateInput = document.getElementById("fromDate");
-        const toDateInput = document.getElementById("toDate");
-        const totalExperienceInput = document.getElementById("totalExperience");
+            {{-- Experience --}}
 
-        fromDateInput.addEventListener("input", calculateExperience);
-        toDateInput.addEventListener("input", calculateExperience);
+            function calculateExperience(fromDateInput, toDateInput, input_name) {
+                console.log("#totalExperience_"+input_name[1]);
+                const totalExperienceInput = $("#employer_totalExperience_"+input_name[1]);
+                const fromDate = new Date(fromDateInput.val());
+                const toDate = new Date(toDateInput.val());
 
-        function calculateExperience() {
-            const fromDate = new Date(fromDateInput.value);
-            const toDate = new Date(toDateInput.value);
+                if (!isNaN(fromDate.getTime()) && !isNaN(toDate.getTime())) {
+                    // Calculate the difference in months and years
+                    const monthsDifference = (toDate.getMonth() - fromDate.getMonth()) + 12 * (toDate.getFullYear() - fromDate.getFullYear());
+                    const years = Math.floor(monthsDifference / 12);
+                    const months = monthsDifference % 12;
 
-            if (!isNaN(fromDate.getTime()) && !isNaN(toDate.getTime())) {
-                // Calculate the difference in months and years
-                const monthsDifference = (toDate.getMonth() - fromDate.getMonth()) + 12 * (toDate.getFullYear() - fromDate
-                    .getFullYear());
-                const years = Math.floor(monthsDifference / 12);
-                const months = monthsDifference % 12;
-
-                // Display the total experience in the input field
-                const totalExperience = years + " years and " + months + " months";
-                totalExperienceInput.value = totalExperience;
-            } else {
-                // If the input dates are not valid, clear the total experience field
-                totalExperienceInput.value = '';
+                    // Display the total experience in the input field
+                    const totalExperience = years + " years and " + months + " months";
+                    totalExperienceInput.val(totalExperience);
+                } else {
+                    // If the input dates are not valid, clear the total experience field
+                    totalExperienceInput.val('');
+                }
             }
-        }
+        });
     </script>
     <script>
         $(document).ready(function() {
             const formContainer = $("#form-container");
-            const addFieldButton = $("#add-field-button");
+            const addFieldButton = $(".add-field-button");
 
-            addFieldButton.click(function() {
+            addFieldButton.click(function(e) {
+                e.preventDefault();
                 const clonedFields = formContainer.find(".form-fields:last").clone(true);
-                clonedFields.find(".remove-field-button").show(); // Show the Remove button
+                $(".remove-field-button").show(); // Show the Remove button
+                clonedFields.find('input').each(function() {
+                    var input_id = $(this).attr('id');
+                    var idParts = input_id.match(/^employer_(name|email|address|phone|job_title|fromDate|toDate|totalExperience|responsibilities)_(\d+)$/);
+                    if (idParts) {
+                        var employerType = idParts[1]; // Extract the employer type as a string
+                        var numericValue = parseInt(idParts[2]); // Extract the numeric value
+                        $(this).attr('id', 'employer_'+employerType+'_'+(parseInt(numericValue)+1));
+                    }
+                });
+                /*input_name = input_name.split('employer_name_');
+                var siblings_id = parseInt(input_name[1])+1;
+                clonedFields.each("input", function (e) {
+                  console.log(e.attr('id'));
+                });*/
+                clonedFields.find("input").val('');
                 formContainer.append(clonedFields);
+                // Remove all buttons with the class "add-field-button" except for the last one
+                $('.add-field-button:not(:last)').hide();
             });
 
             formContainer.on("click", ".remove-field-button", function() {
@@ -424,15 +593,26 @@
 
             // Second set of form fields
             const formContainer2 = $("#form-container2");
-            const addFieldButton2 = $("#add-field-button2");
+            const addFieldButton2 = $(".add-field-button2");
 
-            addFieldButton2.click(function() {
+            addFieldButton2.click(function(e) {
+                e.preventDefault();
                 const clonedFields = formContainer2.find(".form-fields:last").clone(true);
-                clonedFields.find(".remove-field-button").show(); // Show the Remove button
+                $(".remove-field-button2").show(); // Show the Remove button
+                clonedFields.find('input').each(function() {
+                    var input_id = $(this).attr('id');
+                    var idParts = input_id.match(/^reference_(name|company|email|address|phone)_(\d+)$/);
+                    if (idParts) {
+                        var employerType = idParts[1]; // Extract the employer type as a string
+                        var numericValue = parseInt(idParts[2]); // Extract the numeric value
+                        $(this).attr('id', 'reference_'+employerType+'_'+(parseInt(numericValue)+1));
+                    }
+                });
                 formContainer2.append(clonedFields);
+                $('.add-field-button2:not(:last)').hide();
             });
 
-            formContainer2.on("click", ".remove-field-button", function() {
+            formContainer2.on("click", ".remove-field-button2", function() {
                 $(this).closest(".form-fields").remove(); // Remove the associated form fields
             });
         });

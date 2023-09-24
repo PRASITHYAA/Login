@@ -6,6 +6,7 @@ use App\Models\Card;
 use App\Models\City;
 use App\Models\JobApplication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class JobApplicationController extends Controller
 {
@@ -24,7 +25,7 @@ class JobApplicationController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        $jobApplication = $request->validate([
+        $validations = Validator::make($request->all(), [
             'sector_id' => 'required',
             'position_id' => 'required',
             'first_name' => 'required',
@@ -69,38 +70,51 @@ class JobApplicationController extends Controller
             'spouse_phone' => 'required_if:marital_status,married',
             'spouse_image' => 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
             'siblings' => 'required|in:yes,no',
-            'siblings_name' => 'required_if:siblings,yes',
-            'siblings_date_of_birth' => 'required_if:siblings,yes',
-            'siblings_email' => 'required_if:siblings,yes',
-            'siblings_phone' => 'required_if:siblings,yes',
-            'siblings_image' => 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
+            'siblings_name.*' => 'required_if:siblings,yes',
+            'siblings_date_of_birth.*' => 'required_if:siblings,yes',
+            'siblings_email.*' => 'required_if:siblings,yes',
+            'siblings_phone.*' => 'required_if:siblings,yes',
+            'siblings_image.*' => 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
         ]);
-
+        $data = $request->all();
+        //dd($validations->errors(),$data);
         // Upload and store father image
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public');
-            $jobApplication['image'] = $imagePath;
+            $data['image'] = $imagePath;
         }
         if ($request->hasFile('father_image')) {
             $fatherImagePath = $request->file('father_image')->store('images', 'public');
-            $jobApplication['father_image'] = $fatherImagePath;
+            $data['father_image'] = $fatherImagePath;
         }
 
         if ($request->hasFile('mother_image')) {
             $motherImagepath = $request->file('mother_image')->store('images', 'public');
-            $jobApplication['mother_image'] = $motherImagepath;
+            $data['mother_image'] = $motherImagepath;
         }
 
         if ($request->hasFile('spouse_image')) {
             $spouseImagepath = $request->file('spouse_image')->store('images', 'public');
-            $jobApplication['spouse_image'] = $spouseImagepath;
+            $data['spouse_image'] = $spouseImagepath;
         }
-        if ($request->hasFile('siblings_image')) {
-            $siblingsImagepath = $request->file('siblings_image')->store('images', 'public');
-            $jobApplication['siblings_image'] = $siblingsImagepath;
-        }
+        $data['user_id'] =  auth()->user()->id;
+        $jobApplication = JobApplication::create($data);
 
-        $jobApplication = JobApplication::create($jobApplication);
+        if($request->has('siblings_name')) {
+            foreach ($request->siblings_name as $key => $sibling) {
+                if (isset($request->file('siblings_image')[$key])) {
+                    $siblingsImagepath = $request->file('siblings_image')[$key]->store('images', 'public');
+                    $siblingImage = $siblingsImagepath;
+                }
+                $jobApplication->siblingsList()->create([
+                   'name' => $request->siblings_name[$key],
+                   'dob' => $request->siblings_date_of_birth[$key],
+                   'email' => $request->siblings_email[$key],
+                   'phone' => $request->siblings_phone[$key],
+                   'photo' => $siblingImage,
+                ]);
+            }
+        }
 
         return redirect()->route('card.view', ['job_application_id' => $jobApplication->id])->with('success', '  Job Application submitted successfully!');
     }
@@ -156,10 +170,10 @@ class JobApplicationController extends Controller
             'spouse_email' => 'required_if:marital_status,married',
             'spouse_phone' => 'required_if:marital_status,married',
             'siblings' => 'required|in:yes,no',
-            'siblings_name' => 'required_if:siblings,yes',
-            'siblings_date_of_birth' => 'required_if:siblings,yes',
-            'siblings_email' => 'required_if:siblings,yes',
-            'siblings_phone' => 'required_if:siblings,yes',
+            'siblings_name.*' => 'required_if:siblings,yes',
+            'siblings_date_of_birth.*' => 'required_if:siblings,yes',
+            'siblings_email.*' => 'required_if:siblings,yes',
+            'siblings_phone.*' => 'required_if:siblings,yes',
         ];
         if ($request->hasFile('image')) {
             $rules['image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
@@ -174,7 +188,7 @@ class JobApplicationController extends Controller
             $rules['spouse_image'] = 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
         }
         if ($request->hasFile('siblings_image')) {
-            $rules['siblings_image'] = 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
+            $rules['siblings_image.*'] = 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
         }
         $data = $request->validate($rules);
 
@@ -197,14 +211,27 @@ class JobApplicationController extends Controller
             $spouseImagePath = $request->file('spouse_image')->store('images', 'public');
             $data['spouse_image'] = $spouseImagePath;
         }
-        if ($request->hasFile('siblings_image')) {
-            $siblingsImagepath = $request->file('siblings_image')->store('images', 'public');
-            $data['siblings_image'] = $siblingsImagepath;
-        }
 
         $jobApplication = JobApplication::find($id);
         $jobApplication = $jobApplication->fill($data);
         $jobApplication->save();
+
+        if($request->has('siblings_name')) {
+            $jobApplication->siblingsList()->delete();
+            foreach ($request->siblings_name as $key => $sibling) {
+                if (isset($request->file('siblings_image')[$key])) {
+                    $siblingsImagepath = $request->file('siblings_image')[$key]->store('images', 'public');
+                    $siblingImage = $siblingsImagepath;
+                }
+                $jobApplication->siblingsList()->create([
+                    'name' => $request->siblings_name[$key],
+                    'dob' => $request->siblings_date_of_birth[$key],
+                    'email' => $request->siblings_email[$key],
+                    'phone' => $request->siblings_phone[$key],
+                    'photo' => $siblingImage ?? $request->siblings_image_old[$key],
+                ]);
+            }
+        }
 
         $card = Card::where('job_application_id', $id)->orderBy('id', 'desc')->first();
 

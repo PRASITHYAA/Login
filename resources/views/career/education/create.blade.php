@@ -51,18 +51,18 @@
                             onclick="showCheckboxes()"> Yes
                     </label>
                     <label>
-                        <input type="radio" name="radio_option" value="no" onclick="hideCheckboxes()"> No
+                        <input type="radio" name="radio_option" value="no" {{ isset($education) ? ($education->radio_option == 'no' ? 'checked' : '') : '' }} onclick="hideCheckboxes()"> No
                     </label>
                 </div>
 
                 <div id="checkboxes"
                     style="{{ isset($education) ? ($education->radio_option == 'yes' ? '' : 'display: none;') : 'display: none;' }}">
                     <!-- High School -->
-                    <input type="checkbox" onchange="toggleForm('form1')" name="qualification" value="high_school"
-                        {{ old('qualification') == 'high_school_name' || (isset($education) && $education->qualification == 'high_school_name') ? 'checked' : '' }}>
+                    <input type="checkbox" onchange="toggleForm('form1')" name="qualification[]" value="high_school"
+                        {{ old('qualification[]') == 'high_school' || (isset($education) && in_array('high_school', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     High School
                     <div id="form1" class="mt-3"
-                        style="{{ old('qualification') == 'high_school_name' || (isset($education) && $education->qualification == 'high_school_name') ? '' : 'display: none;' }}">
+                        style="{{ old('qualification') == 'high_school' || (isset($education) && in_array('high_school', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
                         <h4>
                             High School
                         </h4>
@@ -72,21 +72,21 @@
                                 <label class="form-label ">Institution Name <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control qualification alphabetic-input" placeholder="Institution Name" id="high_school_name"
-                                    name="high_school_name" value="{{ $education->high_school_name ?? '' }}">
+                                    name="high_school_name" value="{{ old('high_school_name') ?? $education->high_school_name ?? '' }}">
                             </div>
                             <!-- High school City -->
                             <div class="col-lg-2">
                                 <label class="form-label">Town/City <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control  qualification alphabetic-input" placeholder="Town/City" id="high_school_city"
-                                    name="high_school_city" value="{{ $education->high_school_city ?? '' }}">
+                                    name="high_school_city" value="{{ old('high_school_city') ?? $education->high_school_city ?? '' }}">
                             </div>
                             <!-- High school Address -->
                             <div class="col-lg-2">
                                 <label class="form-label">Address <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control" placeholder="Address" id="high_school_address"
-                                    name="high_school_address" value="{{ $education->high_school_address ?? '' }}">
+                                    name="high_school_address" value="{{ old('high_school_address') ?? $education->high_school_address ?? '' }}">
                             </div>
                             <!-- High school From Date -->
                             <div class="col-lg-2">
@@ -94,7 +94,7 @@
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                     class="form-control" placeholder="From (Date)" id="high_school_form_date"
-                                    name="high_school_form_date" value="{{ $education->high_school_form_date ?? '' }}">
+                                    name="high_school_form_date" value="{{ old('high_school_form_date') ?? $education->high_school_form_date ?? '' }}">
                             </div>
                             <!-- High school To Date -->
                             <div class="col-lg-2">
@@ -102,7 +102,7 @@
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                     class="form-control qualification" placeholder="To (Date)" id="high_school_to_date"
-                                    name="high_school_to_date" value="{{ $education->high_school_to_date ?? '' }}">
+                                    name="high_school_to_date" value="{{ old('high_school_to_date') ?? $education->high_school_to_date ?? '' }}">
                             </div>
                             <!-- High school Year of Passing-->
                             <div class="col-lg-2">
@@ -111,7 +111,7 @@
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
                                     name="high_school_year_of_passing" class="form-control" placeholder="Year of Passing"
                                     id="high_school_year_of_passing"
-                                    value="{{ $education->high_school_year_of_passing ?? '' }}">
+                                    value="{{ old('high_school_year_of_passing') ?? $education->high_school_year_of_passing ?? '' }}">
                             </div>
                             <!-- High school GPA Percentage-->
                             <div class="col-lg-2 mt-3">
@@ -119,7 +119,7 @@
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
                                     class="form-control qualification" placeholder="0" id="high_school_percentage"
-                                    name="high_school_percentage" value="{{ $education->high_school_percentage ?? '' }}">
+                                    name="high_school_percentage" value="{{ old('high_school_percentage') ?? $education->high_school_percentage ?? '' }}">
                             </div>
                             <!-- High school Class -->
                             <div class="col-lg-2 mt-3">
@@ -192,11 +192,11 @@
                     <br>
 
                     <!-- Higher Secondary -->
-                    <input type="checkbox" onchange="toggleForm('form2')" name="qualification" value="higher_secondary"
-                        {{ old('qualification') == 'higher_secondary' || (isset($education) && $education->qualification == 'higher_secondary') ? 'checked' : '' }}>
+                    <input type="checkbox" onchange="toggleForm('form2')" name="qualification[]" value="higher_secondary"
+                        {{ old('qualification') == 'higher_secondary' || (isset($education) && in_array('higher_secondary', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     Higher Secondary
                     <div id="form2" class="mt-3"
-                        style="{{ old('qualification') == 'higher_secondary' || (isset($education) && $education->qualification == 'higher_secondary') ? '' : 'display: none;' }}">
+                        style="{{ old('qualification') == 'higher_secondary' || (isset($education) && in_array('higher_secondary', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
                         <!-- Higher Secondary -->
                         <h4> Higher Secondary</h4>
                         <!-- Higher Secondary Institution Name-->
@@ -340,12 +340,12 @@
                     <br>
 
                     {{-- Diploma --}}
-                    <input type="checkbox" onchange="toggleForm('form3')" name="qualification" value="diploma"
-                        {{ old('qualification') == 'diploma' || (isset($education) && $education->qualification == 'diploma') ? 'checked' : '' }}>
+                    <input type="checkbox" onchange="toggleForm('form3')" name="qualification[]" value="diploma"
+                        {{ old('qualification') == 'diploma' || (isset($education) && in_array('diploma', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     Diploma
 
                     <div id="form3" class="mt-3"
-                        style="{{ old('qualification') == 'diploma' || (isset($education) && $education->qualification == 'diploma') ? '' : 'display: none;' }}">
+                        style="{{ old('qualification') == 'diploma' || (isset($education) && in_array('diploma', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
                         <!-- Diploma -->
                         <h4>
                             Diploma
@@ -474,11 +474,11 @@
                     <br>
 
                     {{-- Bachelors Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form4')" name="qualification" value="bachelor_degree"
-                        {{ old('qualification') == 'bachelor_degree' || (isset($education) && $education->qualification == 'bachelor_degree') ? 'checked' : '' }}>
+                    <input type="checkbox" onchange="toggleForm('form4')" name="qualification[]" value="bachelor_degree"
+                        {{ old('qualification') == 'bachelor_degree' || (isset($education) && in_array('bachelor_degree', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     Bachelors Degree
                     <div id="form4" class="mt-3"
-                        style="{{ old('qualification') == 'bachelor_degree' || (isset($education) && $education->qualification == 'bachelor_degree') ? '' : 'display: none;' }}">
+                        style="{{ old('qualification') == 'bachelor_degree' || (isset($education) && in_array('bachelor_degree', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
 
                         <!-- Bachelors Degree -->
                         <h4>
@@ -628,11 +628,11 @@
                     <br>
 
                     {{-- Master's Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form5')" name="qualification" value="master_degree"
-                        {{ old('qualification') == 'master_degree' || (isset($education) && $education->qualification == 'master_degree') ? 'checked' : '' }}>
+                    <input type="checkbox" onchange="toggleForm('form5')" name="qualification[]" value="master_degree"
+                        {{ old('qualification') == 'master_degree' || (isset($education) && in_array('master_degree', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     Master's Degree
                     <div id="form5" class="mt-3"
-                        style="{{ old('qualification') == 'master_degree' || (isset($education) && $education->qualification == 'master_degree') ? '' : 'display: none;' }}">
+                        style="{{ old('qualification') == 'master_degree' || (isset($education) && in_array('master_degree', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
 
                         <!-- Master's Degree -->
                         <h4> Master's Degree </h4>
@@ -763,11 +763,11 @@
                     <br>
 
                     {{-- Doctorate Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form6')" name="qualification" value="doctorate_degree"
-                        {{ old('qualification') == 'doctorate_degree' || (isset($education) && $education->qualification == 'doctorate_degree') ? 'checked' : '' }}>
+                    <input type="checkbox" onchange="toggleForm('form6')" name="qualification[]" value="doctorate_degree"
+                        {{ old('qualification') == 'doctorate_degree' || (isset($education) && in_array('doctorate_degree', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     Doctorate Degree
                     <div id="form6" class="mt-3"
-                        style="{{ old('qualification') == 'doctorate_degree' || (isset($education) && $education->qualification == 'doctorate_degree') ? '' : 'display: none;' }}">
+                        style="{{ old('qualification') == 'doctorate_degree' || (isset($education) && in_array('doctorate_degree', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
                         <!-- Doctorate Degree -->
                         <h4>
                             Doctorate Degree
