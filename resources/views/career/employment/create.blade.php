@@ -107,7 +107,7 @@
                                         <div class="col-md-4">
                                             <label class="form-label">Job Title <span style="color: red;">*</span></label>
                                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                                   class="form-control alphabetic-input" name="employer_job_title_1"
+                                                   class="form-control alphabetic-input" name="employer_job_title[]"
                                                    id="employer_job_title[]" placeholder="Job Title	"
                                                    value="{{ old('employer_job_title') ?? ($employer->job_title ?? '') }}">
                                         </div>
@@ -143,7 +143,7 @@
                                         </div>
                                     </div>
                                     <div style="display: flex;justify-content: end;" class="">
-                                        <button class="remove-field-button m-1">-</button>
+                                        <button class="remove-field-button m-1" style="{{ ($ekey+1 != count($employment->employers)) ? '' : 'display:none;' }}">-</button>
                                         @if($ekey+1 == count($employment->employers))
                                             <button class="add-field-button">+</button>
                                         @endif
@@ -298,7 +298,7 @@
                                         </div>
                                     </div>
                                     <div style="display: flex;justify-content: end;" class="">
-                                        <button class="remove-field-button2 m-1">-</button>
+                                        <button class="remove-field-button2 m-1" style="{{ ($rkey+1 != count($employment->references)) ? '' : 'display:none;' }}">-</button>
                                         @if($rkey+1 == count($employment->references))
                                             <button class="add-field-button2">+</button>
                                         @endif

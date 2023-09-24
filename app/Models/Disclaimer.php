@@ -13,6 +13,7 @@ class Disclaimer extends Model
         'job_application_id',
         'expected_date_to_join',
         'current_salary',
+        'currency',
         'expected_salary',
         'disclaimer_signature',
         'disclaimer_date',

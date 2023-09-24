@@ -62,10 +62,14 @@
                         value="{{ old('current_salary') ?? ($disclaimer->current_salary ?? '') }}" required>
                 </div>
                 <!-- Expected Salary -->
-                <div class="col-md-4">
-                    <label class="form-label">Expected Salary <span style="color: red;">*</span></label>
-                    <input type="number" class="form-control" id="expected_salary" name="expected_salary"
-                        placeholder="Expected Salary" value="{{ old('expected_salary') ?? ($disclaimer->expected_salary ?? '') }}" required>
+                <div class="col-md-4 row">
+                    <label class="form-label mt-3">Expected Salary <span style="color: red;">*</span></label>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="currency" name="currency" placeholder="USD" value="{{ old('currency') ?? ($disclaimer->currency ?? '') }}" required>
+                    </div>
+                    <div class="col-md-9">
+                        <input type="number" class="form-control" id="expected_salary" name="expected_salary" placeholder="Expected Salary" value="{{ old('expected_salary') ?? ($disclaimer->expected_salary ?? '') }}" required>
+                    </div>
                 </div>
                 <!-- paragraph -->
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp

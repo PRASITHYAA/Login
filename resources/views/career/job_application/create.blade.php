@@ -566,7 +566,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 mt-5">
-                                                            <button class="remove-field-button">-</button>
+                                                            <button class="remove-field-button" style="{{ ($skey+1 != count($jobApplication->siblingsList)) ? '' : 'display:none;' }}">-</button>
                                                             <!-- Add Remove button -->
                                                             @if($skey+1 == count($jobApplication->siblingsList))
                                                                 <button class="add-field-button">+</button>

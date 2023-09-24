@@ -95,15 +95,19 @@
     <li><strong>Spouse Image:</strong> <img src="{{ $spouse_image }}" alt="Spouse's Image"></li>
 </ul>
 <h2>Siblings Information</h2>
-<ul>
-    <li><strong>Siblings:</strong> {{ $siblings }}</li>
-    <li><strong>Siblings Name:</strong> {{ $siblings_name }}</li>
-    <li><strong>Siblings Date of Birth:</strong> {{ $siblings_date_of_birth }}</li>
-    <li><strong>Siblings Email:</strong> {{ $siblings_email }}</li>
-    <li><strong>Siblings Phone:</strong> {{ $siblings_phone }}</li>
-    <!-- Add more sibling information fields here -->
-</ul>
 
+@if($siblings == 'yes')
+    @foreach($siblingsData as $sib)
+        <ul>
+            <li><strong>Siblings Name:</strong> {{ $sib['name'] }}</li>
+            <li><strong>Siblings Date of Birth:</strong> {{ $sib['dob'] }}</li>
+            <li><strong>Siblings Email:</strong> {{ $sib['email'] }}</li>
+            <li><strong>Siblings Phone:</strong> {{ $sib['phone'] }}</li>
+            <!-- Add more sibling information fields here -->
+        </ul>
+
+    @endforeach
+@endif
 <!-- Aadhar Information -->
 <h2>Aadhar Information</h2>
 <ul>
@@ -198,28 +202,35 @@
 </ul>
 <!-- Experience Information -->
 <h2>Experience Information</h2>
-<ul>
-    <li><strong>Company:</strong> {{ $employer_company }}</li>
-    <li><strong>Email:</strong> {{ $employer_email }}</li>
-    <li><strong>Address:</strong> {{ $employer_address }}</li>
-    <li><strong>Phone:</strong> {{ $employer_phone }}</li>
-    <li><strong>Job Title:</strong> {{ $employer_job_title }}</li>
-    <li><strong>From Date:</strong> {{ $employer_from_date }}</li>
-    <li><strong>To Date:</strong> {{ $employer_to_date }}</li>
-    <li><strong>Experience:</strong> {{ $employer_experience }}</li>
-    <li><strong>Responsibilities:</strong> {{ $employer_responsibilities }}</li>
-</ul>
-
+@if(count($employmentEmployer))
+    @foreach($employmentEmployer as $emp)
+        <ul>
+            <li><strong>Company:</strong> {{ $emp['name'] }}</li>
+            <li><strong>Email:</strong> {{ $emp['email'] }}</li>
+            <li><strong>Address:</strong> {{ $emp['address'] }}</li>
+            <li><strong>Phone:</strong> {{ $emp['phone'] }}</li>
+            <li><strong>Job Title:</strong> {{ $emp['job_title'] }}</li>
+            <li><strong>From Date:</strong> {{ $emp['from_date'] }}</li>
+            <li><strong>To Date:</strong> {{ $emp['to_date'] }}</li>
+            <li><strong>Experience:</strong> {{ $emp['experience'] }}</li>
+            <li><strong>Responsibilities:</strong> {{ $emp['responsibilities'] }}</li>
+        </ul>
+    @endforeach
+@endif
 <!-- Reference Information -->
 <h2>Reference Information</h2>
-<ul>
-    <li><strong>Name (Reference):</strong> {{ $reference_name }}</li>
-    <li><strong>Company:</strong> {{ $reference_company }}</li>
-    <li><strong>Position:</strong> {{ $reference_position }}</li>
-    <li><strong>Email:</strong> {{ $reference_email }}</li>
-    <li><strong>Phone:</strong> {{ $reference_phone }}</li>
-    <!-- Note: You have 'reference_phone' listed twice in the PHP variables; you may want to correct this if it's not intentional. -->
-</ul>
+@if(count($employmentReference))
+    @foreach($employmentReference as $ref)
+        <ul>
+            <li><strong>Name (Reference):</strong> {{ $ref['name'] }}</li>
+            <li><strong>Company:</strong> {{ $ref['company'] }}</li>
+            <li><strong>Position:</strong> {{ $ref['position'] }}</li>
+            <li><strong>Email:</strong> {{ $ref['email'] }}</li>
+            <li><strong>Phone:</strong> {{ $ref['phone'] }}</li>
+            <!-- Note: You have 'reference_phone' listed twice in the PHP variables; you may want to correct this if it's not intentional. -->
+        </ul>
+    @endforeach
+@endif
 <!-- Achievement -->
 <h2>Achievement</h2>
 <p>{{ $achievement }}</p>

@@ -164,7 +164,7 @@
                     </div>
                 </div>
                 <div class="col-md-3  mt-4 mb-5">
-                    <label class="form-label">Upload All Your Project Documents Here<span class="red">*</span>
+                    <label class="form-label">Upload Your Curricular/Extracurricular Certificate Here<span class="red">*</span>
                         <div class="input-group">
                             <input type="file" class="form-control" id="extra_curricular_skills_project_document"
                                 name="extra_curricular_skills_project_document"
