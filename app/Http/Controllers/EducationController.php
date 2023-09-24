@@ -23,7 +23,7 @@ class EducationController extends Controller
             [
                 'job_application_id' => 'required',
                 'radio_option' => 'required|in:yes,no',
-                'qualification' => 'required_if:radio_option,yes|in:high_school,higher_secondary,diploma,bachelor_degree,master_degree,doctorate_degree',
+                'qualification' => 'required_if:radio_option,yes',//|in:high_school,higher_secondary,diploma,bachelor_degree,master_degree,doctorate_degree',
                 // high school
                 'high_school_name' => 'required_if:qualification.*,in:high_school',
                 'high_school_city' => 'required_if:qualification.*,in:high_school',
