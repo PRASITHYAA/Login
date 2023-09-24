@@ -30,8 +30,8 @@
         }
     </style>
     <div class="container-fluid">
-        <div class="container mt-5 d-flex align-items-center justify-content-center ">
-            <div class="card " style="width: 40%">
+        <div class="container mt-5  d-flex align-items-center justify-content-center ">
+            <div class="col-lg-5 border">
 
             {{-- error display --}}
             @if ($errors->has('email'))
@@ -41,7 +41,7 @@
             @endif
 
             {{-- form start --}}
-            <form class="mt-3 mx-3" method="POST" action="{{ url('/store') }}">
+            <form class="mt-3 mx-3 " method="POST" action="{{ url('/store') }}">
                 <h2>REGISTRATION FORM</h2>
                 <p>Please fill in the information below </p>
                 {{-- name --}}

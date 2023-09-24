@@ -11,85 +11,92 @@
             <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
             <h2 class="text-center p-4">Government-Issued Identification Cards (IDs)</h2>
             <p style="font-weight: bold;">ID Card You Have </p>
-            <label>
-                <input type="checkbox" id="aadharcard" name="identity_type" value="aadhar" checked> AADHAR CARD
-            </label>
+            <label>Does Your Permanent Address is Different</label>
+            @php
+                $jobApplication = \App\Models\JobApplication::find(request()->id);
+                $cards = $jobApplication->cards;
+            @endphp
 
-            <label>
-                <input type="checkbox" id="passport" name="identity_type" value="passport" checked>
-                PASSPORT
-            </label>
-            <div id="inputFieldsaadharcard">
+            @foreach ($cards as $card)
+                <br><br>
+                <label>
+                    <input type="checkbox" id="aadhar" class="address-type" name="identity_type" value="aadhar"
+                        {{ old('identity_type') == 'aadhar' || (isset($card) && $card->identity_type == 'aadhar') ? 'checked' : (old('identity_type') == '' && !isset($card) ? 'checked' : '') }}
+                        disabled> AADHAR CARD
+                </label>
+                <label>
+                    <input type="checkbox" id="passport" class="address-type" name="identity_type" value="passport"
+                        {{ old('identity_type') == 'passport' || (isset($card) && $card->identity_type == 'passport') ? 'checked' : '' }}
+                        disabled> PASSPORT
+                </label>
+                <br>
+                <br>
+
                 <div class="row">
-                    @php
-                        $jobApplication = \App\Models\JobApplication::find(request()->id);
-                        $cards = $jobApplication->cards;
-                    @endphp
+                    <!-- aadhar card -->
+                    <div id="inputFieldsaadharcard"
+                        class="col-lg-6 {{ old('identity_type') == 'aadhar' || (isset($card) && $card->identity_type == 'aadhar') ? '' : 'hidden' }}">
+                        <h4 class="text-center" style="font-weight: bold;">AADHAR CARD</h4>
 
-                    @foreach ($cards as $card)
-                        <!-- aadhar card -->
-                        <div class="col-lg-6">
-                            <h4 class="text-center" style="font-weight: bold;">AADHAR CARD</h4>
+                        <div class="col mt-4">
+                            <label class="form-label pt-2">Aadhar Name</label>
+                            <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                value="{{ $card->aadhar_name }}" readonly>
+                        </div>
+                        <!-- aadharidnumber -->
+                        <div class="col mt-4">
+                            <label class="form-label">IDs Number </label>
+                            <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                value="{{ $card->aadhar_id_number }}" readonly>
+                        </div>
+                        <!-- aadharissuedcountry -->
+                        <div class="col mt-4">
+                            <label for="" class="form-label">Country </label>
+                            <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                value="{{ $card->aadhar_issued_country }}" readonly>
+                        </div>
+                        <!-- aadharissuedstate -->
+                        <div class="col mt-4">
+                            <label class="form-label">State </label>
+                            <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                value="{{ $card->aadhar_issued_state }}" readonly>
 
-                            <div class="col mt-4">
-                                <label class="form-label pt-2">Aadhar Name</label>
-                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                    value="{{ $card->aadhar_name }}" readonly>
-                            </div>
-                            <!-- aadharidnumber -->
-                            <div class="col mt-4">
-                                <label class="form-label">IDs Number </label>
-                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                    value="{{ $card->aadhar_id_number }}" readonly>
-
-                            </div>
-                            <!-- aadharissuedcountry -->
-                            <div class="col mt-4">
-                                <label for="" class="form-label">Country </label>
-                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                    value="{{ $card->aadhar_issued_country }}" readonly>
-                            </div>
-                            <!-- aadharissuedstate -->
-                            <div class="col mt-4">
-                                <label class="form-label">State </label>
-                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                    value="{{ $card->aadhar_issued_state }}" readonly>
-
-                            </div>
-                            <!-- aadharissuedplace -->
-                            <div class="col mt-4">
-                                <label class="form-label">Issued Place</label>
-                                <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
-                                    value="{{ $card->aadhar_issued_place }}" readonly>
-                            </div>
-                            <!-- aadharimage -->
-                            <div class="col mt-4">
-                                <label class="form-label">Upload ID- 1st Page </label><br>
-                                @if ($card->aadhar_image)
-                                    <img id="aadhar_image" src="{{ asset('storage/' . $card->aadhar_image) }}"
-                                        alt="Job Application Image" style="max-width: 100%;">
-                                @endif
-
-                            </div>
-                            <!-- aadharimagepage  -->
-                            <div class="col mt-4">
-                                <label for="validationDefaultUpload" class="form-label">Upload ID- 2st Page </label><br>
-                                @if ($card->aadhar_image_page)
-                                    <img id="aadhar_image_page" src="{{ asset('storage/' . $card->aadhar_image_page) }}"
-                                        alt="Job Application Image" style="max-width: 100%;">
-                                @endif
-                            </div>
-                            <!-- button -->
-                            <a style="font-weight: bold;" class="btn btn-secondary mt-5"
-                                href="{{ route('career.job_application.show', ['id' => $jobApplication->id - 1]) }}">Previous</a>
-                            <a style="font-weight: bold;" class="btn btn-secondary mt-5 mx-3"
+                        </div>
+                        <!-- aadharissuedplace -->
+                        <div class="col mt-4">
+                            <label class="form-label">Issued Place</label>
+                            <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
+                                value="{{ $card->aadhar_issued_place }}" readonly>
+                        </div>
+                        <!-- aadharimage -->
+                        <div class="col mt-4">
+                            <label class="form-label">Upload ID- 1st Page </label><br>
+                            @if ($card->aadhar_image)
+                                <img id="aadhar_image" src="{{ asset('storage/' . $card->aadhar_image) }}"
+                                    alt="Aadhar Card Image" style="max-width: 100%;">
+                            @endif
+                        </div>
+                        <!-- aadharimagepage  -->
+                        <div class="col mt-4">
+                            <label for="validationDefaultUpload" class="form-label">Upload ID- 2st Page </label><br>
+                            @if ($card->aadhar_image_page)
+                                <img id="aadhar_image_page" src="{{ asset('storage/' . $card->aadhar_image_page) }}"
+                                    alt="Aadhar Card Image" style="max-width: 100%;">
+                            @endif
+                        </div>
+                        <!-- button -->
+                        <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
+                            <a style="font-weight: bold; " class="btn btn-secondary "
+                                href="{{ route('career.job_application.show', request()->job_application_id ?? (isset($card) ? $card->job_application_id : '')) }}">Previous</a>
+                            <a style="font-weight: bold;" class="btn btn-secondary  mx-3"
                                 href="{{ route('career.education.show', ['id' => $jobApplication->id]) }}">Next</a>
-
                             <br>
                             <br>
                         </div>
+                    </div>
+                    <div id="inputFieldspassport"
+                        class="{{ old('identity_type') == 'passport' || (isset($card) && $card->identity_type == 'passport') ? '' : 'hidden' }}">
                         <div class="col-lg-6">
-                            <!-- passport -->
                             <h4 class="text-center" style="font-weight: bold;">PASSPORT</h4>
                             <!-- passportname -->
                             <div class="col mt-4">
@@ -158,10 +165,9 @@
                                 @endif
                             </div>
                         </div>
+                    </div>
                 </div>
-                @endforeach
-            </div>
         </div>
-    </div>
+        @endforeach
     </div>
 @endsection
