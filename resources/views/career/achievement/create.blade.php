@@ -65,17 +65,17 @@
 
                 </div>
 
-                <h4>Have you been published any conference papers/attended conferences? </h4>
+                <h4 class="mt-4">Have you been published any conference papers/attended conferences? </h4>
                 <!-- first one -->
 
                 <label>
-                    <input type="radio" name="conference_status" value="yes" id="yesRadio1" onclick="showInput()"
+                    <input type="radio"  class="mt-3" name="conference_status" value="yes" id="yesRadio1" onclick="showInput()"
                         {{ old('conference_status') == 'yes' || (isset($achievement) && $achievement->conference_status == 'yes') ? 'checked' : '' }}>
                     Yes
                 </label>
                 <br>
                 <label>
-                    <input type="radio" name="conference_status" value="no" id="noRadio1" onclick="hideInput()"
+                    <input type="radio"  name="conference_status" value="no" id="noRadio1" onclick="hideInput()"
                         {{ old('conference_status') == 'no' || (isset($achievement) && $achievement->conference_status == 'no') ? 'checked' : '' }}>
                     No
                 </label>
@@ -125,7 +125,7 @@
                         limit your writing for this part to a maximum of 500 words and upload the detailed project
                         file.
                     </p>
-                    <label for="exampleFormControlInput1" class="form-label">Final Year Projects </label>
+                    <label for="exampleFormControlInput1" class="form-label">Final Year Projects: In PDF Format </label>
                         <div class="form-container">
                             <div class="form-fields">
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control open-input-2-input  mt-4"
@@ -138,10 +138,10 @@
                             <button class="add-field-button btn-right m-2">+</button>
                         </div>
 
-                    <div class="col-md-3  p-2">
-                        <label class="form-label">Upload All Your Project Documents Here<span class="red">*</span>
+                    <div class="col-md-6 mt-4">
+                        <label class="form-label">Upload All Your Project Documents Here : In PDF Format<span class="red">*</span>
                             <div class="input-group">
-                                <input type="file" class="form-control open-input-2-input" id="project_document"
+                                <input type="file" class="form-control open-input-2-input mt-3" id="project_document"
                                     name="project_document" {{ !isset($achievement->project_document) ? 'required' : '' }}>
                             </div>
                             @if (isset($achievement) && $achievement->project_document)
@@ -163,10 +163,10 @@
                             name="extra_curricular_skills" rows="3" required>{{ old('extra_curricular_skills') ?? ($achievement->extra_curricular_skills ?? '') }}</textarea>
                     </div>
                 </div>
-                <div class="col-md-3  mt-4 mb-5">
-                    <label class="form-label">Upload Your Curricular/Extracurricular Certificate Here<span class="red">*</span>
+                <div class="col-md-6  mt-4 mb-5">
+                    <label class="form-label">Upload Your Curricular/Extracurricular Certificate Here: In PDF Format<span class="red">*</span>
                         <div class="input-group">
-                            <input type="file" class="form-control" id="extra_curricular_skills_project_document"
+                            <input type="file" class="form-control mt-3" id="extra_curricular_skills_project_document"
                                 name="extra_curricular_skills_project_document"
                                 {{ !isset($achievement->extra_curricular_skills_project_document) ? 'required' : '' }}>
                         </div>
@@ -201,7 +201,7 @@
                                 <span class="red">*</span>
                             </label>
                             <div class="input-group">
-                                <input type="file" class="form-control open-input-3-input"
+                                <input type="file" class="form-control open-input-3-input mt-2 "
                                     id="yes_curriculum_pdf_format" name="yes_curriculum_pdf_format"
                                     {{ !isset($achievement->yes_curriculum_pdf_format) ? 'required' : '' }}>
                             </div>
@@ -213,7 +213,7 @@
                     </div>
                 </div>
                 <div>
-                    <p> Are You Willing to Consent to a Background Check? <span class="red">*</span></p>
+                    <p class="mt-3"> Are You Willing to Consent to a Background Check? <span class="red">*</span></p>
 
                     <label>
                         <input type="radio" name="background_check_status" value="yes" id="yesRadio4"
@@ -242,7 +242,7 @@
 
                 <!-- buttons -->
                 <div style="display: flex;justify-content: end; align-items: center;">
-                    <a style="display: flex;align-items: center;; " class="btn btn-secondary mx-3 mt-5"
+                    <a style="display: flex;align-items: center; " class="btn btn-secondary mx-3 mt-5"
                         href="{{ route('career.employment.edit', request()->employment_id ?? ($employment_id ?? '')) }}">Previous</a>
                     <button class="btn btn-primary mt-5 mx-3 ">Save And Next </button>
                 </div>
@@ -291,23 +291,22 @@
 
             });
             $('#yesRadio3').click(function() {
-                $('#input-field-3').show();
+            $('#input-field-3').show();
+            $('.open-input-3-input').attr('required', true);
+        });
 
-            });
-            $('#noRadio3').click(function() {
-                $('#input-field-3').hide();
-
-            });
+        $('#noRadio3').click(function() {
+            $('#input-field-3').hide();
+            $('.open-input-3-input').attr('required', false);
+        });
             $('#yesRadio4').click(function() {
                 $('#input-field-4').hide();
-                $('#no_curriculum_explain').prop('required',
-                    true);
+                $('#no_curriculum_explain').prop('required',  false);
             });
 
             $('#noRadio4').click(function() {
                 $('#input-field-4').show();
-                $('#no_curriculum_explain').prop('required',
-                    false);
+                $('#no_curriculum_explain').prop('required', true);
             });
         });
     </script>
