@@ -97,21 +97,21 @@ class JobApplicationController extends Controller
             $spouseImagepath = $request->file('spouse_image')->store('images', 'public');
             $data['spouse_image'] = $spouseImagepath;
         }
-        $data['user_id'] =  auth()->user()->id;
+        $data['user_id'] = auth()->user()->id;
         $jobApplication = JobApplication::create($data);
 
-        if($request->has('siblings_name')) {
+        if ($request->has('siblings_name')) {
             foreach ($request->siblings_name as $key => $sibling) {
                 if (isset($request->file('siblings_image')[$key])) {
                     $siblingsImagepath = $request->file('siblings_image')[$key]->store('images', 'public');
                     $siblingImage = $siblingsImagepath;
                 }
                 $jobApplication->siblingsList()->create([
-                   'name' => $request->siblings_name[$key],
-                   'dob' => $request->siblings_date_of_birth[$key],
-                   'email' => $request->siblings_email[$key],
-                   'phone' => $request->siblings_phone[$key],
-                   'photo' => $siblingImage,
+                    'name' => $request->siblings_name[$key],
+                    'dob' => $request->siblings_date_of_birth[$key],
+                    'email' => $request->siblings_email[$key],
+                    'phone' => $request->siblings_phone[$key],
+                    'photo' => $siblingImage,
                 ]);
             }
         }
@@ -216,7 +216,7 @@ class JobApplicationController extends Controller
         $jobApplication = $jobApplication->fill($data);
         $jobApplication->save();
 
-        if($request->has('siblings_name')) {
+        if ($request->has('siblings_name')) {
             $jobApplication->siblingsList()->delete();
             foreach ($request->siblings_name as $key => $sibling) {
                 if (isset($request->file('siblings_image')[$key])) {
@@ -261,6 +261,7 @@ class JobApplicationController extends Controller
 
         return response()->json($cities);
     }
+
     public function destroy($id)
     {
         $jobApplication = JobApplication::find($id);

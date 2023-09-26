@@ -99,9 +99,6 @@
                         <!-- aadharissuedplace -->
                         <div class="col mt-4">
                             <label class="form-label">Issued Place <span style="color: red;">*</span></label>
-                            {{-- <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        class="form-control" placeholder="Issued Place" name="aadhar_issued_place"
-                                        id="aadhar_issued_place" required="true"> --}}
                             <select class="form-select city" name="aadhar_issued_place" id="aadhar_city" required="true">
                                 <option value="">--Select City--</option>
                                 @if(isset($card) || old('aadhar_issued_place'))
