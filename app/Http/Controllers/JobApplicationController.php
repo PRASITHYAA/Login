@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\JobSubmission;
 use App\Models\Card;
 use App\Models\City;
 use App\Models\JobApplication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class JobApplicationController extends Controller
@@ -124,6 +126,11 @@ class JobApplicationController extends Controller
     public function edit($id)
     {
         $jobApplication = JobApplication::find($id);
+        $emailData['first_name'] = $jobApplication->first_name;
+        $emailData['last_name'] = $jobApplication->last_name;
+        $emailData['sector'] = $jobApplication->sector->name;
+        $emailData['position'] = $jobApplication->position->name;
+        Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
         return view('career.job_application.create', compact('jobApplication'));
     }
 

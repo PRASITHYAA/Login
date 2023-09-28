@@ -17,6 +17,7 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,13 +34,14 @@ use App\Http\Controllers\FrontController;
 Route::view('/', 'auth.Registration');
 Route::Post('store', [StoreController::class, 'store']);
 
+
+Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+    ->middleware(['signed', 'throttle:6,1'])
+    ->name('verification.verify');
 // login
 Route::view('/login', 'auth.Login')->name('login');
 Route::Post('authenticate', [LoginController::class, 'authenticate']);
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-
-// dashboard
-//Route::view('/home', 'auth.Home')->middleware('auth')->name('home');
 
 //  forget password form
 Route::get('forgetpassword', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');

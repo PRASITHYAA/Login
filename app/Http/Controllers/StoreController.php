@@ -7,6 +7,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 try {
     // Code to save the data to the database
@@ -36,9 +37,10 @@ class StoreController extends Controller
         $user->password = Hash::make($request->input('password'));
         $user->save();
 
-        Auth::login($user);
+        // Manually send the verification email
+        event(new Registered($user));
 
-        return redirect()->route('dashboard')->with('success', 'Your Account is created successfully!');
+        return redirect()->route('login')->with('success', 'Email verification mail is sent to your email ID!');
     }
 
     public function messages()

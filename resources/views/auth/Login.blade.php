@@ -41,6 +41,11 @@
                         {{ session('error') }}
                     </div>
                 @endif
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
                 {{-- form start --}}
                 <form class="mt-3 mx-3" method="POST" action="{{ url('/authenticate') }}">

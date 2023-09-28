@@ -98,7 +98,12 @@ class DisclaimerController extends Controller
         $disclaimer = Disclaimer::find($id);
         $disclaimer->fill($data);
         $disclaimer->save();
-
+        $jobApplication = $disclaimer->jobApplication;
+        $emailData['first_name'] = $jobApplication->first_name;
+        $emailData['last_name'] = $jobApplication->last_name;
+        $emailData['sector'] = $jobApplication->sector->name;
+        $emailData['position'] = $jobApplication->position->name;
+        Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
         return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer And All The Forms Are created successfully');
     }
 

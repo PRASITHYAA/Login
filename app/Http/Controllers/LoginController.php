@@ -25,6 +25,11 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             $user = User::where('email', $email)->first();
 
+            if (is_null(Auth::user()->email_verified_at)) {
+                return redirect()
+                    ->back()
+                    ->with('error', 'You didnt confirm your email yet. ');
+            }
             Auth::login($user);
             if(in_array('Admin', $user->roles()->pluck('name')->toArray())) {
                 return redirect()->route('admin')->with('success', 'Your Login successfully!');
