@@ -173,7 +173,9 @@ class EducationController extends Controller
             $markSheetPath = $request->file('doctorate_image_mark_sheet')->store('mark_sheets', 'public');
             $education['doctorate_image_mark_sheet'] = $markSheetPath;
         }
-        $education['qualification'] = implode(',', $request->qualification);
+        if(!is_null($request->qualification)) {
+            $education['qualification'] = implode(',', $request->qualification);
+        }
         $education = Education::create($education);
 
         return redirect()->route('employment.view', ['job_application_id' => $request->job_application_id, 'education_id' => $education->id])->with('success', 'Education created successfully!');

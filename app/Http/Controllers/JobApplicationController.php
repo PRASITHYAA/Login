@@ -104,17 +104,19 @@ class JobApplicationController extends Controller
 
         if($request->has('siblings_name')) {
             foreach ($request->siblings_name as $key => $sibling) {
-                if (isset($request->file('siblings_image')[$key])) {
-                    $siblingsImagepath = $request->file('siblings_image')[$key]->store('images', 'public');
-                    $siblingImage = $siblingsImagepath;
+                if(!is_null($sibling)) {
+                    if (isset($request->file('siblings_image')[$key])) {
+                        $siblingsImagepath = $request->file('siblings_image')[$key]->store('images', 'public');
+                        $siblingImage = $siblingsImagepath;
+                    }
+                    $jobApplication->siblingsList()->create([
+                        'name' => $request->siblings_name[$key],
+                        'dob' => $request->siblings_date_of_birth[$key],
+                        'email' => $request->siblings_email[$key],
+                        'phone' => $request->siblings_phone[$key],
+                        'photo' => $siblingImage ?? null,
+                    ]);
                 }
-                $jobApplication->siblingsList()->create([
-                   'name' => $request->siblings_name[$key],
-                   'dob' => $request->siblings_date_of_birth[$key],
-                   'email' => $request->siblings_email[$key],
-                   'phone' => $request->siblings_phone[$key],
-                   'photo' => $siblingImage,
-                ]);
             }
         }
 

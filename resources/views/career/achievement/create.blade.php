@@ -203,7 +203,7 @@
                             <div class="input-group">
                                 <input type="file" class="form-control open-input-3-input"
                                     id="yes_curriculum_pdf_format" name="yes_curriculum_pdf_format"
-                                    {{ !isset($achievement->yes_curriculum_pdf_format) ? 'required' : '' }}>
+                                    {{ isset($achievement->yes_curriculum_pdf_format) ? 'required' : '' }}>
                             </div>
                             @if (isset($achievement) && $achievement->yes_curriculum_pdf_format)
                                 <img src="{{ asset('storage/' . $achievement->yes_curriculum_pdf_format) }}"
