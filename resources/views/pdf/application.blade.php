@@ -40,7 +40,6 @@
 
         th {
             background-color: #f0f0f0;
-
         }
 
         td.empty-column {

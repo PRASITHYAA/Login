@@ -118,11 +118,11 @@
                         limit your writing for this part to a maximum of 500 words and upload the detailed project
                         file.
                     </p>
-                    <label for="exampleFormControlInput1" class="form-label">Final Year Projects: In PDF Format </label>
+                    <label for="exampleFormControlInput1" class="form-label">Final Year Projects</label>
                     <div class="form-container">
                         <div class="form-fields">
                             <input style="background-color: rgba(248, 235, 235, 0.726);"
-                                class="form-control open-input-2-input  mt-4" name="final_year_project"
+                                class="form-control open-input-2-input  mt-3" name="final_year_project"
                                 id="final_year_project"
                                 value="{{ old('final_year_project') ?? ($achievement->final_year_project ?? '') }}">
 

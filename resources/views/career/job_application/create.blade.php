@@ -45,7 +45,7 @@
                         <div class="col-lg-6">
                             <!-- sector -->
                             <p>Sectors <span class="red">*</span></p>
-                            <select class="form-select bg" name="sector_id" id="sector_id" required>
+                            <select class="form-select bg" name="sector_id" id="sector_id" disabled>
                                 <option value="">--Please Select Sector--</option>
                                 @php
                                     $sectors = \App\Models\Sector::all();
@@ -64,7 +64,7 @@
                         <!-- Position -->
                         <div class="col-lg-6">
                             <p>Position Applied For<span class="red">*</span></p>
-                            <select class="form-select bg" name="position_id" id="position_id" required>
+                            <select class="form-select bg" name="position_id" id="position_id" disabled>
                                 <option value="">--Please Select Position--</option>
                                 @php
                                     $positions = \App\Models\Position::all();
@@ -115,7 +115,7 @@
                             </div>
                             @if (isset($jobApplication))
                                 <img src="{{ asset('storage/' . $jobApplication->image) }}" alt="Job Application Image"
-                                    style="max-width: 100%;">
+                                    style="max-width: 150px;">
                             @endif
                             <div class="form-group">
                                 <img id="imagePreview" src="#" alt="Image Preview"
@@ -239,7 +239,7 @@
                                     (isset($jobApplication) && $jobApplication->permanent_address_input == 'yes')
                                         ? 'checked'
                                         : '' }}
-                                    id="yesRadio1">
+                                    id="yesRadio1" required>
                                 Yes
                             </label> <br>
                             <label>
@@ -248,7 +248,7 @@
                                     (isset($jobApplication) && $jobApplication->permanent_address_input == 'no')
                                         ? 'checked'
                                         : '' }}
-                                    id="noRadio1">
+                                    id="noRadio1" required >
                                 No
                             </label>
                         </div>
@@ -355,7 +355,7 @@
                             </div>
                             @if (isset($jobApplication))
                                 <img src="{{ asset('storage/' . $jobApplication->father_image) }}"
-                                    alt="Job Application Image" style="max-width: 100%;">
+                                    alt="Job Application Image" style="max-width: 150px;">
                             @endif
                             <!-- images  -->
                             <div class="form-group">
@@ -385,7 +385,7 @@
                             <label class="form-label">Phone/Mobile <span class="red">*</span>
                             </label><br>
                             <input type="tel" class="form-control  phoneInputField" name="mother_phone"
-                                id="mother_phone" style="width:100%;"
+                                id="mother_phone"
                                 value="{{ old('spouse_phone') ?? ($jobApplication->spouse_phone ?? '') }}" required>
                             <p class="errorText" style="color: red;"></p>
                         </div>
@@ -398,7 +398,7 @@
                             </div>
                             @if (isset($jobApplication))
                                 <img src="{{ asset('storage/' . $jobApplication->mother_image) }}"
-                                    alt="Job Application Image" style="max-width: 100%;">
+                                    alt="Job Application Image" style="max-width: 150px;">
                             @endif
                             <!-- images  -->
                             <div class="form-group">
@@ -472,7 +472,7 @@
                                         </div>
                                         @if (isset($jobApplication))
                                             <img src="{{ asset('storage/' . $jobApplication->spouse_image) }}"
-                                                alt="Job Application Image" style="max-width: 100%;">
+                                                alt="Job Application Image" style="max-width: 150px;">
                                         @endif
 
                                         <div class="form-group">
@@ -493,12 +493,12 @@
                             <p style="font-weight: bold;">Siblings :</p>
                             <label>
                                 <input type="radio" name="siblings" value="yes" id="yesRadio2"
-                                    {{ old('siblings') == 'yes' || (isset($jobApplication) && $jobApplication->siblings == 'yes') ? 'checked' : '' }}>
+                                    {{ old('siblings') == 'yes' || (isset($jobApplication) && $jobApplication->siblings == 'yes') ? 'checked' : '' }} required>
                                 Yes
                             </label> <br>
                             <label>
                                 <input type="radio" name="siblings" value="no" id="noRadio2"
-                                    {{ old('siblings') == 'no' || (isset($jobApplication) && $jobApplication->siblings == 'no') ? 'checked' : '' }}>
+                                    {{ old('siblings') == 'no' || (isset($jobApplication) && $jobApplication->siblings == 'no') ? 'checked' : '' }} required>
                                 No
                             </label>
                             <div id="formContainer2"
@@ -559,7 +559,7 @@
                                                         @if (isset($sibling->photo))
                                                             <img src="{{ asset('storage/' . $sibling->photo) }}"
                                                                 class="edit-prev-img" alt="Job Application Image"
-                                                                style="max-width: 100%;">
+                                                                style="max-width: 150px;">
                                                             <input type="text" class="form-control sibling-image-input"
                                                                 id="siblings_image_old_1" name="siblings_image_old[]"
                                                                 value="{{ $sibling->photo }}">
@@ -637,7 +637,7 @@
                                                             accept="image/*">
                                                         @if (isset(old('siblings_phone')[0]))
                                                             <img src="" class="edit-prev-img"
-                                                                alt="Job Application Image" style="max-width: 100%;">
+                                                                alt="Job Application Image" style="max-width: 150px;">
                                                         @endif
                                                         <!-- images  -->
                                                         <div class="form-group  ">
