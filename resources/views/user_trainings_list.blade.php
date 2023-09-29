@@ -11,7 +11,7 @@
                     <div class="col-lg-9 pt-4">
                         <div class="container">
                             <h1 class="">Training List</h1>
-                            <p style="font-weight: bold;">( Scroll Right to More) <span style="color: red;">*</span> </p>
+                            <p style="font-weight: bold;">(scroll right for more information) <span style="color: red;">*</span> </p>
                             <div class="scroll-container">
 
                                 <table class="table table-striped table-hover">

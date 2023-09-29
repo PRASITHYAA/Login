@@ -38,6 +38,15 @@
     <img src="https://tisecon.com/wp-content/uploads/2023/04/NEW-LOGO-FINAL-1.png" alt="Job Site Logo">
 </header>
 <h1>Job Application Acknowledgment</h1>
+            <td class="empty-column">Name</td>
+            <td class="empty-column">{{ $first_name }} {{ $last_name }} </td>
+        </tr>
+        <tr>
+            <td class="empty-column">Photo Copy</td>
+            <td class="empty-column"> <img src="{{ $image }}" alt="Image"></td>
+        </tr>
+
+        <tr>
 
 <h2>Personal Information</h2>
 <ul>
