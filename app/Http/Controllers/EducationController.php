@@ -376,8 +376,9 @@ class EducationController extends Controller
             $markSheetPath = $request->file('doctorate_image_mark_sheet')->store('mark_sheets', 'public');
             $data['doctorate_image_mark_sheet'] = $markSheetPath;
         }
-        $data['qualification'] = implode(',', $request->qualification);
-
+        if(!is_null($request->qualification)) {
+            $data['qualification'] = implode(',', $request->qualification);
+        }
         $education = Education::find($id);
 
         $education = $education->fill($data);
