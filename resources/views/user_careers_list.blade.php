@@ -8,7 +8,7 @@
                 <!-- <div class="container  col-lg-6 pt-4"> -->
                 <div class="container">
                     <h1 class="">Careers Form List</h1>
-                    <p style="font-weight: bold;">( Scroll Right to More) <span style="color: red;">*</span> </p>
+                    <p style="font-weight: bold;">( scroll right for more information) <span style="color: red;">*</span> </p>
                     <div class="scroll-container">
                         <table class="table table-striped table-hover">
                             <!-- head line -->
