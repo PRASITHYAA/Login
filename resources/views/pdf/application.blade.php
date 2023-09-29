@@ -103,6 +103,15 @@
     <h2 class="text-center border-bottom p-4 ">EMPLOYMENT / JOB APPLICATION</h2>
     <table>
         <tr>
+            <td class="empty-column">Name</td>
+            <td class="empty-column">{{ $first_name }} {{ $last_name }} </td>
+        </tr>
+        <tr>
+            <td class="empty-column">Photo Copy</td>
+            <td class="empty-column"> <img src="{{ $image }}" alt="Image"></td>
+        </tr>
+
+        <tr>
             <td class="empty-column">SECTOR APPLIED FOR</td>
             <td class="empty-column">{{ \App\Models\Sector::find($sector_id)->name }} </td>
         </tr>

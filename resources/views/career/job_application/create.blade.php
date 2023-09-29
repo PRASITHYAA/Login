@@ -464,7 +464,7 @@
                                         <p class="errorText" style="color: red;"></p>
                                     </div>
                                     <!-- spouseupload -->
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <label class="form-label pt-2">Upload the Latest Passport Size Photo <span
                                                 class="red">*</span> </label>
                                         <div class="input-group">
