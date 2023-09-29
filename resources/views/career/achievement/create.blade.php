@@ -300,14 +300,12 @@
             });
             $('#yesRadio4').click(function() {
                 $('#input-field-4').hide();
-                $('#no_curriculum_explain').prop('required',
-                    false);
+                $('#no_curriculum_explain').prop('required', false);
             });
 
             $('#noRadio4').click(function() {
                 $('#input-field-4').show();
-                $('#no_curriculum_explain').prop('required',
-                    true);
+                $('#no_curriculum_explain').prop('required', true);
             });
         });
     </script>
