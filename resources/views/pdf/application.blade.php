@@ -1,294 +1,966 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Application Acknowledgment</title>
+    <title>Careers Form pdf</title>
+    {{-- bootstrap --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
         }
+
         header {
             text-align: center;
             margin-bottom: 20px;
         }
+
         header img {
             max-width: 150px;
         }
-        h1 {
-            text-align: center;
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
         }
-        li {
-            margin-bottom: 10px;
+
+        th {
+            background-color: #f0f0f0;
         }
-        li strong {
-            font-weight: bold;
-            margin-right: 10px;
+
+        td.empty-column {
+            width: 0;
         }
+
+        td.image-upload-column {
+            width: 33%;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+            width: 50%;
+            /* Equal width for each column */
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        /* . { */
+        /* background-color: rgba(113, 106, 97, 0.439); */
+        /* background-color: rgba(213, 213, 213, 0.637); */
+        /* } */
     </style>
 </head>
+
 <body>
-<header>
-    <img src="https://tisecon.com/wp-content/uploads/2023/04/NEW-LOGO-FINAL-1.png" alt="Job Site Logo">
-</header>
-<h1>Job Application Acknowledgment</h1>
+    <header>
+        <img src="https://tisecon.com/wp-content/uploads/2023/04/NEW-LOGO-FINAL-1.png" alt="Job Site Logo">
+    </header>
+    <h2 class="text-center">Career Form Application Acknowledgment</h2>
+    <h2 class="text-center border-bottom p-4 ">EMPLOYMENT / JOB APPLICATION</h2>
+    <table>
+        <tr>
+            <td class="empty-column">SECTOR APPLIED FOR</td>
+            <td class="empty-column">{{ \App\Models\Sector::find($sector_id)->name }} </td>
+        </tr>
+        <tr>
+            <td class="empty-column">POSITION APPLIED FOR</td>
+            <td class="empty-column">{{ \App\Models\Position::find($position_id)->name }} </td>
+        </tr>
+        @if (count($employmentEmployer))
+            @foreach ($employmentEmployer as $emp)
+                <tr>
+                    <td class="empty-column">YEAR OF EXPERIENCE </td>
+                    <td class="empty-column">{{ $emp['experience'] }}</td>
+                </tr>
+                <tr>
+                    <td class="empty-column">PRESENT EMPLOYER </td>
+                    <td class="empty-column">{{ $emp['name'] }}</td>
+                </tr>
+            @endforeach
+        @endif
+        <tr>
+            <td class="empty-column">PRESENT SALARY </td>
+            <td class="empty-column">{{ $current_salary }}</td>
+        </tr>
+        <tr>
+            <td class="empty-column">SALARY EXPECTED </td>
+            <td class="empty-column">{{ $expected_salary }}</td>
+        </tr>
+        <tr>
+            <td class="empty-column">EXPECTED DATE TO JOIN
+            </td>
+            <td class="empty-column">{{ $expected_date_to_join }}</td>
+        </tr>
+    </table>
 
-<h2>Personal Information</h2>
-<ul>
-    <li><strong>Sector:</strong> {{ \App\Models\Sector::find($sector_id)->name }}</li>
-    <li><strong>Position:</strong> {{ \App\Models\Position::find($position_id)->name }}</li>
-    <li><strong>First Name:</strong> {{ $first_name }}</li>
-    <li><strong>Last Name:</strong> {{ $last_name }}</li>
-    <li><strong>Date of Birth:</strong> {{ $dob }}</li>
-    <li><strong>Age:</strong> {{ $age }}</li>
-    <li><strong>Country:</strong> {{ $country }}</li>
-    <li><strong>State:</strong> {{ $state }}</li>
-    <li><strong>City:</strong> {{ $city }}</li>
-    <li><strong>Address:</strong> {{ $address }}</li>
-    <li><strong>Postal Code:</strong> {{ $postal_code }}</li>
-    <li><strong>Phone:</strong> {{ $phone }}</li>
-    <li><strong>Alternative Phone:</strong> {{ $alternative_phone }}</li>
-    <li><strong>Email:</strong> {{ $email }}</li>
-    <li><strong>Facebook Link:</strong> {{ $fb_link }}</li>
-    <li><strong>Instagram Link:</strong> {{ $instagram_link }}</li>
-    <li><strong>LinkedIn Link:</strong> {{ $linked_link }}</li>
-</ul>
-<h2>Permanent Address</h2>
-<ul>
-    <li><strong>Permanent Address Input:</strong> {{ $permanent_address_input }}</li>
-    <li><strong>Permanent City:</strong> {{ $permanent_city }}</li>
-    <li><strong>Permanent Postal Code:</strong> {{ $permanent_postal_code }}</li>
-    <li><strong>Permanent Phone:</strong> {{ $permanent_phone }}</li>
-    <li><strong>Permanent Country:</strong> {{ $permanent_country }}</li>
-    <li><strong>Permanent Address:</strong> {{ $permanent_address }}</li>
-</ul>
+    <h2 class="text-center border-bottom-4   p-4  mt-3   ">PERSONAL INFORMATION</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>First Name</th>
+                {{-- <th>Last Name</th> --}}
+                <th>Date of Birth <br>
+                    (YYYY/MM/DD)</th>
+                <th>Phone/Mobile</th>
+                <th>Photo (Passport Size)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Name</td>
+                <td> {{ $first_name }}{{ $last_name }}</td>
+                <td>{{ $dob }}</td>
+                <td> {{ $phone }}</td>
+                <td><img src="{{ $image }}" alt="Image"></td>
+            </tr>
+            <tr>
+                <td>Father’s Name</td>
+                <td> {{ $father_name }}</td>
+                <td>{{ $father_date_of_birth }}</td>
+                <td> {{ $father_phone }}</td>
+                <td><img src="{{ $father_image }}" alt="Father's Image"></td>
 
-<h2>Father Information</h2>
-<ul>
-    <li><strong>Father Name:</strong> {{ $father_name }}</li>
-    <li><strong>Father Date of Birth:</strong> {{ $father_date_of_birth }}</li>
-    <li><strong>Father Phone:</strong> {{ $father_phone }}</li>
-    <li><strong>Father Image:</strong> <img src="{{ $father_image }}" alt="Father's Image"></li>
-</ul>
+            </tr>
+            <tr>
+                <td>Mother’s Name</td>
+                <td> {{ $mother_name }}</td>
+                <td>{{ $mother_date_of_birth }}</td>
+                <td>{{ $mother_phone }}</td>
+                <td><img src="{{ $mother_image }}" alt="Mother's Image"></td>
 
-<h2>Mother Information</h2>
-<ul>
-    <li><strong>Mother Name:</strong> {{ $mother_name }}</li>
-    <li><strong>Mother Date of Birth:</strong> {{ $mother_date_of_birth }}</li>
-    <li><strong>Mother Phone:</strong> {{ $mother_phone }}</li>
-    <li><strong>Mother Image:</strong> <img src="{{ $mother_image }}" alt="Mother's Image"></li>
-</ul>
+            </tr>
+            <tr>
+                <td>Spouse Name (If married)</td>
+                <td> {{ $spouse_name }}</td>
+                <td>{{ $spouse_date_of_birth }}</td>
+                <td>{{ $spouse_phone }}</td>
+                <td><img src="{{ $spouse_image }}" alt="Spouse's Image"></td>
 
-<h2>Marital Status</h2>
-<ul>
-    <li><strong>Marital Status:</strong> {{ $marital_status }}</li>
-    <li><strong>Spouse Name:</strong> {{ $spouse_name }}</li>
-    <li><strong>Spouse Date of Birth:</strong> {{ $spouse_date_of_birth }}</li>
-    <li><strong>Spouse Email:</strong> {{ $spouse_email }}</li>
-    <li><strong>Spouse Phone:</strong> {{ $spouse_phone }}</li>
-    <li><strong>Spouse Image:</strong> <img src="{{ $spouse_image }}" alt="Spouse's Image"></li>
-</ul>
-<h2>Siblings Information</h2>
+            </tr>
+            @if ($siblings == 'yes')
+                @foreach ($siblingsData as $sib)
+                    <tr>
+                        <td>Sibling 1</td>
+                        <td>{{ $sib['name'] }}</td>
+                        <td>{{ $sib['dob'] }}</td>
+                        <td>{{ $sib['phone'] }}</td>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <td>Sibling 2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Upload</td>
+                    </tr>
+                    <tr>
+                        <td>Sibling 3</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Upload</td>
 
-@if($siblings == 'yes')
-    @foreach($siblingsData as $sib)
-        <ul>
-            <li><strong>Siblings Name:</strong> {{ $sib['name'] }}</li>
-            <li><strong>Siblings Date of Birth:</strong> {{ $sib['dob'] }}</li>
-            <li><strong>Siblings Email:</strong> {{ $sib['email'] }}</li>
-            <li><strong>Siblings Phone:</strong> {{ $sib['phone'] }}</li>
-            <!-- Add more sibling information fields here -->
-        </ul>
+                    </tr>
+                    <tr>
+                        <td>Sibling 4</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Upload</td>
+                    </tr>
+                @endforeach
+            @endif
+        </tbody>
+    </table>
+    <h2 class="text-center  p-4  mt-3 ">ADDRESS INFORMATION</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Current Address </th>
+                <th>Permanent Adress </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> Address</td>
+                <td> {{ $address }}</td>
+                <td> {{ $permanent_address }}</td>
+            </tr>
+            <tr>
+                <td>Zip Code</td>
+                <td> {{ $postal_code }}</td>
+                <td>{{ $permanent_postal_code }}</td>
+            </tr>
 
-    @endforeach
-@endif
-<!-- Aadhar Information -->
-<h2>Aadhar Information</h2>
-<ul>
-    <li><strong>Name (Aadhar):</strong> {{ $aadhar_name }}</li>
-    <li><strong>Aadhar ID Number:</strong> {{ $aadhar_id_number }}</li>
-    <li><strong>Issued Country:</strong> {{ $aadhar_issued_country }}</li>
-    <li><strong>Issued State:</strong> {{ $aadhar_issued_state }}</li>
-    <li><strong>Issued Place:</strong> {{ $aadhar_issued_place }}</li>
-    <li><strong>Aadhar Image:</strong> <img src="{{ $aadhar_image }}" alt="Aadhar Image"></li>
-    <li><strong>Aadhar Image (Page):</strong> <img src="{{ $aadhar_image_page }}" alt="Aadhar Image Page"></li>
-</ul>
+            <tr>
+                <td>District</td>
+                <td>{{ $city }}</td>
+                <td>{{ $permanent_city }}</td>
+            </tr>
 
-<!-- Passport Information -->
-<h2>Passport Information</h2>
-<ul>
-    <li><strong>Name (Passport):</strong> {{ $passport_name }}</li>
-    <li><strong>Passport ID Number:</strong> {{ $passport_id_number }}</li>
-    <li><strong>Issue Date:</strong> {{ $passport_issue_date }}</li>
-    <li><strong>Expiration Date:</strong> {{ $passport_expired_date }}</li>
-    <li><strong>Issued Country:</strong> {{ $passport_issued_country }}</li>
-    <li><strong>Issued State:</strong> {{ $passport_issued_state }}</li>
-    <li><strong>Issued Place:</strong> {{ $passport_issued_place }}</li>
-    <li><strong>Passport Image ID:</strong> {{ $passport_image_id }}</li>
-    <li><strong>Passport Image ID (Page):</strong> {{ $passport_image_id_page }}</li>
-</ul>
+            <tr>
+                <td>State</td>
+                <td> {{ $state }}</td>
+                <td>{{ $permanent_city }}</td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td> {{ $country }}</td>
+                <td> {{ $permanent_country }}</td>
+            </tr>
+            <tr>
+                <td>Phone/Mobile Number</td>
+                <td>{{ $phone }}</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Alternate Phone/Mobile <br>Number </td>
+                <td>{{ $alternative_phone }}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <h2 style="margin-top: 150px; " class="text-center   mb-5 "> Personal Networks </h2>
+    <table class="">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th> Communication</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Phone/Mobile Number</td>
+                <td> {{ $phone }}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td> {{ $email }}</td>
+            </tr>
+            <tr>
+                <td>Facebook address</td>
+                <td>{{ $fb_link }}</td>
+            </tr>
+            <tr>
+                <td>Instagram</td>
+                <td>{{ $instagram_link }}</td>
+            </tr>
+            <tr>
+                <td>LinkedIn</td>
+                <td> {{ $linked_link }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="text-center p-4     mt-3 ">Government-Issued Identification Cards (IDs)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID TYPE </th>
+                <th>AADHAR CARD</th>
+                <th>PASSPORT</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Name as per IDs</td>
+                <td>{{ $aadhar_name }}</td>
+                <td>{{ $passport_name }}</td>
+            </tr>
+            <tr>
+                <td>ID's Number</td>
+                <td>{{ $aadhar_id_number }}</td>
+                <td>{{ $passport_id_number }}</td>
+            </tr>
+            <tr>
+                <td>Issued Date</td>
+                <td></td>
+                <td>{{ $passport_issue_date }}</td>
+            </tr>
+            <tr>
+                <td>Expired Date</td>
+                <td></td>
+                <td> {{ $passport_expired_date }}</td>
+            </tr>
+            <tr>
+                <td>Issued Place</td>
+                <td>{{ $aadhar_issued_place }}</td>
+                <td>{{ $passport_issued_place }}</td>
+            </tr>
+            <tr>
+                <td>State</td>
+                <td>{{ $aadhar_issued_state }}</td>
+                <td>{{ $passport_issued_state }}</td>
+            </tr>
+            <tr>
+                <td>Country</td>
+                <td>{{ $aadhar_issued_country }}</td>
+                <td> {{ $passport_issued_country }}</td>
+            </tr>
+            <tr>
+                <td>Upload ID- 1st Page</td>
+                <td><img src="{{ $aadhar_image }}" alt="Aadhar Image"></td>
+                <td> <img src="{{ $passport_image_id }}" alt="Passport Image"></td>
+            </tr>
+            <tr>
+                <td>Upload ID- 2st Page</td>
+                <td><img src="{{ $aadhar_image_page }}" alt="Aadhar Image Page"></td>
+                <td><img src="{{ $passport_image_id_page }}" alt="Aadhar Image Page"></td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 style="margin-top: 110px" class="text-center mb-5 ">Education</h2>
+    <!-- education -->
+    <table>
+        <thead>
+            <tr>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">Description</th>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">High School</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Institution Name</td>
+                <td>{{ $high_school_name }}</td>
+            </tr>
+            <tr>
+                <td>Town/City</td>
+                <td>{{ $high_school_city }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ $high_school_address }}</td>
+            </tr>
+            <tr>
+                <td>From Date (YYYY/MM/DD)</td>
+                <td>{{ $high_school_form_date }}</td>
+            </tr>
+            <tr>
+                <td>To Date(YYYY/MM/DD)</td>
+                <td>{{ $high_school_to_date }}</td>
+            </tr>
+            <tr>
+                <td>Year of Passing
+                    (YYYY/MM/DD) </td>
+                <td>{{ $high_school_year_of_passing }}</td>
+            </tr>
+            <tr>
+                <td>GPA/Percentage<br>(in %)</td>
+                <td>{{ $high_school_percentage }}</td>
+            </tr>
+            <tr>
+                <td>Class</td>
+                <td>{{ $high_school_class }}</td>
+            </tr>
+            <tr>
+                <td>Curriculum </td>
+                <td>{{ $high_school_stream }}</td>
+            </tr>
+            <tr>
+                <td>Upload Certificate</td>
+                <td><img src="{{ $high_school_image_certificate }}" alt="High School Image Certificate"></td>
+            </tr>
+            <tr>
+                <td>Upload Mark Sheet</td>
+                <td><img src="{{ $high_school_image_mark_sheet }}" alt="High School Image Mark Sheet"></td>
+            </tr>
+        </tbody>
+    </table>
 
-<!-- Diploma Information -->
-<h2>Diploma Information</h2>
-<ul>
-    <li><strong>Institution Name (Diploma):</strong> {{ $diploma_institution_name }}</li>
-    <li><strong>City:</strong> {{ $diploma_city }}</li>
-    <li><strong>Address:</strong> {{ $diploma_address }}</li>
-    <li><strong>From Date:</strong> {{ $diploma_form_date }}</li>
-    <li><strong>To Date:</strong> {{ $diploma_to_date }}</li>
-    <li><strong>Year of Passing:</strong> {{ $diploma_year_of_passing }}</li>
-    <li><strong>Percentage:</strong> {{ $diploma_percentage }}</li>
-    <li><strong>Course:</strong> {{ $diploma_course }}</li>
-    <li><strong>Major:</strong> {{ $diploma_major }}</li>
-    <li><strong>Field of Interest:</strong> {{ $diploma_filed_of_interest }}</li>
-    <li><strong>Image Certificate:</strong> <img src="{{ $diploma_image_certificate }}" alt="Diploma Image Certificate"></li>
-    <li><strong>Image Mark Sheet:</strong> <img src="{{ $diploma_image_mark_sheet }}" alt="Diploma Image Mark Sheet"></li>
-</ul>
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <th
+                style="border: 1px solid black; padding: 10px; text-align: left; width: 50%; background-color: #f0f0f0;">
+                Description</th>
+            <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">Higher Secondary</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">Institution Name</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                {{ $higher_secondary_institution_name }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Town/City</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                {{ $higher_secondary_city }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Address</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                {{ $higher_secondary_address }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> From Date (YYYY/MM/DD)
+            </td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                {{ $higher_secondary_form_date }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> TO Date (YYYY/MM/DD)</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                {{ $higher_secondary_to_date }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Year of Passing
+                (YYYY/MM/DD) </td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                {{ $higher_secondary_year_of_passing }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> GPA/Percentage(in %)</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                {{ $higher_secondary_percentage }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Filed of Specialization</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                {{ $higher_secondary_stream }}</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Filed of Interest</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                {{ $higher_secondary_filed_of_interest }}</td>
+        </tr>
 
-<!-- Bachelors Information -->
-<h2>Bachelors Information</h2>
-<ul>
-    <li><strong>Institution Name (Bachelors):</strong> {{ $bachelors_institution_name }}</li>
-    <li><strong>City:</strong> {{ $bachelors_city }}</li>
-    <li><strong>Address:</strong> {{ $bachelors_address }}</li>
-    <li><strong>From Date:</strong> {{ $bachelors_form_date }}</li>
-    <li><strong>To Date:</strong> {{ $bachelors_to_date }}</li>
-    <li><strong>Year of Passing:</strong> {{ $bachelors_year_of_passing }}</li>
-    <li><strong>Percentage:</strong> {{ $bachelors_percentage }}</li>
-    <li><strong>Course:</strong> {{ $bachelors_course }}</li>
-    <li><strong>Major:</strong> {{ $bachelors_major }}</li>
-    <li><strong>Field of Interest:</strong> {{ $bachelors_filed_of_interest }}</li>
-    <li><strong>Image Certificate:</strong> <img src="{{ $bachelors_image_certificate }}" alt="Bachelors Image Certificate"></li>
-    <li><strong>Image Mark Sheet:</strong> <img src="{{ $bachelors_image_mark_sheet }}" alt="Bachelors Image Mark Sheet"></li>
-</ul>
-<!-- Master's Information -->
-<h2>Master's Information</h2>
-<ul>
-    <li><strong>Institution Name (Master's):</strong> {{ $master_institution_name }}</li>
-    <li><strong>City:</strong> {{ $master_city }}</li>
-    <li><strong>Address:</strong> {{ $master_address }}</li>
-    <li><strong>From Date:</strong> {{ $master_from_date }}</li>
-    <li><strong>To Date:</strong> {{ $master_to_date }}</li>
-    <li><strong>Years of Passing:</strong> {{ $master_years_of_passing }}</li>
-    <li><strong>Percentage:</strong> {{ $master_percentage }}</li>
-    <li><strong>Class:</strong> {{ $master_class }}</li>
-    <li><strong>Field of Specialization:</strong> {{ $master_filed_of_specialization }}</li>
-    <li><strong>Field of Interest:</strong> {{ $master_filed_of_interest }}</li>
-    <li><strong>Image Certificate:</strong> <img src="{{ $master_image_certificate }}" alt="Master's Image Certificate"></li>
-    <li><strong>Image Mark Sheet:</strong> <img src="{{ $master_image_mark_sheet }}" alt="Master's Image Mark Sheet"></li>
-</ul>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Upload Certificate</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                <img src="{{ $higher_secondary_image_certificate }}" alt="Higher Secondary  Certificate"></td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Upload Mark Sheet</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+                <img src="{{ $higher_secondary_image_mark_sheet }}" alt="Higher Secondary  Mark Sheet"></td>
+        </tr>
 
-<!-- Doctorate Information -->
-<h2>Doctorate Information</h2>
-<ul>
-    <li><strong>Name (Doctorate):</strong> {{ $doctorate_name }}</li>
-    <li><strong>City:</strong> {{ $doctorate_city }}</li>
-    <li><strong>Address:</strong> {{ $doctorate_address }}</li>
-    <li><strong>From Date:</strong> {{ $doctorate_from_date }}</li>
-    <li><strong>To Date:</strong> {{ $doctorate_to_date }}</li>
-    <li><strong>Year of Passing:</strong> {{ $doctorate_year_of_passing }}</li>
-    <li><strong>Percentage:</strong> {{ $doctorate_percentage }}</li>
-    <li><strong>Class:</strong> {{ $doctorate_class }}</li>
-    <li><strong>Field of Specialization:</strong> {{ $doctorate_filed_of_specialization }}</li>
-    <li><strong>Field of Interest:</strong> {{ $doctorate_filed_of_interest }}</li>
-    <li><strong>Image Certificate:</strong> <img src="{{ $doctorate_image_certificate }}" alt="Doctorate Image Certificate"></li>
-    <li><strong>Image Mark Sheet:</strong> <img src="{{ $doctorate_image_mark_sheet }}" alt="Doctorate Image Mark Sheet"></li>
-</ul>
-<!-- Experience Information -->
-<h2>Experience Information</h2>
-@if(count($employmentEmployer))
-    @foreach($employmentEmployer as $emp)
-        <ul>
-            <li><strong>Company:</strong> {{ $emp['name'] }}</li>
-            <li><strong>Email:</strong> {{ $emp['email'] }}</li>
-            <li><strong>Address:</strong> {{ $emp['address'] }}</li>
-            <li><strong>Phone:</strong> {{ $emp['phone'] }}</li>
-            <li><strong>Job Title:</strong> {{ $emp['job_title'] }}</li>
-            <li><strong>From Date:</strong> {{ $emp['from_date'] }}</li>
-            <li><strong>To Date:</strong> {{ $emp['to_date'] }}</li>
-            <li><strong>Experience:</strong> {{ $emp['experience'] }}</li>
-            <li><strong>Responsibilities:</strong> {{ $emp['responsibilities'] }}</li>
-        </ul>
-    @endforeach
-@endif
-<!-- Reference Information -->
-<h2>Reference Information</h2>
-@if(count($employmentReference))
-    @foreach($employmentReference as $ref)
-        <ul>
-            <li><strong>Name (Reference):</strong> {{ $ref['name'] }}</li>
-            <li><strong>Company:</strong> {{ $ref['company'] }}</li>
-            <li><strong>Position:</strong> {{ $ref['position'] }}</li>
-            <li><strong>Email:</strong> {{ $ref['email'] }}</li>
-            <li><strong>Phone:</strong> {{ $ref['phone'] }}</li>
-            <!-- Note: You have 'reference_phone' listed twice in the PHP variables; you may want to correct this if it's not intentional. -->
-        </ul>
-    @endforeach
-@endif
-<!-- Achievement -->
-<h2>Achievement</h2>
-<p>{{ $achievement }}</p>
 
-<!-- Open Input and Conference -->
-<h2>Open Input and Conference</h2>
-<ul>
-    {{--<li><strong>Open Input:</strong> {{ $open-input }}</li>--}}
-    <li><strong>Conference:</strong> {{ $conference }}</li>
-</ul>
+    </table>
 
-<!-- Open Input 2 and Final Year Project -->
-<h2>Open Input 2 and Final Year Project</h2>
-<ul>
-    {{--<li><strong>Open Input 2:</strong> {{ $open-input-2 }}</li>--}}
-    <li><strong>Final Year Project:</strong> {{ $final_year_project }}</li>
-</ul>
+    <table>
+        <thead>
+            <tr>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">Description</th>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">Diploma</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Institution Name</td>
+                <td>{{ $diploma_institution_name }}</td>
+            </tr>
+            <tr>
+                <td>Town/City</td>
+                <td>{{ $diploma_city }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ $diploma_address }}</td>
+            </tr>
+            <tr>
+                <td>From Date (YYYY/MM/DD)</td>
+                <td>{{ $diploma_form_date }}</td>
+            </tr>
+            <tr>
+                <td>To Date
+                    (YYYY/MM/DD)</td>
+                <td>{{ $diploma_to_date }}</td>
+            </tr>
+            <tr>
+                <td>Year of Passing
+                    (YYYY/MM/DD) </td>
+                <td>{{ $diploma_year_of_passing }}</td>
+            </tr>
+            <tr>
+                <td>GPA/Percentage (in %)</td>
+                <td>{{ $diploma_percentage }}</td>
+            </tr>
+            <tr>
+                <td>Class</td>
+                <td>{{ $diploma_course }}</td>
+            </tr>
+            <tr>
+                <td>Filed of Specialization</td>
+                <td>{{ $diploma_major }}</td>
+            </tr>
+            <tr>
+                <td>Filed of Interest</td>
+                <td>{{ $diploma_filed_of_interest }}</td>
+            </tr>
+            <tr>
+                <td>Upload Certificate</td>
+                <td><img src="{{ $diploma_image_certificate }}" alt="Diploma Image Certificate"></td>
+            </tr>
+            <tr>
+                <td>Upload Mark Sheet</td>
+                <td><img src="{{ $diploma_image_mark_sheet }}" alt="Diploma Image Mark Sheet"></td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">Description</th>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">Bachelor’s Degree</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Institution Name</td>
+                <td>{{ $bachelors_institution_name }}</td>
+            </tr>
+            <tr>
+                <td>Town/City</td>
+                <td>{{ $bachelors_city }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ $bachelors_address }}</td>
+            </tr>
+            <tr>
+                <td>From Date(YYYY/MM/DD)</td>
+                <td>{{ $bachelors_form_date }}</td>
+            </tr>
+            <tr>
+                <td>To Date
+                    (YYYY/MM/DD)</td>
+                <td>{{ $bachelors_to_date }}</td>
+            </tr>
+            <tr>
+                <td>Year of Passing
+                    (YYYY/MM/DD) </td>
+                <td>{{ $bachelors_year_of_passing }}</td>
+            </tr>
+            <tr>
+                <td>GPA/Percentage(in %)</td>
+                <td>{{ $bachelors_percentage }}</td>
+            </tr>
+            <tr>
+                <td>Class</td>
+                <td>{{ $bachelors_course }}</td>
+            </tr>
+            <tr>
+                <td>Filed of Specialization</td>
+                <td>{{ $bachelors_major }}</td>
+            </tr>
+            <tr>
+                <td>Filed of Interest</td>
+                <td> {{ $bachelors_filed_of_interest }}
+            </tr>
+            <tr>
+                <td>Upload Certificate</td>
+                <td><img src="{{ $bachelors_image_certificate }}" alt="Bachelors Image Certificate"></td>
+            </tr>
+            <tr>
+                <td>Upload Mark Sheet</td>
+                <td><img src="{{ $bachelors_image_mark_sheet }}" alt="Bachelors Image Mark Sheet"></td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">Description</th>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Master’s Degree</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Institution Name</td>
+                <td>{{ $master_institution_name }}</td>
+            </tr>
+            <tr>
+                <td>Town/City</td>
+                <td>{{ $master_city }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ $master_address }}</td>
+            </tr>
+            <tr>
+                <td>From Date<br> (YYYY/MM/DD)</td>
+                <td>{{ $master_from_date }}</td>
+            </tr>
+            <tr>
+                <td>To Date
+                    (YYYY/MM/DD)</td>
+                <td>{{ $master_to_date }}</td>
+            </tr>
+            <tr>
+                <td>Year of Passing
+                    (YYYY/MM/DD) </td>
+                <td>{{ $master_years_of_passing }}</td>
+            </tr>
+            <tr>
+                <td>GPA/Percentage(in %)</td>
+                <td>{{ $master_percentage }}</td>
+            </tr>
+            <tr>
+                <td>Class</td>
+                <td>{{ $master_class }}</td>
+            </tr>
+            <tr>
+                <td>Filed of Specialization</td>
+                <td>{{ $master_filed_of_specialization }}</td>
+            </tr>
+            <tr>
+                <td>Filed of Interest</td>
+                <td>{{ $master_filed_of_interest }}</td>
+            </tr>
+            <tr>
+                <td>Upload Certificate</td>
+                <td><img src="{{ $master_image_certificate }}" alt="Master's Image Certificate"></td>
+            </tr>
+            <tr>
+                <td>Upload Mark Sheet</td>
+                <td><img src="{{ $master_image_mark_sheet }}" alt="Master's Image Mark Sheet"></td>
+            </tr>
+        </tbody>
+    </table>
+    <table>
+        <thead>
+            <tr>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">Description</th>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">Doctorate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Institution Name</td>
+                <td>{{ $doctorate_name }}</td>
+            </tr>
+            <tr>
+                <td>Town/City</td>
+                <td>{{ $doctorate_city }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ $doctorate_address }}</td>
+            </tr>
+            <tr>
+                <td>From Date(YYYY/MM/DD)</td>
+                <td>{{ $doctorate_from_date }}</td>
+            </tr>
+            <tr>
+                <td>To Date (YYYY/MM/DD)</td>
+                <td>{{ $doctorate_to_date }}</td>
+            </tr>
+            <tr>
+                <td>Year of Passing (YYYY/MM/DD) </td>
+                <td>{{ $doctorate_year_of_passing }}</td>
+            </tr>
+            <tr>
+                <td>GPA/Percentage(in %)</td>
+                <td>{{ $doctorate_percentage }}</td>
+            </tr>
+            <tr>
+                <td>Class</td>
+                <td>{{ $doctorate_class }}</td>
+            </tr>
+            <tr>
+                <td>Filed of Specialization</td>
+                <td>{{ $doctorate_filed_of_specialization }}</td>
+            </tr>
+            <tr>
+                <td>Filed of Interest</td>
+                <td>{{ $doctorate_filed_of_interest }}</td>
+            </tr>
+            <tr>
+                <td>Upload Certificate</td>
+                <td> <img src="{{ $doctorate_image_certificate }}"alt="Doctorate Image Certificate"></td>
+            </tr>
+            <tr>
+                <td>Upload Mark Sheet</td>
+                <td><img src="{{ $doctorate_image_mark_sheet }}"alt="Doctorate Image Mark Sheet"></td>
+            </tr>
+        </tbody>
+    </table>
 
-<!-- Project Document -->
-<h2>Project Document</h2>
-<p>{{ $project_document }}</p>
+    <!-- emplyment -->
 
-<!-- Extra Curricular Skills -->
-<h2>Extra Curricular Skills</h2>
-<p>{{ $extra_curricular_skills }}</p>
+    <h2 class="text-center p-4  mt-4 ">PREVIOUS EMPLOYMENT</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>EMPLOYER 1</th>
+                <th>EMPLOYER 2</th>
+                <th>EMPLOYER 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Company / Individual</td>
+                <td> {{ $emp['name'] }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>E-MAIL</td>
+                <td>{{ $emp['email'] }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Address</td>
+                <td> {{ $emp['address'] }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>{{ $emp['phone'] }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Job Title</td>
+                <td>{{ $emp['job_title'] }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>From date (YYYY/MM/DD)</td>
+                <td>{{ $emp['from_date'] }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>To date (YYYY/MM/DD)</td>
+                <td>{{ $emp['to_date'] }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Responsibilities</td>
+                <td>{{ $emp['responsibilities'] }}</td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
 
-<!-- Extra Curricular Skills Project Document -->
-<h2>Extra Curricular Skills Project Document</h2>
-<p>{{ $extra_curricular_skills_project_document }}</p>
+    <h2 class="text-center p-4     mt-4 ">REFERENCES- (PROFESSIONAL ONLY)</h2>
+    @if (count($employmentReference))
+        @foreach ($employmentReference as $ref)
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>EMPLOYER</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Name</td>
+                    <td>{{ $ref['name'] }}</td>
+                </tr>
+                <tr>
+                    <td>Company</td>
+                    <td> {{ $ref['company'] }} </td>
+                </tr>
+                <tr>
+                    <td>Position</td>
+                    <td>{{ $ref['position'] }}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td> {{ $ref['email'] }}</td>
+                </tr>
+                <tr>
+                    <td>Phone/Mobile Number</td>
+                    <td>{{ $ref['phone'] }}</td>
+                </tr>
+            </table>
+        @endforeach
+    @endif
 
-<!-- Curriculum PDF Format -->
-<h2>Curriculum PDF Format</h2>
-<p>{{ $yes_curriculum_pdf_format }}</p>
+    <h2 class="text-center p-4  mt-4 ">EMPLOYMENT ELIGIBILITY</h2>
+    <table>
 
-<!-- No Curriculum Explain -->
-<h2>No Curriculum Explain</h2>
-<p>{{ $no_curriculum_explain }}</p>
-<!-- You can add more sections for permanent address, father, mother, marital status, siblings, etc. -->
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">Are You Legally<br>
+                Eligible to Work?</td>
+            <td>{{ $eligible_to_work }}</td>
+        </tr>
+        <tr>
+            <th>If No,Explanation</th>
+            <td>{{ $eligible_to_work_text }}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">
+                Have You Ever Worked<br> for This Employer?</td>
+            <td>{{ $crime_status }}</td>
+        </tr>
+        <tr>
+            <th>If Yes,Explanation </th>
+            <td>{{ $crime_status_text }}</td>
+        </tr>
+    </table>
 
-<h2>Disclaimer</h2>
-<p>
-    I acknowledge that the information provided in this job application is accurate and complete to the best of my knowledge. I understand that any false statements or omissions may result in disqualification from employment or termination if employed.
-</p>
+    <!-- acheviment -->
 
-<p>
-    <strong>Signature:</strong> {{ $disclaimer_signature }}
-</p>
-<p>
-    <strong>Date:</strong> {{ $disclaimer_date }}
-</p>
-<p>
-    <strong>Time:</strong> {{ $disclaimer_time }}
-</p>
-<p>
-    <strong>Print Name:</strong> {{ $disclaimer_print_name }}
-</p>
-<p>
-    <strong>Place:</strong> {{ $disclaimer_place }}
-</p>
-</body>
-</html>
+    <h2 class="text-center p-4     mt-4 ">ACHIEVEMENTS, PERSONAL QUALITIES, AND SKILLS</h2>
+    <table>
+        <tr>
+            <th style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">List out your
+                Acheivements
+                here
+            </th>
+            <td>{{ $achievement }}</td>
+        </tr>
+    </table>
+    <h2 class="text-center p-4  ">CURRICULUM VITAE</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">Have you been
+                    published
+                    any conference papers/attended conferences?
+                </td>
+                <td>{{ $conference_status }}</td>
+            </tr>
+            <tr>
+                <th>Conference</th>
+                <td>{{ $conference }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="text-center p-4  ">FINAL YEAR PROJECT</h2>
+    <table>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">Do you worked on any
+                final
+                year projects?
+            </td>
+            <td>{{ $final_year_project_status }}</td>
+        </tr>
+        <tr>
+            <th>Final Year Projects</th>
+            <td>{{ $final_year_project }}</td>
+        </tr>
+        <tr>
+            <th> All Your Project Documents </th>
+            <td>{{ $project_document }}</td>
+        </tr>
+    </table>
+    <h2 class="text-center p-4  "> CO-CURRICULAR, EXTRA-CURRICULAR SKILLS</h2>
+    <table>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">Co-Curricular/Extra
+                Curricular
+            </td>
+            <td>{{ $extra_curricular_skills }}</td>
+        </tr>
+        <tr>
+            <th>Curricular/Extracurricular Certificate </th>
+            <td>{{ $extra_curricular_skills_project_document }}</td>
+        </tr>
+    </table>
+    <h2 class="text-center p-4  ">CURRICULUM VITAE</h2>
+    <table>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">Are You willing to Attach
+                Your Curriculum Vitae? </td>
+            <td>{{ $curriculum_status }}</td>
+        </tr>
+        <tr>
+            <th style="border: 1px solid black; padding: 10px; text-align: left; width: 70%;">If Yes,Resume </th>
+            <td>{{ $yes_curriculum_pdf_format }}</td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">
+                Are You Willing to Consent to a Background Check?</td>
+            <td>{{ $background_check_status }}</td>
+        </tr>
+        <tr>
+            <th>If No,Explanation </th>
+            <td>{{ $no_curriculum_explain }}</td>
+        </tr>
+    </table>
+    <!-- disclaimer -->
+    <h2 class="text-center p-4     mt-4 mb-2">DISCLAIMER </h2>
+
+    <p>Applicant understands that this is an Equal Opportunity Employer and is committed to excellence through
+        diversity. In order to ensure this application is acceptable, please print or type the application that is fully
+        completed in order forit to be considered.</p>
+
+    <p>Please complete each section EVEN IF you decide to attach a resume.</p>
+
+    <p>I, the Applicant, certify that my answers are true and honest to the best of my knowledge. If this
+        application leads to my eventual employment, I understand that any false or misleading information in my
+        application or interview may result in my employment being terminated</p>
+
+
+    <table>
+        <tr>
+            <th style="border: 1px solid black; width: 30%;">Signature</th>
+            <td><img src="{{ $disclaimer_signature }}" alt="Signature"> </td>
+        </tr>
+    </table><br>
+    <table>
+        <tr>
+            <th style="border: 1px solid black; width: 30%;">Date</th>
+            <td>{{ $disclaimer_date }}</td>
+        </tr>
+    </table><br>
+    <table>
+        <tr>
+            <th style="border: 1px solid black; width: 30%;">Time</th>
+            <td> {{ $disclaimer_time }}</td>
+        </tr>
+    </table><br>
+    <table>
+        <tr>
+            <th style="border: 1px solid black; width: 30%;">Place</th>
+            <td> {{ $disclaimer_place }}</td>
+        </tr>
+    </table>

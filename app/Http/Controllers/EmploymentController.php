@@ -76,7 +76,7 @@ class EmploymentController extends Controller
                 ]);
             }
         }
-        return redirect()->route('achievement.view', ['job_application_id' => $request->job_application_id, 'employment_id' => $employment->id])->with('success', 'Employment created successfully!');
+        return redirect()->route('achievement.view', ['job_application_id' => $request->job_application_id, 'employment_id' => $employment->id])->with('success', 'Previous Employment created successfully!');
     }
     public function show($id)
     {
@@ -168,11 +168,11 @@ class EmploymentController extends Controller
         $achievement = Achievement::where('job_application_id', $employment->job_application_id)->orderBy('id', 'desc')->first();
 
         if (!is_null($achievement)) {
-            return redirect()->route('career.achievement.edit', $achievement->id)->with('success', 'Employment updated successfully!');
+            return redirect()->route('career.achievement.edit', $achievement->id)->with('success', 'Previous Employment updated successfully!');
         }
         else {
             return redirect()->route('achievement.view', ['job_application_id' => $jobApplication->id, 'employment_id' => $employment->id])
-                ->with('success', ' Employment updated successfully!');
+                ->with('success', ' Previous Employment updated successfully!');
         }
 
     }

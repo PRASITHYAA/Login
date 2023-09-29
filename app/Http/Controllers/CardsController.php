@@ -63,7 +63,7 @@ class CardsController extends Controller
         }
 
         $card = Card::create($card);
-        return redirect()->route('education.view', ['job_application_id' => $jobApplication->id, 'card_id' => $card->id])->with('success', ' Card submitted successfully!');
+        return redirect()->route('education.view', ['job_application_id' => $jobApplication->id, 'card_id' => $card->id])->with('success', ' Government-Issued Identification Cards submitted successfully!');
     }
 
     public function show($id)
@@ -145,11 +145,11 @@ class CardsController extends Controller
         $education = Education::where('job_application_id', $card->job_application_id)->orderBy('id', 'desc')->first();
 
         if (!is_null($education)) {
-            return redirect()->route('career.education.edit', $education->id)->with('success', 'Card updated successfully!');
+            return redirect()->route('career.education.edit', $education->id)->with('success', 'Government-Issued Identification Cards updated successfully!');
         }
         else {
             return redirect()->route('education.view', ['job_application_id' => $jobApplication->id, 'card_id' => $card->id])
-                ->with('success', 'Card updated successfully!');
+                ->with('success', 'Government-Issued Identification Cards updated successfully!');
         }
     }
 }

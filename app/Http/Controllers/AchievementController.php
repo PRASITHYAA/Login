@@ -50,7 +50,7 @@ class AchievementController extends Controller
         }
         $achievement = Achievement::create($achievement);
 
-        return redirect()->route('disclaimer.view', ['job_application_id' => $request->job_application_id, 'achievement_id' => $achievement->id ])->with('success', 'Achievement created successfully!');
+        return redirect()->route('disclaimer.view', ['job_application_id' => $request->job_application_id, 'achievement_id' => $achievement->id ])->with('success', 'Achievements,Co-Curricular,Extra-Curricular  created successfully!');
     }
 
     public function show($id)
@@ -116,11 +116,11 @@ class AchievementController extends Controller
         $disclaimer = Disclaimer::where('job_application_id', $achievement->job_application_id)->orderBy('id', 'desc')->first();
 
         if (!is_null($disclaimer)) {
-            return redirect()->route('career.disclaimer.edit', $disclaimer->id)->with('success', 'Achievement updated successfully!');
+            return redirect()->route('career.disclaimer.edit', $disclaimer->id)->with('success', 'Achievements,Co-Curricular,Extra-Curricular updated successfully!');
         }
         else {
             return redirect()->route('disclaimer.view', ['job_application_id' => $achievement->job_application_id, 'achievement_id' => $achievement->id])
-                ->with('success', ' Achievement updated successfully!');
+                ->with('success', ' Achievements,Co-Curricular,Extra-Curricular updated successfully!');
         }
     }
 }

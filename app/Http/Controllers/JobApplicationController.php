@@ -99,10 +99,10 @@ class JobApplicationController extends Controller
             $spouseImagepath = $request->file('spouse_image')->store('images', 'public');
             $data['spouse_image'] = $spouseImagepath;
         }
-        $data['user_id'] =  auth()->user()->id;
+        $data['user_id'] = auth()->user()->id;
         $jobApplication = JobApplication::create($data);
 
-        if($request->has('siblings_name')) {
+        if ($request->has('siblings_name')) {
             foreach ($request->siblings_name as $key => $sibling) {
                 if(!is_null($sibling)) {
                     if (isset($request->file('siblings_image')[$key])) {
@@ -120,7 +120,7 @@ class JobApplicationController extends Controller
             }
         }
 
-        return redirect()->route('card.view', ['job_application_id' => $jobApplication->id])->with('success', '  Job Application submitted successfully!');
+        return redirect()->route('card.view', ['job_application_id' => $jobApplication->id])->with('success', ' Employment / Job Application submitted successfully!');
     }
 
     // show
@@ -246,10 +246,10 @@ class JobApplicationController extends Controller
         $card = Card::where('job_application_id', $id)->orderBy('id', 'desc')->first();
 
         if (!is_null($card)) {
-            return redirect()->route('career.card.edit', $card->id)->with('success', 'Card updated successfully!');
+            return redirect()->route('career.card.edit', $card->id)->with('success', 'Employment / Job Application updated successfully!');
         } else {
             return redirect()->route('card.view', ['job_application_id' => $jobApplication->id])
-                ->with('success', 'Job Application updated successfully!');
+                ->with('success', 'Employment / Job Application  updated successfully!');
         }
     }
 
@@ -271,6 +271,7 @@ class JobApplicationController extends Controller
 
         return response()->json($cities);
     }
+
     public function destroy($id)
     {
         $jobApplication = JobApplication::find($id);

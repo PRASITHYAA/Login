@@ -27,7 +27,8 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <form action="{{ isset($card) ? route('career.card.update', $card->id) : route('career.card.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ isset($card) ? route('career.card.update', $card->id) : route('career.card.store') }}"
+                method="POST" enctype="multipart/form-data">
                 @csrf
                 @if (isset($card))
                     @method('PUT')
@@ -42,11 +43,14 @@
 
                 <label>Does Your Permanent Address is Different</label>
                 <br><br>
-                {{--<label>
+                {{-- <label>
                     <input type="checkbox" id="aadhar" class="address-type" name="identity_type[]" value="aadhar" {{ (old('identity_type') && in_array('aadhar', old('identity_type'))) || (isset($card) && in_array('aadhar', explode(',', $card->identity_type))) ? 'checked' : ((old('identity_type') == '' && !isset($card)) ? 'checked' : '') }}> AADHAR CARD
-                </label>--}}
+                </label> --}}
                 <label>
-                    <input type="checkbox" id="passport" class="address-type-passport" name="identity_type" value="passport" {{ old('identity_type') == 'passport' || (isset($card) && $card->identity_type == 'passport') ? 'checked' : '' }}> PASSPORT
+                    <input type="checkbox" id="passport" class="address-type-passport" name="identity_type"
+                        value="passport"
+                        {{ old('identity_type') == 'passport' || (isset($card) && $card->identity_type == 'passport') ? 'checked' : '' }}>
+                    PASSPORT
                 </label>
                 <br>
 
@@ -57,9 +61,10 @@
                         <!-- aadharname -->
                         <div class="col mt-4">
                             <label class="form-label">Name as per IDs <span style="color: red;">*</span></label>
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control alphabetic-input"
-                                placeholder="Name as per IDs" name="aadhar_name" id="aadhar_name"
-                                value="{{ old('aadhar_name') ?? ($card->aadhar_name ?? '') }}" required="true">
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                class="form-control alphabetic-input" placeholder="Name as per IDs" name="aadhar_name"
+                                id="aadhar_name" value="{{ old('aadhar_name') ?? ($card->aadhar_name ?? '') }}"
+                                required="true">
                         </div>
 
                         <!-- aadharidnumber -->
@@ -75,10 +80,11 @@
                         <!-- aadharissuedcountry -->
                         <div class="col mt-4">
                             <label for="" class="form-label">Country <span style="color: red;">*</span></label>
-                            <select class="form-select" name="aadhar_issued_country" id="aadhar_issued_country" required="true">
+                            <select class="form-select" name="aadhar_issued_country" id="aadhar_issued_country"
+                                required="true">
                                 <option selected disabled value="">Choose...</option>
                                 <option value="1"
-                                    {{ ((isset($card) && $card->aadhar_issued_country == 1) || (old('aadhar_issued_country') && old('aadhar_issued_country') == 1)) ? 'selected' : '' }}>
+                                    {{ (isset($card) && $card->aadhar_issued_country == 1) || (old('aadhar_issued_country') && old('aadhar_issued_country') == 1) ? 'selected' : '' }}>
                                     India</option>
                             </select>
                         </div>
@@ -89,7 +95,7 @@
                                 <option value="">--Select State--</option>
                                 @foreach (\App\Models\State::all() as $state)
                                     <option value="{{ $state->id }}"
-                                        {{ ((isset($card) && $card->aadhar_issued_state == $state->id) || (old('aadhar_issued_state') && old('aadhar_issued_state') == $state->id)) ? 'selected' : '' }}>
+                                        {{ (isset($card) && $card->aadhar_issued_state == $state->id) || (old('aadhar_issued_state') && old('aadhar_issued_state') == $state->id) ? 'selected' : '' }}>
                                         {{ $state->name }}
                                     </option>
                                 @endforeach
@@ -99,15 +105,12 @@
                         <!-- aadharissuedplace -->
                         <div class="col mt-4">
                             <label class="form-label">Issued Place <span style="color: red;">*</span></label>
-                            {{-- <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                        class="form-control" placeholder="Issued Place" name="aadhar_issued_place"
-                                        id="aadhar_issued_place" required="true"> --}}
                             <select class="form-select city" name="aadhar_issued_place" id="aadhar_city" required="true">
                                 <option value="">--Select City--</option>
-                                @if(isset($card) || old('aadhar_issued_place'))
+                                @if (isset($card) || old('aadhar_issued_place'))
                                     @foreach (\App\Models\City::all() as $city)
                                         <option value="{{ $city->id }}"
-                                            {{ ((isset($card) && $card->aadhar_issued_place == $city->id) || (old('aadhar_issued_place') && old('aadhar_issued_place') == $city->id)) ? 'selected' : '' }}>
+                                            {{ (isset($card) && $card->aadhar_issued_place == $city->id) || (old('aadhar_issued_place') && old('aadhar_issued_place') == $city->id) ? 'selected' : '' }}>
                                             {{ $city->name }}
                                         </option>
                                     @endforeach
@@ -124,7 +127,7 @@
                                 <input type="file" class="form-control" id="aadhar_image" name="aadhar_image"
                                     accept="image/*" {{ !isset($card->aadhar_image) ? 'required="true"' : '' }}>
                                 @if (isset($card) && $card->aadhar_image)
-                                    <img src="{{ asset('storage/'.$card->aadhar_image) }}" alt="Aadhaar Card Image"
+                                    <img src="{{ asset('storage/' . $card->aadhar_image) }}" alt="Aadhaar Card Image"
                                         style="width: 150px;">
                                 @endif
 
@@ -141,11 +144,12 @@
                                 <span style="color: red;">*</span></label>
                             <div class="input-group">
                                 <input type="file" class="form-control" id="aadhar_image_page" accept="image/*"
-                                    name="aadhar_image_page" {{ !isset($card->aadhar_image_page) ? 'required="true"' : '' }}>
+                                    name="aadhar_image_page"
+                                    {{ !isset($card->aadhar_image_page) ? 'required="true"' : '' }}>
                             </div>
                             @if (isset($card) && $card->aadhar_image_page)
                                 <img src="{{ asset('storage/' . $card->aadhar_image_page) }}" alt="Aadhaar Card Image"
-                                     style="width: 150px;">
+                                    style="width: 150px;">
                             @endif
                             <div class="form-group">
                                 <img id="aadharImagePagePreview" src="#" alt="Image Preview"
@@ -156,7 +160,8 @@
                     </div>
                     {{-- passport --}}
                     <div class="col-lg-6">
-                        <div id="inputFieldspassport" class="{{ old('identity_type') == 'passport' || (isset($card) && $card->identity_type == 'passport') ? '' : 'hidden' }}">
+                        <div id="inputFieldspassport"
+                            class="{{ old('identity_type') == 'passport' || (isset($card) && $card->identity_type == 'passport') ? '' : 'hidden' }}">
                             <!-- passport -->
                             <h4 class="text-center" style="font-weight: bold;">PASSPORT</h4>
                             <!-- passportname -->
@@ -201,7 +206,7 @@
                                 <select class="form-select" name="passport_issued_country" id="passport_issued_country">
                                     <option selected disabled value="">Choose...</option>
                                     <option value="1"
-                                        {{ ((isset($card) && $card->passport_issued_country == 1) || (old('passport_issued_country') && old('passport_issued_country') == 1)) ? 'selected' : '' }}>
+                                        {{ (isset($card) && $card->passport_issued_country == 1) || (old('passport_issued_country') && old('passport_issued_country') == 1) ? 'selected' : '' }}>
                                         India</option>
                                 </select>
                             </div>
@@ -213,7 +218,7 @@
                                     <option value="">--Select State--</option>
                                     @foreach (\App\Models\State::all() as $state)
                                         <option value="{{ $state->id }}"
-                                            {{ ((isset($card) && $card->passport_issued_state == $state->id) || (old('passport_issued_state') && old('passport_issued_state') == $state->id)) ? 'selected' : '' }}>
+                                            {{ (isset($card) && $card->passport_issued_state == $state->id) || (old('passport_issued_state') && old('passport_issued_state') == $state->id) ? 'selected' : '' }}>
                                             {{ $state->name }}
                                         </option>
                                     @endforeach
@@ -225,10 +230,10 @@
                                 <label class="form-label">Issued Place <span style="color: red;">*</span></label>
                                 <select class="form-select city" name="passport_issued_place" id="passport_city">
                                     <option value="">--Select City--</option>
-                                    @if(isset($card) || old('passport_issued_place'))
+                                    @if (isset($card) || old('passport_issued_place'))
                                         @foreach (\App\Models\City::all() as $city)
                                             <option value="{{ $city->id }}"
-                                                {{ ((isset($card) && $card->passport_issued_place == $city->id) || (old('passport_issued_place') && old('passport_issued_place') == $city->id)) ? 'selected' : '' }}>
+                                                {{ (isset($card) && $card->passport_issued_place == $city->id) || (old('passport_issued_place') && old('passport_issued_place') == $city->id) ? 'selected' : '' }}>
                                                 {{ $city->name }}
                                             </option>
                                         @endforeach
@@ -245,8 +250,8 @@
                                         name="passport_image_id" accept="image/*" aria-describedby="inputGroupPrepend2">
                                 </div>
                                 @if (isset($card) && $card->passport_image_id)
-                                    <img src="{{ asset('storage/' . $card->passport_image_id) }}"
-                                        alt="Passport Image" style="width: 100px;">
+                                    <img src="{{ asset('storage/' . $card->passport_image_id) }}" alt="Passport Image"
+                                        style="width: 150px;">
                                 @endif
 
                                 <div class="form-group">
@@ -266,7 +271,7 @@
                                 </div>
                                 @if (isset($card) && $card->passport_image_id_page)
                                     <img src="{{ asset('storage/' . $card->passport_image_id_page) }}"
-                                        alt=" Passport Image" style="width: 100px;">
+                                        alt=" Passport Image" style="width: 150px;">
                                 @endif
                                 <div class="form-group">
                                     <img id="passportImageIdPagePreview" src="#" alt="Image Preview"
@@ -281,7 +286,7 @@
                         <!-- button -->
                         <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
                             <a style="font-weight: bold; " class="btn btn-secondary "
-                               href="{{ route('career.job_application.edit', (request()->job_application_id ?? (isset($card) ? $card->job_application_id : ''))) }}">Previous</a>
+                                href="{{ route('career.job_application.edit', request()->job_application_id ?? (isset($card) ? $card->job_application_id : '')) }}">Previous</a>
                             <button class="btn btn-primary   mx-3">Save And Next </button>
                             <br>
                             <br>
@@ -297,13 +302,13 @@
     <script>
         $(document).ready(function() {
             // City dropdown change event
-            $('.state').change(function () {
+            $('.state').change(function() {
                 var selectedSector = $(this).val();
                 var city = '';
-                if($(this).attr('id') == 'aadhar_state') {
+                if ($(this).attr('id') == 'aadhar_state') {
                     city = 'aadhar_city';
                 }
-                if($(this).attr('id') == 'passport_state') {
+                if ($(this).attr('id') == 'passport_state') {
                     city = 'passport_city';
                 }
                 // Make an AJAX request to the Laravel API to fetch positions based on the selected sector
@@ -314,16 +319,16 @@
                         state_id: selectedSector
                     },
                     dataType: 'json',
-                    success: function (data) {
+                    success: function(data) {
                         // Clear and populate the position dropdown with the retrieved data
-                        $('#'+city).empty();
+                        $('#' + city).empty();
                         //$('#city').append($('<option>').text('--Select City--').val(''));
-                        $.each(data, function (key, value) {
-                            $('#'+city).append($('<option>').text(value).val(
+                        $.each(data, function(key, value) {
+                            $('#' + city).append($('<option>').text(value).val(
                                 key));
                         });
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         console.error(xhr.responseText);
                         // Handle errors here
                     }
@@ -331,35 +336,37 @@
             });
         });
 
-        $(document).ready(function () {
-            var identity_type = "{{ old('identity_type') ?? (isset($card) && $card->identity_type) ? $card->identity_type : '' }}";
-            if(identity_type == 'aadhar') {
+        $(document).ready(function() {
+            var identity_type =
+                "{{ old('identity_type') ?? isset($card) && $card->identity_type ? $card->identity_type : '' }}";
+            if (identity_type == 'aadhar') {
                 $('#inputFieldspassport input, #inputFieldspassport select').attr('required', false);
                 $('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', true);
                 $('#aadhar_image, #aadhar_image_page').attr('required', false);
-            } else if(identity_type == 'passport') {
+            } else if (identity_type == 'passport') {
                 $('#inputFieldspassport input, #inputFieldspassport select').attr('required', true);
                 $('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', false);
                 $('#passport_image_id, #passport_image_id_page').attr('required', false);
             }
-           $('.address-type-passport').change(function () {
-              if($(this).is(':checked') == true) {
-                $('#inputFieldspassport').removeClass('hidden');
-                //$('#inputFieldsaadharcard').addClass('hidden');
-                  $('#inputFieldspassport input, #inputFieldspassport select').attr('required', true);
-                  //$('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', false);
-                  //$('#aadhar_image, #aadhar_image_page').attr('required', false);
-               } else {
-                  $('#inputFieldspassport').addClass('hidden');
-                  $('#inputFieldspassport input, #inputFieldspassport select').attr('required', false);
-              }/* else if($(this).val() == 'aadhar') {
-                  $('#inputFieldspassport').addClass('hidden');
-                  $('#inputFieldsaadharcard').removeClass('hidden');
-                  $('#inputFieldspassport input, #inputFieldspassport select').attr('required', false);
-                  $('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', true);
-                  $('#passport_image_id, #passport_image_id_page').attr('required', false);
-              }*/
-           });
+            $('.address-type-passport').change(function() {
+                if ($(this).is(':checked') == true) {
+                    $('#inputFieldspassport').removeClass('hidden');
+                    //$('#inputFieldsaadharcard').addClass('hidden');
+                    $('#inputFieldspassport input, #inputFieldspassport select').attr('required', true);
+                    //$('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', false);
+                    //$('#aadhar_image, #aadhar_image_page').attr('required', false);
+                } else {
+                    $('#inputFieldspassport').addClass('hidden');
+                    $('#inputFieldspassport input, #inputFieldspassport select').attr('required', false);
+                }
+                /* else if($(this).val() == 'aadhar') {
+                                  $('#inputFieldspassport').addClass('hidden');
+                                  $('#inputFieldsaadharcard').removeClass('hidden');
+                                  $('#inputFieldspassport input, #inputFieldspassport select').attr('required', false);
+                                  $('#inputFieldsaadharcard input, #inputFieldsaadharcard select').attr('required', true);
+                                  $('#passport_image_id, #passport_image_id_page').attr('required', false);
+                              }*/
+            });
         });
     </script>
 

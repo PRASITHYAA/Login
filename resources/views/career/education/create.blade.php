@@ -48,10 +48,10 @@
                     <label>
                         <input type="radio" name="radio_option" value="yes"
                             {{ isset($education) ? ($education->radio_option == 'yes' ? 'checked' : '') : '' }}
-                            onclick="showCheckboxes()"> Yes
+                            onclick="showCheckboxes()" required> Yes
                     </label>
                     <label>
-                        <input type="radio" name="radio_option" value="no" {{ isset($education) ? ($education->radio_option == 'no' ? 'checked' : '') : '' }} onclick="hideCheckboxes()"> No
+                        <input type="radio" name="radio_option" value="no" {{ isset($education) ? ($education->radio_option == 'no' ? 'checked' : '') : '' }} onclick="hideCheckboxes()" required> No
                     </label>
                 </div>
 
@@ -550,7 +550,7 @@
                                 <label for="" class="form-label">Course <span
                                         style="color: red;">*</span></label>
                                 <select class="form-select" id="bachelors_course" name="bachelors_course">
-                                    <option disabled value="">Choose...</option>
+                                    <option selected disabled value="">Choose...</option>
                                     <option value="Bachelor of Engineering"
                                         {{ isset($education) && $education->bachelors_course == 'Bachelor of Engineering' ? 'selected' : '' }}>
                                         Bachelor of Engineering</option>
@@ -678,7 +678,7 @@
                                     value="{{ old('master_to_date') ?? ($education->master_to_date ?? '') }}">
                             </div>
                             <!-- years of passing -->
-                            <div class="col-lg-2 mt-3">
+                            <div class="col-lg-2 ">
                                 <label class="form-label">Year of Passing
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
@@ -815,7 +815,7 @@
                                     value="{{ old('doctorate_to_date') ?? ($education->doctorate_to_date ?? '') }}">
                             </div>
                             <!-- doctorateyearofpassing -->
-                            <div class="col-lg-2 mt-3">
+                            <div class="col-lg-2 ">
                                 <label class="form-label">Year of Passing
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
