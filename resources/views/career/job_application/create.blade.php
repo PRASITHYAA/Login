@@ -128,6 +128,7 @@
                             <label for="dob">Enter your date of birth <span class="red">*</span></label><br>
                             <input class="form-control " type="date" name="dob" id="dob"
                                 value="{{ old('dob') ?? ($jobApplication->dob ?? '') }}" oninput="calculateAge()" required>
+                            <span class="text-danger" id="ageError"></span>
                         </div>
                         <!-- age -->
                         <div class="col-md-4">
@@ -718,12 +719,26 @@
             const ageInYears = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365));
 
             document.getElementById("ageOutput").value = ageInYears;
+            if(ageInYears < 18) {
+                $('#ageError').text('Age Should be above 18 years');
+            } else {
+                $('#ageError').text('');
+            }
         }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#myForm').submit(function (e) {
+               if($('#ageOutput').val() < 18) {
+                   e.preventDefault();
+                   $('#ageError').text('Age Should be above 18 years');
+                   $('html, body').animate({
+                       scrollTop: $('#ageOutput').offset().top
+                   }, 1000);
+               }
+            });
             var existing = "{{ old('first_name') || isset($jobApplication) ? true : false }}";
             // Function to hide the form container initially
             function hideFormContainer(formContainer) {
