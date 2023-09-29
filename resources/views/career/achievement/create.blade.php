@@ -142,7 +142,7 @@
                         <label class="form-label">Upload All Your Project Documents Here<span class="red">*</span>
                             <div class="input-group">
                                 <input type="file" class="form-control open-input-2-input" id="project_document"
-                                    name="project_document" {{ !isset($achievement->project_document) ? 'required' : '' }}>
+                                    name="project_document" {{ (!isset($achievement->project_document) && $achievement->final_year_project_status == 'yes') ? 'required' : '' }}>
                             </div>
                             @if (isset($achievement) && $achievement->project_document)
                                 <img src="{{ asset('storage/' . $achievement->project_document) }}"
@@ -203,7 +203,7 @@
                             <div class="input-group">
                                 <input type="file" class="form-control open-input-3-input"
                                     id="yes_curriculum_pdf_format" name="yes_curriculum_pdf_format"
-                                    {{ isset($achievement->yes_curriculum_pdf_format) ? 'required' : '' }}>
+                                    {{ (!isset($achievement->yes_curriculum_pdf_format) && $achievement->curriculum_status == 'yes') ? 'required' : '' }}>
                             </div>
                             @if (isset($achievement) && $achievement->yes_curriculum_pdf_format)
                                 <img src="{{ asset('storage/' . $achievement->yes_curriculum_pdf_format) }}"
