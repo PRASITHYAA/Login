@@ -159,6 +159,7 @@ class JobApplicationController extends Controller
             'instagram_link' => 'required',
             // permanent address
             'permanent_address_input' => 'required|in:yes,no',
+            'permanent_state' => 'required_if:permanent_address_input,yes',
             'permanent_city' => 'required_if:permanent_address_input,yes',
             'permanent_postal_code' => 'required_if:permanent_address_input,yes',
             'permanent_phone' => 'required_if:permanent_address_input,yes',
@@ -228,7 +229,6 @@ class JobApplicationController extends Controller
             $data['spouse_phone'] = null;
             $data['spouse_image'] = null;
         }
-
         $jobApplication = JobApplication::find($id);
         $jobApplication = $jobApplication->fill($data);
         $jobApplication->save();

@@ -123,12 +123,11 @@
                             <div class="input-group">
                                 <input type="file" class="form-control" id="aadhar_image" name="aadhar_image"
                                     accept="image/*" {{ !isset($card->aadhar_image) ? 'required="true"' : '' }}>
+                            </div>
                                 @if (isset($card) && $card->aadhar_image)
                                     <img src="{{ asset('storage/'.$card->aadhar_image) }}" alt="Aadhaar Card Image"
-                                        style="width: 150px;">
+                                        style="height: 150px;">
                                 @endif
-
-                            </div>
                             <div class="form-group">
                                 <img id="aadharImagePreview" src="#" alt="Image Preview"
                                     style="max-width:150px; display: none;">
@@ -145,11 +144,11 @@
                             </div>
                             @if (isset($card) && $card->aadhar_image_page)
                                 <img src="{{ asset('storage/' . $card->aadhar_image_page) }}" alt="Aadhaar Card Image"
-                                     style="width: 150px;">
+                                     style="height: 150px;">
                             @endif
                             <div class="form-group">
                                 <img id="aadharImagePagePreview" src="#" alt="Image Preview"
-                                    style="max-width:150px; display: none;">
+                                    style="height: 150px; display: none;">
                             </div>
 
                         </div>
@@ -251,7 +250,7 @@
 
                                 <div class="form-group">
                                     <img id="passportImageIdPreview" src="#" alt="Image Preview"
-                                        style="max-width:150px; display: none;">
+                                        style="height: 150px; display: none;">
                                 </div>
 
                             </div>
@@ -270,7 +269,7 @@
                                 @endif
                                 <div class="form-group">
                                     <img id="passportImageIdPagePreview" src="#" alt="Image Preview"
-                                        style="max-width:150px; display: none;">
+                                        style="height: 150px; display: none;">
                                 </div>
                             </div>
                         </div>

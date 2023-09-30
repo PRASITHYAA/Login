@@ -115,7 +115,7 @@
                             </div>
                             @if (isset($jobApplication))
                                 <img src="{{ asset('storage/' . $jobApplication->image) }}" alt="Job Application Image"
-                                    style="max-width: 100%;">
+                                    style="height: 150px;">
                             @endif
                             <div class="form-group">
                                 <img id="imagePreview" src="#" alt="Image Preview"
@@ -149,7 +149,7 @@
                         <!-- State -->
                         <div class="col-md-4">
                             <label class="form-label">State <span class="red">*</span></label>
-                            <select class="form-select" name="state" id="state" required>
+                            <select class="form-select" name="state" id="state" data-id="city" required>
                                 <option value="">--Select State--</option>
                                 @foreach (\App\Models\State::all() as $state)
                                     <option value="{{ $state->id }}"
@@ -162,14 +162,22 @@
                         <!-- city -->
                         <div class="col-md-4">
                             <label class="form-label">City <span class="red">*</span></label>
+                            @php
+                                $cities = [];
+                                if(isset($jobApplication->state)) {
+                                    $cities = \App\Models\City::where('state_id', $jobApplication->state)->get();
+                                }
+                            @endphp
                             <select class="form-select" name="city" id="city" required>
                                 <option value="">--Select City--</option>
-                                @foreach (\App\Models\City::all() as $city)
-                                    <option value="{{ $city->id }}"
-                                        {{ isset($jobApplication) && $city->id == $jobApplication->city ? 'selected' : '' }}>
-                                        {{ $city->name }}
-                                    </option>
-                                @endforeach
+                                @if(count($cities))
+                                    @foreach ($cities as $city)
+                                        <option value="{{ $city->id }}"
+                                            {{ isset($jobApplication) && $city->id == $jobApplication->city ? 'selected' : '' }}>
+                                            {{ $city->name }}
+                                        </option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                         <!--address -->
@@ -265,12 +273,15 @@
                             <!-- State -->
                             <div class="col-md-4">
                                 <label class="form-label">State <span class="red">*</span></label>
-                                <select class="form-select" name="permanent_state" id="state">
+                                @php
+                                    $permanentStates = \App\Models\State::all();
+                                @endphp
+                                <select class="form-select" name="permanent_state" id="permanent_state" data-id="permanent_city">
                                     <option value="">--Select State--</option>
-                                    @foreach (\App\Models\State::all() as $state)
-                                        <option value="{{ $state->id }}"
-                                            {{ isset($jobApplication) && $state->id == $jobApplication->state ? 'selected' : '' }}>
-                                            {{ $state->name }}
+                                    @foreach ($permanentStates as $pstate)
+                                        <option value="{{ $pstate->id }}"
+                                            {{ isset($jobApplication) && $pstate->id == $jobApplication->permanent_state ? 'selected' : '' }}>
+                                            {{ $pstate->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -278,14 +289,22 @@
                             <!-- city -->
                             <div class="col-md-4">
                                 <label class="form-label">City <span class="red">*</span></label>
-                                <select class="form-select" name="permanent_city" id="city">
+                                @php
+                                    $permanentCities = [];
+                                    if(isset($jobApplication->permanent_state)) {
+                                        $permanentCities = \App\Models\City::where('state_id', $jobApplication->permanent_state)->get();
+                                    }
+                                @endphp
+                                <select class="form-select" name="permanent_city" id="permanent_city">
                                     <option value="">--Select City--</option>
-                                    @foreach (\App\Models\City::all() as $city)
-                                        <option value="{{ $city->id }}"
-                                            {{ isset($jobApplication) && $city->id == $jobApplication->city ? 'selected' : '' }}>
-                                            {{ $city->name }}
-                                        </option>
-                                    @endforeach
+                                    @if(count($permanentCities))
+                                        @foreach ($permanentCities as $pcity)
+                                            <option value="{{ $pcity->id }}"
+                                                {{ isset($jobApplication) && $pcity->id == $jobApplication->permanent_city ? 'selected' : '' }}>
+                                                {{ $pcity->name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <!-- permanent_address -->
@@ -356,12 +375,12 @@
                             </div>
                             @if (isset($jobApplication))
                                 <img src="{{ asset('storage/' . $jobApplication->father_image) }}"
-                                    alt="Job Application Image" style="max-width: 100%;">
+                                    alt="Job Application Image" style="height: 150px;">
                             @endif
                             <!-- images  -->
                             <div class="form-group">
                                 <img id="fatherimagePreview" src="#" alt="Image Preview"
-                                    style="max-width: 150px; display: none;">
+                                    style="max-height: 150px; display: none;">
                             </div>
                         </div>
                         <!-- mothername -->
@@ -399,16 +418,16 @@
                             </div>
                             @if (isset($jobApplication))
                                 <img src="{{ asset('storage/' . $jobApplication->mother_image) }}"
-                                    alt="Job Application Image" style="max-width: 100%;">
+                                    alt="Job Application Image" style="height: 150px;">
                             @endif
                             <!-- images  -->
                             <div class="form-group">
                                 <img id="motherimagePreview" src="#" alt="Image Preview"
-                                    style="max-width: 150px; display: none;">
+                                    style="height: 150px; display: none;">
                             </div>
                         </div>
                         <!-- marital status -->
-                        <div class="col">
+                        <div class="col col-md-12">
                             <p style="font-weight: bold;">Marital Status :</p>
                             <input type="radio" name="marital_status" value="married"
                                 {{ old('marital_status') == 'married' ||
@@ -473,12 +492,12 @@
                                         </div>
                                         @if (isset($jobApplication))
                                             <img src="{{ asset('storage/' . $jobApplication->spouse_image) }}"
-                                                alt="Job Application Image" style="max-width: 100%;">
+                                                alt="Job Application Image" style="height: 150px;">
                                         @endif
 
                                         <div class="form-group">
                                             <img id="spouseimagePreview" src="#" alt="Image Preview"
-                                                style="max-width: 150px; display: none;">
+                                                style="height: 150px; display: none;">
                                         </div>
                                     </div>
                                 </div>
@@ -556,14 +575,14 @@
                                                                 id="siblings_image_1" name="siblings_image[]" accept="image/*">
                                                             @if (isset($sibling->photo))
                                                                 <img src="{{ asset('storage/' . $sibling->photo) }}" class="edit-prev-img"
-                                                                    alt="Job Application Image" style="max-width: 100%;">
+                                                                    alt="Job Application Image" style="height: 150px;">
                                                                 <input type="text" class="form-control sibling-image-input"
                                                                        id="siblings_image_old_1" name="siblings_image_old[]" value="{{ $sibling->photo }}">
                                                             @endif
                                                             <!-- images  -->
                                                             <div class="form-group  ">
                                                                 <img id="siblingsimagePreview" src="#" alt="Image Preview"
-                                                                    style="max-width: 150px; display: none;">
+                                                                    style="height: 150px; display: none;">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 mt-5">
@@ -631,12 +650,12 @@
                                                                id="siblings_image_1" name="siblings_image[]" accept="image/*">
                                                         @if(isset(old('siblings_phone')[0]))
                                                             <img src="" class="edit-prev-img"
-                                                                 alt="Job Application Image" style="max-width: 100%;">
+                                                                 alt="Job Application Image" style="width: 150px;">
                                                         @endif
                                                         <!-- images  -->
                                                         <div class="form-group  ">
                                                             <img id="siblingsimagePreview" src="#" alt="Image Preview"
-                                                                 style="max-width: 150px; display: none;">
+                                                                 style="height: 150px; display: none;">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3 mt-5">
@@ -859,9 +878,9 @@
             });
 
             // City dropdown change event
-            $('#state').change(function() {
+            $('#state, #permanent_state').change(function() {
                 var selectedSector = $(this).val();
-
+                var id = $(this).data('id');
                 // Make an AJAX request to the Laravel API to fetch positions based on the selected sector
                 $.ajax({
                     url: "{{ route('cities.ajax') }}", // Replace with your Laravel API endpoint
@@ -872,10 +891,10 @@
                     dataType: 'json',
                     success: function(data) {
                         // Clear and populate the position dropdown with the retrieved data
-                        $('#city').empty();
+                        $('#'+id).empty();
                         //$('#city').append($('<option>').text('--Select City--').val(''));
                         $.each(data, function(key, value) {
-                            $('#city').append($('<option>').text(value).val(
+                            $('#'+id).append($('<option>').text(value).val(
                                 key));
                         });
                     },

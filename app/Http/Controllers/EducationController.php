@@ -34,18 +34,8 @@ class EducationController extends Controller
                 'high_school_percentage' => 'required_if:qualification.*,in:high_school',
                 'high_school_class' => 'required_if:qualification.*,in:high_school',
                 'high_school_stream' => 'required_if:qualification.*,in:high_school',
-                'high_school_image_certificate' => ['required_if:qualification.*,in:high_school', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
-                'high_school_image_mark_sheet' => ['required_if:qualification.*,in:high_school', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
+                'high_school_image_certificate' => $this->fileValidation('high_school'),
+                'high_school_image_mark_sheet' => $this->fileValidation('high_school'),
                 // Higher
                 'higher_secondary_institution_name' => 'required_if:qualification.*,in:higher_secondary',
                 'higher_secondary_city' => 'required_if:qualification.*,in:higher_secondary',
@@ -57,18 +47,8 @@ class EducationController extends Controller
                 'higher_secondary_class' => 'required_if:qualification.*,in:higher_secondary',
                 'higher_secondary_stream' => 'required_if:qualification.*,in:higher_secondary',
                 'higher_secondary_filed_of_interest' => 'required_if:qualification.*,in:higher_secondary',
-                'higher_secondary_image_certificate' => ['required_if:qualification.*,in:higher_secondary', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
-                'higher_secondary_image_mark_sheet' => ['required_if:qualification.*,in:higher_secondary', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
+                'higher_secondary_image_certificate' => $this->fileValidation('higher_secondary'),
+                'higher_secondary_image_mark_sheet' => $this->fileValidation('higher_secondary'),
                 // diploma
                 'diploma_institution_name' => 'required_if:qualification.*,in:diploma',
                 'diploma_city' => 'required_if:qualification.*,in:diploma',
@@ -80,18 +60,8 @@ class EducationController extends Controller
                 'diploma_course' => 'required_if:qualification.*,in:diploma',
                 'diploma_major' => 'required_if:qualification.*,in:diploma',
                 'diploma_filed_of_interest' => 'required_if:qualification.*,in:diploma',
-                'diploma_image_certificate' => ['required_if:qualification.*,in:diploma', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
-                'diploma_image_mark_sheet' => ['required_if:qualification.*,in:diploma', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
+                'diploma_image_certificate' => $this->fileValidation('diploma'),
+                'diploma_image_mark_sheet' => $this->fileValidation('diploma'),
                 // Bachelors
                 'bachelors_institution_name' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_city' => 'required_if:qualification.*,in:bachelor_degree',
@@ -103,18 +73,8 @@ class EducationController extends Controller
                 'bachelors_course' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_major' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_filed_of_interest' => 'required_if:qualification.*,in:bachelor_degree',
-                'bachelors_image_certificate' => ['required_if:qualification.*,in:bachelor_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
-                'bachelors_image_mark_sheet' => ['required_if:qualification.*,in:bachelor_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
+                'bachelors_image_certificate' => $this->fileValidation('bachelor_degree'),
+                'bachelors_image_mark_sheet' => $this->fileValidation('bachelor_degree'),
                 // // master
                 'master_institution_name' => 'required_if:qualification.*,in:master_degree',
                 'master_city' => 'required_if:qualification.*,in:master_degree',
@@ -126,18 +86,8 @@ class EducationController extends Controller
                 'master_class' => 'required_if:qualification.*,in:master_degree',
                 'master_filed_of_specialization' => 'required_if:qualification.*,in:master_degree',
                 'master_filed_of_interest' => 'required_if:qualification.*,in:master_degree',
-                'master_image_certificate' => ['required_if:qualification.*,in:master_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
-                'master_image_mark_sheet' => ['required_if:qualification.*,in:master_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
+                'master_image_certificate' => $this->fileValidation('master_degree'),
+                'master_image_mark_sheet' => $this->fileValidation('master_degree'),
                 // doctorate
                 'doctorate_name' => 'required_if:qualification.*,in:doctorate_degree',
                 'doctorate_city' => 'required_if:qualification.*,in:doctorate_degree',
@@ -149,18 +99,8 @@ class EducationController extends Controller
                 'doctorate_class' => 'required_if:qualification.*,in:doctorate_degree',
                 'doctorate_filed_of_specialization' => 'required_if:qualification.*,in:doctorate_degree',
                 'doctorate_filed_of_interest' => 'required_if:qualification.*,in:doctorate_degree',
-                'doctorate_image_certificate' => ['required_if:qualification.*,in:doctorate_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
-                'doctorate_image_mark_sheet' => ['required_if:qualification.*,in:doctorate_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                    function ($attribute, $value, $fail) {
-                        if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                            $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                        }
-                    }],
+                'doctorate_image_certificate' => $this->fileValidation('doctorate_degree'),
+                'doctorate_image_mark_sheet' => $this->fileValidation('doctorate_degree'),
             ]
         );
         $education = $request->all();
@@ -332,100 +272,40 @@ class EducationController extends Controller
                 'doctorate_filed_of_interest' => 'required_if:qualification.*,in:doctorate_degree',
             ];
         if ($request->hasFile('high_school_image_certificate')) {
-            $rules['high_school_image_certificate'] = ['required_if:qualification.*,in:high_school', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['high_school_image_certificate'] = $this->fileValidation('high_school');
         }
         if ($request->hasFile('high_school_image_mark_sheet')) {
-            $rules['high_school_image_mark_sheet'] = ['required_if:qualification.*,in:high_school', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['high_school_image_mark_sheet'] = $this->fileValidation('high_school');
         }
         if ($request->hasFile('higher_secondary_image_certificate')) {
-            $rules['higher_secondary_image_certificate'] = ['required_if:qualification.*,in:higher_secondary', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['higher_secondary_image_certificate'] = $this->fileValidation('higher_secondary');
         }
         if ($request->hasFile('higher_secondary_image_mark_sheet')) {
-            $rules['higher_secondary_image_mark_sheet'] = ['required_if:qualification.*,in:higher_secondary', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['higher_secondary_image_mark_sheet'] = $this->fileValidation('higher_secondary');
         }
         if ($request->hasFile('diploma_image_certificate')) {
-            $rules['diploma_image_certificate'] = ['required_if:qualification.*,in:diploma', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['diploma_image_certificate'] = $this->fileValidation('diploma');
         }
         if ($request->hasFile('diploma_image_mark_sheet')) {
-            $rules['diploma_image_mark_sheet'] = ['required_if:qualification.*,in:diploma', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['diploma_image_mark_sheet'] = $this->fileValidation('diploma');
         }
         if ($request->hasFile('bachelors_image_certificate')) {
-            $rules['bachelors_image_certificate'] = ['required_if:qualification.*,in:bachelor_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['bachelors_image_certificate'] = $this->fileValidation('bachelor_degree');
         }
         if ($request->hasFile('bachelors_image_mark_sheet')) {
-            $rules['bachelors_image_mark_sheet'] = ['required_if:qualification.*,in:bachelor_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['bachelors_image_mark_sheet'] = $this->fileValidation('bachelor_degree');
         }
         if ($request->hasFile('master_image_certificate')) {
-            $rules['master_image_certificate'] = ['required_if:qualification.*,in:bachelor_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['master_image_certificate'] = $this->fileValidation('master_degree');
         }
         if ($request->hasFile('master_image_mark_sheet')) {
-            $rules['master_image_mark_sheet'] = ['required_if:qualification.*,in:master_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['master_image_mark_sheet'] = $this->fileValidation('master_degree');
         }
         if ($request->hasFile('doctorate_image_certificate')) {
-            $rules['doctorate_image_certificate'] = ['required_if:qualification.*,in:doctorate_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['doctorate_image_certificate'] = $this->fileValidation('doctorate_degree');
         }
         if ($request->hasFile('doctorate_image_mark_sheet')) {
-            $rules['doctorate_image_mark_sheet'] = ['required_if:qualification.*,in:doctorate_degree', 'mimes:jpeg,png,jpg,gif,pdf', 'max:1000',
-                function ($attribute, $value, $fail) {
-                    if ($value->getClientOriginalExtension() !== 'pdf' && $value->getSize() > 100) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of 1000KB or an image with a maximum size of 100KB.');
-                    }
-                }];
+            $rules['doctorate_image_mark_sheet'] = $this->fileValidation('doctorate_degree');
         }
 
         $request->validate($rules);
@@ -518,5 +398,32 @@ class EducationController extends Controller
             return redirect()->route('employment.view', ['job_application_id' => $jobApplication->id, 'education_id' => $education->id])
                 ->with('success', 'Education updated successfully!');
         }
+    }
+
+    public function fileValidation($field)
+    {
+        return ["required_if:qualification.*,in:$field", 'mimes:jpeg,png,jpg,gif,pdf',
+            function ($attribute, $value, $fail) {
+                $allowedExtensions = ['jpeg', 'png', 'jpg', 'gif', 'pdf'];
+                $maxPdfSize = 1000; // 1000KB
+                $maxImageSize = 100; // 100KB
+
+                // Check if the uploaded file is a PDF
+                if ($value->getClientOriginalExtension() === 'pdf') {
+                    if ($value->getSize() > $maxPdfSize * 1024) {
+                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of ' . $maxPdfSize . 'KB.');
+                    }
+                } else {
+                    // Check if the uploaded file is an image
+                    if (in_array($value->getClientOriginalExtension(), $allowedExtensions)) {
+                        if ($value->getSize() > $maxImageSize * 1024) {
+                            $fail('The ' . $attribute . ' must be an image with a maximum size of ' . $maxImageSize . 'KB.');
+                        }
+                    } else {
+                        $fail('The ' . $attribute . ' must be either a PDF file or an image.');
+                    }
+                }
+            }
+        ];
     }
 }
