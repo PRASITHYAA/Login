@@ -65,7 +65,7 @@
                         <!-- aadharidnumber -->
                         <div class="col mt-4">
                             <label class="form-label">IDs Number <span style="color: red;">*</span></label>
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="number" class="form-control"
                                 placeholder="Aadhar Number" name="aadhar_id_number" id="aadhaar"
                                 value="{{ old('aadhar_id_number') ?? ($card->aadhar_id_number ?? '') }}" maxlength="12"
                                 oninput="updateValidation()" required="true">

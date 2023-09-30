@@ -516,7 +516,7 @@
                                                             <input type="text"
                                                                 class="form-control bg sibling-name-input alphabetic-input"
                                                                 id="siblings_name_1"
-                                                                value="{{ old('siblings_name') ?? ($sibling->name ?? '') }}"
+                                                                value="{{ $sibling->name ?? '' }}"
                                                                 placeholder="Siblings Name" name="siblings_name[]">
                                                         </div>
                                                         <!--Siblings  Date of Birth-->
@@ -526,7 +526,7 @@
                                                             <input type="date" name="siblings_date_of_birth[]"
                                                                 class="form-control sibling-dob-input bg"
                                                                 id="siblings_date_of_birth_1"
-                                                                value="{{ old('siblings_date_of_birth') ?? ($sibling->dob ?? '') }}"
+                                                                value="{{ $sibling->dob ?? '' }}"
                                                                 placeholder="Date of Birth">
                                                         </div>
                                                         <!-- siblings  email -->
@@ -535,7 +535,7 @@
                                                                     class="red">*</span></label>
                                                             <input type="email" class="form-control bg sibling-email-input"
                                                                 placeholder="Email-Id" name="siblings_email[]" id="siblings_email_1"
-                                                                value="{{ old('siblings_email') ?? ($sibling->email ?? '') }}">
+                                                                value="{{ $sibling->email ?? '' }}">
                                                         </div>
                                                         <!--siblings  phone -->
                                                         <div class="col-md-3">
@@ -544,7 +544,7 @@
                                                             <input type="tel"
                                                                 class="phoneInputField  form-control sibling-phone-input"
                                                                 name="siblings_phone[]" id="siblings_phone_1"
-                                                                value="{{ old('siblings_phone') ?? ($sibling->phone ?? '') }}">
+                                                                value="{{ $sibling->phone ?? '' }}">
                                                             <p class="errorText" style="color: red;"></p>
                                                         </div>
                                                         <!--siblings  Upload the Latest Passport Size Photo -->
@@ -919,7 +919,8 @@
             const formContainer = $("#formContainer2");
             const addFieldButton = $(".add-field-button");
 
-            addFieldButton.click(function() {
+            addFieldButton.click(function(e) {
+                e.preventDefault();
                 const clonedFields = formContainer.find(".form-fields:last").clone(true);
                 $(".remove-field-button").show(); // Show the Remove button
                 var input_name = clonedFields.find(".sibling-name-input").attr('id');

@@ -221,11 +221,18 @@ class JobApplicationController extends Controller
             $data['spouse_image'] = $spouseImagePath;
         }
 
+        if($request->marital_status == 'single') {
+            $data['spouse_name'] = null;
+            $data['spouse_date_of_birth'] = null;
+            $data['spouse_email'] = null;
+            $data['spouse_phone'] = null;
+            $data['spouse_image'] = null;
+        }
+
         $jobApplication = JobApplication::find($id);
         $jobApplication = $jobApplication->fill($data);
         $jobApplication->save();
         if($request->has('siblings_name') && $request->siblings == 'yes') {
-            $jobApplication->siblingsList()->delete();
             foreach ($request->siblings_name as $key => $sibling) {
                 if(!is_null($sibling)) {
                     if (isset($request->file('siblings_image')[$key])) {
@@ -241,6 +248,8 @@ class JobApplicationController extends Controller
                     ]);
                 }
             }
+        } else if($request->siblings == 'no') {
+            $jobApplication->siblingsList()->delete();
         }
 
         $card = Card::where('job_application_id', $id)->orderBy('id', 'desc')->first();
