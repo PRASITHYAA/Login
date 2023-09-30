@@ -65,17 +65,17 @@
 
                 </div>
 
-                <h4>Have you been published any conference papers/attended conferences? </h4>
+                <h4>Have you been published any conference papers/attended conferences?<span class="red">*</span></h4>
                 <!-- first one -->
 
                 <label>
-                    <input type="radio" name="conference_status" value="yes" id="yesRadio1" onclick="showInput()"
+                    <input type="radio" name="conference_status" value="yes" id="yesRadio1"
                         {{ old('conference_status') == 'yes' || (isset($achievement) && $achievement->conference_status == 'yes') ? 'checked' : '' }}>
                     Yes
                 </label>
                 <br>
                 <label>
-                    <input type="radio" name="conference_status" value="no" id="noRadio1" onclick="hideInput()"
+                    <input type="radio" name="conference_status" value="no" id="noRadio1"
                         {{ old('conference_status') == 'no' || (isset($achievement) && $achievement->conference_status == 'no') ? 'checked' : '' }}>
                     No
                 </label>
@@ -86,7 +86,7 @@
                         <p class="border-bottom ">Please use this section to indicate the Conference Details. Please
                             limit
                             your writing for this part to a maximum of 500 words.</p>
-                        <label for="exampleFormControlInput1" class="form-label">Conference</label>
+                        <label for="exampleFormControlInput1" class="form-label">Conference<span class="red">*</span></label>
                             <div class="form-container">
                                 <div class="form-fields">
                                     <!-- Initial set of form fields -->
@@ -105,16 +105,16 @@
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, pdf bmp <br>
                     Size
                     Limit: 50KB </p>
-                <p> Do you worked on any final year projects?</p>
+                <p> Do you worked on any final year projects?<span class="red">*</span></p>
 
                 <label>
-                    <input type="radio" name="final_year_project_status" value="yes" id="yesRadio2"
+                    <input type="radio" name="final_year_project_status" value="yes" id="yesRadio2" required
                         {{ old('final_year_project_status') == 'yes' || (isset($achievement) && $achievement->{'final_year_project_status'} == 'yes') ? 'checked' : '' }}>
                     Yes
                 </label>
                 <br>
                 <label>
-                    <input type="radio" name="final_year_project_status" value="no" id="noRadio2"
+                    <input type="radio" name="final_year_project_status" value="no" id="noRadio2" required
                         {{ old('final_year_project_status') == 'no' || (isset($achievement) && $achievement->{'final_year_project_status'} == 'no') ? 'checked' : '' }}>
                     No
                 </label>
@@ -125,7 +125,7 @@
                         limit your writing for this part to a maximum of 500 words and upload the detailed project
                         file.
                     </p>
-                    <label for="exampleFormControlInput1" class="form-label">Final Year Projects </label>
+                    <label for="exampleFormControlInput1" class="form-label">Final Year Projects<span class="red">*</span></label>
                         <div class="form-container">
                             <div class="form-fields">
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control open-input-2-input  mt-4"
@@ -142,7 +142,7 @@
                         <label class="form-label">Upload All Your Project Documents Here<span class="red">*</span>
                             <div class="input-group">
                                 <input type="file" class="form-control open-input-2-input" id="project_document"
-                                    name="project_document" {{ (!isset($achievement->project_document) && $achievement->final_year_project_status == 'yes') ? 'required' : '' }}>
+                                    name="project_document">
                             </div>
                             @if (isset($achievement) && $achievement->project_document)
                                 <img src="{{ asset('storage/' . $achievement->project_document) }}"
@@ -183,13 +183,13 @@
                     <p>Are You willing to Attach Your Curriculum Vitae? <span class="red">*</span></p>
 
                     <label>
-                        <input type="radio" name="curriculum_status" value="yes" id="yesRadio3"
+                        <input type="radio" name="curriculum_status" value="yes" id="yesRadio3" required
                             {{ old('curriculum_status') == 'yes' || (isset($achievement) && $achievement->{'curriculum_status'} == 'yes') ? 'checked' : '' }}>
                         Yes
                     </label>
                     <br>
                     <label>
-                        <input type="radio" name="curriculum_status" value="no" id="noRadio3"
+                        <input type="radio" name="curriculum_status" value="no" id="noRadio3" required
                             {{ old('curriculum_status') == 'no' || (isset($achievement) && $achievement->{'curriculum_status'} == 'no') ? 'checked' : '' }}>
                         No
                     </label>
@@ -202,8 +202,7 @@
                             </label>
                             <div class="input-group">
                                 <input type="file" class="form-control open-input-3-input"
-                                    id="yes_curriculum_pdf_format" name="yes_curriculum_pdf_format"
-                                    {{ (!isset($achievement->yes_curriculum_pdf_format) && $achievement->curriculum_status == 'yes') ? 'required' : '' }}>
+                                    id="yes_curriculum_pdf_format" name="yes_curriculum_pdf_format">
                             </div>
                             @if (isset($achievement) && $achievement->yes_curriculum_pdf_format)
                                 <img src="{{ asset('storage/' . $achievement->yes_curriculum_pdf_format) }}"
@@ -216,13 +215,13 @@
                     <p> Are You Willing to Consent to a Background Check? <span class="red">*</span></p>
 
                     <label>
-                        <input type="radio" name="background_check_status" value="yes" id="yesRadio4"
+                        <input type="radio" name="background_check_status" value="yes" id="yesRadio4" required
                             {{ old('background_check_status') == 'yes' || (isset($achievement) && $achievement->{'background_check_status'} == 'yes') ? 'checked' : '' }}>
                         Yes
                     </label>
                     <br>
                     <label>
-                        <input type="radio" name="background_check_status" value="no" id="noRadio4"
+                        <input type="radio" name="background_check_status" value="no" id="noRadio4" required
                             {{ old('background_check_status') == 'no' || (isset($achievement) && $achievement->{'background_check_status'} == 'no') ? 'checked' : '' }}>
                         No
                     </label>
@@ -272,12 +271,12 @@
         $(document).ready(function() {
             $('#yesRadio1').click(function() {
                 $('#input-field').removeClass('hidden');
-                $('.conference').attr('required', true);
+                $('#conference').attr('required', true);
             });
 
             $('#noRadio1').click(function() {
                 $('#input-field').addClass('hidden');
-                $('.conference').attr('required', false);
+                $('#conference').attr('required', false);
             });
 
             $('#yesRadio2').click(function() {
@@ -292,11 +291,12 @@
             });
             $('#yesRadio3').click(function() {
                 $('#input-field-3').show();
+                $('#yes_curriculum_pdf_format').attr('required', true);
 
             });
             $('#noRadio3').click(function() {
                 $('#input-field-3').hide();
-
+                $('#yes_curriculum_pdf_format').attr('required', false);
             });
             $('#yesRadio4').click(function() {
                 $('#input-field-4').hide();
