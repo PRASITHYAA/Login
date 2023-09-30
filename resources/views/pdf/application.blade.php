@@ -108,7 +108,7 @@
     </tr>
     <tr>
         <td class="empty-column">Photo Copy</td>
-        <td class="empty-column"> <img src="{{ asset('storage/' . $image) }}" alt="Image"></td>
+        <td class="empty-column"> <img style="height:100px" src="{{ asset('storage/' . $image) }}" alt="Image"></td>
     </tr>
 
     <tr>
@@ -165,7 +165,7 @@
         <td> {{ $first_name }}{{ $last_name }}</td>
         <td>{{ $dob }}</td>
         <td> {{ $phone }}</td>
-        <td><img src="{{ asset('storage/' . $image) }}" alt="Image"></td>
+        <td><img style="height:100px" src="{{ asset('storage/' . $image) }}" alt="Image"></td>
     </tr>
     <tr>
         <td>Father’s Name</td>
