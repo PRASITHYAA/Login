@@ -69,7 +69,7 @@
                                 placeholder="Aadhar Number" name="aadhar_id_number" id="aadhaar"
                                 value="{{ old('aadhar_id_number') ?? ($card->aadhar_id_number ?? '') }}" maxlength="12"
                                 oninput="updateValidation()" required="true">
-                            <p id="result"></p>
+                            <p id="result" class="text-danger"></p>
                         </div>
 
                         <!-- aadharissuedcountry -->
