@@ -6,6 +6,7 @@ use App\Mail\JobSubmission;
 use App\Models\Card;
 use App\Models\City;
 use App\Models\JobApplication;
+use App\Models\State;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -132,7 +133,7 @@ class JobApplicationController extends Controller
         $emailData['last_name'] = $jobApplication->last_name;
         $emailData['sector'] = $jobApplication->sector->name;
         $emailData['position'] = $jobApplication->position->name;
-        Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
+        //Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
         return view('career.job_application.create', compact('jobApplication'));
     }
 
@@ -280,6 +281,18 @@ class JobApplicationController extends Controller
 
         return response()->json($cities);
     }
+
+    public function getStates(Request $request)
+    {
+        // Retrieve positions based on the selected sector
+        $country_id = $request->input('country_id');
+
+        // Query your database to get positions related to the selected sector
+        $states = State::where('country_id', $country_id)->pluck('name', 'id');
+
+        return response()->json($states);
+    }
+
     public function destroy($id)
     {
         $jobApplication = JobApplication::find($id);

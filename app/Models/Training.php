@@ -9,6 +9,7 @@ class Training extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'sector_id',
         'course_level_id',
         'course_title_id',
@@ -42,4 +43,23 @@ class Training extends Model
         'expectations'
     ];
 
+    public function sector()
+    {
+        return $this->belongsTo(Sector::class);
+    }
+
+    public function position()
+    {
+        return $this->belongsTo(Position::class);
+    }
+
+    public function course_level()
+    {
+        return $this->belongsTo(CourseLevel::class);
+    }
+
+    public function course_title()
+    {
+        return $this->belongsTo(CourseTitle::class);
+    }
 }

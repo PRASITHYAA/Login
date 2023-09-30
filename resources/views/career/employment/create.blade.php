@@ -527,6 +527,7 @@
                 const toDate = new Date($("#employer_toDate_"+incPart[1]).val());
                 var validationMessage = $("#validationMessage");
                 if (fromDate > toDate) {
+                    validationMessage.remove();
                     $('<p style="color: red;" id="validationMessage" class="error">The From Date must be before the To Date</p>').insertAfter("#employer_toDate_"+incPart[1]);
                     validationMessage.show();
                 } else {

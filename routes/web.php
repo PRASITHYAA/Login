@@ -137,6 +137,7 @@ Route::put('/job_application/{id}', [JobApplicationController::class, 'update'])
 Route::delete('/job_application/{id}', [JobApplicationController::class, 'destroy'])->name('career.job_application.destroy');
 Route::get('/positions-ajax', [PositionController::class, 'getPositions'])->name('positions.ajax');
 Route::get('/cities-ajax', [JobApplicationController::class, 'getCities'])->name('cities.ajax');
+Route::get('/states-ajax', [JobApplicationController::class, 'getStates'])->name('states.ajax');
 Route::get('/course-levels-ajax', [CourseLevelController::class, 'getCourseLevels'])->name('course.levels.ajax');
 Route::get('/course-titles-ajax', [CourseTitleController::class, 'getCourseTitles'])->name('course.titles.ajax');
 

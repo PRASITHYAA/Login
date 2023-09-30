@@ -63,7 +63,7 @@ class TrainingController extends Controller
             $passportPhotoPath = $request->file('photo')->store('photos', 'public');
             $request->merge(['photo' => $passportPhotoPath]);
         }
-
+        $training['user_id'] = auth()->user()->id;
         Training::create($training);
 
         session()->flash('success', 'Training form submitted successfully.');

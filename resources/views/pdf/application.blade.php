@@ -108,7 +108,7 @@
     </tr>
     <tr>
         <td class="empty-column">Photo Copy</td>
-        <td class="empty-column"> <img src="{{ $image }}" alt="Image"></td>
+        <td class="empty-column"> <img src="{{ asset('storage/' . $image) }}" alt="Image"></td>
     </tr>
 
     <tr>
@@ -165,14 +165,14 @@
         <td> {{ $first_name }}{{ $last_name }}</td>
         <td>{{ $dob }}</td>
         <td> {{ $phone }}</td>
-        <td><img src="{{ $image }}" alt="Image"></td>
+        <td><img src="{{ asset('storage/' . $image) }}" alt="Image"></td>
     </tr>
     <tr>
         <td>Father’s Name</td>
         <td> {{ $father_name }}</td>
         <td>{{ $father_date_of_birth }}</td>
         <td> {{ $father_phone }}</td>
-        <td><img src="{{ $father_image }}" alt="Father's Image"></td>
+        <td><img src="{{ asset('storage/' . $father_image) }}" alt="Father's Image"></td>
 
     </tr>
     <tr>
@@ -180,7 +180,7 @@
         <td> {{ $mother_name }}</td>
         <td>{{ $mother_date_of_birth }}</td>
         <td>{{ $mother_phone }}</td>
-        <td><img src="{{ $mother_image }}" alt="Mother's Image"></td>
+        <td><img src="{{ asset('storage/' . $mother_image) }}" alt="Mother's Image"></td>
 
     </tr>
     <tr>
@@ -188,7 +188,7 @@
         <td> {{ $spouse_name }}</td>
         <td>{{ $spouse_date_of_birth }}</td>
         <td>{{ $spouse_phone }}</td>
-        <td><img src="{{ $spouse_image }}" alt="Spouse's Image"></td>
+        <td><img src="{{ asset('storage/' . $spouse_image) }}" alt="Spouse's Image"></td>
 
     </tr>
     @if ($siblings == 'yes')
@@ -354,13 +354,13 @@
     </tr>
     <tr>
         <td>Upload ID- 1st Page</td>
-        <td><img src="{{ $aadhar_image }}" alt="Aadhar Image"></td>
-        <td> <img src="{{ $passport_image_id }}" alt="Passport Image"></td>
+        <td><img src="{{ asset('storage/' . $aadhar_image) }}" alt="Aadhar Image"></td>
+        <td> <img src="{{ asset('storage/' . $passport_image_id) }}" alt="Passport Image"></td>
     </tr>
     <tr>
         <td>Upload ID- 2st Page</td>
-        <td><img src="{{ $aadhar_image_page }}" alt="Aadhar Image Page"></td>
-        <td><img src="{{ $passport_image_id_page }}" alt="Aadhar Image Page"></td>
+        <td><img src="{{ asset('storage/' . $aadhar_image_page) }}" alt="Aadhar Image Page"></td>
+        <td><img src="{{ asset('storage/' . $passport_image_id_page) }}" alt="Aadhar Image Page"></td>
     </tr>
     </tbody>
 </table>
@@ -413,11 +413,11 @@
     </tr>
     <tr>
         <td>Upload Certificate</td>
-        <td><img src="{{ $high_school_image_certificate }}" alt="High School Image Certificate"></td>
+        <td><img src="{{ asset('storage/' . $high_school_image_certificate) }}" alt="High School Image Certificate"></td>
     </tr>
     <tr>
         <td>Upload Mark Sheet</td>
-        <td><img src="{{ $high_school_image_mark_sheet }}" alt="High School Image Mark Sheet"></td>
+        <td><img src="{{ asset('storage/' . $high_school_image_mark_sheet) }}" alt="High School Image Mark Sheet"></td>
     </tr>
     </tbody>
 </table>
@@ -480,12 +480,12 @@
     <tr>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Upload Certificate</td>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
-            <img src="{{ $higher_secondary_image_certificate }}" alt="Higher Secondary  Certificate"></td>
+            <img src="{{ asset('storage/' . $higher_secondary_image_certificate) }}" alt="Higher Secondary  Certificate"></td>
     </tr>
     <tr>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Upload Mark Sheet</td>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
-            <img src="{{ $higher_secondary_image_mark_sheet }}" alt="Higher Secondary  Mark Sheet"></td>
+            <img src="{{ asset('storage/' . $higher_secondary_image_mark_sheet) }}" alt="Higher Secondary  Mark Sheet"></td>
     </tr>
 
 
@@ -543,11 +543,11 @@
     </tr>
     <tr>
         <td>Upload Certificate</td>
-        <td><img src="{{ $diploma_image_certificate }}" alt="Diploma Image Certificate"></td>
+        <td><img src="{{ asset('storage/' . $diploma_image_certificate) }}" alt="Diploma Image Certificate"></td>
     </tr>
     <tr>
         <td>Upload Mark Sheet</td>
-        <td><img src="{{ $diploma_image_mark_sheet }}" alt="Diploma Image Mark Sheet"></td>
+        <td><img src="{{ asset('storage/' . $diploma_image_mark_sheet) }}" alt="Diploma Image Mark Sheet"></td>
     </tr>
     </tbody>
 </table>
@@ -603,11 +603,11 @@
     </tr>
     <tr>
         <td>Upload Certificate</td>
-        <td><img src="{{ $bachelors_image_certificate }}" alt="Bachelors Image Certificate"></td>
+        <td><img src="{{ asset('storage/' . $bachelors_image_certificate) }}" alt="Bachelors Image Certificate"></td>
     </tr>
     <tr>
         <td>Upload Mark Sheet</td>
-        <td><img src="{{ $bachelors_image_mark_sheet }}" alt="Bachelors Image Mark Sheet"></td>
+        <td><img src="{{ asset('storage/' . $bachelors_image_mark_sheet) }}" alt="Bachelors Image Mark Sheet"></td>
     </tr>
     </tbody>
 </table>
@@ -663,11 +663,11 @@
     </tr>
     <tr>
         <td>Upload Certificate</td>
-        <td><img src="{{ $master_image_certificate }}" alt="Master's Image Certificate"></td>
+        <td><img src="{{ asset('storage/' . $master_image_certificate) }}" alt="Master's Image Certificate"></td>
     </tr>
     <tr>
         <td>Upload Mark Sheet</td>
-        <td><img src="{{ $master_image_mark_sheet }}" alt="Master's Image Mark Sheet"></td>
+        <td><img src="{{ asset('storage/' . $master_image_mark_sheet) }}" alt="Master's Image Mark Sheet"></td>
     </tr>
     </tbody>
 </table>
@@ -721,11 +721,11 @@
     </tr>
     <tr>
         <td>Upload Certificate</td>
-        <td> <img src="{{ $doctorate_image_certificate }}"alt="Doctorate Image Certificate"></td>
+        <td> <img src="{{ asset('storage/' . $doctorate_image_certificate) }}"alt="Doctorate Image Certificate"></td>
     </tr>
     <tr>
         <td>Upload Mark Sheet</td>
-        <td><img src="{{ $doctorate_image_mark_sheet }}"alt="Doctorate Image Mark Sheet"></td>
+        <td><img src="{{ asset('storage/' . $doctorate_image_mark_sheet) }}"alt="Doctorate Image Mark Sheet"></td>
     </tr>
     </tbody>
 </table>
@@ -952,7 +952,7 @@
 <table>
     <tr>
         <th style="border: 1px solid black; width: 30%;">Signature</th>
-        <td><img src="{{ $disclaimer_signature }}" alt="Signature"> </td>
+        <td><img src="{{ asset('storage/' . $disclaimer_signature) }}" alt="Signature"> </td>
     </tr>
 </table><br>
 <table>

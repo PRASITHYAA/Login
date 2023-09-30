@@ -142,8 +142,14 @@
                         <!-- country -->
                         <div class="col-md-4">
                             <label class="form-label">Country <span class="red">*</span></label>
-                            <select class="form-select" name="country" id="country" required>
-                                <option value="1">India</option>
+                            <select class="form-select" name="country" id="country" data-id="state" required>
+                                <option value="">--Select Country--</option>
+                                @foreach (\App\Models\Country::all() as $country)
+                                    <option value="{{ $country->id }}"
+                                        {{ isset($jobApplication) && $country->id == $jobApplication->country ? 'selected' : '' }}>
+                                        {{ $country->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <!-- State -->
@@ -151,12 +157,14 @@
                             <label class="form-label">State <span class="red">*</span></label>
                             <select class="form-select" name="state" id="state" data-id="city" required>
                                 <option value="">--Select State--</option>
-                                @foreach (\App\Models\State::all() as $state)
-                                    <option value="{{ $state->id }}"
-                                        {{ isset($jobApplication) && $state->id == $jobApplication->state ? 'selected' : '' }}>
-                                        {{ $state->name }}
-                                    </option>
-                                @endforeach
+                                @if(isset($jobApplication->state))
+                                    @foreach (\App\Models\State::where('country_id', $jobApplication->state)->get() as $state)
+                                        <option value="{{ $state->id }}"
+                                            {{ isset($jobApplication) && $state->id == $jobApplication->state ? 'selected' : '' }}>
+                                            {{ $state->name }}
+                                        </option>
+                                    @endforeach
+                                @endif
                             </select>
                         </div>
                         <!-- city -->
@@ -266,24 +274,29 @@
                             {{-- country --}}
                             <div class="col-md-4">
                                 <label class="form-label">Country <span class="red">*</span></label>
-                                <select class="form-select" name="permanent_country" id="country" required>
-                                    <option value="1">India</option>
+                                <select class="form-select" name="permanent_country" id="permanent_country" data-id="permanent_state" required>
+                                    <option value="">--Select Country--</option>
+                                    @foreach (\App\Models\Country::all() as $country)
+                                        <option value="{{ $country->id }}"
+                                            {{ isset($jobApplication) && $country->id == $jobApplication->permanent_country ? 'selected' : '' }}>
+                                            {{ $country->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <!-- State -->
                             <div class="col-md-4">
                                 <label class="form-label">State <span class="red">*</span></label>
-                                @php
-                                    $permanentStates = \App\Models\State::all();
-                                @endphp
                                 <select class="form-select" name="permanent_state" id="permanent_state" data-id="permanent_city">
                                     <option value="">--Select State--</option>
-                                    @foreach ($permanentStates as $pstate)
-                                        <option value="{{ $pstate->id }}"
-                                            {{ isset($jobApplication) && $pstate->id == $jobApplication->permanent_state ? 'selected' : '' }}>
-                                            {{ $pstate->name }}
-                                        </option>
-                                    @endforeach
+                                    @if(isset($jobApplication->permanent_state))
+                                        @foreach (\App\Models\State::where('country_id', $jobApplication->permanent_state)->get() as $pstate)
+                                            <option value="{{ $pstate->id }}"
+                                                {{ isset($jobApplication) && $pstate->id == $jobApplication->state ? 'selected' : '' }}>
+                                                {{ $pstate->name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                             <!-- city -->
@@ -877,6 +890,33 @@
                 });
             });
 
+            //State dropdown
+            $('#country, #permanent_country').change(function() {
+                var selectedSector = $(this).val();
+                var id = $(this).data('id');
+                // Make an AJAX request to the Laravel API to fetch positions based on the selected sector
+                $.ajax({
+                    url: "{{ route('states.ajax') }}", // Replace with your Laravel API endpoint
+                    type: 'GET',
+                    data: {
+                        country_id: selectedSector
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        // Clear and populate the position dropdown with the retrieved data
+                        $('#'+id).empty();
+                        //$('#city').append($('<option>').text('--Select City--').val(''));
+                        $.each(data, function(key, value) {
+                            $('#'+id).append($('<option>').text(value).val(
+                                key));
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        // Handle errors here
+                    }
+                });
+            });
             // City dropdown change event
             $('#state, #permanent_state').change(function() {
                 var selectedSector = $(this).val();
@@ -904,7 +944,7 @@
                     }
                 });
             });
-
+            
             $('#yesRadio1').click(function() {
                 $('.permanent-address-input').attr('required', true);
             });

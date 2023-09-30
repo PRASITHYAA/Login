@@ -21,7 +21,7 @@
                                 <th>OPERATIONS</th>
                             </tr>
                             <!-- 1 coloum -->
-                            @foreach (\App\Models\JobApplication::all() as $jobApplication)
+                            @foreach (\App\Models\JobApplication::where('user_id', auth()->user()->id)->get() as $jobApplication)
                                 <tr>
                                     <td>{{ $jobApplication->id }}</td>
                                     <td>{{ $jobApplication->first_name . ' ' . $jobApplication->last_name }}</td>

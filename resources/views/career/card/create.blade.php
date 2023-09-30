@@ -75,11 +75,14 @@
                         <!-- aadharissuedcountry -->
                         <div class="col mt-4">
                             <label for="" class="form-label">Country <span style="color: red;">*</span></label>
-                            <select class="form-select" name="aadhar_issued_country" id="aadhar_issued_country" required="true">
-                                <option selected disabled value="">Choose...</option>
-                                <option value="1"
-                                    {{ ((isset($card) && $card->aadhar_issued_country == 1) || (old('aadhar_issued_country') && old('aadhar_issued_country') == 1)) ? 'selected' : '' }}>
-                                    India</option>
+                            <select class="form-select" name="aadhar_issued_country" id="aadhar_issued_country" data-id="aadhar_state" required="true">
+                                <option value="">--Select City--</option>
+                                @foreach (\App\Models\Country::all() as $country)
+                                    <option value="{{ $country->id }}"
+                                        {{ ((isset($card) && $card->aadhar_issued_country == $country->id) || (old('aadhar_issued_country') && old('aadhar_issued_country') == $country->id)) ? 'selected' : '' }}>
+                                        {{ $country->name }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <!-- aadharissuedstate -->
@@ -87,12 +90,14 @@
                             <label class="form-label">State <span style="color: red;">*</span></label>
                             <select class="form-select state" name="aadhar_issued_state" id="aadhar_state" required="true">
                                 <option value="">--Select State--</option>
-                                @foreach (\App\Models\State::all() as $state)
-                                    <option value="{{ $state->id }}"
-                                        {{ ((isset($card) && $card->aadhar_issued_state == $state->id) || (old('aadhar_issued_state') && old('aadhar_issued_state') == $state->id)) ? 'selected' : '' }}>
-                                        {{ $state->name }}
-                                    </option>
-                                @endforeach
+                                @if(isset($card->aadhar_issued_state))
+                                    @foreach (\App\Models\State::where('country_id', $card->aadhar_issued_country)->get() as $state)
+                                        <option value="{{ $state->id }}"
+                                            {{ ((isset($card) && $card->aadhar_issued_state == $state->id) || (old('aadhar_issued_state') && old('aadhar_issued_state') == $state->id)) ? 'selected' : '' }}>
+                                            {{ $state->name }}
+                                        </option>
+                                    @endforeach
+                                @endif
                             </select>
 
                         </div>
@@ -104,8 +109,8 @@
                                         id="aadhar_issued_place" required="true"> --}}
                             <select class="form-select city" name="aadhar_issued_place" id="aadhar_city" required="true">
                                 <option value="">--Select City--</option>
-                                @if(isset($card) || old('aadhar_issued_place'))
-                                    @foreach (\App\Models\City::all() as $city)
+                                @if(isset($card->aadhar_issued_place) || old('aadhar_issued_place'))
+                                    @foreach (\App\Models\City::where('state_id', $card->aadhar_issued_state)->get() as $city)
                                         <option value="{{ $city->id }}"
                                             {{ ((isset($card) && $card->aadhar_issued_place == $city->id) || (old('aadhar_issued_place') && old('aadhar_issued_place') == $city->id)) ? 'selected' : '' }}>
                                             {{ $city->name }}
@@ -197,11 +202,14 @@
                             <!-- passport issued country -->
                             <div class="col mt-4">
                                 <label class="form-label">Country <span style="color: red;">*</span></label>
-                                <select class="form-select" name="passport_issued_country" id="passport_issued_country">
-                                    <option selected disabled value="">Choose...</option>
-                                    <option value="1"
-                                        {{ ((isset($card) && $card->passport_issued_country == 1) || (old('passport_issued_country') && old('passport_issued_country') == 1)) ? 'selected' : '' }}>
-                                        India</option>
+                                <select class="form-select" name="passport_issued_country" id="passport_issued_country" data-id="passport_state">
+                                    <option value="">--Select Country--</option>
+                                    @foreach (\App\Models\Country::all() as $country)
+                                        <option value="{{ $country->id }}"
+                                            {{ ((isset($card) && $card->passport_issued_country == $country->id) || (old('passport_issued_country') && old('passport_issued_country') == $country->id)) ? 'selected' : '' }}>
+                                            {{ $country->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -210,12 +218,14 @@
                                 <label class="form-label">State <span style="color: red;">*</span></label>
                                 <select class="form-select state" name="passport_issued_state" id="passport_state">
                                     <option value="">--Select State--</option>
-                                    @foreach (\App\Models\State::all() as $state)
-                                        <option value="{{ $state->id }}"
-                                            {{ ((isset($card) && $card->passport_issued_state == $state->id) || (old('passport_issued_state') && old('passport_issued_state') == $state->id)) ? 'selected' : '' }}>
-                                            {{ $state->name }}
-                                        </option>
-                                    @endforeach
+                                    @if(isset($card->passport_issued_state))
+                                        @foreach (\App\Models\State::where('country_id', $card->passport_issued_country)->get() as $state)
+                                            <option value="{{ $state->id }}"
+                                                {{ ((isset($card) && $card->passport_issued_state == $state->id) || (old('passport_issued_state') && old('passport_issued_state') == $state->id)) ? 'selected' : '' }}>
+                                                {{ $state->name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
 
@@ -224,8 +234,8 @@
                                 <label class="form-label">Issued Place <span style="color: red;">*</span></label>
                                 <select class="form-select city" name="passport_issued_place" id="passport_city">
                                     <option value="">--Select City--</option>
-                                    @if(isset($card) || old('passport_issued_place'))
-                                        @foreach (\App\Models\City::all() as $city)
+                                    @if(isset($card->passport_issued_place) || old('passport_issued_place'))
+                                        @foreach (\App\Models\City::where('state_id', $card->passport_issued_state)->get() as $city)
                                             <option value="{{ $city->id }}"
                                                 {{ ((isset($card) && $card->passport_issued_place == $city->id) || (old('passport_issued_place') && old('passport_issued_place') == $city->id)) ? 'selected' : '' }}>
                                                 {{ $city->name }}
@@ -295,6 +305,33 @@
     <!--  passport - -->
     <script>
         $(document).ready(function() {
+            //State dropdown
+            $('#aadhar_issued_country, #passport_issued_country').change(function() {
+                var selectedSector = $(this).val();
+                var id = $(this).data('id');
+                // Make an AJAX request to the Laravel API to fetch positions based on the selected sector
+                $.ajax({
+                    url: "{{ route('states.ajax') }}", // Replace with your Laravel API endpoint
+                    type: 'GET',
+                    data: {
+                        country_id: selectedSector
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        // Clear and populate the position dropdown with the retrieved data
+                        $('#'+id).empty();
+                        //$('#city').append($('<option>').text('--Select City--').val(''));
+                        $.each(data, function(key, value) {
+                            $('#'+id).append($('<option>').text(value).val(
+                                key));
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        // Handle errors here
+                    }
+                });
+            });
             // City dropdown change event
             $('.state').change(function () {
                 var selectedSector = $(this).val();
