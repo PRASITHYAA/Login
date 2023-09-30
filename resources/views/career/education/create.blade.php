@@ -160,8 +160,13 @@
                                         name="high_school_image_certificate">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->high_school_image_certificate) }}"
-                                        alt="High School Image Certificate" style="width: 150px;">
+                                    @if(isset($education->high_school_image_certificate) && explode('.', $education->high_school_image_certificate)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->high_school_image_certificate) }}" target="_blank"
+                                           alt="High School Image Certificate" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->high_school_image_certificate) }}"
+                                            alt="High School Image Certificate" style="width: 150px;">
+                                    @endif
                                 @endif
 
                                 <!-- Preview for High school image Certificate -->
@@ -178,8 +183,13 @@
                                         name="high_school_image_mark_sheet">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->high_school_image_mark_sheet) }}"
-                                        alt="High School Image Mark sheet" style="width: 150px;">
+                                    @if(isset($education->high_school_image_mark_sheet) && explode('.', $education->high_school_image_mark_sheet)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->high_school_image_mark_sheet) }}" target="_blank"
+                                           alt="High School Image Mark sheet" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->high_school_image_mark_sheet) }}"
+                                            alt="High School Image Mark sheet" style="width: 150px;">
+                                    @endif
                                 @endif
                                 <!-- Preview for High school image Mark Sheet -->
                                 <div class="form-group">
@@ -305,8 +315,13 @@
                                         name="higher_secondary_image_certificate">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->higher_secondary_image_certificate) }}"
-                                        alt="Higher Secondary Image Certificate" style="width: 150px;">
+                                    @if(isset($education->higher_secondary_image_certificate) && explode('.', $education->higher_secondary_image_certificate)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->higher_secondary_image_certificate) }}" target="_blank"
+                                           alt="Higher Secondary Image Certificate" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->higher_secondary_image_certificate) }}"
+                                             alt="Higher Secondary Image Certificate" style="width: 150px;">
+                                    @endif
                                 @endif
 
                                 <!-- Preview for Higher Secondary image Certificate -->
@@ -324,8 +339,13 @@
                                         name="higher_secondary_image_mark_sheet">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->higher_secondary_image_mark_sheet) }}"
-                                        alt="Higher Secondary Image MarkSheet" style="width: 150px;">
+                                    @if(isset($education->higher_secondary_image_mark_sheet) && explode('.', $education->higher_secondary_image_mark_sheet)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->higher_secondary_image_mark_sheet) }}" target="_blank"
+                                           alt="Higher Secondary Image MarkSheet" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->higher_secondary_image_mark_sheet) }}"
+                                             alt="Higher Secondary Image MarkSheet" style="width: 150px;">
+                                    @endif
                                 @endif
                                 <!-- Preview  Higher Secondary image Mark Sheet -->
                                 <div class="form-group">
@@ -441,8 +461,13 @@
                                         name="diploma_image_certificate">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->diploma_image_certificate) }}"
-                                        alt="Diploma Image Certificate" style="width: 150px;">
+                                    @if(isset($education->diploma_image_certificate) && explode('.', $education->diploma_image_certificate)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->diploma_image_certificate) }}" target="_blank"
+                                           alt="Diploma Image Certificate" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->diploma_image_certificate) }}"
+                                             alt="Diploma Image Certificate" style="width: 150px;">
+                                    @endif
                                 @endif
                                 <!-- Preview for Diploma image Certificate -->
                                 <div class="col-lg-2">
@@ -459,8 +484,13 @@
                                         name="diploma_image_mark_sheet">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->diploma_image_mark_sheet) }}"
-                                        alt="Diploma Image Mark Sheet" style="width: 150px;">
+                                    @if(isset($education->diploma_image_mark_sheet) && explode('.', $education->diploma_image_mark_sheet)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->diploma_image_mark_sheet) }}" target="_blank"
+                                           alt="Diploma Image Mark Sheet" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->diploma_image_mark_sheet) }}"
+                                             alt="Diploma Image Mark Sheet" style="width: 150px;">
+                                    @endif
                                 @endif
 
                                 <!-- Preview for Diploma image Mark Sheet -->
@@ -594,8 +624,13 @@
                                         name="bachelors_image_certificate">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->bachelors_image_certificate) }}"
-                                        alt="Bachelors Image Certificate" style="width: 150px;">
+                                    @if(isset($education->bachelors_image_certificate) && explode('.', $education->bachelors_image_certificate)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->bachelors_image_certificate) }}" target="_blank"
+                                           alt="Bachelors Image Certificate" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->bachelors_image_certificate) }}"
+                                             alt="Bachelors Image Certificate" style="width: 150px;">
+                                    @endif
                                 @endif
 
                                 <!-- Preview for Bachelors image Certificate -->
@@ -613,8 +648,13 @@
                                         name="bachelors_image_mark_sheet">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->bachelors_image_mark_sheet) }}"
-                                        alt="Bachelors Image Mark Sheet" style="width: 150px;">
+                                    @if(isset($education->bachelors_image_mark_sheet) && explode('.', $education->bachelors_image_mark_sheet)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->bachelors_image_mark_sheet) }}" target="_blank"
+                                           alt="Bachelors Image Mark Sheet" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->bachelors_image_mark_sheet) }}"
+                                             alt="Bachelors Image Mark Sheet" style="width: 150px;">
+                                    @endif
                                 @endif
 
                                 <!-- Preview for Bachelors image Mark Sheet -->
@@ -727,8 +767,13 @@
                                         name="master_image_certificate">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->master_image_certificate) }}"
-                                        alt="Master Image Certificate" style="width: 150px;">
+                                    @if(isset($education->master_image_certificate) && explode('.', $education->master_image_certificate)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->master_image_certificate) }}" target="_blank"
+                                           alt="Master Image Certificate" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->master_image_certificate) }}"
+                                             alt="Master Image Certificate" style="width: 150px;">
+                                    @endif
                                 @endif
 
                                 <!-- Preview for Master's image Certificate -->
@@ -746,8 +791,13 @@
                                         name="master_image_mark_sheet">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->master_image_mark_sheet) }}"
-                                        alt="Master Image Mark Sheet" style="width: 150px;">
+                                    @if(isset($education->master_image_mark_sheet) && explode('.', $education->master_image_mark_sheet)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->master_image_mark_sheet) }}" target="_blank"
+                                           alt="Master Image Mark Sheet" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->master_image_mark_sheet) }}"
+                                             alt="Master Image Mark Sheet" style="width: 150px;">
+                                    @endif
                                 @endif
 
                                 <!-- Preview for Master's image Mark Sheet -->
@@ -865,8 +915,13 @@
                                         value="{{ old('doctorate_image_certificate') ?? ($education->doctorate_image_certificate ?? '') }}">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->doctorate_image_certificate) }}"
-                                        alt="Doctorate Image Certificate" style="width: 150px;">
+                                    @if(isset($education->doctorate_image_certificate) && explode('.', $education->doctorate_image_certificate)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->doctorate_image_certificate) }}" target="_blank"
+                                           alt="Doctorate Image Certificate" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->doctorate_image_certificate) }}"
+                                             alt="Doctorate Image Certificate" style="width: 150px;">
+                                    @endif
                                 @endif
 
                                 <!-- Preview for Doctorate image Certificate -->

@@ -137,6 +137,16 @@ class CardsController extends Controller
         }
 
         $card = Card::find($id);
+        if (!$request->has('identity_type')) {
+            $data['identity_type'] = null;
+            $data["passport_name"] = null;
+            $data["passport_id_number"] = null;
+            $data["passport_issue_date"] = null;
+            $data["passport_expired_date"] = null;
+            $data["passport_issued_country"] = null;
+            $data["passport_issued_state"] = null;
+            $data["passport_issued_place"] = null;
+        }
         $card = $card->fill($data);
         $card->save();
 
