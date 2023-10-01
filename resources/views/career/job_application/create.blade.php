@@ -274,7 +274,7 @@
                             {{-- country --}}
                             <div class="col-md-4">
                                 <label class="form-label">Country <span class="red">*</span></label>
-                                <select class="form-select" name="permanent_country" id="permanent_country" data-id="permanent_state" required>
+                                <select class="form-select permanent-address-input" name="permanent_country" id="permanent_country" data-id="permanent_state">
                                     <option value="">--Select Country--</option>
                                     @foreach (\App\Models\Country::all() as $country)
                                         <option value="{{ $country->id }}"
@@ -287,7 +287,7 @@
                             <!-- State -->
                             <div class="col-md-4">
                                 <label class="form-label">State <span class="red">*</span></label>
-                                <select class="form-select" name="permanent_state" id="permanent_state" data-id="permanent_city">
+                                <select class="form-select permanent-address-input" name="permanent_state" id="permanent_state" data-id="permanent_city">
                                     <option value="">--Select State--</option>
                                     @if(isset($jobApplication->permanent_state))
                                         @foreach (\App\Models\State::where('country_id', $jobApplication->permanent_state)->get() as $pstate)
@@ -308,7 +308,7 @@
                                         $permanentCities = \App\Models\City::where('state_id', $jobApplication->permanent_state)->get();
                                     }
                                 @endphp
-                                <select class="form-select" name="permanent_city" id="permanent_city">
+                                <select class="form-select permanent-address-input" name="permanent_city" id="permanent_city">
                                     <option value="">--Select City--</option>
                                     @if(count($permanentCities))
                                         @foreach ($permanentCities as $pcity)
@@ -944,7 +944,7 @@
                     }
                 });
             });
-            
+
             $('#yesRadio1').click(function() {
                 $('.permanent-address-input').attr('required', true);
             });
