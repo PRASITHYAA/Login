@@ -158,7 +158,7 @@
                             <select class="form-select" name="state" id="state" data-id="city" required>
                                 <option value="">--Select State--</option>
                                 @if(isset($jobApplication->state))
-                                    @foreach (\App\Models\State::where('country_id', $jobApplication->state)->get() as $state)
+                                    @foreach (\App\Models\State::where('country_id', $jobApplication->country)->get() as $state)
                                         <option value="{{ $state->id }}"
                                             {{ isset($jobApplication) && $state->id == $jobApplication->state ? 'selected' : '' }}>
                                             {{ $state->name }}
@@ -170,16 +170,10 @@
                         <!-- city -->
                         <div class="col-md-4">
                             <label class="form-label">City <span class="red">*</span></label>
-                            @php
-                                $cities = [];
-                                if(isset($jobApplication->state)) {
-                                    $cities = \App\Models\City::where('state_id', $jobApplication->state)->get();
-                                }
-                            @endphp
                             <select class="form-select" name="city" id="city" required>
                                 <option value="">--Select City--</option>
-                                @if(count($cities))
-                                    @foreach ($cities as $city)
+                                @if(isset($jobApplication->city))
+                                    @foreach (\App\Models\City::where('state_id', $jobApplication->state)->get() as $city)
                                         <option value="{{ $city->id }}"
                                             {{ isset($jobApplication) && $city->id == $jobApplication->city ? 'selected' : '' }}>
                                             {{ $city->name }}
@@ -290,9 +284,9 @@
                                 <select class="form-select permanent-address-input" name="permanent_state" id="permanent_state" data-id="permanent_city">
                                     <option value="">--Select State--</option>
                                     @if(isset($jobApplication->permanent_state))
-                                        @foreach (\App\Models\State::where('country_id', $jobApplication->permanent_state)->get() as $pstate)
+                                        @foreach (\App\Models\State::where('country_id', $jobApplication->permanent_country)->get() as $pstate)
                                             <option value="{{ $pstate->id }}"
-                                                {{ isset($jobApplication) && $pstate->id == $jobApplication->state ? 'selected' : '' }}>
+                                                {{ isset($jobApplication) && $pstate->id == $jobApplication->permanent_state ? 'selected' : '' }}>
                                                 {{ $pstate->name }}
                                             </option>
                                         @endforeach
@@ -302,16 +296,10 @@
                             <!-- city -->
                             <div class="col-md-4">
                                 <label class="form-label">City <span class="red">*</span></label>
-                                @php
-                                    $permanentCities = [];
-                                    if(isset($jobApplication->permanent_state)) {
-                                        $permanentCities = \App\Models\City::where('state_id', $jobApplication->permanent_state)->get();
-                                    }
-                                @endphp
                                 <select class="form-select permanent-address-input" name="permanent_city" id="permanent_city">
                                     <option value="">--Select City--</option>
-                                    @if(count($permanentCities))
-                                        @foreach ($permanentCities as $pcity)
+                                    @if(isset($jobApplication->permanent_city))
+                                        @foreach (\App\Models\City::where('state_id', $jobApplication->permanent_state)->get() as $pcity)
                                             <option value="{{ $pcity->id }}"
                                                 {{ isset($jobApplication) && $pcity->id == $jobApplication->permanent_city ? 'selected' : '' }}>
                                                 {{ $pcity->name }}
