@@ -50,9 +50,9 @@
                         <tr>
                             <td>{{ $training->id }}</td>
                             <td>{{ $training->first_name }}</td>
-                            <td>{{ $training->sector }}</td>
-                            <td>{{ $training->course_level }}</td>
-                            <td>{{ $training->course_title }}</td>
+                            <td>{{ $training->sector->name }}</td>
+                            <td>{{ $training->course_level->name }}</td>
+                            <td>{{ $training->course_title->name }}</td>
                             <td>
                                 <a href="{{ route('training.view', $training->id) }}" class="btn btn-warning">View</a>
 
