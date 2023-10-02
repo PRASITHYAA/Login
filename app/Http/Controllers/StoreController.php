@@ -36,7 +36,7 @@ class StoreController extends Controller
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->save();
-
+        $user->assignRole('User');
         // Manually send the verification email
         event(new Registered($user));
 

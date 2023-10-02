@@ -72,13 +72,12 @@ class TrainingController extends Controller
     }
 
 
-    public function destroy(Training $training)
+    public function destroy($id)
     {
-        $training->delete();
-
-        \Session::flash('success', 'Training deleted successfully!');
-
-        return redirect()->route('training.index');
+        Training::destroy($id);
+        \Session::flash('success', 'Training form deleted successfully!');
+        $route = auth()->user()->hasRole('Admin') ? 'training.index' : 'user.trainings.list';
+        return redirect()->route($route);
     }
 
         public function show(Training $training)

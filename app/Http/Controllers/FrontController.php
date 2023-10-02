@@ -11,13 +11,21 @@ class FrontController extends Controller
 {
     public function userCareers()
     {
-        $jobApplications = JobApplication::all();
-        return view('user_careers_list',  compact('jobApplications'));
+        $jobApplications = new JobApplication;
+        if (auth()->user()->hasRole('User')) {
+            $jobApplications = $jobApplications->where('user_id', auth()->user()->id);
+        }
+        $jobApplications = $jobApplications->orderBy('id', 'desc')->get();
+        return view('user_careers_list', compact('jobApplications'));
     }
 
     public function userTrainings()
     {
-        $trainings = Training::all();
-        return view('user_trainings_list',  compact('trainings'));
+        $trainings = new Training;
+        if (auth()->user()->hasRole('User')) {
+            $trainings = $trainings->where('user_id', auth()->user()->id);
+        }
+        $trainings = $trainings->get();
+        return view('user_trainings_list', compact('trainings'));
     }
 }

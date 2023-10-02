@@ -300,13 +300,12 @@ class JobApplicationController extends Controller
     public function destroy($id)
     {
         $jobApplication = JobApplication::find($id);
-
+        $route = auth()->user()->hasRole('Admin') ? 'career.job_application.index' : 'user.careers.list';
         if (!$jobApplication) {
-            return redirect()->route('Career.job_application.index')->with('error', 'Form not found.');
+            return redirect()->route($route)->with('error', 'Form not found.');
         }
-
         $jobApplication->delete();
 
-        return redirect()->route('Career.job_application.index')->with('success', 'Form deleted successfully!');
+        return redirect()->route($route)->with('success', 'Job Form deleted successfully!');
     }
 }

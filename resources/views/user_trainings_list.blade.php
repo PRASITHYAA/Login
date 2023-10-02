@@ -10,6 +10,22 @@
                     <!-- main -->
                     <div class="col-lg-9 pt-4">
                         <div class="containe row">
+                            {{-- error --}}
+                            @if ($errors->any())
+                                <div class=" alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            {{-- success --}}
+                            @if (session('success'))
+                                <div class=" container  alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <div class="col-md-10">
                             <h1 class="">Training List</h1>
                             <p style="font-weight: bold;">(scroll right for more information) <span style="color: red;">*</span> </p>
@@ -17,7 +33,7 @@
                             <div class="col-md-2">
                                 <a class="btn btn-success" style="margin-top: 50px;margin-left: 0px;" href="{{ route('trainings') }}">Create</a>
                             </div>
-                            <div class="scroll-container">
+                            <div class="">
 
                                 <table class="table table-striped table-hover">
                                     <!-- head line -->
@@ -31,7 +47,7 @@
                                         <th>OPERATIONS</th>
                                     </tr>
                                     <!-- 1 coloum -->
-                                    @foreach (\App\Models\Training::where('user_id', auth()->user()->id)->get() as $training)
+                                    @foreach ($trainings as $training)
                                         <tr>
                                             <td>{{ $training->id }}</td>
                                             <td>{{ $training->first_name . ' ' . $training->last_name }}</td>
@@ -40,14 +56,17 @@
                                             <td>{{ $training->course_level->name }}</td>
                                             <td>{{ $training->course_title->name }}</td>
                                             <td>
-                                                <div class="btn-group " role="group"
+                                                <div class="" role="group"
                                                     aria-label="Basic mixed styles example">
-                                                    <a class="btn btn-primary "
-                                                        href="/./live forms - Copy/form1.html">View</a>
-                                                    <a class="btn btn-warning mx-1 "
-                                                        href="{{ route('trainings.view', $training->id) }}">Edit</a>
-                                                    <a class="btn btn-danger "
-                                                        href="{{ route('trainings.destroy', $training->id) }}">Delete</a>
+                                                    <a href="{{ url('trainings/'. $training->id) }}" title="View"><i class="fa fa-eye text-primary"></i></a>
+                                                    <a style="margin: 0 5px 0 5px;" href="{{ route('trainings.edit', $training->id) }}" title="Edit"><i class="fa fa-pencil text-success"></i></a>
+                                                    <form action="{{ route('trainings.destroy', $training->id) }}"
+                                                          method="post" style="display: inline-block;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button style="padding: 3px 1px;font-size: 14px;" type="submit" class="btn btn-link"
+                                                                onclick="return confirm('Are you sure you want to delete this training form?')"><i class="fa fa-trash text-danger"></i></button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>

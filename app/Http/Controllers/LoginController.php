@@ -30,6 +30,9 @@ class LoginController extends Controller
                     ->back()
                     ->with('error', 'You didnt confirm your email yet. ');
             }
+            if ($user->roles()->count() == 0) {
+                $user->assignRole('User');
+            }
             Auth::login($user);
             if(in_array('Admin', $user->roles()->pluck('name')->toArray())) {
                 return redirect()->route('admin')->with('success', 'Your Login successfully!');

@@ -117,8 +117,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/change-password',  [UserController::class, 'changePassword'])->name('change.password');
     Route::view('/profile', 'profile')->name('profile');
     Route::post('/profile', [UserController::class, 'updateProfile'])->name('profile');
-    Route::get('/trainings/view/{id}', [TrainingController::class ,'trainingView'])->name('trainings.view');
-    Route::delete('/trainings/view/{id}', [TrainingController::class ,'trainingView'])->name('trainings.destroy');
+    Route::get('/trainings/{id}', [TrainingController::class ,'trainingView'])->name('trainings.views');
+    Route::get('/trainings/{id}/edit', [TrainingController::class ,'trainingView'])->name('trainings.edit');
+    Route::delete('/trainings/{id}', [TrainingController::class ,'destroy'])->name('trainings.destroy');
     Route::view('/trainings/apply', 'trainings_apply')->name('trainings.apply');
     Route::post('/trainings/apply/store', [TrainingController::class, 'store'])->name('trainings.apply.store');
 });
