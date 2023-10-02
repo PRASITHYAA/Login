@@ -307,14 +307,26 @@
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
 
-
     {{-- Alphabetic --}}
     <script>
         $(document).ready(function() {
             $('.alphabetic-input').on('input', function() {
                 var inputValue = $(this).val();
-                var alphabeticValue = inputValue.replace(/[^A-Za-z]/g, '');
+                var alphabeticValue = inputValue.replace(/[^A-Za-z ]/g, '');
                 $(this).val(alphabeticValue);
+            });
+            $(".decimalInput").on("input", function() {
+                var inputValue = $(this).val();
+
+                // Remove all non-decimal characters using a regular expression
+                var decimalPattern = inputValue.replace(/[^0-9.]/g, '');
+
+                // Ensure that the value is a valid decimal and less than or equal to 100
+                if (/^(\d{0,2}(\.\d{0,2})?|100)$/.test(decimalPattern)) {
+                    $(this).val(decimalPattern);
+                } else {
+                    $(this).val('');
+                }
             });
         });
     </script>

@@ -145,8 +145,13 @@
                                     name="project_document">
                             </div>
                             @if (isset($achievement) && $achievement->project_document)
-                                <img src="{{ asset('storage/' . $achievement->project_document) }}"
-                                    alt="Job Application Image" style="width: 100px;">
+                                @if(isset($achievement->project_document) && explode('.', $achievement->project_document)[1]  == 'pdf')
+                                    <a href="{{ asset('storage/' . $achievement->project_document) }}" target="_blank"
+                                       alt="Project document" style="width: 150px;">View</a>
+                                @else
+                                    <img src="{{ asset('storage/' . $achievement->project_document) }}"
+                                         alt="Project document" style="width: 100px;">
+                                @endif
                             @endif
                     </div>
                 </div>
@@ -171,8 +176,15 @@
                                 {{ !isset($achievement->extra_curricular_skills_project_document) ? 'required' : '' }}>
                         </div>
                         @if (isset($achievement) && $achievement->extra_curricular_skills_project_document)
-                            <img src="{{ asset('storage/' . $achievement->extra_curricular_skills_project_document) }}"
-                                alt="Job Application Image" style="width: 100px;">
+                            @if(isset($achievement->extra_curricular_skills_project_document) && explode('.', $achievement->extra_curricular_skills_project_document)[1]  == 'pdf')
+                                <a href="{{ asset('storage/' . $achievement->extra_curricular_skills_project_document) }}"
+                                   target="_blank"
+                                   alt="Extra Curricular document" style="width: 150px;">View</a>
+                            @else
+                                <img
+                                    src="{{ asset('storage/' . $achievement->extra_curricular_skills_project_document) }}"
+                                    alt="Extra Curricular document" style="width: 100px;">
+                            @endif
                         @endif
                 </div>
 
@@ -190,12 +202,12 @@
                     <br>
                     <label>
                         <input type="radio" name="curriculum_status" value="no" id="noRadio3" required
-                            {{ old('curriculum_status') == 'no' || (isset($achievement) && $achievement->{'curriculum_status'} == 'no') ? 'checked' : '' }}>
+                            {{ old('curriculum_status') == 'no' || (isset($achievement) && $achievement->curriculum_status == 'no') ? 'checked' : '' }}>
                         No
                     </label>
 
                     <div id="input-field-3"
-                        class="{{ old('curriculum_status') == 'yes' || (isset($achievement) && $achievement->{'curriculum_status'} == 'yes') ? '' : 'hidden' }}">
+                        class="{{ old('curriculum_status') == 'yes' || (isset($achievement) && $achievement->curriculum_status == 'yes') ? '' : 'hidden' }}">
                         <div class="col-md-3  p-2">
                             <label class="form-label open-input-3-input">Attach Your resume: In PDF Format
                                 <span class="red">*</span>
@@ -205,8 +217,15 @@
                                     id="yes_curriculum_pdf_format" name="yes_curriculum_pdf_format">
                             </div>
                             @if (isset($achievement) && $achievement->yes_curriculum_pdf_format)
-                                <img src="{{ asset('storage/' . $achievement->yes_curriculum_pdf_format) }}"
-                                    alt="Job Application Image" style="width: 100px;">
+                                @if(isset($achievement->yes_curriculum_pdf_format) && explode('.', $achievement->yes_curriculum_pdf_format)[1]  == 'pdf')
+                                    <a href="{{ asset('storage/' . $achievement->yes_curriculum_pdf_format) }}"
+                                       target="_blank"
+                                       alt="Extra Curricular document" style="width: 150px;">View</a>
+                                @else
+                                    <img
+                                        src="{{ asset('storage/' . $achievement->yes_curriculum_pdf_format) }}"
+                                        alt="Extra Curricular document" style="width: 100px;">
+                                @endif
                             @endif
                         </div>
                     </div>
@@ -237,8 +256,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 <!-- buttons -->
                 <div style="display: flex;justify-content: end; align-items: center;">
                     <a style="display: flex;align-items: center;; " class="btn btn-secondary mx-3 mt-5"

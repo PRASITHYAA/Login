@@ -27,7 +27,7 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <form action="{{ isset($card) ? route('career.card.update', $card->id) : route('career.card.store') }}" method="POST" enctype="multipart/form-data">
+            <form id="cardForm" action="{{ isset($card) ? route('career.card.update', $card->id) : route('career.card.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @if (isset($card))
                     @method('PUT')
@@ -65,10 +65,9 @@
                         <!-- aadharidnumber -->
                         <div class="col mt-4">
                             <label class="form-label">IDs Number <span style="color: red;">*</span></label>
-                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="number" class="form-control"
+                            <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
                                 placeholder="Aadhar Number" name="aadhar_id_number" id="aadhaar"
-                                value="{{ old('aadhar_id_number') ?? ($card->aadhar_id_number ?? '') }}" maxlength="12"
-                                oninput="updateValidation()" required="true">
+                                value="{{ old('aadhar_id_number') ?? ($card->aadhar_id_number ?? '') }}" maxlength="12" required="true" minlength="12">
                             <p id="result" class="text-danger"></p>
                         </div>
 
@@ -76,13 +75,14 @@
                         <div class="col mt-4">
                             <label for="" class="form-label">Country <span style="color: red;">*</span></label>
                             <select class="form-select" name="aadhar_issued_country" id="aadhar_issued_country" data-id="aadhar_state" required="true">
-                                <option value="">--Select City--</option>
-                                @foreach (\App\Models\Country::all() as $country)
+                                {{--<option value="">--Select City--</option>--}}
+                                <option value="101">India</option>
+                                {{--@foreach (\App\Models\Country::all() as $country)
                                     <option value="{{ $country->id }}"
                                         {{ ((isset($card) && $card->aadhar_issued_country == $country->id) || (old('aadhar_issued_country') && old('aadhar_issued_country') == $country->id)) ? 'selected' : '' }}>
                                         {{ $country->name }}
                                     </option>
-                                @endforeach
+                                @endforeach--}}
                             </select>
                         </div>
                         <!-- aadharissuedstate -->
@@ -90,20 +90,20 @@
                             <label class="form-label">State <span style="color: red;">*</span></label>
                             <select class="form-select state" name="aadhar_issued_state" id="aadhar_state" required="true">
                                 <option value="">--Select State--</option>
-                                @if(isset($card->aadhar_issued_state))
-                                    @foreach (\App\Models\State::where('country_id', $card->aadhar_issued_country)->get() as $state)
+                                {{--@if(isset($card->aadhar_issued_state))--}}
+                                    @foreach (\App\Models\State::where('country_id', 101)->get() as $state)
                                         <option value="{{ $state->id }}"
                                             {{ ((isset($card) && $card->aadhar_issued_state == $state->id) || (old('aadhar_issued_state') && old('aadhar_issued_state') == $state->id)) ? 'selected' : '' }}>
                                             {{ $state->name }}
                                         </option>
                                     @endforeach
-                                @endif
+                                {{--@endif--}}
                             </select>
 
                         </div>
                         <!-- aadharissuedplace -->
                         <div class="col mt-4">
-                            <label class="form-label">Issued Place <span style="color: red;">*</span></label>
+                            <label class="form-label">City <span style="color: red;">*</span></label>
                             {{-- <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                         class="form-control" placeholder="Issued Place" name="aadhar_issued_place"
                                         id="aadhar_issued_place" required="true"> --}}
@@ -416,31 +416,27 @@
 
     <!-- aadhar number validation -->
     <script>
-        function validateAadhaar(aadhaar) {
-            if (aadhaar.length !== 12) {
-                return false;
-            }
-
-            var c = 0;
-            var invertedAadhaar = aadhaar.split('').reverse().map(Number);
-
-            for (var i = 0; i < invertedAadhaar.length; i++) {
-                c = D(c + inv(invertedAadhaar[i]));
-            }
-
-            return (c === 0);
-        }
-
-        function updateValidation() {
-            var aadhaarNumber = document.getElementById("aadhaar").value;
-            var resultElement = document.getElementById("result");
-
-            if (!isNaN(aadhaarNumber) && aadhaarNumber.length === 12 && validateAadhaar(aadhaarNumber)) {
-                resultElement.innerText = "Aadhaar Number is valid.";
-            } else {
-                resultElement.innerText = "Please enter a valid 12-digit Aadhaar Number.";
-            }
-        }
+        $(document).ready(function() {
+            var validation = true;
+            $("#aadhaar").on("input", function() {
+                var aadhaarNumber = $(this).val();
+                var resultElement = $("#result");
+                var alphabeticValue = aadhaarNumber.replace(/[^0-9]/g, '');
+                $(this).val(alphabeticValue);
+                if (!isNaN(aadhaarNumber) && aadhaarNumber.length === 12) {
+                    resultElement.text("");
+                    validation = true;
+                } else {
+                    resultElement.text("Please enter a valid 12-digit Aadhaar Number.");
+                    validation = false;
+                }
+            });
+            $('#cardForm').submit(function (e) {
+                if(validation == false) {
+                    e.preventDefault();
+                }
+            });
+        });
     </script>
 
     <!-- passport date validation fromdate todate -->

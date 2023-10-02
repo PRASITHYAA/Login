@@ -129,7 +129,7 @@ Route::view('/instruction', 'career.instruction')->name('career.instruction');
 // job application
 
 Route::get('/job_applications', [JobApplicationController::class, 'index'])->name('career.job_application.index');
-Route::view('/job_application', 'career.job_application.create')->name('job_application');
+Route::get('/job_application', [JobApplicationController::class, 'create'])->name('job_application');
 Route::post('/job_application', [JobApplicationController::class, 'store'])->name('career.job_application.store');
 Route::get('/job_application/{id}', [JobApplicationController::class, 'show'])->name('career.job_application.show');
 Route::get('/job_application/{id}/edit', [JobApplicationController::class, 'edit'])->name('career.job_application.edit');

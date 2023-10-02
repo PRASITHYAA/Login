@@ -22,6 +22,9 @@ class JobApplicationController extends Controller
 
     public function create()
     {
+        if(!request()->has('sector_id') || !request()->has('position_id')) {
+            return redirect()->route('careers');
+        }
         return view('career.job_application.create');
     }
 
@@ -234,11 +237,12 @@ class JobApplicationController extends Controller
         $jobApplication = $jobApplication->fill($data);
         $jobApplication->save();
         if($request->has('siblings_name') && $request->siblings == 'yes') {
+            $jobApplication->siblingsList()->delete();
             foreach ($request->siblings_name as $key => $sibling) {
                 if(!is_null($sibling)) {
+                    $siblingImage = null;
                     if (isset($request->file('siblings_image')[$key])) {
-                        $siblingsImagepath = $request->file('siblings_image')[$key]->store('images', 'public');
-                        $siblingImage = $siblingsImagepath;
+                        $siblingImage = $request->file('siblings_image')[$key]->store('images', 'public');
                     }
                     $jobApplication->siblingsList()->create([
                         'name' => $request->siblings_name[$key],

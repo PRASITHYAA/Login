@@ -186,7 +186,7 @@
             Dear {{ $data->first_name.' '.$data->last_name }},
         </p>
         <p>
-            We have received your job application for the position of [Position Title] at [Company Name]. We appreciate your interest in joining our team.
+            We have received your job application for the position of {{ $data->sector->name.' - '. $data->position->name }} at [Company Name]. We appreciate your interest in joining our team.
         </p>
         <p>
             Please be informed that your application is currently under review. Our hiring team will carefully assess your qualifications and experience in relation to the requirements of the position.

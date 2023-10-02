@@ -117,8 +117,8 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                    class="form-control qualification" placeholder="0" id="high_school_percentage"
+                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                    class="form-control qualification" placeholder="9 GPA" id="high_school_percentage"
                                     name="high_school_percentage" value="{{ old('high_school_percentage') ?? $education->high_school_percentage ?? '' }}">
                             </div>
                             <!-- High school Class -->
@@ -266,8 +266,8 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                    class="form-control" placeholder="9 GPA" name="higher_secondary_percentage"
+                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                    class="form-control decimalInput" placeholder="9 GPA" name="higher_secondary_percentage"
                                     id="higher_secondary_percentage"
                                     value="{{ old('higher_secondary_percentage') ?? ($education->higher_secondary_percentage ?? '') }}">
                             </div>
@@ -425,8 +425,8 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                    class="form-control" placeholder="9 GPA" id="diploma_percentage"
+                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                    class="form-control decimalInput" placeholder="9 GPA" id="diploma_percentage"
                                     name="diploma_percentage"
                                     value="{{ old('diploma_percentage') ?? ($education->diploma_percentage ?? '') }}">
                             </div>
@@ -570,8 +570,8 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                    class="form-control" placeholder="9 GPA" id="bachelors_percentage"
+                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                    class="form-control decimalInput" placeholder="9 GPA" id="bachelors_percentage"
                                     name="bachelors_percentage"
                                     value="{{ old('bachelors_percentage') ?? ($education->bachelors_percentage ?? '') }}">
                             </div>
@@ -730,8 +730,8 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                    name="master_percentage" class="form-control" placeholder="9 GPA"
+                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                    name="master_percentage" class="form-control decimalInput" placeholder="9 GPA"
                                     id="master_percentage"
                                     value="{{ old('master_percentage') ?? ($education->master_percentage ?? '') }}">
                             </div>
@@ -876,8 +876,8 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="number"
-                                    id="doctorate_percentage" name=" doctorate_percentage" class="form-control"
+                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                    id="doctorate_percentage" name=" doctorate_percentage" class="form-control decimalInput"
                                     placeholder="9 GPA"
                                     value="{{ old('doctorate_percentage') ?? ($education->doctorate_percentage ?? '') }}">
                             </div>
@@ -939,8 +939,13 @@
                                         name="doctorate_image_mark_sheet">
                                 </div>
                                 @if (isset($education))
-                                    <img src="{{ asset('storage/' . $education->doctorate_image_mark_sheet) }}"
-                                        alt="Doctorate Image Mark Sheet" style="width: 150px;">
+                                    @if(isset($education->doctorate_image_mark_sheet) && explode('.', $education->doctorate_image_mark_sheet)[1]  == 'pdf')
+                                        <a href="{{ asset('storage/' . $education->doctorate_image_mark_sheet) }}" target="_blank"
+                                           alt="Doctorate Image Mark Sheet" style="width: 150px;">View</a>
+                                    @else
+                                        <img src="{{ asset('storage/' . $education->doctorate_image_mark_sheet) }}"
+                                             alt="Doctorate Image Mark Sheet" style="width: 150px;">
+                                    @endif
                                 @endif
 
                                 <!-- Preview for Doctorate image Mark Sheet -->

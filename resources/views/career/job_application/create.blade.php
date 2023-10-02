@@ -45,41 +45,18 @@
                         <div class="col-lg-6">
                             <!-- sector -->
                             <p>Sectors <span class="red">*</span></p>
-                            <select class="form-select bg" name="sector_id" id="sector_id" required>
-                                <option value="">--Please Select Sector--</option>
-                                @php
-                                    $sectors = \App\Models\Sector::all();
-                                @endphp
-                                @foreach ($sectors as $sector)
-                                    <option value="{{ $sector->id }}"
-                                        {{ old('sector') == $sector->id ||
-                                        request()->sector_id == $sector->id ||
-                                        (isset($jobApplication) && $jobApplication->sector_id == $sector->id)
-                                            ? 'selected'
-                                            : '' }}>
-                                        {{ $sector->name }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" class="form-control bg" name=""
+                                   value="{{ \App\Models\Sector::find(request()->sector_id ?? $jobApplication->sector_id ?? '')->name }}" readonly>
+                            <input type="hidden" name="sector_id"
+                                   value="{{ request()->sector_id ?? $jobApplication->sector_id ?? '' }}">
                         </div>
                         <!-- Position -->
                         <div class="col-lg-6">
                             <p>Position Applied For<span class="red">*</span></p>
-                            <select class="form-select bg" name="position_id" id="position_id" required>
-                                <option value="">--Please Select Position--</option>
-                                @php
-                                    $positions = \App\Models\Position::all();
-                                @endphp
-                                @foreach ($positions as $position)
-                                    <option value="{{ $position->id }}"
-                                        {{ old('position') == $position->id ||
-                                        request()->position_id == $position->id ||
-                                        (isset($jobApplication) && $jobApplication->position_id == $position->id)
-                                            ? 'selected'
-                                            : '' }}>
-                                        {{ $position->name }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            <input type="text" class="form-control bg" name=""
+                                   value="{{ \App\Models\Position::find(request()->position_id ?? $jobApplication->position_id ?? '')->name }}" readonly>
+                            <input type="hidden" name="position_id"
+                                   value="{{ request()->position_id ?? $jobApplication->position_id ?? '' }}">
                         </div>
                     </div>
                     <!-- heading -->
@@ -568,7 +545,7 @@
                                                             <p class="errorText" style="color: red;"></p>
                                                         </div>
                                                         <!--siblings  Upload the Latest Passport Size Photo -->
-                                                        <div class="col-md-4 ">
+                                                        <div class="col-md-4 "> {{ $sibling->photo }}
                                                             <label class="form-label pt-2">Upload the Latest Passport Size
                                                                 Photo
                                                                 <span class="red">*</span></label>
@@ -577,7 +554,7 @@
                                                             @if (isset($sibling->photo))
                                                                 <img src="{{ asset('storage/' . $sibling->photo) }}" class="edit-prev-img"
                                                                     alt="Job Application Image" style="height: 150px;">
-                                                                <input type="text" class="form-control sibling-image-input"
+                                                                <input type="hidden" class="form-control sibling-image-input"
                                                                        id="siblings_image_old_1" name="siblings_image_old[]" value="{{ $sibling->photo }}">
                                                             @endif
                                                             <!-- images  -->

@@ -183,14 +183,16 @@
         <td><img style="height:100px" src="{{ asset('storage/' . $mother_image) }}" alt="Mother's Image"></td>
 
     </tr>
-    <tr>
-        <td>Spouse Name (If married)</td>
-        <td> {{ $spouse_name }}</td>
-        <td>{{ $spouse_date_of_birth }}</td>
-        <td>{{ $spouse_phone }}</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $spouse_image) }}" alt="Spouse's Image"></td>
+    @if($spouse_name)
+        <tr>
+            <td>Spouse Name (If married)</td>
+            <td> {{ $spouse_name }}</td>
+            <td>{{ $spouse_date_of_birth }}</td>
+            <td>{{ $spouse_phone }}</td>
+            <td><img style="height:100px" src="{{ asset('storage/' . $spouse_image) }}" alt="Spouse's Image"></td>
 
-    </tr>
+        </tr>
+    @endif
     @if ($siblings == 'yes')
         @foreach ($siblingsData as $sib)
             <tr>
@@ -232,7 +234,7 @@
     <tr>
         <th>Description</th>
         <th>Current Address </th>
-        <th>Permanent Adress </th>
+        <th>Permanent Address </th>
     </tr>
     </thead>
     <tbody>
@@ -312,7 +314,7 @@
     <thead>
     <tr>
         <th>ID TYPE </th>
-        <th>AADHAR CARD</th>
+        <th>AADHAAR CARD</th>
         <th>PASSPORT</th>
     </tr>
     </thead>
@@ -359,13 +361,22 @@
     </tr>
     <tr>
         <td>Upload ID- 2st Page</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $aadhar_image_page) }}" alt="Aadhar Image Page"></td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $passport_image_id_page) }}" alt="Aadhar Image Page"></td>
+        <td>
+            @if(!is_null($aadhar_image_page))
+                <img style="height:100px" src="{{ asset('storage/' . $aadhar_image_page) }}" alt="Aadhar Image Page">
+            @endif
+        </td>
+        <td>
+            @if(!is_null($passport_image_id_page))
+                <img style="height:100px" src="{{ asset('storage/' . $passport_image_id_page) }}" alt="Aadhar Image Page">
+            @endif
+        </td>
     </tr>
     </tbody>
 </table>
 <h2 style="margin-top: 110px" class="text-center mb-5 ">Education</h2>
 <!-- education -->
+@if(!is_null($high_school_name))
 <table>
     <thead>
     <tr>
@@ -413,15 +424,36 @@
     </tr>
     <tr>
         <td>Upload Certificate</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $high_school_image_certificate) }}" alt="High School Image Certificate"></td>
+        <td>
+            @if(isset($high_school_image_certificate) && explode('.', $high_school_image_certificate)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $high_school_image_certificate) }}"
+                   target="_blank"
+                   alt="High School Certificate" style="width: 150px;">View</a>
+            @elseif(isset($high_school_image_certificate))
+                <img
+                    src="{{ asset('storage/' . $high_school_image_certificate) }}"
+                    alt="High School Certificate" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     <tr>
         <td>Upload Mark Sheet</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $high_school_image_mark_sheet) }}" alt="High School Image Mark Sheet"></td>
+        <td>
+            @if(isset($high_school_image_mark_sheet) && explode('.', $high_school_image_mark_sheet)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $high_school_image_mark_sheet) }}"
+                   target="_blank"
+                   alt="High School Mark Sheet" style="width: 150px;">View</a>
+            @elseif(isset($high_school_image_mark_sheet))
+                <img
+                    src="{{ asset('storage/' . $high_school_image_mark_sheet) }}"
+                    alt="High School Mark Sheet" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     </tbody>
 </table>
-
+@endif
+@if(!is_null($higher_secondary_institution_name))
 <table style="width: 100%; border-collapse: collapse;">
     <tr>
         <th
@@ -480,17 +512,34 @@
     <tr>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Upload Certificate</td>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
-            <img style="height:100px" src="{{ asset('storage/' . $higher_secondary_image_certificate) }}" alt="Higher Secondary  Certificate"></td>
+            @if(isset($higher_secondary_image_certificate) && explode('.', $higher_secondary_image_certificate)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $higher_secondary_image_certificate) }}"
+                   target="_blank"
+                   alt="Higher Secondary Certificate" style="width: 150px;">View</a>
+            @elseif(isset($higher_secondary_image_certificate))
+                <img
+                    src="{{ asset('storage/' . $higher_secondary_image_certificate) }}"
+                    alt="Higher Secondary Certificate" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     <tr>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Upload Mark Sheet</td>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
-            <img style="height:100px" src="{{ asset('storage/' . $higher_secondary_image_mark_sheet) }}" alt="Higher Secondary  Mark Sheet"></td>
+            @if(isset($higher_secondary_image_mark_sheet) && explode('.', $higher_secondary_image_mark_sheet)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $higher_secondary_image_mark_sheet) }}"
+                   target="_blank"
+                   alt="Higher Secondary Mark Sheet" style="width: 150px;">View</a>
+            @elseif(isset($higher_secondary_image_mark_sheet))
+                <img
+                    src="{{ asset('storage/' . $higher_secondary_image_mark_sheet) }}"
+                    alt="Higher Secondary Mark Sheet" style="width: 100px;">
+            @endif
+        </td>
     </tr>
-
-
 </table>
-
+@endif
+@if(!is_null($diploma_institution_name))
 <table>
     <thead>
     <tr>
@@ -543,14 +592,36 @@
     </tr>
     <tr>
         <td>Upload Certificate</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $diploma_image_certificate) }}" alt="Diploma Image Certificate"></td>
+        <td>
+            @if(isset($diploma_image_certificate) && explode('.', $diploma_image_certificate)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $diploma_image_certificate) }}"
+                   target="_blank"
+                   alt="Diploma Certificate" style="width: 150px;">View</a>
+            @elseif(isset($diploma_image_certificate))
+                <img
+                    src="{{ asset('storage/' . $diploma_image_certificate) }}"
+                    alt="Diploma Certificate" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     <tr>
         <td>Upload Mark Sheet</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $diploma_image_mark_sheet) }}" alt="Diploma Image Mark Sheet"></td>
+        <td>
+            @if(isset($diploma_image_mark_sheet) && explode('.', $diploma_image_mark_sheet)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $diploma_image_mark_sheet) }}"
+                   target="_blank"
+                   alt="Diploma Mark Sheet" style="width: 150px;">View</a>
+            @elseif(isset($diploma_image_mark_sheet))
+                <img
+                    src="{{ asset('storage/' . $diploma_image_mark_sheet) }}"
+                    alt="Diploma Mark Sheet" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     </tbody>
 </table>
+@endif
+@if(!is_null($bachelors_institution_name))
 <table>
     <thead>
     <tr>
@@ -603,14 +674,36 @@
     </tr>
     <tr>
         <td>Upload Certificate</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $bachelors_image_certificate) }}" alt="Bachelors Image Certificate"></td>
+        <td>
+            @if(isset($bachelors_image_certificate) && explode('.', $bachelors_image_certificate)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $bachelors_image_certificate) }}"
+                   target="_blank"
+                   alt="Bachelors Certificate" style="width: 150px;">View</a>
+            @elseif(isset($bachelors_image_certificate))
+                <img
+                    src="{{ asset('storage/' . $bachelors_image_certificate) }}"
+                    alt="Bachelors Certificate" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     <tr>
         <td>Upload Mark Sheet</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $bachelors_image_mark_sheet) }}" alt="Bachelors Image Mark Sheet"></td>
+        <td>
+            @if(isset($bachelors_image_mark_sheet) && explode('.', $bachelors_image_mark_sheet)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $bachelors_image_mark_sheet) }}"
+                   target="_blank"
+                   alt="Bachelors Mark Sheet" style="width: 150px;">View</a>
+            @elseif(isset($bachelors_image_mark_sheet))
+                <img
+                    src="{{ asset('storage/' . $bachelors_image_mark_sheet) }}"
+                    alt="Bachelors Mark Sheet" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     </tbody>
 </table>
+@endif
+@if(!is_null($master_institution_name))
 <table>
     <thead>
     <tr>
@@ -663,14 +756,36 @@
     </tr>
     <tr>
         <td>Upload Certificate</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $master_image_certificate) }}" alt="Master's Image Certificate"></td>
+        <td>
+            @if(isset($master_image_certificate) && explode('.', $master_image_certificate)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $master_image_certificate) }}"
+                   target="_blank"
+                   alt="Master's Certificate" style="width: 150px;">View</a>
+            @elseif(isset($master_image_certificate))
+                <img
+                    src="{{ asset('storage/' . $master_image_certificate) }}"
+                    alt="Master's Certificate" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     <tr>
         <td>Upload Mark Sheet</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $master_image_mark_sheet) }}" alt="Master's Image Mark Sheet"></td>
+        <td>
+            @if(isset($master_image_mark_sheet) && explode('.', $master_image_mark_sheet)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $master_image_mark_sheet) }}"
+                   target="_blank"
+                   alt="Master's Mark Sheet" style="width: 150px;">View</a>
+            @elseif(isset($master_image_mark_sheet))
+                <img
+                    src="{{ asset('storage/' . $master_image_mark_sheet) }}"
+                    alt="Master's Mark Sheet" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     </tbody>
 </table>
+@endif
+@if(!is_null($doctorate_name))
 <table>
     <thead>
     <tr>
@@ -721,17 +836,37 @@
     </tr>
     <tr>
         <td>Upload Certificate</td>
-        <td> <img style="height:100px" src="{{ asset('storage/' . $doctorate_image_certificate) }}"alt="Doctorate Image Certificate"></td>
+        <td>
+            @if(isset($doctorate_image_certificate) && explode('.', $doctorate_image_certificate)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $doctorate_image_certificate) }}"
+                   target="_blank"
+                   alt="Doctorate Certificate" style="width: 150px;">View</a>
+            @elseif(isset($doctorate_image_certificate))
+                <img
+                    src="{{ asset('storage/' . $doctorate_image_certificate) }}"
+                    alt="Doctorate Certificate" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     <tr>
         <td>Upload Mark Sheet</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $doctorate_image_mark_sheet) }}"alt="Doctorate Image Mark Sheet"></td>
+        <td>
+            @if(isset($doctorate_image_mark_sheet) && explode('.', $doctorate_image_mark_sheet)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $doctorate_image_mark_sheet) }}"
+                   target="_blank"
+                   alt="Doctorate Mark Sheet" style="width: 150px;">View</a>
+            @elseif(isset($doctorate_image_mark_sheet))
+                <img
+                    src="{{ asset('storage/' . $doctorate_image_mark_sheet) }}"
+                    alt="Doctorate Mark Sheet" style="width: 100px;">
+            @endif
+        </td>
     </tr>
     </tbody>
 </table>
-
+@endif
+@if($previous_experience == 'yes')
 <!-- emplyment -->
-
 <h2 class="text-center p-4  mt-4 ">PREVIOUS EMPLOYMENT</h2>
 <table>
     <thead>
@@ -793,7 +928,6 @@
     </tr>
     </tbody>
 </table>
-
 <h2 class="text-center p-4     mt-4 ">REFERENCES- (PROFESSIONAL ONLY)</h2>
 @if (count($employmentReference))
     @foreach ($employmentReference as $ref)
@@ -827,7 +961,7 @@
         </table>
     @endforeach
 @endif
-
+@endif
 <h2 class="text-center p-4  mt-4 ">EMPLOYMENT ELIGIBILITY</h2>
 <table>
 
@@ -896,7 +1030,17 @@
     </tr>
     <tr>
         <th> All Your Project Documents </th>
-        <td>{{ $project_document }}</td>
+        <td>
+            @if(isset($project_document) && explode('.', $project_document)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $project_document) }}"
+                   target="_blank"
+                   alt="Project Documents" style="width: 150px;">View</a>
+            @elseif(isset($project_document))
+                <img
+                    src="{{ asset('storage/' . $project_document) }}"
+                    alt="Project Documents" style="width: 100px;">
+            @endif
+        </td>
     </tr>
 </table>
 <h2 class="text-center p-4  "> CO-CURRICULAR, EXTRA-CURRICULAR SKILLS</h2>
@@ -909,7 +1053,17 @@
     </tr>
     <tr>
         <th>Curricular/Extracurricular Certificate </th>
-        <td>{{ $extra_curricular_skills_project_document }}</td>
+        <td>
+            @if(isset($extra_curricular_skills_project_document) && explode('.', $extra_curricular_skills_project_document)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $extra_curricular_skills_project_document) }}"
+                   target="_blank"
+                   alt="Extra Curricular document" style="width: 150px;">View</a>
+            @elseif(isset($extra_curricular_skills_project_document))
+                <img
+                    src="{{ asset('storage/' . $extra_curricular_skills_project_document) }}"
+                    alt="Extra Curricular document" style="width: 100px;">
+            @endif
+        </td>
     </tr>
 </table>
 <h2 class="text-center p-4  ">CURRICULUM VITAE</h2>
@@ -921,7 +1075,17 @@
     </tr>
     <tr>
         <th style="border: 1px solid black; padding: 10px; text-align: left; width: 70%;">If Yes,Resume </th>
-        <td>{{ $yes_curriculum_pdf_format }}</td>
+        <td>
+            @if(isset($yes_curriculum_pdf_format) && explode('.', $yes_curriculum_pdf_format)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $yes_curriculum_pdf_format) }}"
+                   target="_blank"
+                   alt="Curriculum document" style="width: 150px;">View</a>
+            @elseif(isset($yes_curriculum_pdf_format))
+                <img
+                    src="{{ asset('storage/' . $yes_curriculum_pdf_format) }}"
+                    alt="Curriculum" style="width: 100px;">
+            @endif
+        </td>
     </tr>
 </table>
 <table>
