@@ -123,21 +123,21 @@ class JobApplication extends Model
     public function permanentCityName(): Attribute
     {
         return Attribute::make(
-            get: fn (mixed $value, array $attributes) => City::find($attributes['permanent_city'])->name
+            get: fn (mixed $value, array $attributes) => City::find($attributes['permanent_city'])->name ?? ''
         );
     }
 
     public function permanentStateName(): Attribute
     {
         return Attribute::make(
-            get: fn(mixed $value, array $attributes) => State::find($attributes['permanent_state'])->name
+            get: fn(mixed $value, array $attributes) => State::find($attributes['permanent_state'])->name ?? ''
         );
     }
 
     public function permanentCountryName(): Attribute
     {
         return Attribute::make(
-            get: fn(mixed $value, array $attributes) => Country::find($attributes['permanent_country'])->name
+            get: fn(mixed $value, array $attributes) => Country::find($attributes['permanent_country'])->name ?? ''
         );
     }
 }
