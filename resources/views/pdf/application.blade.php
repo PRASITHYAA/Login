@@ -251,19 +251,19 @@
 
     <tr>
         <td>District</td>
-        <td>{{ $city }}</td>
-        <td>{{ $permanent_city }}</td>
+        <td>{{ $city_name }}</td>
+        <td>{{ $permanent_city_name }}</td>
     </tr>
 
     <tr>
         <td>State</td>
-        <td> {{ $state }}</td>
-        <td>{{ $permanent_city }}</td>
+        <td> {{ $state_name }}</td>
+        <td>{{ $permanent_state_name }}</td>
     </tr>
     <tr>
         <td>Country</td>
-        <td> {{ $country }}</td>
-        <td> {{ $permanent_country }}</td>
+        <td> {{ $country_name }}</td>
+        <td> {{ $permanent_country_name }}</td>
     </tr>
     <tr>
         <td>Phone/Mobile Number</td>
@@ -340,19 +340,19 @@
         <td> {{ $passport_expired_date }}</td>
     </tr>
     <tr>
-        <td>Issued Place</td>
-        <td>{{ $aadhar_issued_place }}</td>
-        <td>{{ $passport_issued_place }}</td>
+        <td>City</td>
+        <td>{{ $aadhar_issued_place_name }}</td>
+        <td>{{ $passport_issued_place_name }}</td>
     </tr>
     <tr>
         <td>State</td>
-        <td>{{ $aadhar_issued_state }}</td>
-        <td>{{ $passport_issued_state }}</td>
+        <td>{{ $aadhar_issued_state_name }}</td>
+        <td>{{ $passport_issued_state_name }}</td>
     </tr>
     <tr>
         <td>Country</td>
-        <td>{{ $aadhar_issued_country }}</td>
-        <td> {{ $passport_issued_country }}</td>
+        <td>{{ $aadhar_issued_country_name }}</td>
+        <td> {{ $passport_issued_country_name }}</td>
     </tr>
     <tr>
         <td>Upload ID- 1st Page</td>

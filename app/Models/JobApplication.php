@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class JobApplication extends Model
 {
@@ -57,6 +58,8 @@ class JobApplication extends Model
         'siblings'
     ];
 
+    protected $appends = ['city_name', 'state_name', 'country_name', 'permanent_city_name', 'permanent_state_name', 'permanent_country_name'];
+
     public function sector()
     {
         return $this->belongsTo(Sector::class);
@@ -96,4 +99,45 @@ class JobApplication extends Model
         return $this->hasMany(Sibling::class);
     }
 
+    public function cityName(): Attribute
+    {
+        return Attribute::make(
+            get: fn (mixed $value, array $attributes) => City::find($attributes['city'])->name
+        );
+    }
+
+    public function stateName(): Attribute
+    {
+        return Attribute::make(
+            get: fn(mixed $value, array $attributes) => State::find($attributes['state'])->name
+        );
+    }
+
+    public function countryName(): Attribute
+    {
+        return Attribute::make(
+          get: fn(mixed $value, array $attributes) => Country::find($attributes['country'])->name
+        );
+    }
+
+    public function permanentCityName(): Attribute
+    {
+        return Attribute::make(
+            get: fn (mixed $value, array $attributes) => City::find($attributes['permanent_city'])->name
+        );
+    }
+
+    public function permanentStateName(): Attribute
+    {
+        return Attribute::make(
+            get: fn(mixed $value, array $attributes) => State::find($attributes['permanent_state'])->name
+        );
+    }
+
+    public function permanentCountryName(): Attribute
+    {
+        return Attribute::make(
+            get: fn(mixed $value, array $attributes) => Country::find($attributes['permanent_country'])->name
+        );
+    }
 }
