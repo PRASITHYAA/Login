@@ -23,7 +23,7 @@ class SectorController extends Controller
     {
         // dd($request->all());
         $validatedData = $request->validate([
-            'sector' => 'required',
+            'name' => 'required',
         ]);
 
         Sector::create($validatedData);
@@ -41,7 +41,7 @@ class SectorController extends Controller
     public function update(Request $request, Sector $sector)
     {
         $validatedData = $request->validate([
-            'sector' => 'required',
+            'name' => 'required',
         ]);
 
         $sector->update($validatedData);

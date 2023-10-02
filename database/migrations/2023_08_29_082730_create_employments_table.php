@@ -10,8 +10,9 @@ class CreateEmploymentsTable extends Migration
     {
         Schema::create('employments', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('job_application_id');
             $table->string('open-input');
-            
             $table->string('employer_company')->nullable();
             $table->string('employer_email')->nullable();
             $table->string('employer_address')->nullable();
@@ -32,6 +33,9 @@ class CreateEmploymentsTable extends Migration
             $table->string('sub-nested-option')->nullable();
             $table->string('nested-input-field')->nullable();
             $table->timestamps();
+            $table->foreign('job_application_id')->references('id')->on('job_applications');
+
+
         });
     }
 

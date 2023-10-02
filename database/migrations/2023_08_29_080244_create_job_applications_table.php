@@ -10,8 +10,8 @@ class CreateJobApplicationsTable extends Migration
     {
         Schema::create('job_applications', function (Blueprint $table) {
             $table->id();
-            $table->string('sector');
-            $table->string('position');
+            $table->unsignedBigInteger('sector_id');
+            $table->unsignedBigInteger('position_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('image')->nullable();
@@ -60,8 +60,10 @@ class CreateJobApplicationsTable extends Migration
             $table->string('siblings_email')->nullable();
             $table->string('siblings_phone')->nullable();
             $table->string('siblings_image')->nullable();
-
             $table->timestamps();
+
+            $table->foreign('sector_id')->references('id')->on('sectors');
+            $table->foreign('position_id')->references('id')->on('positions');
         });
     }
 

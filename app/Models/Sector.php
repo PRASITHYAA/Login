@@ -9,8 +9,12 @@ class Sector extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'sector',
-
+        'name',
     ];
+    
+    public function positions()
+    {
+        return $this->hasMany(Position::class);
+    }
 
 }

@@ -9,7 +9,9 @@ class Employment extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'open-input',
+
+        'job_application_id',
+        'previous_experience',
         // experience
         'employer_company',
         'employer_email',
@@ -20,21 +22,32 @@ class Employment extends Model
         'employer_to_date',
         'employer_experience',
         'employer_responsibilities',
-
-        // REFERENCE
         'reference_name ',
         'reference_company',
         'reference_position',
         'reference_email',
         'reference_phone',
         'reference_phone',
-
+        'reference_address',
+        'eligible_to_work',
+        'crime_status',
         // second'',
-        'nested-option',
-        'sub-nested-input',
-
-        'sub-nested-option',
-        'nested-input-field',
-
+        'eligible_to_work_text',
+        'crime_status_text',
     ];
+
+    public function employers()
+    {
+        return $this->hasMany(EmploymentEmployer::class);
+    }
+
+    public function references()
+    {
+        return $this->hasMany(EmploymentReference::class);
+    }
+
+    public function jobApplication()
+    {
+        return $this->belongsTo(JobApplication::class);
+    }
 }

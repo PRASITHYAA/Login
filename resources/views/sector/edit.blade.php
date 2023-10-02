@@ -25,9 +25,9 @@
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
-                        <label for="sector" class="form-label">Sector <span style="color: red;">*</span></label>
+                        <label for="name" class="form-label">Sector Name <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            name="sector" id="sector" value="{{ $sector->sector }}" required>
+                            name="name" id="name" value="{{ $sector->name }}" required>
                     </div>
 
                     <button type="submit" class="btn btn-success">Update</button>
