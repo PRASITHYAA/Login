@@ -1,25 +1,23 @@
-
-        @include('layouts.sidebar')
-
-    <!--Main layout-->
+@extends('layouts.admin_master')
+@section('content')
     <main style="margin-top: 100px;">
         <div class="container-fluid">
-                        {{-- error --}}
-                        @if ($errors->any())
-                        <div class=" alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    {{-- success --}}
-                    @if (session('success'))
-                        <div class=" container  alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+            {{-- error --}}
+            @if ($errors->any())
+                <div class=" alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            {{-- success --}}
+            @if (session('success'))
+                <div class=" container  alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
             <h1 class="bg-light">
                 Training List</h1>
@@ -34,14 +32,14 @@
                 </div>
                 {{-- table header --}}
                 <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Sector</th>
-                        <th>Course Level  </th>
-                        <th>Course Title</th>
-                        <th>OPERATIONS</th>
-                    </tr>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Sector</th>
+                    <th>Course Level</th>
+                    <th>Course Title</th>
+                    <th>OPERATIONS</th>
+                </tr>
                 </thead>
                 {{-- table body --}}
                 <tbody>
@@ -57,10 +55,14 @@
                                 <a href="{{ route('training.view', $training->id) }}" class="btn btn-warning">View</a>
 
                                 <!-- Delete Button -->
-                                <form action="{{ route('training.destroy', $training->id) }}" method="POST" class="d-inline">
+                                <form action="{{ route('training.destroy', $training->id) }}" method="POST"
+                                      class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Training form?')">Delete</button>
+                                    <button type="submit" class="btn btn-danger"
+                                            onclick="return confirm('Are you sure you want to delete this Training form?')">
+                                        Delete
+                                    </button>
                                 </form>
                             </td>
 
@@ -69,6 +71,5 @@
                 </tbody>
             </table>
         </div>
-
     </main>
-
+@endsection
