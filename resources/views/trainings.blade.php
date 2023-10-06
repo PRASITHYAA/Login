@@ -36,7 +36,7 @@
                     <td>{{ $training->course_location }}</td>
                     <td>
                         <a style=" font-weight: bold;" class="btn btn-warning mx-1  btn-e1"
-                           href="{{ route('trainings.view', $training->id) }}">Apply
+                           href="{{ route('available.trainings.views', $training->id) }}">Apply
                             now</a>
                     </td>
                 </tr>

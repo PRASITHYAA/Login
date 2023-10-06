@@ -59,8 +59,8 @@
                                                 <div class="" role="group"
                                                     aria-label="Basic mixed styles example">
                                                     <a href="{{ url('trainings/'. $training->id) }}" title="View"><i class="fa fa-eye text-primary"></i></a>
-                                                    <a style="margin: 0 5px 0 5px;" href="{{ route('trainings.edit', $training->id) }}" title="Edit"><i class="fa fa-pencil text-success"></i></a>
-                                                    <form action="{{ route('trainings.destroy', $training->id) }}"
+                                                    <a style="margin: 0 5px 0 5px;" href="{{ route('user.trainings.edit', $training->id) }}" title="Edit"><i class="fa fa-pencil text-success"></i></a>
+                                                    <form action="{{ route('user.trainings.destroy', $training->id) }}"
                                                           method="post" style="display: inline-block;">
                                                         @csrf
                                                         @method('DELETE')

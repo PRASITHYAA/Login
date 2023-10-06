@@ -8,18 +8,18 @@
                 <div class="col-md-4">
                     <label class="form-label">sector</label>
                     <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control "
-                        value="{{ $training->sector }}" readonly>
+                        value="{{ $training->sector->name }}" readonly>
                 </div>
                 <div class="col-md-4">
                     <label class="form-label">Course Level</label>
                     <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control "
-                        value="{{ $training->course_level }}" readonly>
+                        value="{{ $training->course_level->name }}" readonly>
                 </div>
                 <!-- Course Title -->
                 <div class="col-md-4">
                     <label class="form-label">Course Title</label>
                     <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control "
-                        value="{{ $training->course_title }}" readonly>
+                        value="{{ $training->course_title->name }}" readonly>
                 </div>
                 <!-- First name -->
                 <div class="col-md-4 ">
@@ -199,19 +199,19 @@
                     <div class="col-md-4">
                         <label class="form-label">Sector </label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control "
-                            value="{{ $training->sector }}" readonly>
+                            value="{{ $training->sector->name }}" readonly>
                     </div>
                     <!-- Course Level -->
                     <div class="col-md-4">
                         <label class="form-label">Course Level </label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control "
-                            value="{{ $training->course_level }}" readonly>
+                            value="{{ $training->course_level->name }}" readonly>
                     </div>
                     <!-- Course Title -->
                     <div class="col-md-4">
                         <label class="form-label">Course Title</label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control "
-                            value="{{ $training->course_title }}" readonly>
+                            value="{{ $training->course_title->name }}" readonly>
                     </div>
                 </div>
                 <div class="col-md-3 ">

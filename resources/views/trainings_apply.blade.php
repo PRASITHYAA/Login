@@ -388,6 +388,7 @@
         </div>
 
     </div>
+@endsection
 @section('script')
     <script>
         function setupRadioListener(yesRadio, noRadio, formContainer) {
