@@ -31,21 +31,21 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 */
 
 // registration
-Route::view('/', 'auth.Registration');
-Route::Post('store', [StoreController::class, 'store']);
-
-
+Route::view('/', 'auth.Registration')->middleware('guest');
+Route::Post('store', [StoreController::class, 'store'])->middleware('guest');
+// login
+Route::view('/login', 'auth.Login')->name('login')->middleware('guest');
+Route::Post('authenticate', [LoginController::class, 'authenticate'])->middleware('guest');
+//verify
 Route::get('/email/verify/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
     ->middleware(['signed', 'throttle:6,1'])
-    ->name('verification.verify');
-// login
-Route::view('/login', 'auth.Login')->name('login');
-Route::Post('authenticate', [LoginController::class, 'authenticate']);
+    ->name('verification.verify')->middleware('guest');
+//logout
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 //  forget password form
-Route::get('forgetpassword', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
-Route::post('forgetpassword', [ForgetPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('forgetpassword', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get')->middleware('guest');
+Route::post('forgetpassword', [ForgetPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post')->middleware('guest');
 Route::get('reset-password/{token}', [ForgetPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgetPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
