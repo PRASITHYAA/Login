@@ -124,20 +124,20 @@
         $font = $fontMetrics->getFont("Verdana");
 
         // Calculate the width of each text block
-        $pageWidth = $fontMetrics->getTextWidth($pageText, $font, $size);
-        $dateWidth = $fontMetrics->getTextWidth($dateText, $font, $size);
+        $pageWidth = $fontMetrics->get_text_width($pageText, $font, $size);
+        $dateWidth = $fontMetrics->get_text_width($dateText, $font, $size);
 
         // Calculate the total width of the footer
         $footerWidth = $pageWidth + $dateWidth;
 
         // Calculate the starting X position for the page number
-        $pageX = ($pdf->getWidth() - $footerWidth) / 2;
+        $pageX = ($pdf->get_width() - $footerWidth) / 2;
 
         // Calculate the starting X position for the date (right-aligned)
         $dateX = $pageX + $pageWidth;
 
         // Set the Y position for both texts
-        $y = $pdf->getHeight() - 35;
+        $y = $pdf->get_height() - 35;
 
         // Add the page number text
         $pdf->page_text($pageX, $y, $pageText, $font, $size, [0, 0, 0], 0, 0, 0, 0);
