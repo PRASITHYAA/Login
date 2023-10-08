@@ -134,6 +134,28 @@ class DisclaimerController extends Controller
         $employmentReference = EmploymentReference::where('employment_id', $employment['id'])->get()->toArray();
         $data = array_merge(['employmentReference' => $employmentReference], $data);
         $pdf = Pdf::loadView('pdf.application', $data);
+        // Add a custom footer with the date and time
+        $pdf->setOptions([
+            'isPhpEnabled' => true,
+        ]);
+
+        $pdf->getDomPDF()->setPhpScript("
+        <script type=\"text/php\">
+            if (isset(\$pdf)) {
+                \$font = null;
+                \$size = 10;
+                \$text = date('d-m-Y h:i A');
+                \$pageText = \$font . ' ' . \$size . 'pt ' . \$text;
+                if (isset(\$font)) {
+                    \$size = \$font->getSize();
+                }
+                // The coordinates and size here are just examples; adjust them as needed
+                \$x = 270;
+                \$y = 790;
+                \$pdf->text(\$x, \$y, \$pageText);
+            }
+        </script>
+    ");
         return $pdf->download('job_application_' . $application->first_name . '.pdf');
     }
 }
