@@ -1122,5 +1122,30 @@
         $pdf->page_text($x, $y, $text, $font, $size);
     }
 </script>
+<style>
+    #header,
+    #footer {
+        position: fixed;
+        left: 0;
+        right: 0;
+        color: #aaa;
+        font-size: 0.9em;
+    }
+    #header {
+        top: 0;
+        border-bottom: 0.1pt solid #aaa;
+    }
+    #footer {
+        bottom: 0;
+        border-top: 0.1pt solid #aaa;
+    }
+    .page-number:before {
+        content: "Page " counter(page);
+    }
+</style>
+
+<div id="footer">
+    <div class="page-number"></div>
+</div>
 </body>
 </html>
