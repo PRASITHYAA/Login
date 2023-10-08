@@ -139,11 +139,11 @@
         // Set the Y position for both texts
         $y = $pdf->get_height() - 35;
 
-        // Add the page number text
-        $pdf->page_text($pageX, $y, $pageText, $font, $size, [0, 0, 0], 0, 0, 0, 0);
-
         // Add the date text on the right side
         $pdf->page_text($dateX, $y, $dateText, $font, $size, [0, 0, 0], 0, 0, 0, 0);
+
+        // Add the page number text
+        $pdf->page_text($pageX, $y, $pageText, $font, $size, [0, 0, 0], 0, 0, 0, 0);
     }
 </script>
 <div id="footer">
