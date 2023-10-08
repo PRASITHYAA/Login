@@ -196,7 +196,7 @@
                 <td>{{ $sib['name'] }}</td>
                 <td>{{ $sib['dob'] }}</td>
                 <td>{{ $sib['phone'] }}</td>
-                <td> </td>
+                <td><img style="height:100px" src="{{ asset('storage/' . $sib['photo']) }}" alt="Sibling's Image"></td>
             </tr>
         @endforeach
     @endif
