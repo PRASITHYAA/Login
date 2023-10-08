@@ -135,16 +135,7 @@ class DisclaimerController extends Controller
         $data = array_merge(['employmentReference' => $employmentReference], $data);
         $pdf = Pdf::loadView('pdf.application', $data);
         // Add a custom page footer with the date and time
-        $pdf->getDomPDF()->set_option('isHtml5ParserEnabled', true);
-        $pdf->getDomPDF()->set_option('isPhpEnabled', true);
-
-        $footer = '<div style="text-align:center;">' .
-            'Page {PAGE_NUM} of {PAGE_COUNT}' .
-            '<br />' .
-            'Generated on ' . date('Y-m-d H:i:s') .
-            '</div>';
-
-        $pdf->getDomPDF()->setHtmlFooter($footer);
+        $pdf->setOption(['isPhpEnabled', true, 'isHtml5ParserEnabled' => true]);
         return $pdf->download('job_application_' . $application->first_name . '.pdf');
     }
 }
