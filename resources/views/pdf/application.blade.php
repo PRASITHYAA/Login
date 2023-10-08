@@ -92,10 +92,44 @@
         /* background-color: rgba(113, 106, 97, 0.439); */
         /* background-color: rgba(213, 213, 213, 0.637); */
         /* } */
+        
+         #header,
+         #footer {
+             position: fixed;
+             left: 0;
+             right: 0;
+             color: #aaa;
+             font-size: 0.9em;
+         }
+        #header {
+            top: 0;
+            border-bottom: 0.1pt solid #aaa;
+        }
+        #footer {
+            bottom: 0;
+            border-top: 0.1pt solid #aaa;
+        }
+        .page-number:before {
+            content: "Page " counter(page);
+        }
     </style>
 </head>
 
 <body>
+<script type="text/php">
+    if (isset($pdf)) {
+        $text = "page {PAGE_NUM} / {PAGE_COUNT}";
+        $size = 10;
+        $font = $fontMetrics->getFont("Verdana");
+        $width = $fontMetrics->get_text_width($text, $font, $size);
+        $x = ($pdf->get_width() - $width) / 2;
+        $y = $pdf->get_height() - 35;
+        $pdf->page_text($x, $y, $text, $font, $size, [0, 0, 0], 0, 0, 0, 0);
+    }
+</script>
+<div id="footer">
+    <div class="page-number"></div>
+</div>
 <header>
     <img src="https://tisecon.com/wp-content/uploads/2023/04/NEW-LOGO-FINAL-1.png" alt="Job Site Logo">
 </header>
@@ -1111,41 +1145,5 @@
         <td> {{ $disclaimer_place }}</td>
     </tr>
 </table>
-<script type="text/php">
-    if (isset($pdf)) {
-        $text = "page {PAGE_NUM} / {PAGE_COUNT}";
-        $size = 10;
-        $font = $fontMetrics->getFont("Verdana");
-        $width = $fontMetrics->get_text_width($text, $font, $size);
-        $x = ($pdf->get_width() - $width) / 2;
-        $y = $pdf->get_height() - 35;
-        $pdf->page_text($x, $y, $text, $font, $size, [0, 0, 0], 0, 0, 0, 0);
-    }
-</script>
-<style>
-    #header,
-    #footer {
-        position: fixed;
-        left: 0;
-        right: 0;
-        color: #aaa;
-        font-size: 0.9em;
-    }
-    #header {
-        top: 0;
-        border-bottom: 0.1pt solid #aaa;
-    }
-    #footer {
-        bottom: 0;
-        border-top: 0.1pt solid #aaa;
-    }
-    .page-number:before {
-        content: "Page " counter(page);
-    }
-</style>
-
-<div id="footer">
-    <div class="page-number"></div>
-</div>
 </body>
 </html>
