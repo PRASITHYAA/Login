@@ -328,6 +328,24 @@
                     $(this).val('');
                 }
             });
+            $('input[type="date"]').on('input', function () {
+                const inputValue = $(this).val();
+                const regex = /^(\d{1,2}\/\d{1,2}\/)(\d{4})$/;
+
+                if (regex.test(inputValue)) {
+                    // Get the year portion
+                    const year = inputValue.match(regex)[2];
+
+                    // Check if the year has more than four digits
+                    if (year.length > 4) {
+                        // Truncate the year to four digits
+                        const truncatedYear = year.substr(0, 4);
+                        // Replace the year with the truncated year
+                        const modifiedValue = inputValue.replace(year, truncatedYear);
+                        $(this).val(modifiedValue);
+                    }
+                }
+            });
         });
     </script>
     <!-- bootstrap -->

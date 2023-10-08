@@ -48,7 +48,7 @@ class DisclaimerController extends Controller
         $emailData['position'] = $jobApplication->position->name;
         Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
 
-        return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer And All The Forms Are created successfully');
+        return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', 'Disclaimer created successfully!');
     }
 
     public function show($id)
@@ -104,7 +104,7 @@ class DisclaimerController extends Controller
         $emailData['sector'] = $jobApplication->sector->name;
         $emailData['position'] = $jobApplication->position->name;
         Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
-        return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer And All The Forms Are created successfully');
+        return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer updated successfully!');
     }
 
     public function acknowledgement(Request $request)

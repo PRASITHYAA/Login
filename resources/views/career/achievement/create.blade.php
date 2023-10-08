@@ -47,7 +47,7 @@
                 </p>
 
                 <div class="mb-3">
-                    <p class="border-bottom">List out your Acheivements here <span class="form-label red">*</span> </p>
+                    <p class="border-bottom">List out your Achievements here <span class="form-label red">*</span> </p>
 
                     <div class="form-container">
                         <div class="form-fields">

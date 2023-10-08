@@ -13,7 +13,7 @@
                 you feel are relevant, for this particular post that you, applying for. Please limit your writing
                 for this part to a maximum of 500 words
             </p>
-            <p class="border-bottom">List out your Acheivements here <span class="form-label red">*</span> </p>
+            <p class="border-bottom">List out your Achievements here <span class="form-label red">*</span> </p>
             @php
                 $jobApplication = \App\Models\JobApplication::find(request()->id);
                 $achievements = $jobApplication->achievements;

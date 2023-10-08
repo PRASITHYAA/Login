@@ -124,7 +124,7 @@ class JobApplicationController extends Controller
             }
         }
 
-        return redirect()->route('card.view', ['job_application_id' => $jobApplication->id])->with('success', '  Job Application submitted successfully!');
+        return redirect()->route('card.view', ['job_application_id' => $jobApplication->id])->with('success', 'Personal Information created successfully!');
     }
 
     // show
@@ -260,10 +260,10 @@ class JobApplicationController extends Controller
         $card = Card::where('job_application_id', $id)->orderBy('id', 'desc')->first();
 
         if (!is_null($card)) {
-            return redirect()->route('career.card.edit', $card->id)->with('success', 'Card updated successfully!');
+            return redirect()->route('career.card.edit', $card->id)->with('success', 'Personal Information updated successfully!');
         } else {
             return redirect()->route('card.view', ['job_application_id' => $jobApplication->id])
-                ->with('success', 'Job Application updated successfully!');
+                ->with('success', 'Personal Information updated successfully!');
         }
     }
 
@@ -306,6 +306,6 @@ class JobApplicationController extends Controller
         }
         $jobApplication->delete();
 
-        return redirect()->route($route)->with('success', 'Job Form deleted successfully!');
+        return redirect()->route($route)->with('success', 'Job Application deleted successfully!');
     }
 }

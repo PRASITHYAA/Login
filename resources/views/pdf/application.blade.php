@@ -99,15 +99,28 @@
 <header>
     <img src="https://tisecon.com/wp-content/uploads/2023/04/NEW-LOGO-FINAL-1.png" alt="Job Site Logo">
 </header>
+<script type="text/php">
+    if (isset($pdf)) {
+        $size = 14;
+        $text = date('d-m-Y h:i A');
+        $font = Font_Metrics::get_font("helvetica");
+        $text_height = Font_Metrics::get_font_height($font, $size);
+        $width = Font_Metrics::get_text_width($text, $font, $size);
+        $w = $pdf->get_width() - $width - 24;
+        $y = $pdf->get_height() - $text_height - 24;
+
+        $pdf->page_text($w, $y, $text, $font, $size);
+    }
+</script>
 <h2 class="text-center">Career Form Application Acknowledgment</h2>
 <h2 class="text-center border-bottom p-4 ">EMPLOYMENT / JOB APPLICATION</h2>
 <table>
     <tr>
-        <td class="empty-column">Name</td>
+        <td class="empty-column">Applicant Name</td>
         <td class="empty-column">{{ $first_name }} {{ $last_name }} </td>
     </tr>
     <tr>
-        <td class="empty-column">Photo Copy</td>
+        <td class="empty-column">Photo</td>
         <td class="empty-column"> <img style="height:100px" src="{{ asset('storage/' . $image) }}" alt="Image"></td>
     </tr>
 
@@ -967,7 +980,7 @@
 <table>
     <tr>
         <th style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">List out your
-            Acheivements
+            Achievements
             here
         </th>
         <td>{{ $achievement }}</td>
