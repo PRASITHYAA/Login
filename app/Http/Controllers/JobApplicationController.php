@@ -44,8 +44,8 @@ class JobApplicationController extends Controller
             'city' => 'required',
             'address' => 'required',
             'postal_code' => 'required',
-            'phone' => ['required', 'regex:/^[0-9\s]+$/'],
-            'alternative_phone' => ['nullable', 'regex:/^[0-9\s]+$/'],
+            'phone' => ['required', 'regex:/^[+0-9\s]+$/'],
+            'alternative_phone' => ['nullable', 'regex:/^[+0-9\s]+$/'],
             'email' => 'required|email',
             'fb_link' => 'required',
             'linked_link' => 'required',
@@ -61,12 +61,12 @@ class JobApplicationController extends Controller
             // father name
             'father_name' => 'required',
             'father_date_of_birth' => 'required|date',
-            'father_phone' => ['required', 'regex:/^[0-9\s]+$/'],
+            'father_phone' => ['required', 'regex:/^[+0-9\s]+$/'],
             'father_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
             // mother name
             'mother_name' => 'required',
             'mother_date_of_birth' => 'required|date',
-            'mother_phone' => ['required', 'regex:/^[0-9\s]+$/'],
+            'mother_phone' => ['required', 'regex:/^[+0-9\s]+$/'],
             'mother_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
             // maritalStatus
             'marital_status' => 'required|in:married,single',
@@ -155,8 +155,8 @@ class JobApplicationController extends Controller
             'city' => 'required',
             'address' => 'required',
             'postal_code' => 'required',
-            'phone' => ['required', 'regex:/^[0-9\s]+$/'],
-            'alternative_phone' => ['nullable', 'regex:/^[0-9\s]+$/'],
+            'phone' => ['required', 'regex:/^[+0-9\s]+$/'],
+            'alternative_phone' => ['nullable', 'regex:/^[+0-9\s]+$/'],
             'email' => 'required|email',
             'fb_link' => 'required',
             'linked_link' => 'required',
@@ -172,11 +172,11 @@ class JobApplicationController extends Controller
             // father name
             'father_name' => 'required',
             'father_date_of_birth' => 'required|date',
-            'father_phone' => ['required', 'regex:/^[0-9\s]+$/'],
+            'father_phone' => ['required', 'regex:/^[+0-9\s]+$/'],
             // mother name
             'mother_name' => 'required',
             'mother_date_of_birth' => 'required|date',
-            'mother_phone' => ['required', 'regex:/^[0-9\s]+$/'],
+            'mother_phone' => ['required', 'regex:/^[+0-9\s]+$/'],
             // maritalStatus
             'marital_status' => 'required|in:married,single',
             'spouse_name' => 'required_if:marital_status,married',

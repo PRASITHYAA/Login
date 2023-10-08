@@ -728,6 +728,11 @@
     <script>
         $(document).ready(function() {
             $('#myForm').submit(function (e) {
+                const inputs = document.querySelectorAll('.phoneInputField');
+                inputs.forEach(function (input, index) {
+                    var phoneNumber = itis[index].getNumber();
+                    input.value = phoneNumber;
+                });
                if($('#ageOutput').val() < 18) {
                    e.preventDefault();
                    $('#ageError').text('Age Should be above 18 years');
@@ -799,16 +804,17 @@
 
         const phoneInputFields = document.querySelectorAll('.phoneInputField');
         const errorTexts = document.querySelectorAll('.errorText');
+        var itis = [];
 
         phoneInputFields.forEach((phoneInputField, index) => {
-            const phoneInput = window.intlTelInput(phoneInputField, {
+            var phoneInput = window.intlTelInput(phoneInputField, {
                 initialCountry: "in", // Set the initial country code to India (+91)
                 //geoIpLookup: getIp,
                 utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
                 separateDialCode: true,
                 autoInsertDialCode: true
             });
-
+            itis.push(phoneInput);
             // Add an event listener to validate the phone number on input
             phoneInputField.addEventListener('input', function() {
                 const selectedCountryData = phoneInput.getSelectedCountryData();

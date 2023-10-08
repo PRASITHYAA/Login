@@ -32,7 +32,7 @@
             </div>
             <h2>PREVIOUS EMPLOYMENT</h2><br>
 
-            <form
+            <form id="EmploymentForm"
                 action="{{ isset($employment) ? route('career.employment.update', $employment->id) : route('career.employment.store') }}"
                 method="POST" enctype="multipart/form-data">
                 @csrf
@@ -431,6 +431,13 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+            $('#EmploymentForm').submit(function (e) {
+                const inputs = document.querySelectorAll('.phoneInputField');
+                inputs.forEach(function (input, index) {
+                    var phoneNumber = itis[index].getNumber();
+                    input.value = phoneNumber;
+                });
+            });
             $('#yesRadio1').click(function() {
                 $('#sub-text-input').hide();
                 $('.sub-text-input').attr('required', false);
@@ -486,6 +493,7 @@
 
         const phoneInputFields = document.querySelectorAll('.phoneInputField');
         const errorTexts = document.querySelectorAll('.errorText');
+        var itis = [];
 
         phoneInputFields.forEach((phoneInputField, index) => {
             const phoneInput = window.intlTelInput(phoneInputField, {
@@ -495,7 +503,7 @@
                 separateDialCode: true,
                 autoInsertDialCode: true
             });
-
+            itis.push(phoneInput);
             // Add an event listener to validate the phone number on input
             phoneInputField.addEventListener('input', function() {
                 const selectedCountryData = phoneInput.getSelectedCountryData();
@@ -583,7 +591,23 @@
                   console.log(e.attr('id'));
                 });*/
                 clonedFields.find("input").val('');
+                // Initialize intlTelInput for the cloned sibling_phone input
                 formContainer.append(clonedFields);
+                // Find the cloned phone input field within the cloned sibling
+                var clonedSiblingPhone = clonedFields.find(".phoneInputField");
+
+                // Destroy the previous instance of intlTelInput if it exists
+                if (clonedSiblingPhone.intlTelInput) {
+                    clonedSiblingPhone.intlTelInput("destroy");
+                }
+                var itiCloned = window.intlTelInput(clonedSiblingPhone[0], {
+                    initialCountry: "in", // Set the initial country code to India (+91)
+                    //geoIpLookup: getIp,
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                    separateDialCode: true,
+                    autoInsertDialCode: true
+                });
+                itis.push(itiCloned);
                 // Remove all buttons with the class "add-field-button" except for the last one
                 $('.add-field-button:not(:last)').hide();
             });
