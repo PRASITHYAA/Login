@@ -92,7 +92,7 @@
         /* background-color: rgba(113, 106, 97, 0.439); */
         /* background-color: rgba(213, 213, 213, 0.637); */
         /* } */
-        
+
          #header,
          #footer {
              position: fixed;
@@ -118,13 +118,32 @@
 <body>
 <script type="text/php">
     if (isset($pdf)) {
-        $text = "page {PAGE_NUM} / {PAGE_COUNT}";
+        $pageText = "page {PAGE_NUM} / {PAGE_COUNT}";
+        $dateText = date('Y-m-d H:i:s');
         $size = 10;
         $font = $fontMetrics->getFont("Verdana");
-        $width = $fontMetrics->get_text_width($text, $font, $size);
-        $x = ($pdf->get_width() - $width) / 2;
-        $y = $pdf->get_height() - 35;
-        $pdf->page_text($x, $y, $text, $font, $size, [0, 0, 0], 0, 0, 0, 0);
+
+        // Calculate the width of each text block
+        $pageWidth = $fontMetrics->getTextWidth($pageText, $font, $size);
+        $dateWidth = $fontMetrics->getTextWidth($dateText, $font, $size);
+
+        // Calculate the total width of the footer
+        $footerWidth = $pageWidth + $dateWidth;
+
+        // Calculate the starting X position for the page number
+        $pageX = ($pdf->getWidth() - $footerWidth) / 2;
+
+        // Calculate the starting X position for the date (right-aligned)
+        $dateX = $pageX + $pageWidth;
+
+        // Set the Y position for both texts
+        $y = $pdf->getHeight() - 35;
+
+        // Add the page number text
+        $pdf->page_text($pageX, $y, $pageText, $font, $size, [0, 0, 0], 0, 0, 0, 0);
+
+        // Add the date text on the right side
+        $pdf->page_text($dateX, $y, $dateText, $font, $size, [0, 0, 0], 0, 0, 0, 0);
     }
 </script>
 <div id="footer">
