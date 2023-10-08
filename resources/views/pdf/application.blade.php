@@ -1116,10 +1116,10 @@
         $text = "page {PAGE_NUM} / {PAGE_COUNT}";
         $size = 10;
         $font = $fontMetrics->getFont("Verdana");
-        $width = $fontMetrics->get_text_width($text, $font, $size) / 2;
+        $width = $fontMetrics->get_text_width($text, $font, $size);
         $x = ($pdf->get_width() - $width) / 2;
         $y = $pdf->get_height() - 35;
-        $pdf->page_text($x, $y, $text, $font, $size);
+        $pdf->page_text($x, $y, $text, $font, $size, [0, 0, 0], 0, 0, 0, 0);
     }
 </script>
 <style>
