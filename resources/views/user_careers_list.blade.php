@@ -46,15 +46,25 @@
                                     <td>{{ $jobApplication->position->name }}</td>
                                     <td>
                                         <div class="" role="group" aria-label="Basic mixed styles example">
-                                            <a href="{{ route('career.job_application.edit', $jobApplication->id) }}" title="View"><i class="fa fa-eye text-primary"></i></a>
-                                            <a style="margin: 0 5px 0 5px;" href="{{ route('career.job_application.edit', $jobApplication->id) }}" title="Edit"><i class="fa fa-pencil text-success"></i></a>
-                                            <form action="{{ route('career.job_application.destroy', $jobApplication->id) }}"
-                                                  method="post" style="display: inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button style="padding: 3px 1px;font-size: 14px;" type="submit" class="btn btn-link"
-                                                        onclick="return confirm('Are you sure you want to delete this job application?')"><i class="fa fa-trash text-danger"></i></button>
-                                            </form>
+                                            <a href="{{ route('career.job_application.edit', $jobApplication->id) }}"
+                                               title="View"><i class="fa fa-eye text-primary"></i></a>
+                                            @if(count($jobApplication->disclaimers) == 0)
+                                                <a style="margin: 0 5px 0 5px;"
+                                                   href="{{ route('career.job_application.edit', $jobApplication->id) }}"
+                                                   title="Edit"><i class="fa fa-pencil text-success"></i></a>
+                                            @endif
+                                            @if(auth()->user()->hasRole('Admin'))
+                                                <form
+                                                    action="{{ route('career.job_application.destroy', $jobApplication->id) }}"
+                                                    method="post" style="display: inline-block;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button style="padding: 3px 1px;font-size: 14px;" type="submit"
+                                                            class="btn btn-link"
+                                                            onclick="return confirm('Are you sure you want to delete this job application?')">
+                                                        <i class="fa fa-trash text-danger"></i></button>
+                                                </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

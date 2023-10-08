@@ -119,18 +119,14 @@
         <td class="empty-column">POSITION APPLIED FOR</td>
         <td class="empty-column">{{ \App\Models\Position::find($position_id)->name }} </td>
     </tr>
-    @if (count($employmentEmployer))
-        @foreach ($employmentEmployer as $emp)
-            <tr>
-                <td class="empty-column">YEAR OF EXPERIENCE </td>
-                <td class="empty-column">{{ $emp['experience'] }}</td>
-            </tr>
-            <tr>
-                <td class="empty-column">PRESENT EMPLOYER </td>
-                <td class="empty-column">{{ $emp['name'] }}</td>
-            </tr>
-        @endforeach
-    @endif
+    <tr>
+        <td class="empty-column">YEAR OF EXPERIENCE</td>
+        <td class="empty-column">{{ $employmentEmployer[0]['experience'] ?? '' }}</td>
+    </tr>
+    <tr>
+        <td class="empty-column">PRESENT EMPLOYER</td>
+        <td class="empty-column">{{ $employmentEmployer[0]['name'] ?? '' }}</td>
+    </tr>
     <tr>
         <td class="empty-column">PRESENT SALARY </td>
         <td class="empty-column">{{ $current_salary }}</td>
@@ -194,35 +190,13 @@
         </tr>
     @endif
     @if ($siblings == 'yes')
-        @foreach ($siblingsData as $sib)
+        @foreach ($siblingsData as $key => $sib)
             <tr>
-                <td>Sibling 1</td>
+                <td>Sibling {{ $key+1 }}</td>
                 <td>{{ $sib['name'] }}</td>
                 <td>{{ $sib['dob'] }}</td>
                 <td>{{ $sib['phone'] }}</td>
                 <td> </td>
-            </tr>
-            <tr>
-                <td>Sibling 2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Upload</td>
-            </tr>
-            <tr>
-                <td>Sibling 3</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Upload</td>
-
-            </tr>
-            <tr>
-                <td>Sibling 4</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Upload</td>
             </tr>
         @endforeach
     @endif
@@ -880,55 +854,55 @@
     <tbody>
     <tr>
         <td>Company / Individual</td>
-        <td> {{ $emp['name'] }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ $employmentEmployer[0]['name'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[1]['name'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[2]['name'] ?? '' }}</td>
     </tr>
     <tr>
         <td>E-MAIL</td>
-        <td>{{ $emp['email'] }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ $employmentEmployer[0]['email'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[1]['email'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[2]['email'] ?? '' }}</td>
     </tr>
     <tr>
         <td> Address</td>
-        <td> {{ $emp['address'] }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ $employmentEmployer[0]['address'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[1]['address'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[2]['address'] ?? '' }}</td>
     </tr>
     <tr>
         <td>Phone</td>
-        <td>{{ $emp['phone'] }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ $employmentEmployer[0]['phone'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[1]['phone'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[2]['phone'] ?? '' }}</td>
     </tr>
     <tr>
         <td>Job Title</td>
-        <td>{{ $emp['job_title'] }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ $employmentEmployer[0]['job_title'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[1]['job_title'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[2]['job_title'] ?? '' }}</td>
     </tr>
     <tr>
         <td>From date (YYYY/MM/DD)</td>
-        <td>{{ $emp['from_date'] }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ $employmentEmployer[0]['from_date'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[1]['from_date'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[2]['from_date'] ?? '' }}</td>
     </tr>
     <tr>
         <td>To date (YYYY/MM/DD)</td>
-        <td>{{ $emp['to_date'] }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ $employmentEmployer[0]['to_date'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[1]['to_date'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[2]['to_date'] ?? '' }}</td>
     </tr>
     <tr>
         <td>Responsibilities</td>
-        <td>{{ $emp['responsibilities'] }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ $employmentEmployer[0]['responsibilities'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[1]['responsibilities'] ?? '' }}</td>
+        <td>{{ $employmentEmployer[2]['responsibilities'] ?? '' }}</td>
     </tr>
     </tbody>
 </table>
-<h2 class="text-center p-4     mt-4 ">REFERENCES- (PROFESSIONAL ONLY)</h2>
+<h2 class="text-center p-4 mt-4 ">REFERENCES- (PROFESSIONAL ONLY)</h2>
 @if (count($employmentReference))
     @foreach ($employmentReference as $ref)
         <table>
