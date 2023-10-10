@@ -141,6 +141,9 @@
 
         // Add the date text on the right side
         $pdf->page_text($dateX, $y, $dateText, $font, $size, [0, 0, 0], 0, 0, 0, 0);
+
+        // Add the page number text
+        $pdf->page_text($pageX, $y, $pageText, $font, $size, [0, 0, 0], 0, 0, 0, 0);
     }
 </script>
 <div id="footer">
@@ -265,34 +268,34 @@
     <tr>
         <td> Address</td>
         <td> {{ $address }}</td>
-        <td> {{ $permanent_address }}</td>
+        <td> {{ $permanent_address ?? $address}}</td>
     </tr>
     <tr>
         <td>Zip Code</td>
         <td> {{ $postal_code }}</td>
-        <td>{{ $permanent_postal_code }}</td>
+        <td>{{ $permanent_postal_code ?? $postal_code }}</td>
     </tr>
 
     <tr>
         <td>District</td>
         <td>{{ $city_name }}</td>
-        <td>{{ $permanent_city_name }}</td>
+        <td>{{ $permanent_city_name ?? $city_name }}</td>
     </tr>
 
     <tr>
         <td>State</td>
         <td> {{ $state_name }}</td>
-        <td>{{ $permanent_state_name }}</td>
+        <td>{{ $permanent_state_name ?? $state_name }}</td>
     </tr>
     <tr>
         <td>Country</td>
         <td> {{ $country_name }}</td>
-        <td> {{ $permanent_country_name }}</td>
+        <td> {{ $permanent_country_name ?? $country_name }}</td>
     </tr>
     <tr>
         <td>Phone/Mobile Number</td>
         <td>{{ $phone }}</td>
-        <td></td>
+        <td>{{ $permanent_phone ?? $phone }}</td>
     </tr>
     <tr>
         <td>Alternate Phone/Mobile <br>Number </td>
@@ -339,49 +342,53 @@
     <tr>
         <th>ID TYPE </th>
         <th>AADHAAR CARD</th>
-        <th>PASSPORT</th>
+        <th style="{{ $passport_name ? '' : 'display:none;' }}">PASSPORT</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td>Name as per IDs</td>
         <td>{{ $aadhar_name }}</td>
-        <td>{{ $passport_name }}</td>
+        <td style="{{ $passport_name ? '' : 'display:none;' }}">{{ $passport_name }}</td>
     </tr>
     <tr>
         <td>ID's Number</td>
         <td>{{ $aadhar_id_number }}</td>
-        <td>{{ $passport_id_number }}</td>
+        <td style="{{ $passport_name ? '' : 'display:none;' }}">{{ $passport_id_number }}</td>
     </tr>
     <tr>
         <td>Issued Date</td>
         <td></td>
-        <td>{{ $passport_issue_date }}</td>
+        <td style="{{ $passport_name ? '' : 'display:none;' }}">{{ $passport_issue_date }}</td>
     </tr>
     <tr>
         <td>Expired Date</td>
         <td></td>
-        <td> {{ $passport_expired_date }}</td>
+        <td style="{{ $passport_name ? '' : 'display:none;' }}"> {{ $passport_expired_date }}</td>
     </tr>
     <tr>
         <td>City</td>
         <td>{{ $aadhar_issued_place_name }}</td>
-        <td>{{ $passport_issued_place_name }}</td>
+        <td style="{{ $passport_name ? '' : 'display:none;' }}">{{ $passport_issued_place_name }}</td>
     </tr>
     <tr>
         <td>State</td>
         <td>{{ $aadhar_issued_state_name }}</td>
-        <td>{{ $passport_issued_state_name }}</td>
+        <td style="{{ $passport_name ? '' : 'display:none;' }}">{{ $passport_issued_state_name }}</td>
     </tr>
     <tr>
         <td>Country</td>
         <td>{{ $aadhar_issued_country_name }}</td>
-        <td> {{ $passport_issued_country_name }}</td>
+        <td style="{{ $passport_name ? '' : 'display:none;' }}"> {{ $passport_issued_country_name }}</td>
     </tr>
     <tr>
         <td>Upload ID- 1st Page</td>
         <td><img style="height:100px" src="{{ asset('storage/' . $aadhar_image) }}" alt="Aadhar Image"></td>
-        <td> <img style="height:100px" src="{{ asset('storage/' . $passport_image_id) }}" alt="Passport Image"></td>
+        <td style="{{ $passport_name ? '' : 'display:none;' }}">
+            @if(!is_null($passport_image_id))
+                <img style="height:100px" src="{{ asset('storage/' . $passport_image_id) }}" alt="Passport Image">
+            @endif
+        </td>
     </tr>
     <tr>
         <td>Upload ID- 2st Page</td>
@@ -390,7 +397,7 @@
                 <img style="height:100px" src="{{ asset('storage/' . $aadhar_image_page) }}" alt="Aadhar Image Page">
             @endif
         </td>
-        <td>
+        <td style="{{ $passport_name ? '' : 'display:none;' }}">
             @if(!is_null($passport_image_id_page))
                 <img style="height:100px" src="{{ asset('storage/' . $passport_image_id_page) }}" alt="Aadhar Image Page">
             @endif
@@ -897,58 +904,58 @@
     <tr>
         <th>Description</th>
         <th>EMPLOYER 1</th>
-        <th>EMPLOYER 2</th>
-        <th>EMPLOYER 3</th>
+        <th style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">EMPLOYER 2</th>
+        <th style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">EMPLOYER 3</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td>Company / Individual</td>
         <td>{{ $employmentEmployer[0]['name'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[1]['name'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[2]['name'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['name'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['name'] ?? '' }}</td>
     </tr>
     <tr>
         <td>E-MAIL</td>
         <td>{{ $employmentEmployer[0]['email'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[1]['email'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[2]['email'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['email'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['email'] ?? '' }}</td>
     </tr>
     <tr>
         <td> Address</td>
         <td>{{ $employmentEmployer[0]['address'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[1]['address'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[2]['address'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['address'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['address'] ?? '' }}</td>
     </tr>
     <tr>
         <td>Phone</td>
         <td>{{ $employmentEmployer[0]['phone'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[1]['phone'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[2]['phone'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['phone'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['phone'] ?? '' }}</td>
     </tr>
     <tr>
         <td>Job Title</td>
         <td>{{ $employmentEmployer[0]['job_title'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[1]['job_title'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[2]['job_title'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['job_title'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['job_title'] ?? '' }}</td>
     </tr>
     <tr>
         <td>From date (YYYY/MM/DD)</td>
         <td>{{ $employmentEmployer[0]['from_date'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[1]['from_date'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[2]['from_date'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['from_date'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['from_date'] ?? '' }}</td>
     </tr>
     <tr>
         <td>To date (YYYY/MM/DD)</td>
         <td>{{ $employmentEmployer[0]['to_date'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[1]['to_date'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[2]['to_date'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['to_date'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['to_date'] ?? '' }}</td>
     </tr>
     <tr>
         <td>Responsibilities</td>
         <td>{{ $employmentEmployer[0]['responsibilities'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[1]['responsibilities'] ?? '' }}</td>
-        <td>{{ $employmentEmployer[2]['responsibilities'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['responsibilities'] ?? '' }}</td>
+        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['responsibilities'] ?? '' }}</td>
     </tr>
     </tbody>
 </table>
