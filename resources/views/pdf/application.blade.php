@@ -904,58 +904,58 @@
     <tr>
         <th>Description</th>
         <th>EMPLOYER 1</th>
-        <th style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">EMPLOYER 2</th>
-        <th style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">EMPLOYER 3</th>
+        <th style="{{ isset($employmentEmployer[1]) ? '' : 'display:none;' }}">EMPLOYER 2</th>
+        <th style="{{ isset($employmentEmployer[2]) ? '' : 'display:none;' }}">EMPLOYER 3</th>
     </tr>
     </thead>
     <tbody>
     <tr>
         <td>Company / Individual</td>
         <td>{{ $employmentEmployer[0]['name'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['name'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['name'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[1]) ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['name'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[2]) ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['name'] ?? '' }}</td>
     </tr>
     <tr>
         <td>E-MAIL</td>
         <td>{{ $employmentEmployer[0]['email'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['email'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['email'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[1]) ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['email'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[2]) ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['email'] ?? '' }}</td>
     </tr>
     <tr>
         <td> Address</td>
         <td>{{ $employmentEmployer[0]['address'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['address'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['address'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[1]) ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['address'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[2]) ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['address'] ?? '' }}</td>
     </tr>
     <tr>
         <td>Phone</td>
         <td>{{ $employmentEmployer[0]['phone'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['phone'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['phone'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[1]) ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['phone'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[2]) ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['phone'] ?? '' }}</td>
     </tr>
     <tr>
         <td>Job Title</td>
         <td>{{ $employmentEmployer[0]['job_title'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['job_title'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['job_title'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[1]) ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['job_title'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[2]) ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['job_title'] ?? '' }}</td>
     </tr>
     <tr>
         <td>From date (YYYY/MM/DD)</td>
         <td>{{ $employmentEmployer[0]['from_date'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['from_date'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['from_date'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[1]) ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['from_date'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[2]) ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['from_date'] ?? '' }}</td>
     </tr>
     <tr>
         <td>To date (YYYY/MM/DD)</td>
         <td>{{ $employmentEmployer[0]['to_date'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['to_date'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['to_date'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[1]) ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['to_date'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[2]) ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['to_date'] ?? '' }}</td>
     </tr>
     <tr>
         <td>Responsibilities</td>
         <td>{{ $employmentEmployer[0]['responsibilities'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[1] ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['responsibilities'] ?? '' }}</td>
-        <td style="{{ $employmentEmployer[2] ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['responsibilities'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[1]) ? '' : 'display:none;' }}">{{ $employmentEmployer[1]['responsibilities'] ?? '' }}</td>
+        <td style="{{ isset($employmentEmployer[2]) ? '' : 'display:none;' }}">{{ $employmentEmployer[2]['responsibilities'] ?? '' }}</td>
     </tr>
     </tbody>
 </table>
