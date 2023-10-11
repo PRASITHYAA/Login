@@ -72,7 +72,7 @@
                                     class="red">*</span></label>
                             <input type="text" class="form-control bg alphabetic-input" name="first_name"
                                 placeholder="First Name" id="inputFields"
-                                value="{{ old('first_name') ?? ($jobApplication->first_name ?? '') }}" required>
+                                value="{{ auth()->user()->first_name }}" readonly required>
                         </div>
                         <!-- lastname -->
                         <div class="col-md-4">
@@ -80,7 +80,7 @@
                                     class="red">*</span></label>
                             <input type="text" class="form-control bg alphabetic-input" name="last_name" id="inputFields"
                                 placeholder="Last Name"
-                                value="{{ old('last_name') ?? ($jobApplication->last_name ?? '') }}" required>
+                                value="{{ auth()->user()->last_name }}" readonly required>
                         </div>
                         <!-- upload -->
                         <div class="col-md-4">
@@ -194,7 +194,7 @@
                         <div class="col-md-4">
                             <label class="form-label">Email <span class="red">*</span></label>
                             <input type="email" class="form-control bg" placeholder="Email-Id" id="email"
-                                value="{{ old('email') ?? ($jobApplication->email ?? '') }}" name="email" required>
+                                value="{{ auth()->user()->email }}" readonly name="email" required>
                         </div>
                         <!-- fblink -->
                         <div class="col-md-4">

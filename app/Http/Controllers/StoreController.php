@@ -23,7 +23,8 @@ class StoreController extends Controller
     public function Store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed|min:6',
         ],
@@ -32,7 +33,8 @@ class StoreController extends Controller
             ]);
 
         $user = new User();
-        $user->name = $request->input('name');
+        $user->first_name = $request->input('first_name');
+        $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->input('password'));
         $user->save();

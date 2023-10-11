@@ -31,7 +31,11 @@
                             <h3 class="mt-4">  Account Details</h3>
                             <div class="mb-3">
                                 <label for="formGroupExampleInput" class="form-label"> Name:</label>
-                                <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="{{ auth()->user()->name }}">
+                                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name" value="{{ auth()->user()->first_name }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="formGroupExampleInput" class="form-label"> Name:</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name" value="{{ auth()->user()->last_name }}">
                             </div>
                             <div class="mb-3">
                                 <label for="formGroupExampleInput2" class="form-label">Email:</label>

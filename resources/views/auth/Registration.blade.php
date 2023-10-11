@@ -46,9 +46,14 @@
                 <p>Please fill in the information below </p>
                 {{-- name --}}
                 <div class="col">
-                    <label for="name" class="col-form-label">Name<span class="star">*</span></label>
-                    <input type="name" class="form-control bg " id="name" name="name"
-                        placeholder="Enter Your Name" required>
+                    <label for="name" class="col-form-label">First Name<span class="star">*</span></label>
+                    <input type="text" class="form-control bg " id="first_name" name="first_name"
+                        placeholder="Enter Your First Name" required>
+                </div>
+                <div class="col">
+                    <label for="name" class="col-form-label">Last Name<span class="star">*</span></label>
+                    <input type="text" class="form-control bg " id="last_name" name="last_name"
+                           placeholder="Enter Your Last Name" required>
                 </div>
                 {{-- email --}}
                 <div class="col">
