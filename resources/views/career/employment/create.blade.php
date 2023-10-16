@@ -613,7 +613,8 @@
                 $('.add-field-button:not(:last)').hide();
             });
 
-            formContainer.on("click", ".remove-field-button", function() {
+            formContainer.on("click", ".remove-field-button", function(e) {
+                e.preventDefault();
                 $(this).closest(".form-fields").remove(); // Remove the associated form fields
             });
 
