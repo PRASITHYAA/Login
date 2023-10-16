@@ -6,6 +6,7 @@ use App\Models\Achievement;
 use App\Models\Education;
 use App\Models\Employment;
 use App\Models\JobApplication;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -48,21 +49,13 @@ class EmploymentController extends Controller
         $data = $request->only('job_application_id', 'previous_experience', 'eligible_to_work', 'eligible_to_work_text', 'crime_status', 'crime_status_text');
         $employment = Employment::create($data);
 
+        $yearOfExperience = 0;
         if ($request->has('employer_name')) {
-            foreach ($request->employer_name as $key => $employer_name) {
-                $employment->employers()->create([
-                    'name' => $request->employer_name[$key],
-                    'email' => $request->employer_email[$key],
-                    'address' => $request->employer_address[$key],
-                    'phone' => $request->employer_phone[$key],
-                    'job_title' => $request->employer_job_title[$key],
-                    'from_date' => $request->employer_from_date[$key],
-                    'to_date' => $request->employer_to_date[$key],
-                    'experience' => $request->employer_experience[$key],
-                    'responsibilities' => $request->employer_responsibilities[$key],
-                ]);
-            }
+            $yearOfExperience = $this->createEmployers($request, $employment);
         }
+        $jobApplication = JobApplication::find($employment->job_application_id);
+        $jobApplication->year_of_experience = $yearOfExperience;
+        $jobApplication->save();
 
         if ($request->has('reference_name')) {
             foreach ($request->reference_name as $key => $reference_name) {
@@ -132,22 +125,14 @@ class EmploymentController extends Controller
         $employment->fill($data);
         $employment->save();
 
+        $yearOfExperience = 0;
         if ($request->has('employer_name')) {
-            $employment->employers()->delete();
-            foreach ($request->employer_name as $key => $employer_name) {
-                $employment->employers()->create([
-                    'name' => $request->employer_name[$key],
-                    'email' => $request->employer_email[$key],
-                    'address' => $request->employer_address[$key],
-                    'phone' => $request->employer_phone[$key],
-                    'job_title' => $request->employer_job_title[$key],
-                    'from_date' => $request->employer_from_date[$key],
-                    'to_date' => $request->employer_to_date[$key],
-                    'experience' => $request->employer_experience[$key],
-                    'responsibilities' => $request->employer_responsibilities[$key],
-                ]);
-            }
+            $yearOfExperience = $this->createEmployers($request, $employment);
         }
+        $jobApplication = JobApplication::find($employment->job_application_id);
+        $jobApplication->year_of_experience = $yearOfExperience;
+        $jobApplication->save();
+
 
         if ($request->has('reference_name')) {
             $employment->references()->delete();
@@ -163,8 +148,6 @@ class EmploymentController extends Controller
             }
         }
 
-        $jobApplication = JobApplication::find($employment->job_application_id);
-
         $achievement = Achievement::where('job_application_id', $employment->job_application_id)->orderBy('id', 'desc')->first();
 
         if (!is_null($achievement)) {
@@ -175,5 +158,32 @@ class EmploymentController extends Controller
                 ->with('success', ' Employment updated successfully!');
         }
 
+    }
+
+    /**
+     * @param Request $request
+     * @param $employment
+     * @return int|string
+     */
+    public function createEmployers(Request $request, $employment): string|int
+    {
+        $days = 0;
+        foreach ($request->employer_name as $key => $employer_name) {
+            $fromDate = Carbon::parse($request->employer_from_date[$key]);
+            $toDate = Carbon::parse($request->employer_to_date[$key]);
+            $days += $fromDate->diffInDays($toDate);
+            $employment->employers()->create([
+                'name' => $request->employer_name[$key],
+                'email' => $request->employer_email[$key],
+                'address' => $request->employer_address[$key],
+                'phone' => $request->employer_phone[$key],
+                'job_title' => $request->employer_job_title[$key],
+                'from_date' => $request->employer_from_date[$key],
+                'to_date' => $request->employer_to_date[$key],
+                'experience' => $request->employer_experience[$key],
+                'responsibilities' => $request->employer_responsibilities[$key],
+            ]);
+        }
+        return $days;
     }
 }

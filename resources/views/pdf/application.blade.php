@@ -177,7 +177,15 @@
     </tr>
     <tr>
         <td class="empty-column">YEAR OF EXPERIENCE</td>
-        <td class="empty-column">{{ $employmentEmployer[0]['experience'] ?? '' }}</td>
+        <td class="empty-column">
+            @if($year_of_experience > 0)
+                @php
+                    $years = floor($year_of_experience / 365);
+                    $months = floor(($year_of_experience % 365) / 30);
+                    echo "$years years and $months months";
+                @endphp
+            @endif
+        </td>
     </tr>
     <tr>
         <td class="empty-column">PRESENT EMPLOYER</td>
