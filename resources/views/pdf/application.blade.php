@@ -1016,7 +1016,6 @@
         <td>{{ $crime_status_text }}</td>
     </tr>
 </table>
-<div class="page-break"></div>
 <!-- achievement -->
 <h2 class="text-center p-4     mt-4 ">ACHIEVEMENTS, PERSONAL QUALITIES, AND SKILLS</h2>
 <table>
@@ -1028,7 +1027,6 @@
         <td>{{ $achievement }}</td>
     </tr>
 </table>
-<div class="page-break"></div>
 <h2 class="text-center p-4  ">CURRICULUM VITAE</h2>
 <table>
     <tbody>
@@ -1045,6 +1043,7 @@
     </tr>
     </tbody>
 </table>
+<div class="page-break"></div>
 <h2 class="text-center p-4  ">FINAL YEAR PROJECT</h2>
 <table>
     <tr>
