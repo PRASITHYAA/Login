@@ -47,7 +47,6 @@ class DisclaimerController extends Controller
         $emailData['sector'] = $jobApplication->sector->name;
         $emailData['position'] = $jobApplication->position->name;
         $this->savePdf($jobApplication);
-        dd('test');
         Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
 
         return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', 'Disclaimer created successfully!');
