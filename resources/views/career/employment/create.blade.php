@@ -115,21 +115,21 @@
                                         <div class="col-md-4">
                                             <label class="form-label">From Date <span style="color: red;">*</span></label>
                                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                                   name="employer_from_date[]" class="form-control fromDate" placeholder="" id="employer_fromDate_1"
+                                                   name="employer_from_date[]" class="form-control fromDate" placeholder="" id="employer_fromDate_{{$ekey+1}}"
                                                    value="{{ old('from_date') ?? ($employer->from_date ?? '') }}">
                                         </div>
                                         <!-- To Date -->
                                         <div class="col-md-4">
                                             <label class="form-label">To Date <span style="color: red;">*</span></label>
                                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                                   name="employer_to_date[]" class="form-control toDate" placeholder="" id="employer_toDate_1"
+                                                   name="employer_to_date[]" class="form-control toDate" placeholder="" id="employer_toDate_{{$ekey+1}}"
                                                    value="{{ old('to_date') ?? ($employer->to_date ?? '') }}">
                                         </div>
                                         <!-- Experience -->
                                         <div class="col-md-4">
                                             <label class="form-label">Experience <span style="color: red;">*</span></label>
                                             <input style="background-color: rgba(248, 235, 235, 0.726);"
-                                                   name="employer_experience[]" id="employer_totalExperience_1" class="form-control"
+                                                   name="employer_experience[]" id="employer_totalExperience_{{$ekey+1}}" class="form-control"
                                                    value="{{ old('experience') ?? ($employer->experience ?? '') }}"
                                                    readonly>
                                         </div>
@@ -531,6 +531,7 @@
                 } else if(idPartsTo != null) {
                     incPart = input_id.split('employer_toDate_');
                 }
+                console.log(incPart[1]);
                 const fromDate = new Date($("#employer_fromDate_"+incPart[1]).val());
                 const toDate = new Date($("#employer_toDate_"+incPart[1]).val());
                 var validationMessage = $("#validationMessage");

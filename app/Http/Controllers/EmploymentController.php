@@ -53,9 +53,8 @@ class EmploymentController extends Controller
         if ($request->has('employer_name')) {
             $yearOfExperience = $this->createEmployers($request, $employment);
         }
-        $jobApplication = JobApplication::find($employment->job_application_id);
-        $jobApplication->year_of_experience = $yearOfExperience;
-        $jobApplication->save();
+        $employment->year_of_experience = $yearOfExperience;
+        $employment->save();
 
         if ($request->has('reference_name')) {
             foreach ($request->reference_name as $key => $reference_name) {
@@ -123,16 +122,14 @@ class EmploymentController extends Controller
         $data = $request->only('job_application_id', 'previous_experience', 'eligible_to_work', 'eligible_to_work_text', 'crime_status', 'crime_status_text');
         $employment = Employment::find($id);
         $employment->fill($data);
-        $employment->save();
 
         $yearOfExperience = 0;
         if ($request->has('employer_name')) {
+            $employment->employers()->delete();
             $yearOfExperience = $this->createEmployers($request, $employment);
         }
-        $jobApplication = JobApplication::find($employment->job_application_id);
-        $jobApplication->year_of_experience = $yearOfExperience;
-        $jobApplication->save();
-
+        $employment->year_of_experience = $yearOfExperience;
+        $employment->save();
 
         if ($request->has('reference_name')) {
             $employment->references()->delete();
@@ -147,6 +144,8 @@ class EmploymentController extends Controller
                 ]);
             }
         }
+
+        $jobApplication = JobApplication::find($employment->job_application_id);
 
         $achievement = Achievement::where('job_application_id', $employment->job_application_id)->orderBy('id', 'desc')->first();
 
