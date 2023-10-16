@@ -614,6 +614,7 @@
             });
 
             formContainer.on("click", ".remove-field-button", function(e) {
+                console.log($(this).attr('class'));
                 e.preventDefault();
                 $(this).closest(".form-fields").remove(); // Remove the associated form fields
             });
@@ -640,6 +641,7 @@
             });
 
             formContainer2.on("click", ".remove-field-button2", function(e) {
+                console.log($(this).attr('class'));
                 e.preventDefault();
                 $(this).closest(".form-fields").remove(); // Remove the associated form fields
             });
