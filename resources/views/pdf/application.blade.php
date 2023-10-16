@@ -112,6 +112,9 @@
         .page-number:before {
             content: "Page " counter(page);
         }
+         .page-break {
+             page-break-after: always;
+         }
     </style>
 </head>
 
@@ -194,8 +197,8 @@
         <td class="empty-column">{{ $expected_date_to_join }}</td>
     </tr>
 </table>
-
-<h2 class="text-center border-bottom-4   p-4  mt-3   ">PERSONAL INFORMATION</h2>
+<div class="page-break"></div>
+<h2 class="text-center border-bottom-4 p-4 mt-3">PERSONAL INFORMATION</h2>
 <table>
     <thead>
     <tr>
@@ -255,7 +258,8 @@
     @endif
     </tbody>
 </table>
-<h2 class="text-center  p-4  mt-3 ">ADDRESS INFORMATION</h2>
+<div class="page-break"></div>
+<h2 class="text-center p-4 mt-3">ADDRESS INFORMATION</h2>
 <table>
     <thead>
     <tr>
@@ -305,7 +309,7 @@
     </tbody>
 </table>
 <br>
-<h2 style="margin-top: 150px; " class="text-center   mb-5 ">Social Media Networks</h2>
+<h2 class="text-center mb-5">Social Media Networks</h2>
 <table class="">
     <thead>
     <tr>
@@ -328,7 +332,8 @@
     </tr>
     </tbody>
 </table>
-<h2 class="text-center p-4     mt-3 ">Government-Issued Identification Cards (IDs)</h2>
+<div class="page-break"></div>
+<h2 class="text-center p-4 mt-3">Government-Issued Identification Cards (IDs)</h2>
 <table>
     <thead>
     <tr>
@@ -397,7 +402,7 @@
     </tr>
     </tbody>
 </table>
-<h2 style="margin-top: 110px" class="text-center mb-5 ">Education</h2>
+<h2 class="text-center mb-5">Education</h2>
 <!-- education -->
 @if(!is_null($high_school_name))
 <table>
@@ -889,8 +894,9 @@
 </table>
 @endif
 @if($previous_experience == 'yes')
+    <div class="page-break"></div>
 <!-- emplyment -->
-<h2 class="text-center p-4  mt-4 ">PREVIOUS EMPLOYMENT</h2>
+<h2 class="text-center p-4 mt-4 ">PREVIOUS EMPLOYMENT</h2>
 <table>
     <thead>
     <tr>
@@ -985,9 +991,9 @@
     @endforeach
 @endif
 @endif
-<h2 class="text-center p-4  mt-4 ">EMPLOYMENT ELIGIBILITY</h2>
+<div class="page-break"></div>
+<h2 class="text-center p-4 mt-4">EMPLOYMENT ELIGIBILITY</h2>
 <table>
-
     <tr>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">Are You Legally<br>
             Eligible to Work?</td>
@@ -1122,6 +1128,7 @@
         <td>{{ $no_curriculum_explain }}</td>
     </tr>
 </table>
+<div class="page-break"></div>
 <!-- disclaimer -->
 <h2 class="text-center p-4     mt-4 mb-2">DISCLAIMER </h2>
 
