@@ -1028,6 +1028,7 @@
         <td>{{ $achievement }}</td>
     </tr>
 </table>
+<div class="page-break"></div>
 <h2 class="text-center p-4  ">CURRICULUM VITAE</h2>
 <table>
     <tbody>
