@@ -143,7 +143,7 @@
                                         </div>
                                     </div>
                                     <div style="display: flex;justify-content: end;" class="">
-                                        <button class="remove-field-button m-1" style="{{ ($ekey+1 != count($employment->employers)) ? '' : 'display:none;' }}">-</button>
+                                        <button type="button" class="remove-field-button m-1" style="{{ ($ekey+1 != count($employment->employers)) ? '' : 'display:none;' }}">-</button>
                                         @if($ekey+1 == count($employment->employers))
                                             <button class="add-field-button">+</button>
                                         @endif
@@ -232,7 +232,7 @@
                                     </div>
                                 </div>
                                 <div style="display: flex;justify-content: end;" class="">
-                                    <button class="remove-field-button m-1" style="display: none;">-</button>
+                                    <button type="button" class="remove-field-button m-1" style="display: none;">-</button>
                                     <button class="add-field-button">+</button>
                                 </div>
 
@@ -298,7 +298,7 @@
                                         </div>
                                     </div>
                                     <div style="display: flex;justify-content: end;" class="">
-                                        <button class="remove-field-button2 m-1" style="{{ ($rkey+1 != count($employment->references)) ? '' : 'display:none;' }}">-</button>
+                                        <button type="button" class="remove-field-button2 m-1" style="{{ ($rkey+1 != count($employment->references)) ? '' : 'display:none;' }}">-</button>
                                         @if($rkey+1 == count($employment->references))
                                             <button class="add-field-button2">+</button>
                                         @endif
@@ -361,7 +361,7 @@
                                     </div>
                                 </div>
                                 <div style="display: flex;justify-content: end;" class="">
-                                    <button class="remove-field-button2 m-1" style="display: none;">-</button>
+                                    <button type="button" class="remove-field-button2 m-1" style="display: none;">-</button>
                                     <button class="add-field-button2">+</button>
                                 </div>
                             </div>
