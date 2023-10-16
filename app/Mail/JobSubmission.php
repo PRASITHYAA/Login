@@ -53,7 +53,7 @@ class JobSubmission extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromStorageDisk('public', 'app/public')
+            Attachment::fromStorageDisk('public', '')
                 ->as($this->data->first_name.'.pdf')
                 ->withMime('application/pdf'),
         ];
