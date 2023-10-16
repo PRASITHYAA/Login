@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Attachment;
 
 class JobSubmission extends Mailable
 {
@@ -39,7 +40,8 @@ class JobSubmission extends Mailable
     {
         return new Content(
             view: 'mail.job_submission',
-            with: $this->data
+            with: $this->data,
+
         );
     }
 
@@ -50,6 +52,10 @@ class JobSubmission extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromStorageDisk('public')
+                ->as($this->data->first_name.'.pdf')
+                ->withMime('application/pdf'),
+        ];
     }
 }

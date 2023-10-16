@@ -46,6 +46,8 @@ class DisclaimerController extends Controller
         $emailData['last_name'] = $jobApplication->last_name;
         $emailData['sector'] = $jobApplication->sector->name;
         $emailData['position'] = $jobApplication->position->name;
+        $this->savePdf($jobApplication);
+        dd('test');
         Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
 
         return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', 'Disclaimer created successfully!');
@@ -103,6 +105,7 @@ class DisclaimerController extends Controller
         $emailData['last_name'] = $jobApplication->last_name;
         $emailData['sector'] = $jobApplication->sector->name;
         $emailData['position'] = $jobApplication->position->name;
+        $this->savePdf($jobApplication);
         Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
         return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer updated successfully!');
     }
@@ -113,7 +116,7 @@ class DisclaimerController extends Controller
         return view('career.acknowledgement.view', compact('data'));
     }
 
-    public function downloadPdf(Request $request)
+    public function preparePdf($request)
     {
         $application = JobApplication::find($request->id);
         $data = $application->toArray();
@@ -136,6 +139,19 @@ class DisclaimerController extends Controller
         $pdf = Pdf::loadView('pdf.application', $data);
         // Add a custom page footer with the date and time
         $pdf->setOption(['isPhpEnabled', true, 'isHtml5ParserEnabled' => true]);
-        return $pdf->download('job_application_' . $application->first_name . '.pdf');
+        return ['pdf' => $pdf, 'application' => $application];
+    }
+
+    public function downloadPdf(Request $request)
+    {
+        $pdfData = $this->preparePdf($request);
+        return $pdfData['pdf']->download('job_application_' . $pdfData['application']->first_name . '.pdf');
+    }
+
+    public function savePdf($application)
+    {
+        $request = new Request($application->toArray());
+        $pdfData = $this->preparePdf($request);
+        $pdfData['pdf']->save('job_application_' . $application->first_name . '.pdf', 'public');
     }
 }
