@@ -402,6 +402,7 @@
     </tr>
     </tbody>
 </table>
+<div class="page-break"></div>
 <h2 class="text-center mb-5">Education</h2>
 <!-- education -->
 @if(!is_null($high_school_name))
@@ -1015,9 +1016,8 @@
         <td>{{ $crime_status_text }}</td>
     </tr>
 </table>
-
-<!-- acheviment -->
-
+<div class="page-break"></div>
+<!-- achievement -->
 <h2 class="text-center p-4     mt-4 ">ACHIEVEMENTS, PERSONAL QUALITIES, AND SKILLS</h2>
 <table>
     <tr>
