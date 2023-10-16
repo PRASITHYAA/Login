@@ -639,7 +639,8 @@
                 $('.add-field-button2:not(:last)').hide();
             });
 
-            formContainer2.on("click", ".remove-field-button2", function() {
+            formContainer2.on("click", ".remove-field-button2", function(e) {
+                e.preventDefault();
                 $(this).closest(".form-fields").remove(); // Remove the associated form fields
             });
         });
