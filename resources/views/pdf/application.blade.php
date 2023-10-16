@@ -305,7 +305,7 @@
     </tbody>
 </table>
 <br>
-<h2 style="margin-top: 150px; " class="text-center   mb-5 "> Personal Networks </h2>
+<h2 style="margin-top: 150px; " class="text-center   mb-5 ">Social Media Networks</h2>
 <table class="">
     <thead>
     <tr>
@@ -314,14 +314,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>Phone/Mobile Number</td>
-        <td> {{ $phone }}</td>
-    </tr>
-    <tr>
-        <td>Email</td>
-        <td> {{ $email }}</td>
-    </tr>
     <tr>
         <td>Facebook address</td>
         <td>{{ $fb_link }}</td>
