@@ -967,7 +967,7 @@
     </tbody>
 </table>
 <h2 class="text-center p-4 mt-4 ">REFERENCES- (PROFESSIONAL ONLY)</h2>
-<h5 class="text-center p-4 mt-4 text-danger">Background Verification will Be Done</h5>
+<h5 class="text-center mt-2 text-danger">Background Verification will Be Done</h5>
 @if (count($employmentReference))
     @foreach ($employmentReference as $ref)
         <table>
