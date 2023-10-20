@@ -92,7 +92,7 @@
                             </div>
                             @if (isset($jobApplication))
                                 <img src="{{ asset('storage/' . $jobApplication->image) }}" alt="Job Application Image"
-                                    style="height: 150px;" class="existing-image">
+                                    style="height: 150px;">
                             @endif
                             <div class="form-group">
                                 <img id="imagePreview" src="#" alt="Image Preview"
@@ -545,7 +545,7 @@
                                                             <p class="errorText" style="color: red;"></p>
                                                         </div>
                                                         <!--siblings  Upload the Latest Passport Size Photo -->
-                                                        <div class="col-md-4 "> {{ $sibling->photo }}
+                                                        <div class="col-md-4 ">
                                                             <label class="form-label pt-2">Upload the Latest Passport Size
                                                                 Photo
                                                                 <span class="red">*</span></label>
@@ -960,7 +960,6 @@
                 clonedFields.find("input").val('');
                 clonedFields.find(".edit-prev-img").remove();
                 formContainer.append(clonedFields);
-                clonedFields.find("img").remove();
                 // Remove all buttons with the class "add-field-button" except for the last one
                 $('.add-field-button:not(:last)').hide();
             });
