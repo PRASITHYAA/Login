@@ -245,7 +245,7 @@
                             @foreach($employment->references as $rkey => $reference)
                                 <div class="form-fields">
                                     <div class="row">
-                                        <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER</h6>
+                                        <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER (<span class="text-danger">Background Verification will Be Done</span>)</h6>
                                         <!-- Name -->
                                         <div class="col-md-4">
                                             <label class="form-label">Name <span style="color: red;">*</span></label>
@@ -308,7 +308,7 @@
                         @else
                             <div class="form-fields">
                                 <div class="row">
-                                    <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER</h6>
+                                    <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER (<span class="text-danger">Background Verification will Be Done</span>)</h6>
                                     <!-- Name -->
                                     <div class="col-md-4">
                                         <label class="form-label">Name <span style="color: red;">*</span></label>

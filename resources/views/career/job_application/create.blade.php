@@ -960,6 +960,7 @@
                 clonedFields.find("input").val('');
                 clonedFields.find(".edit-prev-img").remove();
                 formContainer.append(clonedFields);
+                clonedFields.find("input").val('');
                 // Remove all buttons with the class "add-field-button" except for the last one
                 $('.add-field-button:not(:last)').hide();
             });

@@ -193,11 +193,11 @@
     </tr>
     <tr>
         <td class="empty-column">PRESENT SALARY </td>
-        <td class="empty-column">{{ $current_salary }}</td>
+        <td class="empty-column">{{ $currency.' '. $current_salary }}</td>
     </tr>
     <tr>
         <td class="empty-column">SALARY EXPECTED </td>
-        <td class="empty-column">{{ $expected_salary }}</td>
+        <td class="empty-column">{{ $currency.' '. $expected_salary }}</td>
     </tr>
     <tr>
         <td class="empty-column">EXPECTED DATE TO JOIN
@@ -967,6 +967,7 @@
     </tbody>
 </table>
 <h2 class="text-center p-4 mt-4 ">REFERENCES- (PROFESSIONAL ONLY)</h2>
+<h5 class="text-center p-4 mt-4 text-danger">Background Verification will Be Done</h5>
 @if (count($employmentReference))
     @foreach ($employmentReference as $ref)
         <table>

@@ -110,7 +110,7 @@
                             <select class="form-select city" name="aadhar_issued_place" id="aadhar_city" required="true">
                                 <option value="">--Select City--</option>
                                 @if(isset($card->aadhar_issued_place) || old('aadhar_issued_place'))
-                                    @foreach (\App\Models\City::where('state_id', $card->aadhar_issued_state)->get() as $city)
+                                    @foreach (\App\Models\City::where('state_id', Illuminate\Support\Arr::get($card, 'aadhar_issued_state', old('aadhar_issued_place')))->get() as $city)
                                         <option value="{{ $city->id }}"
                                             {{ ((isset($card) && $card->aadhar_issued_place == $city->id) || (old('aadhar_issued_place') && old('aadhar_issued_place') == $city->id)) ? 'selected' : '' }}>
                                             {{ $city->name }}
