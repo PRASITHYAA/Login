@@ -12,6 +12,7 @@ use App\Models\EmploymentEmployer;
 use App\Models\EmploymentReference;
 use App\Models\JobApplication;
 use App\Models\Sibling;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
@@ -148,13 +149,15 @@ class DisclaimerController extends Controller
     public function downloadPdf(Request $request)
     {
         $pdfData = $this->preparePdf($request);
-        return $pdfData['pdf']->download('job_application_' . $pdfData['application']->first_name . '.pdf');
+        $dateTime = Carbon::now()->format('d-m-Y_h:i_A');
+        return $pdfData['pdf']->download($dateTime.'_job_application_' . $pdfData['application']->first_name . '.pdf');
     }
 
     public function savePdf($application)
     {
         $request = new Request($application->toArray());
         $pdfData = $this->preparePdf($request);
-        $pdfData['pdf']->save('job_application_' . $application->first_name . '.pdf', 'public');
+        $dateTime = Carbon::now()->format('d-m-Y_h:i_A');
+        $pdfData['pdf']->save($dateTime.'_job_application_' . $application->first_name . '.pdf', 'public');
     }
 }
