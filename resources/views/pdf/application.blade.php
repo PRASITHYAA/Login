@@ -1038,7 +1038,7 @@
             Achievements
             here
         </th>
-        <td>{{ $achievement }}</td>
+        <td>{{ implode(',', json_decode($achievement)) }}</td>
     </tr>
 </table>
 <h2 class="text-center p-4  ">CURRICULUM VITAE</h2>
@@ -1053,7 +1053,7 @@
     </tr>
     <tr>
         <th>Conference</th>
-        <td>{{ $conference }}</td>
+        <td>{{ implode(',', json_decode($conference)) }}</td>
     </tr>
     </tbody>
 </table>
@@ -1069,7 +1069,7 @@
     </tr>
     <tr>
         <th>Final Year Projects</th>
-        <td>{{ $final_year_project }}</td>
+        <td>{{ implode(',', json_decode($final_year_project)) }}</td>
     </tr>
     <tr>
         <th> All Your Project Documents </th>
