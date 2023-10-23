@@ -47,22 +47,29 @@
                 </p>
 
                 <div class="mb-3">
-                    <p class="border-bottom">List out your Achievements here <span class="form-label red">*</span> </p>
-
-                    <div class="form-container">
-                        <div class="form-fields">
-                            <input style="background-color: rgba(248, 235, 235, 0.726); " type="text"
-                                class="form-control  mt-4" name="achievement" id="exampleFormControlInput1" placeholder=""
-                                value="{{ old('achievement') ?? ($achievement->achievement ?? '') }}" required>
-
-                            <button class="remove-field-button  btn-right m-2 " style="display: none;">-</button>
-
-                        </div>
-
-                        <button class="add-field-button btn-right m-2 ">+</button>
-
+                    <p class="border-bottom">List out your Achievements here <span class="form-label red">*</span></p>
+                    <div class="form-container1">
+                        @if(isset($achievement->achievement))
+                            @foreach(json_decode($achievement->achievement) as $avalue)
+                                <div class="form-fields form-fields1">
+                                    <input style="background-color: rgba(248, 235, 235, 0.726); " type="text"
+                                           class="form-control  mt-4" name="achievement[]" id="exampleFormControlInput1"
+                                           placeholder=""
+                                           value="{{ $avalue }}" required>
+                                    <button class="remove-field-button btn-right m-2" data-id="1">-</button>
+                                </div>
+                            @endforeach
+                        @else
+                            <div class="form-fields form-fields1">
+                                <input style="background-color: rgba(248, 235, 235, 0.726); " type="text"
+                                       class="form-control  mt-4" name="achievement[]" id="exampleFormControlInput1"
+                                       placeholder=""
+                                       value="{{ old('achievement') ?? '' }}" required>
+                                <button class="remove-field-button btn-right m-2" data-id="1" style="display: none;">-</button>
+                            </div>
+                        @endif
+                        <button class="add-field-button btn-right m-2" data-id="1">+</button>
                     </div>
-
                 </div>
 
                 <h4>Have you been published any conference papers/attended conferences?<span class="red">*</span></h4>
@@ -87,16 +94,27 @@
                             limit
                             your writing for this part to a maximum of 500 words.</p>
                         <label for="exampleFormControlInput1" class="form-label">Conference<span class="red">*</span></label>
-                            <div class="form-container">
-                                <div class="form-fields">
-                                    <!-- Initial set of form fields -->
-                                    <input style="background-color: rgba(248, 235, 235, 0.726);" type=""
-                                        class="form-control mt-4 " name="conference" id="conference" placeholder=""
-                                        value="{{ old('conference') ?? ($achievement->conference ?? '') }}">
-
-                                    <button class="remove-field-button  btn-right m-2 " style="display: none;">-</button>
-                                </div>
-                                <button class="add-field-button  btn-right  m-2 ">+</button>
+                            <div class="form-container2">
+                                @if(isset($achievement->conference))
+                                    @foreach(json_decode($achievement->conference) as $cvalue)
+                                        <div class="form-fields form-fields2">
+                                            <!-- Initial set of form fields -->
+                                            <input style="background-color: rgba(248, 235, 235, 0.726);" type=""
+                                                   class="form-control mt-4 " name="conference[]" id="conference" placeholder=""
+                                                   value="{{ $cvalue }}">
+                                            <button class="remove-field-button  btn-right m-2" data-id="2">-</button>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <div class="form-fields form-fields2">
+                                        <!-- Initial set of form fields -->
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" type=""
+                                            class="form-control mt-4 " name="conference[]" id="conference" placeholder=""
+                                            value="{{ old('conference') ?? '' }}">
+                                        <button class="remove-field-button  btn-right m-2" data-id="2" style="display: none;">-</button>
+                                    </div>
+                                @endif
+                                <button class="add-field-button btn-right m-2" data-id="2">+</button>
                             </div>
                     </div>
                 </div>
@@ -109,16 +127,15 @@
 
                 <label>
                     <input type="radio" name="final_year_project_status" value="yes" id="yesRadio2" required
-                        {{ old('final_year_project_status') == 'yes' || (isset($achievement) && $achievement->{'final_year_project_status'} == 'yes') ? 'checked' : '' }}>
+                        {{ old('final_year_project_status') == 'yes' || (isset($achievement) && $achievement->final_year_project_status == 'yes') ? 'checked' : '' }}>
                     Yes
                 </label>
                 <br>
                 <label>
                     <input type="radio" name="final_year_project_status" value="no" id="noRadio2" required
-                        {{ old('final_year_project_status') == 'no' || (isset($achievement) && $achievement->{'final_year_project_status'} == 'no') ? 'checked' : '' }}>
+                        {{ old('final_year_project_status') == 'no' || (isset($achievement) && $achievement->final_year_project_status == 'no') ? 'checked' : '' }}>
                     No
                 </label>
-
                 <div id="input-field-2"
                     class="{{ old('final_year_project_status') == 'yes' || (isset($achievement) && $achievement->{'final_year_project_status'} == 'yes') ? '' : 'hidden' }}">
                     <p class="border-bottom">Please use this section to indicate the final year project. Please
@@ -126,16 +143,25 @@
                         file.
                     </p>
                     <label for="exampleFormControlInput1" class="form-label">Final Year Projects<span class="red">*</span></label>
-                        <div class="form-container">
-                            <div class="form-fields">
-                                <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control open-input-2-input  mt-4"
-                                name="final_year_project" id="final_year_project"
-                                value="{{ old('final_year_project') ?? ($achievement->final_year_project ?? '') }}">
-
-                                <button class="remove-field-button  btn-right m-2" style="display: none;">-</button>
-                                <!-- Add Remove button -->
-                            </div>
-                            <button class="add-field-button btn-right m-2">+</button>
+                        <div class="form-container3">
+                            @if(isset($achievement->final_year_project))
+                                @foreach(json_decode($achievement->final_year_project) as $fvalue)
+                                    <div class="form-fields form-fields3">
+                                        <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control open-input-2-input  mt-4"
+                                        name="final_year_project[]" id="final_year_project"
+                                        value="{{ $fvalue }}">
+                                        <button class="remove-field-button  btn-right m-2" data-id="3">-</button>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="form-fields form-fields3">
+                                    <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control open-input-2-input  mt-4"
+                                           name="final_year_project[]" id="final_year_project"
+                                           value="{{ old('final_year_project') ?? '' }}">
+                                    <button class="remove-field-button btn-right m-2" data-id="3" style="display: none">-</button>
+                                </div>
+                            @endif
+                            <button class="add-field-button btn-right m-2" data-id="3">+</button>
                         </div>
 
                     <div class="col-md-3  p-2">
@@ -268,15 +294,27 @@
 
     <script>
         $(document).ready(function() {
-            $(".add-field-button").click(function() {
+            $(".add-field-button").click(function(e) {
+                e.preventDefault();
+                var classId = $(this).data('id');
                 const formFields = $(this).prev(".form-fields");
+                formFields.find(".remove-field-button").show();
                 const clonedFields = formFields.clone(true);
+                clonedFields.find('input').val('');
                 clonedFields.find(".remove-field-button").show(); // Show the Remove button
                 formFields.after(clonedFields);
             });
 
-            $(document).on("click", ".remove-field-button", function() {
-                $(this).closest(".form-fields").remove(); // Remove the associated form fields
+            $(document).on("click", ".remove-field-button", function(e) {
+                e.preventDefault();
+                var classId = $(this).data('id');
+                $(this).closest(".form-fields").remove();
+                if($(".form-fields"+classId).length == 1) {
+                    $('.add-field-button:first').show();
+                    $('.remove-field-button').hide();
+                } else {
+                    $('.add-field-button:last').show();
+                }
             });
         });
     </script>

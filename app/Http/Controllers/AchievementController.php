@@ -20,11 +20,11 @@ class AchievementController extends Controller
     {
         $achievement = $request->validate([
             'job_application_id' => 'required',
-            'achievement' => 'required',
+            'achievement.*' => 'required',
             'conference_status' => 'required|in:yes,no',
-            'conference' => 'required_if:conference_status,yes',
+            'conference.*' => 'required_if:conference_status,yes',
             'final_year_project_status' => 'required|in:yes,no',
-            'final_year_project' => 'required_if:final_year_project_status,yes',
+            'final_year_project.*' => 'required_if:final_year_project_status,yes',
             'project_document' => 'required_if:final_year_project_status,yes|file|mimes:pdf,jpg,jpeg,png',
             'extra_curricular_skills' => 'required',
             'extra_curricular_skills_project_document' => 'required|file|mimes:pdf,jpg,jpeg,png',
@@ -72,11 +72,11 @@ class AchievementController extends Controller
     {
         $rules = [
             'job_application_id' => 'required',
-            'achievement' => 'required',
+            'achievement.*' => 'required',
             'conference_status' => 'required|in:yes,no',
-            'conference' => 'required_if:conference_status,yes',
+            'conference.*' => 'required_if:conference_status,yes',
             'final_year_project_status' => 'required|in:yes,no',
-            'final_year_project' => 'required_if:final_year_project_status,yes',
+            'final_year_project.*' => 'required_if:final_year_project_status,yes',
             'extra_curricular_skills' => 'required',
             'curriculum_status' => 'required|in:yes,no',
             'background_check_status' => 'required|in:yes,no',
