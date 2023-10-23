@@ -49,7 +49,7 @@
                 <div class="mb-3">
                     <p class="border-bottom">List out your Achievements here <span class="form-label red">*</span></p>
                     <div class="form-container1">
-                        @if(isset($achievement->achievement))
+                        @if(isset($achievement->achievement) && !is_null($achievement->achievement))
                             @foreach(json_decode($achievement->achievement) as $avalue)
                                 <div class="form-fields form-fields1">
                                     <input style="background-color: rgba(248, 235, 235, 0.726); " type="text"
@@ -95,7 +95,7 @@
                             your writing for this part to a maximum of 500 words.</p>
                         <label for="exampleFormControlInput1" class="form-label">Conference<span class="red">*</span></label>
                             <div class="form-container2">
-                                @if(isset($achievement->conference))
+                                @if(isset($achievement->conference) && !is_null($achievement->conference))
                                     @foreach(json_decode($achievement->conference) as $cvalue)
                                         <div class="form-fields form-fields2">
                                             <!-- Initial set of form fields -->
@@ -144,7 +144,7 @@
                     </p>
                     <label for="exampleFormControlInput1" class="form-label">Final Year Projects<span class="red">*</span></label>
                         <div class="form-container3">
-                            @if(isset($achievement->final_year_project))
+                            @if(isset($achievement->final_year_project) && !is_null($achievement->final_year_project))
                                 @foreach(json_decode($achievement->final_year_project) as $fvalue)
                                     <div class="form-fields form-fields3">
                                         <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control open-input-2-input  mt-4"
