@@ -49,8 +49,7 @@
                 <div class="mb-3">
                     <p class="border-bottom">List out your Achievements here <span class="form-label red">*</span></p>
                     <div class="form-container1">
-                        {{ dd($achievement->achievement, json_decode($achievement->achievement)) }}
-                        @if(isset($achievement->achievement) && !is_null($achievement->achievement) && count(json_decode($achievement->achievement)))
+                        @if(isset($achievement->achievement) && !is_null($achievement->achievement) && json_decode($achievement->achievement) != null)
                             @foreach(json_decode($achievement->achievement) as $avalue)
                                 <div class="form-fields form-fields1">
                                     <input style="background-color: rgba(248, 235, 235, 0.726); " type="text"
@@ -96,7 +95,7 @@
                             your writing for this part to a maximum of 500 words.</p>
                         <label for="exampleFormControlInput1" class="form-label">Conference<span class="red">*</span></label>
                             <div class="form-container2">
-                                @if(isset($achievement->conference) && !is_null($achievement->conference))
+                                @if(isset($achievement->conference) && !is_null($achievement->conference) && json_decode($achievement->conference) != null)
                                     @foreach(json_decode($achievement->conference) as $cvalue)
                                         <div class="form-fields form-fields2">
                                             <!-- Initial set of form fields -->
@@ -111,7 +110,7 @@
                                         <!-- Initial set of form fields -->
                                         <input style="background-color: rgba(248, 235, 235, 0.726);" type=""
                                             class="form-control mt-4 " name="conference[]" id="conference" placeholder=""
-                                            value="{{ old('conference') ?? '' }}">
+                                            value="{{ old('conference') ?? $achievement->conference ?? '' }}">
                                         <button class="remove-field-button  btn-right m-2" data-id="2" style="display: none;">-</button>
                                     </div>
                                 @endif
@@ -145,7 +144,7 @@
                     </p>
                     <label for="exampleFormControlInput1" class="form-label">Final Year Projects<span class="red">*</span></label>
                         <div class="form-container3">
-                            @if(isset($achievement->final_year_project) && !is_null($achievement->final_year_project))
+                            @if(isset($achievement->final_year_project) && !is_null($achievement->final_year_project) && json_decode($achievement->final_year_project) != null)
                                 @foreach(json_decode($achievement->final_year_project) as $fvalue)
                                     <div class="form-fields form-fields3">
                                         <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control open-input-2-input  mt-4"
@@ -158,7 +157,7 @@
                                 <div class="form-fields form-fields3">
                                     <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control open-input-2-input  mt-4"
                                            name="final_year_project[]" id="final_year_project"
-                                           value="{{ old('final_year_project') ?? '' }}">
+                                           value="{{ old('final_year_project') ?? $achievement->final_year_project ?? '' }}">
                                     <button class="remove-field-button btn-right m-2" data-id="3" style="display: none">-</button>
                                 </div>
                             @endif
