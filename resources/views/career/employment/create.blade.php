@@ -677,12 +677,15 @@
                     $('.add-field-button2:last').show();
                 }
             });
-            var employment = "{{ isset($employment) ? $employment : ''}}";
-            if (employment != '') {
-                $('#form-container').find('input').attr('required', true);
-                $('#form-container2').find('input').attr('required', true);
-                $('input[name="eligible_to_work"]').attr('required', true);
-                $('input[name="crime_status"]').attr('required', true);
+            if({{ isset($employment) }}) {
+                var employment = JSON.parse('{!! json_encode($employment) !!}');
+                console.log(employment['previous_experience']);
+                if (employment['previous_experience'] == 'yes') {
+                    $('#form-container').find('input').attr('required', true);
+                    $('#form-container2').find('input').attr('required', true);
+                    $('input[name="eligible_to_work"]').attr('required', true);
+                    $('input[name="crime_status"]').attr('required', true);
+                }
             }
         });
     </script>

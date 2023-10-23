@@ -17,9 +17,14 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Sector</th>
+                    <th>Position</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>Submitted On</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -28,21 +33,35 @@
                     <tr>
                         <td>{{ $jobApplication->id }}</td>
                         <td>{{ $jobApplication->first_name }}</td>
+                        <td>{{ $jobApplication->last_name }}</td>
+                        <td>{{ $jobApplication->sector->name }}</td>
+                        <td>{{ $jobApplication->position->name }}</td>
                         <td>{{ $jobApplication->email }}</td>
                         <td>{{ $jobApplication->phone }}</td>
-
+                        <td>{{ \Carbon\Carbon::parse($jobApplication->created_at)->format('d-m-Y h:i A') }}</td>
+                        <td>@if($jobApplication->allow_edit == 0)
+                                <span class="status btn-success">Completed</span>
+                            @else
+                                <span class="status btn-warning">In Progress</span>
+                            @endif
+                        </td>
                         <td>
-                            <a href="{{ route('career.job_application.show', $jobApplication->id) }}"
-                               class="btn btn-info">View</a>
+                            {{--<a href="{{ route('career.job_application.show', $jobApplication->id) }}"
+                               class="btn btn-info">View</a>--}}
+                            <a href="{{ route('career.job_application.access', $jobApplication->id) }}"
+                               title="Give Edit Access"><i class="fa fa-user-pen text-primary"></i></a>
+                            <a href="{{ route('career.job_application.edit', $jobApplication->id) }}"
+                               title="View"><i class="fa fa-eye text-primary"></i></a>
                             {{-- <a href="{{ route('career.job_application.edit', $jobApplication->id) }}" class="btn btn-warning">Edit</a> --}}
-                            <form action="{{ route('career.job_application.destroy', $jobApplication->id) }}"
-                                  method="post" style="display: inline-block;">
+                            <form
+                                action="{{ route('career.job_application.destroy', $jobApplication->id) }}"
+                                method="post" style="display: inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"
+                                <button style="padding: 3px 1px;font-size: 14px;" type="submit" title="Delete"
+                                        class="btn btn-link"
                                         onclick="return confirm('Are you sure you want to delete this job application?')">
-                                    Delete
-                                </button>
+                                    <i class="fa fa-trash text-danger"></i></button>
                             </form>
                         </td>
                     </tr>
@@ -52,4 +71,11 @@
 
         </div>
     </main>
+    <style>
+        .status {
+            font-size: xx-small;
+            padding: 3px;
+            border-radius: 5px;
+        }
+    </style>
 @endsection

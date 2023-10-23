@@ -134,6 +134,7 @@ Route::get('/job_application', [JobApplicationController::class, 'create'])->nam
 Route::post('/job_application', [JobApplicationController::class, 'store'])->name('career.job_application.store');
 Route::get('/job_application/{id}', [JobApplicationController::class, 'show'])->name('career.job_application.show');
 Route::get('/job_application/{id}/edit', [JobApplicationController::class, 'edit'])->name('career.job_application.edit');
+Route::get('/job_application/{id}/access', [JobApplicationController::class, 'giveAccess'])->name('career.job_application.access');
 Route::put('/job_application/{id}', [JobApplicationController::class, 'update'])->name('career.job_application.update');
 Route::delete('/job_application/{id}', [JobApplicationController::class, 'destroy'])->name('career.job_application.destroy');
 Route::get('/positions-ajax', [PositionController::class, 'getPositions'])->name('positions.ajax');

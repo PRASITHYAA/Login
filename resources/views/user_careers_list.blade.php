@@ -48,7 +48,7 @@
                                         <div class="" role="group" aria-label="Basic mixed styles example">
                                             <a href="{{ route('career.job_application.edit', $jobApplication->id) }}"
                                                title="View"><i class="fa fa-eye text-primary"></i></a>
-                                            @if(count($jobApplication->disclaimers) == 0)
+                                            @if($jobApplication->allow_edit == 1)
                                                 <a style="margin: 0 5px 0 5px;"
                                                    href="{{ route('career.job_application.edit', $jobApplication->id) }}"
                                                    title="Edit"><i class="fa fa-pencil text-success"></i></a>

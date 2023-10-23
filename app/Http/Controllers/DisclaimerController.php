@@ -46,6 +46,8 @@ class DisclaimerController extends Controller
         $emailData['last_name'] = $jobApplication->last_name;
         $emailData['sector'] = $jobApplication->sector->name;
         $emailData['position'] = $jobApplication->position->name;
+        $jobApplication->allow_edit = 0;
+        $jobApplication->save();
         $this->savePdf($jobApplication);
         Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
 
@@ -100,6 +102,8 @@ class DisclaimerController extends Controller
         $disclaimer->fill($data);
         $disclaimer->save();
         $jobApplication = $disclaimer->jobApplication;
+        $jobApplication->allow_edit = 0;
+        $jobApplication->save();
         $emailData['first_name'] = $jobApplication->first_name;
         $emailData['last_name'] = $jobApplication->last_name;
         $emailData['sector'] = $jobApplication->sector->name;

@@ -15,7 +15,7 @@ class JobApplicationController extends Controller
 {
     public function index()
     {
-        $jobApplications = JobApplication::all();  // Fetch all job applications
+        $jobApplications = JobApplication::orderBy('id', 'desc')->get();  // Fetch all job applications
 
         return view('Career.job_application.index', ['jobApplications' => $jobApplications]);
     }
@@ -307,5 +307,13 @@ class JobApplicationController extends Controller
         $jobApplication->delete();
 
         return redirect()->route($route)->with('success', 'Job Application deleted successfully!');
+    }
+
+    public function giveAccess($id)
+    {
+        $jobApplication = JobApplication::find($id);
+        $jobApplication->allow_edit = 1;
+        $jobApplication->save();
+        return redirect()->back()->with('success', 'Edit Access given successfully!');
     }
 }
