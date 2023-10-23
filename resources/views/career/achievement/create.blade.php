@@ -49,7 +49,7 @@
                 <div class="mb-3">
                     <p class="border-bottom">List out your Achievements here <span class="form-label red">*</span></p>
                     <div class="form-container1">
-                        @if(isset($achievement->achievement) && !is_null($achievement->achievement))
+                        @if(isset($achievement->achievement) && !is_null($achievement->achievement) && count(json_decode($achievement->achievement)))
                             @foreach(json_decode($achievement->achievement) as $avalue)
                                 <div class="form-fields form-fields1">
                                     <input style="background-color: rgba(248, 235, 235, 0.726); " type="text"
@@ -64,7 +64,7 @@
                                 <input style="background-color: rgba(248, 235, 235, 0.726); " type="text"
                                        class="form-control  mt-4" name="achievement[]" id="exampleFormControlInput1"
                                        placeholder=""
-                                       value="{{ old('achievement') ?? '' }}" required>
+                                       value="{{ old('achievement') ?? $achievement->achievement ?? '' }}" required>
                                 <button class="remove-field-button btn-right m-2" data-id="1" style="display: none;">-</button>
                             </div>
                         @endif
