@@ -1033,13 +1033,25 @@
 <!-- achievement -->
 <h2 class="text-center p-4     mt-4 ">ACHIEVEMENTS, PERSONAL QUALITIES, AND SKILLS</h2>
 <table>
-    <tr>
-        <th style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">List out your
-            Achievements
-            here
-        </th>
-        <td>{{ implode(',', json_decode($achievement)) }}</td>
-    </tr>
+    @if(json_decode($achievement) != null)
+        @foreach(json_decode($achievement) as $avalue)
+            <tr>
+                <th style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">List out your
+                    Achievements
+                    here
+                </th>
+                <td>{{ $avalue }}</td>
+            </tr>
+        @endforeach
+    @else
+        <tr>
+            <th style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">List out your
+                Achievements
+                here
+            </th>
+            <td>{{ $achievement }}</td>
+        </tr>
+    @endif
 </table>
 <h2 class="text-center p-4  ">CURRICULUM VITAE</h2>
 <table>
@@ -1051,10 +1063,19 @@
         </td>
         <td>{{ $conference_status }}</td>
     </tr>
-    <tr>
-        <th>Conference</th>
-        <td>{{ implode(',', json_decode($conference)) }}</td>
-    </tr>
+    @if(json_decode($conference) != null)
+        @foreach(json_decode($conference) as $cvalue)
+            <tr>
+                <th>Conference</th>
+                <td>{{ $cvalue }}</td>
+            </tr>
+        @endforeach
+    @else
+        <tr>
+            <th>Conference</th>
+            <td>{{ $conference }}</td>
+        </tr>
+    @endif
     </tbody>
 </table>
 <div class="page-break"></div>
@@ -1067,10 +1088,19 @@
         </td>
         <td>{{ $final_year_project_status }}</td>
     </tr>
-    <tr>
-        <th>Final Year Projects</th>
-        <td>{{ implode(',', json_decode($final_year_project)) }}</td>
-    </tr>
+    @if(json_decode($final_year_project) != null)
+        @foreach(json_decode($final_year_project) as $fvalue)
+            <tr>
+                <th>Final Year Projects</th>
+                <td>{{ $fvalue }}</td>
+            </tr>
+        @endforeach
+    @else
+        <tr>
+            <th>Final Year Projects</th>
+            <td>{{ $final_year_project }}</td>
+        </tr>
+    @endif
     <tr>
         <th> All Your Project Documents </th>
         <td>
