@@ -21,6 +21,7 @@ class ResendEmailVerification
         if (Auth::check() && !Auth::user()->hasVerifiedEmail()) {
             // Resend the verification email
             Auth::user()->sendEmailVerificationNotification();
+            Auth::logout();
             // Set a flash message in the session
             Session::flash('success', 'A verification link has been sent to your email address.');
 

@@ -12,13 +12,22 @@
 <body>
     <!--Main layout-->
     <div class="container">
-            {{-- error display --}}
-            @if ($errors->has('email'))
-                <div class="alert alert-danger">
-                    {{ $errors->first('email') }}
-                </div>
-            @endif
-
+        {{-- error --}}
+        @if ($errors->any())
+            <div class=" alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- success --}}
+        @if (session('success'))
+            <div class=" container  alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <main style="margin-top: 58px;">
             <div class="container border 2px p-4">
                 <h1 class="pb-2">Create a new customer</h1>
@@ -29,9 +38,16 @@
 
                     {{-- name --}}
                     <div class="mb-3">
-                        <label for="exampleInputname" class="form-label">Name <span style="color: red;">*</span></label>
-                        <input style="background-color: rgba(248, 235, 235, 0.726);" name="name"type="text"
-                            class="form-control" id="Name" name="name" required>
+                        <label for="first_name" class="form-label">First Name <span style="color: red;">*</span></label>
+                        <input style="background-color: rgba(248, 235, 235, 0.726);" name="first_name"type="text"
+                            class="form-control" id="first_name" required>
+                    </div>
+
+                    {{-- name --}}
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Last Name <span style="color: red;">*</span></label>
+                        <input style="background-color: rgba(248, 235, 235, 0.726);" name="last_name"type="text"
+                               class="form-control" id="last_name" required>
                     </div>
 
                     {{-- email --}}
@@ -47,20 +63,19 @@
                         <label for="exampleInputPassword1" class="form-label">Password <span
                                 style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" name="password" type="password"
-                            class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword1" name="password" required>
+                            class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword1" required>
                     </div>
 
-                    {{-- confirm password --}}
+                    {{-- confirm password --}}{{--
                     <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label"> confirm Password <span
+                        <label for="exampleInputPassword1" class="form-label"> Confirm Password <span
                                 style="color: red;">*</span></label>
-                        <input style="background-color: rgba(248, 235, 235, 0.726);" name="confirmpassword"
-                            type="password" class="form-control register @error('password') is-invalid @enderror" id="exampleInputPassword1"
-                            name="confirm password">
+                        <input style="background-color: rgba(248, 235, 235, 0.726);" name="password_confirmation"
+                            type="password" class="form-control register @error('password') is-invalid @enderror" id="exampleInputPassword1" required>
                             @error('password')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                    </div>
+                    </div>--}}
 
                     {{-- button --}}
                     <div>

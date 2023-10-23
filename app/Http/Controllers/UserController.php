@@ -24,9 +24,10 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|',
+            'password' => 'required|min:6',//|confirmed
         ]);
 
         User::create($validatedData);
@@ -44,8 +45,10 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id,
+            'password' => 'min:6',
         ]);
 
         $user->update($request->all());

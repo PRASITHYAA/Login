@@ -14,7 +14,22 @@
 <body>
     <!--Main layout-->
     <div class="container">
-
+        {{-- error --}}
+        @if ($errors->any())
+            <div class=" alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- success --}}
+        @if (session('success'))
+            <div class=" container  alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <main style="margin-top: 58px;">
             <div class="container border 2px p-4">
                 <h1 class="pb-2">Edit customer deatils </h1>
@@ -24,9 +39,15 @@
                     @method('PUT')
                     {{-- name --}}
                     <div class="mb-3">
-                        <label for="exampleInputname" class="form-label">Name <span style="color: red;">*</span></label>
+                        <label for="first_name" class="form-label">First Name <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
-                            id="Name" name="name" value="{{ $user->name }}">
+                            id="first_name" name="first_name" value="{{ $user->first_name }}">
+                    </div>
+                    {{-- name --}}
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Last Name <span style="color: red;">*</span></label>
+                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
+                               id="last_name" name="last_name" value="{{ $user->last_name }}">
                     </div>
                     {{-- email --}}
                     <div class="mb-3">
@@ -34,6 +55,13 @@
                                 style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="email" class="form-control"
                             id="exampleInputEmail1" name="email" value="{{ $user->email }}">
+                    </div>
+                    {{-- password --}}
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password <span
+                                style="color: red;">*</span></label>
+                        <input style="background-color: rgba(248, 235, 235, 0.726);" name="password" type="password"
+                               class="form-control @error('password') is-invalid @enderror" id="exampleInputPassword1">
                     </div>
                     <div>
                         <button type="submit" class="btn btn-success">Update </button>

@@ -1,6 +1,22 @@
 @extends('layouts.admin_master')
 @section('content')
     <main style="margin-top: 100px;">
+        {{-- error --}}
+        @if ($errors->any())
+            <div class=" alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        {{-- success --}}
+        @if (session('success'))
+            <div class=" container  alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="container-fluid">
             <h1 class="bg-light">Customer List</h1>
             <table class="table table-striped table-hover">
@@ -14,7 +30,8 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Name</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
                     <th>Email</th>
                     <th>Actions</th>
                 </tr>
@@ -25,7 +42,8 @@
                         {{-- data --}}
                         <tr>
                             <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->first_name }}</td>
+                            <td>{{ $user->last_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
                                 <!-- Edit Button -->
