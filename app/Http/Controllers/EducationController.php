@@ -382,6 +382,81 @@ class EducationController extends Controller
         if(!is_null($request->qualification)) {
             $data['qualification'] = implode(',', $request->qualification);
         }
+        $qualificationArray = ['high_school', 'higher_secondary', 'diploma', 'bachelor_degree', 'master_degree', 'doctorate_degree'];
+        foreach ($qualificationArray as $value) {
+            if(!in_array($value, $request->qualification) && $value == 'high_school') {
+                $data['high_school_name'] = null;
+                $data['high_school_city'] = null;
+                $data['high_school_address'] = null;
+                $data['high_school_form_date'] = null;
+                $data['high_school_to_date'] = null;
+                $data['high_school_year_of_passing'] = null;
+                $data['high_school_percentage'] = null;
+                $data['high_school_class'] = null;
+                $data['high_school_stream'] = null;
+            } else if(!in_array($value, $request->qualification) && $value == 'higher_secondary') {
+               $data['higher_secondary_institution_name'] = null;
+               $data['higher_secondary_city'] = null;
+               $data['higher_secondary_address'] = null;
+               $data['higher_secondary_form_date'] = null;
+               $data['higher_secondary_to_date'] = null;
+               $data['higher_secondary_year_of_passing'] = null;
+               $data['higher_secondary_percentage'] = null;
+               $data['higher_secondary_class'] = null;
+               $data['higher_secondary_stream'] = null;
+               $data['higher_secondary_filed_of_interest'] = null;
+               $data['higher_secondary_image_certificate'] = null;
+               $data['higher_secondary_image_mark_sheet'] = null;
+            } else if(!in_array($value, $request->qualification) && $value == 'bachelor_degree') {
+                $data['bachelors_institution_name'] = null;
+                $data['bachelors_city'] = null;
+                $data['bachelors_address'] = null;
+                $data['bachelors_form_date'] = null;
+                $data['bachelors_to_date'] = null;
+                $data['bachelors_year_of_passing'] = null;
+                $data['bachelors_percentage'] = null;
+                $data['bachelors_course'] = null;
+                $data['bachelors_major'] = null;
+                $data['bachelors_filed_of_interest'] = null;
+            } else if(!in_array($value, $request->qualification) && $value == 'diploma') {
+               $data['diploma_institution_name'] = null;
+               $data['diploma_city'] = null;
+               $data['diploma_address'] = null;
+               $data['diploma_form_date'] = null;
+               $data['diploma_to_date'] = null;
+               $data['diploma_year_of_passing'] = null;
+               $data['diploma_percentage'] = null;
+               $data['diploma_course'] = null;
+               $data['diploma_major'] = null;
+               $data['diploma_filed_of_interest'] = null;
+            } else if(!in_array($value, $request->qualification) && $value == 'master_degree') {
+               $data['master_institution_name'] = null;
+               $data['master_city'] = null;
+               $data['master_address'] = null;
+               $data['master_from_date'] = null;
+               $data['master_to_date'] = null;
+               $data['master_years_of_passing'] = null;
+               $data['master_percentage'] = null;
+               $data['master_class'] = null;
+               $data['master_filed_of_specialization'] = null;
+               $data['master_filed_of_interest'] = null;
+               $data['master_image_certificate'] = null;
+               $data['master_image_mark_sheet'] = null;
+            } else if(!in_array($value, $request->qualification) && $value == 'doctorate_degree') {
+               $data['doctorate_name'] = null;
+               $data['doctorate_city'] = null;
+               $data['doctorate_address'] = null;
+               $data['doctorate_from_date'] = null;
+               $data['doctorate_to_date'] = null;
+               $data['doctorate_year_of_passing'] = null;
+               $data['doctorate_percentage'] = null;
+               $data['doctorate_class'] = null;
+               $data['doctorate_filed_of_specialization'] = null;
+               $data['doctorate_filed_of_interest'] = null;
+               $data['doctorate_image_certificate'] = null;
+               $data['doctorate_image_mark_sheet'] = null;
+            }
+        }
         $education = Education::find($id);
 
         $education = $education->fill($data);

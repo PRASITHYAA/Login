@@ -50,13 +50,13 @@
 
                     <input type="radio" name="previous_experience" value="yes"
                         {{ old('previous_experience') == 'yes' || (isset($employment) && $employment->previous_experience == 'yes') ? 'checked' : '' }}
-                        required onclick="showNestedOption(this)"> Yes
+                        class="nested-radio" required> Yes
                 </label>
                 <br>
                 <label>
                     <input type="radio" name="previous_experience" value="no"
                         {{ old('previous_experience') == 'no' || (isset($employment) && $employment->previous_experience == 'no') ? 'checked' : '' }}
-                        required onclick="showNestedOption(this)"> No
+                        class="nested-radio" required> No
                 </label>
 
                 <div id="nested-input"
@@ -243,7 +243,7 @@
                     <div id="form-container2">
                         @if(isset($employment) && count($employment->references))
                             @foreach($employment->references as $rkey => $reference)
-                                <div class="form-fields">
+                                <div class="form-fields2">
                                     <div class="row">
                                         <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER (<span class="text-danger">Background Verification will Be Done</span>)</h6>
                                         <!-- Name -->
@@ -306,7 +306,7 @@
                                 </div>
                             @endforeach
                         @else
-                            <div class="form-fields">
+                            <div class="form-fields2">
                                 <div class="row">
                                     <h6 class="pt-4 pb-4">REFERENCE DETAILS FROM PREVIOUS EMPLOYER (<span class="text-danger">Background Verification will Be Done</span>)</h6>
                                     <!-- Name -->
@@ -380,7 +380,7 @@
                     <label>
                         <input type="radio" name="eligible_to_work" value="no" id="noRadio1"
                             {{ old('eligible_to_work') == 'no' || (isset($employment) && $employment->eligible_to_work == 'no') ? 'checked' : '' }}
-                            onclick="showInput('sub-text-input'); showNestedOption(this)"> No
+                            onclick="showInput('sub-text-input');"> No
                     </label>
 
                     <div class="col-md-12" id="sub-text-input"
@@ -457,19 +457,23 @@
                 $('#text-input').hide();
                 $('.text-input').attr('required', false);
             });
+            $('.nested-radio').on('click', function () {
+                const nestedInputDiv = $('#nested-input');
+                if (this.value === 'yes') {
+                    nestedInputDiv.show();
+                    $('#form-container').find('input').attr('required', true);
+                    $('#form-container2').find('input').attr('required', true);
+                    $('input[name="eligible_to_work"]').attr('required', true);
+                    $('input[name="crime_status"]').attr('required', true);
+                } else {
+                    nestedInputDiv.hide();
+                    $('#form-container').find('input').attr('required', false);
+                    $('#form-container2').find('input').attr('required', false);
+                    $('input[name="eligible_to_work"]').attr('required', false);
+                    $('input[name="crime_status"]').attr('required', false);
+                }
+            });
         });
-    </script>
-
-    <script>
-        function showNestedOption(selectedRadio) {
-            const nestedInputDiv = document.getElementById('nested-input');
-
-            if (selectedRadio.value === 'yes') {
-                nestedInputDiv.style.display = 'block';
-            } else {
-                nestedInputDiv.style.display = 'none';
-            }
-        }
     </script>
     <!-- phone -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
@@ -609,14 +613,20 @@
                     autoInsertDialCode: true
                 });
                 itis.push(itiCloned);
+                clonedFields.find('.remove-field-button').show();
                 // Remove all buttons with the class "add-field-button" except for the last one
                 $('.add-field-button:not(:last)').hide();
             });
 
             formContainer.on("click", ".remove-field-button", function(e) {
-                console.log($(this).attr('class'));
                 e.preventDefault();
                 $(this).closest(".form-fields").remove(); // Remove the associated form fields
+                if($(".form-fields").length == 1) {
+                    $('.add-field-button:first').show();
+                    $('.remove-field-button').hide();
+                } else {
+                    $('.add-field-button:last').show();
+                }
             });
 
             // Second set of form fields
@@ -625,7 +635,7 @@
 
             addFieldButton2.click(function(e) {
                 e.preventDefault();
-                const clonedFields = formContainer2.find(".form-fields:last").clone(true);
+                const clonedFields = formContainer2.find(".form-fields2:last").clone(true);
                 $(".remove-field-button2").show(); // Show the Remove button
                 clonedFields.find('input').each(function() {
                     var input_id = $(this).attr('id');
@@ -636,17 +646,44 @@
                         $(this).attr('id', 'reference_'+employerType+'_'+(parseInt(numericValue)+1));
                     }
                 });
+                clonedFields.find("input").val('');
                 formContainer2.append(clonedFields);
+                // Find the cloned phone input field within the cloned sibling
+                var clonedSiblingPhone = clonedFields.find(".phoneInputField");
+
+                // Destroy the previous instance of intlTelInput if it exists
+                if (clonedSiblingPhone.intlTelInput) {
+                    clonedSiblingPhone.intlTelInput("destroy");
+                }
+                var itiCloned = window.intlTelInput(clonedSiblingPhone[0], {
+                    initialCountry: "in", // Set the initial country code to India (+91)
+                    //geoIpLookup: getIp,
+                    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                    separateDialCode: true,
+                    autoInsertDialCode: true
+                });
+                itis.push(itiCloned);
+                clonedFields.find('.remove-field-button2').show();
                 $('.add-field-button2:not(:last)').hide();
             });
 
             formContainer2.on("click", ".remove-field-button2", function(e) {
-                console.log($(this).attr('class'));
                 e.preventDefault();
-                $(this).closest(".form-fields").remove(); // Remove the associated form fields
+                $(this).closest(".form-fields2").remove(); // Remove the associated form fields
+                if($(".form-fields2").length == 1) {
+                    $('.add-field-button2:first').show();
+                    $('.remove-field-button2').hide();
+                } else {
+                    $('.add-field-button2:last').show();
+                }
             });
+            var employment = "{{ isset($employment) ? $employment : ''}}";
+            if (employment != '') {
+                $('#form-container').find('input').attr('required', true);
+                $('#form-container2').find('input').attr('required', true);
+                $('input[name="eligible_to_work"]').attr('required', true);
+                $('input[name="crime_status"]').attr('required', true);
+            }
         });
     </script>
-
-
 @endsection

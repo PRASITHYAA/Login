@@ -70,13 +70,13 @@
 
                 <label>
                     <input type="radio" name="conference_status" value="yes" id="yesRadio1"
-                        {{ old('conference_status') == 'yes' || (isset($achievement) && $achievement->conference_status == 'yes') ? 'checked' : '' }}>
+                        {{ old('conference_status') == 'yes' || (isset($achievement) && $achievement->conference_status == 'yes') ? 'checked' : '' }} required>
                     Yes
                 </label>
                 <br>
                 <label>
                     <input type="radio" name="conference_status" value="no" id="noRadio1"
-                        {{ old('conference_status') == 'no' || (isset($achievement) && $achievement->conference_status == 'no') ? 'checked' : '' }}>
+                        {{ old('conference_status') == 'no' || (isset($achievement) && $achievement->conference_status == 'no') ? 'checked' : '' }} required>
                     No
                 </label>
                 <div id="input-field"

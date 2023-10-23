@@ -30,7 +30,7 @@
 
             <form
                 action="{{ isset($education) ? route('career.education.update', $education->id) : route('career.education.store') }}"
-                method="POST" enctype="multipart/form-data">
+                method="POST" enctype="multipart/form-data" id="education_form">
                 @csrf
                 @if (isset($education))
                     @method('PUT')
@@ -48,21 +48,19 @@
                     <label>
                         <input type="radio" name="radio_option" value="yes"
                             {{ isset($education) ? ($education->radio_option == 'yes' ? 'checked' : '') : '' }}
-                            onclick="showCheckboxes()"> Yes
+                            class="education" required> Yes
                     </label>
                     <label>
-                        <input type="radio" name="radio_option" value="no" {{ isset($education) ? ($education->radio_option == 'no' ? 'checked' : '') : '' }} onclick="hideCheckboxes()"> No
+                        <input type="radio" name="radio_option" value="no" {{ isset($education) ? ($education->radio_option == 'no' ? 'checked' : '') : '' }} class="education" required> No
                     </label>
                 </div>
-
                 <div id="checkboxes"
-                    style="{{ isset($education) ? ($education->radio_option == 'yes' ? '' : 'display: none;') : 'display: none;' }}">
+                    class="{{ isset($education) ? ($education->radio_option == 'yes' ? '' : 'd-none') : 'd-none' }}">
                     <!-- High School -->
-                    <input type="checkbox" onchange="toggleForm('form1')" name="qualification[]" value="high_school"
+                    <input type="checkbox" class="qualification" data-id="form1" name="qualification[]" id="high_school" value="high_school"
                         {{ old('qualification[]') == 'high_school' || (isset($education) && in_array('high_school', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     High School
-                    <div id="form1" class="mt-3"
-                        style="{{ old('qualification') == 'high_school' || (isset($education) && in_array('high_school', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
+                    <div id="form1" class="mt-3 {{ old('qualification') == 'high_school' || (isset($education) && in_array('high_school', explode(',', $education->qualification))) ? '' : 'd-none' }}">
                         <h4>
                             High School
                         </h4>
@@ -159,7 +157,7 @@
                                     <input type="file" class="form-control" id="high_school_image_certificate"
                                         name="high_school_image_certificate">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->high_school_image_certificate))
                                     @if(isset($education->high_school_image_certificate) && explode('.', $education->high_school_image_certificate)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->high_school_image_certificate) }}" target="_blank"
                                            alt="High School Image Certificate" style="width: 150px;">View</a>
@@ -182,7 +180,7 @@
                                     <input type="file" class="form-control" id="high_school_image_mark_sheet"
                                         name="high_school_image_mark_sheet">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->high_school_image_mark_sheet))
                                     @if(isset($education->high_school_image_mark_sheet) && explode('.', $education->high_school_image_mark_sheet)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->high_school_image_mark_sheet) }}" target="_blank"
                                            alt="High School Image Mark sheet" style="width: 150px;">View</a>
@@ -202,11 +200,10 @@
                     <br>
 
                     <!-- Higher Secondary -->
-                    <input type="checkbox" onchange="toggleForm('form2')" name="qualification[]" value="higher_secondary"
+                    <input type="checkbox" class="qualification" data-id="form2" name="qualification[]" id = "higher_secondary" value="higher_secondary"
                         {{ old('qualification') == 'higher_secondary' || (isset($education) && in_array('higher_secondary', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     Higher Secondary
-                    <div id="form2" class="mt-3"
-                        style="{{ old('qualification') == 'higher_secondary' || (isset($education) && in_array('higher_secondary', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
+                    <div id="form2" class="mt-3 {{ old('qualification') == 'higher_secondary' || (isset($education) && in_array('higher_secondary', explode(',', $education->qualification))) ? '' : 'd-none' }}">
                         <!-- Higher Secondary -->
                         <h4> Higher Secondary</h4>
                         <!-- Higher Secondary Institution Name-->
@@ -314,7 +311,7 @@
                                     <input type="file" class="form-control" id="higher_secondary_image_certificate"
                                         name="higher_secondary_image_certificate">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->higher_secondary_image_certificate))
                                     @if(isset($education->higher_secondary_image_certificate) && explode('.', $education->higher_secondary_image_certificate)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->higher_secondary_image_certificate) }}" target="_blank"
                                            alt="Higher Secondary Image Certificate" style="width: 150px;">View</a>
@@ -338,7 +335,7 @@
                                     <input type="file" class="form-control" id="higher_secondary_image_mark_sheet"
                                         name="higher_secondary_image_mark_sheet">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->higher_secondary_image_mark_sheet))
                                     @if(isset($education->higher_secondary_image_mark_sheet) && explode('.', $education->higher_secondary_image_mark_sheet)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->higher_secondary_image_mark_sheet) }}" target="_blank"
                                            alt="Higher Secondary Image MarkSheet" style="width: 150px;">View</a>
@@ -360,12 +357,11 @@
                     <br>
 
                     {{-- Diploma --}}
-                    <input type="checkbox" onchange="toggleForm('form3')" name="qualification[]" value="diploma"
+                    <input type="checkbox" class="qualification" data-id="form3" name="qualification[]" id="diploma" value="diploma"
                         {{ old('qualification') == 'diploma' || (isset($education) && in_array('diploma', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     Diploma
 
-                    <div id="form3" class="mt-3"
-                        style="{{ old('qualification') == 'diploma' || (isset($education) && in_array('diploma', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
+                    <div id="form3" class="mt-3 {{ old('qualification') == 'diploma' || (isset($education) && in_array('diploma', explode(',', $education->qualification))) ? '' : 'd-none' }}">
                         <!-- Diploma -->
                         <h4>
                             Diploma
@@ -460,7 +456,7 @@
                                     <input type="file" class="form-control" id="diploma_image_certificate"
                                         name="diploma_image_certificate">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->diploma_image_certificate))
                                     @if(isset($education->diploma_image_certificate) && explode('.', $education->diploma_image_certificate)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->diploma_image_certificate) }}" target="_blank"
                                            alt="Diploma Image Certificate" style="width: 150px;">View</a>
@@ -483,7 +479,7 @@
                                     <input type="file" class="form-control" id="diploma_image_mark_sheet"
                                         name="diploma_image_mark_sheet">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->diploma_image_mark_sheet))
                                     @if(isset($education->diploma_image_mark_sheet) && explode('.', $education->diploma_image_mark_sheet)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->diploma_image_mark_sheet) }}" target="_blank"
                                            alt="Diploma Image Mark Sheet" style="width: 150px;">View</a>
@@ -504,11 +500,10 @@
                     <br>
 
                     {{-- Bachelors Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form4')" name="qualification[]" value="bachelor_degree"
+                    <input type="checkbox" class="qualification" data-id="form4" name="qualification[]" id="bachelor_degree" value="bachelor_degree"
                         {{ old('qualification') == 'bachelor_degree' || (isset($education) && in_array('bachelor_degree', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     Bachelors Degree
-                    <div id="form4" class="mt-3"
-                        style="{{ old('qualification') == 'bachelor_degree' || (isset($education) && in_array('bachelor_degree', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
+                    <div id="form4" class="mt-3 {{ old('qualification') == 'bachelor_degree' || (isset($education) && in_array('bachelor_degree', explode(',', $education->qualification))) ? '' : 'd-none' }}">
 
                         <!-- Bachelors Degree -->
                         <h4>
@@ -623,7 +618,7 @@
                                     <input type="file" class="form-control" id="bachelors_image_certificate"
                                         name="bachelors_image_certificate">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->bachelors_image_certificate))
                                     @if(isset($education->bachelors_image_certificate) && explode('.', $education->bachelors_image_certificate)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->bachelors_image_certificate) }}" target="_blank"
                                            alt="Bachelors Image Certificate" style="width: 150px;">View</a>
@@ -647,7 +642,7 @@
                                     <input type="file" class="form-control" id="bachelors_image_mark_sheet"
                                         name="bachelors_image_mark_sheet">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->bachelors_image_mark_sheet))
                                     @if(isset($education->bachelors_image_mark_sheet) && explode('.', $education->bachelors_image_mark_sheet)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->bachelors_image_mark_sheet) }}" target="_blank"
                                            alt="Bachelors Image Mark Sheet" style="width: 150px;">View</a>
@@ -668,11 +663,10 @@
                     <br>
 
                     {{-- Master's Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form5')" name="qualification[]" value="master_degree"
+                    <input type="checkbox" class="qualification" data-id="form5" name="qualification[]" id="master_degree" value="master_degree"
                         {{ old('qualification') == 'master_degree' || (isset($education) && in_array('master_degree', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     Master's Degree
-                    <div id="form5" class="mt-3"
-                        style="{{ old('qualification') == 'master_degree' || (isset($education) && in_array('master_degree', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
+                    <div id="form5" class="mt-3 {{ old('qualification') == 'master_degree' || (isset($education) && in_array('master_degree', explode(',', $education->qualification))) ? '' : 'd-none' }}">
 
                         <!-- Master's Degree -->
                         <h4> Master's Degree </h4>
@@ -766,7 +760,7 @@
                                     <input type="file" class="form-control" id="master_image_certificate"
                                         name="master_image_certificate">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->master_image_certificate))
                                     @if(isset($education->master_image_certificate) && explode('.', $education->master_image_certificate)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->master_image_certificate) }}" target="_blank"
                                            alt="Master Image Certificate" style="width: 150px;">View</a>
@@ -790,7 +784,7 @@
                                     <input type="file" class="form-control" id="master_image_mark_sheet"
                                         name="master_image_mark_sheet">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->master_image_mark_sheet))
                                     @if(isset($education->master_image_mark_sheet) && explode('.', $education->master_image_mark_sheet)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->master_image_mark_sheet) }}" target="_blank"
                                            alt="Master Image Mark Sheet" style="width: 150px;">View</a>
@@ -813,11 +807,10 @@
                     <br>
 
                     {{-- Doctorate Degree --}}
-                    <input type="checkbox" onchange="toggleForm('form6')" name="qualification[]" value="doctorate_degree"
+                    <input type="checkbox" class="qualification" data-id="form6" name="qualification[]" id="doctorate_degree" value="doctorate_degree"
                         {{ old('qualification') == 'doctorate_degree' || (isset($education) && in_array('doctorate_degree', explode(',', $education->qualification))) ? 'checked' : '' }}>
                     Doctorate Degree
-                    <div id="form6" class="mt-3"
-                        style="{{ old('qualification') == 'doctorate_degree' || (isset($education) && in_array('doctorate_degree', explode(',', $education->qualification))) ? '' : 'display: none;' }}">
+                    <div id="form6" class="mt-3 {{ old('qualification') == 'doctorate_degree' || (isset($education) && in_array('doctorate_degree', explode(',', $education->qualification))) ? '' : 'd-none' }}">
                         <!-- Doctorate Degree -->
                         <h4>
                             Doctorate Degree
@@ -914,7 +907,7 @@
                                         name="doctorate_image_certificate"
                                         value="{{ old('doctorate_image_certificate') ?? ($education->doctorate_image_certificate ?? '') }}">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->doctorate_image_certificate))
                                     @if(isset($education->doctorate_image_certificate) && explode('.', $education->doctorate_image_certificate)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->doctorate_image_certificate) }}" target="_blank"
                                            alt="Doctorate Image Certificate" style="width: 150px;">View</a>
@@ -938,7 +931,7 @@
                                     <input type="file" class="form-control" id="doctorate_image_mark_sheet"
                                         name="doctorate_image_mark_sheet">
                                 </div>
-                                @if (isset($education))
+                                @if (isset($education->doctorate_image_mark_sheet))
                                     @if(isset($education->doctorate_image_mark_sheet) && explode('.', $education->doctorate_image_mark_sheet)[1]  == 'pdf')
                                         <a href="{{ asset('storage/' . $education->doctorate_image_mark_sheet) }}" target="_blank"
                                            alt="Doctorate Image Mark Sheet" style="width: 150px;">View</a>
@@ -973,20 +966,44 @@
 
     <!-- checkbok -->
     <script>
-        function showCheckboxes() {
-            const checkboxesDiv = document.getElementById('checkboxes');
-            checkboxesDiv.style.display = 'block';
-        }
-
-        function hideCheckboxes() {
-            const checkboxesDiv = document.getElementById('checkboxes');
-            checkboxesDiv.style.display = 'none';
-        }
-
-        function toggleForm(formId) {
-            const form = document.getElementById(formId);
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-        }
+        $(document).ready(function () {
+            $('.qualification').on('click', function () {
+                var formId = $(this).data('id');
+                console.log($('#' + formId).hasClass('d-none'));
+                if ($('#' + formId).hasClass('d-none') == true) {
+                    $('#' + formId).find('input').attr('required', true);
+                    $('#' + formId).removeClass('d-none');
+                } else {
+                    $('#' + formId).find('input').attr('required', false);
+                    $('#' + formId).addClass('d-none');
+                }
+            });
+            $('#education_form').submit(function (e) {
+                if ($('.education:checked').val() == 'yes') {
+                    if ($('.qualification:checked').val() == undefined) {
+                        e.preventDefault();
+                        alert('Qualification details are required in you choose "Yes"');
+                    }
+                }
+            });
+            $('.education').on('click', function () {
+                var value = $(this).val();
+                if (value == 'yes') {
+                    $('#checkboxes').removeClass('d-none');
+                } else {
+                    $('#checkboxes').addClass('d-none');
+                }
+            });
+            var education_qualifications = "{{ isset($education) ? $education->qualification : ''}}";
+            if (education_qualifications != '') {
+                education_qualifications = education_qualifications.split(',');
+                $.each(education_qualifications, function (key, value) {
+                    var id = $('#'+value).data('id');
+                    $('#' + id).find('input').attr('required', true);
+                    $('#' + id).find('input[type="file"]').attr('required', false);
+                });
+            }
+        });
     </script>
 
     {{-- image --}}

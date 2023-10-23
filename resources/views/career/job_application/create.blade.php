@@ -468,7 +468,7 @@
                                             <input type="file" class="form-control marital-status-input"
                                                 name="spouse_image" accept="image/*" id="spouse_image" placeholder="">
                                         </div>
-                                        @if (isset($jobApplication))
+                                        @if (isset($jobApplication->spouse_image))
                                             <img src="{{ asset('storage/' . $jobApplication->spouse_image) }}"
                                                 alt="Job Application Image" style="height: 150px;">
                                         @endif
@@ -514,7 +514,7 @@
                                                                 class="form-control bg sibling-name-input alphabetic-input"
                                                                 id="siblings_name_1"
                                                                 value="{{ $sibling->name ?? '' }}"
-                                                                placeholder="Siblings Name" name="siblings_name[]">
+                                                                placeholder="Siblings Name" name="siblings_name[]" required="true">
                                                         </div>
                                                         <!--Siblings  Date of Birth-->
                                                         <div class="col-md-3">
@@ -524,7 +524,7 @@
                                                                 class="form-control sibling-dob-input bg"
                                                                 id="siblings_date_of_birth_1"
                                                                 value="{{ $sibling->dob ?? '' }}"
-                                                                placeholder="Date of Birth">
+                                                                placeholder="Date of Birth" required="true">
                                                         </div>
                                                         <!-- siblings  email -->
                                                         <div class="col-md-3">
@@ -532,7 +532,7 @@
                                                                     class="red">*</span></label>
                                                             <input type="email" class="form-control bg sibling-email-input"
                                                                 placeholder="Email-Id" name="siblings_email[]" id="siblings_email_1"
-                                                                value="{{ $sibling->email ?? '' }}">
+                                                                value="{{ $sibling->email ?? '' }}" required="true">
                                                         </div>
                                                         <!--siblings  phone -->
                                                         <div class="col-md-3">
@@ -541,7 +541,7 @@
                                                             <input type="tel"
                                                                 class="phoneInputField  form-control sibling-phone-input"
                                                                 name="siblings_phone[]" id="siblings_phone_1"
-                                                                value="{{ $sibling->phone ?? '' }}">
+                                                                value="{{ $sibling->phone ?? '' }}" required="true">
                                                             <p class="errorText" style="color: red;"></p>
                                                         </div>
                                                         <!--siblings  Upload the Latest Passport Size Photo -->
@@ -554,21 +554,19 @@
                                                             @if (isset($sibling->photo))
                                                                 <img src="{{ asset('storage/' . $sibling->photo) }}" class="edit-prev-img"
                                                                     alt="Job Application Image" style="height: 150px;">
-                                                                <input type="hidden" class="form-control sibling-image-input"
+                                                                <input type="hidden" class="form-control"
                                                                        id="siblings_image_old_1" name="siblings_image_old[]" value="{{ $sibling->photo }}">
                                                             @endif
                                                             <!-- images  -->
                                                             <div class="form-group  ">
-                                                                <img id="siblingsimagePreview" src="#" alt="Image Preview"
+                                                                <img class="siblingsimagePreview" id="siblingsimagePreview_1" src="#" alt="Image Preview"
                                                                     style="height: 150px; display: none;">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 mt-5">
-                                                            <button class="remove-field-button" style="{{ ($skey+1 != count($jobApplication->siblingsList)) ? '' : 'display:none;' }}">-</button>
+                                                            <button class="remove-field-button" style="{{ (count($jobApplication->siblingsList) == 1) ? 'display:none;' : '' }}">-</button>
                                                             <!-- Add Remove button -->
-                                                            @if($skey+1 == count($jobApplication->siblingsList))
-                                                                <button class="add-field-button">+</button>
-                                                            @endif
+                                                            <button class="add-field-button" style="{{ ($skey+1 == count($jobApplication->siblingsList)) ? '' : 'display:none;' }}">+</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -632,7 +630,7 @@
                                                         @endif
                                                         <!-- images  -->
                                                         <div class="form-group  ">
-                                                            <img id="siblingsimagePreview" src="#" alt="Image Preview"
+                                                            <img class="siblingsimagePreview" id="siblingsimagePreview_1" src="#" alt="Image Preview"
                                                                  style="height: 150px; display: none;">
                                                         </div>
                                                     </div>
@@ -677,7 +675,7 @@
         handleImagePreview(document.getElementById('father_image'), document.getElementById('fatherimagePreview'));
         handleImagePreview(document.getElementById('mother_image'), document.getElementById('motherimagePreview'));
         handleImagePreview(document.getElementById('spouse_image'), document.getElementById('spouseimagePreview'));
-        handleImagePreview(document.getElementById('siblings_image'), document.getElementById('siblingsimagePreview'));
+        handleImagePreview(document.getElementById('siblings_image_1'), document.getElementById('siblingsimagePreview_1'));
     </script>
 
     <!-- marriage  -->
@@ -952,20 +950,31 @@
             addFieldButton.click(function(e) {
                 e.preventDefault();
                 const clonedFields = formContainer.find(".form-fields:last").clone(true);
-                $(".remove-field-button").show(); // Show the Remove button
+                //$('.remove-field-button').show(); // Show the Remove button except first one
                 var input_name = clonedFields.find(".sibling-name-input").attr('id');
                 input_name = input_name.split('siblings_name_');
                 var siblings_id = parseInt(input_name[1])+1;
                 clonedFields.find(".sibling-name-input").attr('id', 'siblings_name_'+siblings_id);
+                clonedFields.find(".siblingsimagePreview").attr('id', 'siblingsimagePreview_'+siblings_id);
+                clonedFields.find(".sibling-image-input").attr('id', 'siblings_image_'+siblings_id);
                 clonedFields.find("input").val('');
+                clonedFields.find("input").attr('required', true);
                 clonedFields.find(".edit-prev-img").remove();
+                clonedFields.find('.remove-field-button').show();
                 formContainer.append(clonedFields);
                 // Remove all buttons with the class "add-field-button" except for the last one
                 $('.add-field-button:not(:last)').hide();
+                handleImagePreview(document.getElementById('siblings_image_'+siblings_id), document.getElementById('siblingsimagePreview_'+siblings_id));
             });
 
             formContainer.on("click", ".remove-field-button", function() {
                 $(this).closest(".form-fields").remove(); // Remove the associated form fields
+                if($(".form-fields").length == 1) {
+                    $('.add-field-button:first').show();
+                    $('.remove-field-button').hide();
+                } else {
+                    $('.add-field-button:last').show();
+                }
             });
         });
     </script>

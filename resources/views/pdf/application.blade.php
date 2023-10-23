@@ -310,6 +310,11 @@
         <td>{{ $permanent_phone ?? $phone }}</td>
     </tr>
     <tr>
+        <td>Email</td>
+        <td>{{ $email }}</td>
+        <td></td>
+    </tr>
+    <tr>
         <td>Alternate Phone/Mobile <br>Number </td>
         <td>{{ $alternative_phone }}</td>
         <td></td>
