@@ -49,7 +49,7 @@
                 <div class="mb-3">
                     <p class="border-bottom">List out your Achievements here <span class="form-label red">*</span></p>
                     <div class="form-container1">
-                        {{ dd($achievement->achievement) }}
+                        {{ dd($achievement->achievement, json_decode($achievement->achievement)) }}
                         @if(isset($achievement->achievement) && !is_null($achievement->achievement) && count(json_decode($achievement->achievement)))
                             @foreach(json_decode($achievement->achievement) as $avalue)
                                 <div class="form-fields form-fields1">
