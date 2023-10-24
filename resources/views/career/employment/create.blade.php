@@ -677,8 +677,9 @@
                     $('.add-field-button2:last').show();
                 }
             });
-            if({{ isset($employment) }}) {
-                var employment = JSON.parse('{!! json_encode($employment) !!}');
+            var employment = "{{ isset($employment) ? $employment : '' }}";
+            if(employment) {
+                var employment = JSON.parse("{{ isset($employment) ? json_encode($employment) : '' }}");
                 console.log(employment['previous_experience']);
                 if (employment['previous_experience'] == 'yes') {
                     $('#form-container').find('input').attr('required', true);
