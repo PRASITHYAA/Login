@@ -48,6 +48,9 @@ class AchievementController extends Controller
             $resumeDocumentPath = $request->file('yes_curriculum_pdf_format')->store('documents', 'public');
             $achievement['yes_curriculum_pdf_format'] = $resumeDocumentPath;
         }
+        $achievement['achievement'] = json_encode($achievement['achievement']);
+        $achievement['conference'] = json_encode($achievement['conference']);
+        $achievement['final_year_project'] = json_encode($achievement['final_year_project']);
         $achievement = Achievement::create($achievement);
 
         return redirect()->route('disclaimer.view', ['job_application_id' => $request->job_application_id, 'achievement_id' => $achievement->id ])->with('success', 'Achievements, Co-curricular, Extra-curricular Details created successfully!');
