@@ -33,7 +33,7 @@
                 </div>
             @endif
 
-                <form action="{{ route('course_title.store') }}" method="POST">
+                <form action="{{ route('course_title.store') }}" method="POST" id="myForm">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">sector <span style="color: red;">*</span></label>
@@ -109,20 +109,20 @@
                     <div class="mb-3">
                         <label class="form-label">Course Description <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control" name="course_description" id="myeditorinstance" required></textarea>
+                            class="form-control editor" name="course_description" id="myeditorinstance"></textarea>
                     </div>
 
 
                     <div class="mb-3">
                         <label class="form-label">Training Schedule <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control" rows="5" name="course_training_schedule" id="myeditorinstance" required></textarea>
+                            class="form-control editor" rows="5" name="course_training_schedule" id="myeditorinstance"></textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Eligible To Participate <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control" rows="5" name="eligible_to_participate" id="myeditorinstance" required></textarea>
+                            class="form-control editor" rows="5" name="eligible_to_participate" id="myeditorinstance"></textarea>
                     </div>
 
 
@@ -164,9 +164,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     $(document).ready(function() {
+        tinymce.init({
+            selector: 'textarea.editor',
+            skin: 'bootstrap',
+            plugins: 'lists, link, image, media',
+            toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
+            menubar: false,
+        });
+        $('#myForm').submit(function (e) {
+            if($(this).is('[required]')){
+                options.oninit = function(editor){
+                    $this.closest('form').bind('submit, invalid', function(){
+                        editor.save();
+                    });
+                }
+            }
+        });
         // Sector dropdown change event
         $('#sector_id').change(function () {
             var selectedSector = $(this).val();

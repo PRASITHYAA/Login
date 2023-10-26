@@ -25,7 +25,7 @@
                     <i style="font-size: 50px;" class="fa-solid fa-floppy-disk pb-4 "></i>
 
                     <h2 class="head-gold">Workshop Description</h2>
-                    <p>{{ $courseTitle->course_description }}</p>
+                    <p>{!! $courseTitle->course_description !!}</p>
                     <i style="font-size: 90px; display: flex;justify-content: end; color: white;" class="fa-solid fa-floppy-disk  "></i>
                 </div>
                 <!-- 2 box -->
@@ -33,14 +33,14 @@
                     <i style="font-size: 50px;" class="fa-solid fa-user-group pb-4 "></i>
 
                     <h2 class="head-gold">Who Should Attend</h2>
-                    <p>{{ $courseTitle->course_description }}</p>
+                    <p>{!! $courseTitle->course_description !!}</p>
                     <i style="font-size: 90px; display: flex;justify-content: end;;color: white;;" class="fa-solid fa-user-group  "></i>
                 </div>
                 <!-- box-3 -->
                 <div style=" width: 100%; padding-left: 50px; " class="border 4px solid mt-4 pt-4 hai ">
                     <i style="font-size: 50px;" class="fa-regular fa-circle-check  pb-4 "></i>
                     <h2 class="head-gold">Prerequisites</h2>
-                    <p>{{ $courseTitle->eligible_to_participate }}</p>
+                    <p>{!! $courseTitle->eligible_to_participate !!}</p>
                     <i style="font-size: 90px; display: flex;justify-content: end;color: white;" class="fa-regular fa-circle-check  "></i>
 
                 </div>

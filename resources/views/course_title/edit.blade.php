@@ -118,20 +118,20 @@
                     <div class="mb-3">
                         <label class="form-label">Course Description <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control" name="course_description" id="myeditorinstance" required>{{ $courseTitle->course_description }}</textarea>
+                            class="form-control editor" name="course_description" id="myeditorinstance" required>{{ $courseTitle->course_description }}</textarea>
                     </div>
 
 
                     <div class="mb-3">
                         <label class="form-label">Training Schedule <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control" rows="5" name="course_training_schedule" id="myeditorinstance" required>{{ $courseTitle->course_training_schedule }}</textarea>
+                            class="form-control editor" rows="5" name="course_training_schedule" id="myeditorinstance" required>{{ $courseTitle->course_training_schedule }}</textarea>
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Eligible To Participate <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control" rows="5" name="eligible_to_participate" id="myeditorinstance" required>{{ $courseTitle->eligible_to_participate }}</textarea>
+                            class="form-control editor" rows="5" name="eligible_to_participate" id="myeditorinstance" required>{{ $courseTitle->eligible_to_participate }}</textarea>
                     </div>
 
 
@@ -173,7 +173,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
+    <script>
+        tinymce.init({
+            selector: 'textarea.editor',
+            skin: 'bootstrap',
+            plugins: 'lists, link, image, media',
+            toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
+            menubar: false,
+        });
+    </script>
 <script>
     $(document).ready(function() {
         // Sector dropdown change event
