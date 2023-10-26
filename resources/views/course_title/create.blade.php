@@ -164,8 +164,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-<script>
+    <script src="https://cdn.tiny.cloud/1/xupxa3g67qxzkl4gwmmb0sg2fgv5xvdluxdkfsdfcrj65fin/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
     $(document).ready(function() {
         tinymce.init({
             selector: 'textarea.editor',
