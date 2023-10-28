@@ -25,7 +25,7 @@ class FrontController extends Controller
         if (auth()->user()->hasRole('User')) {
             $trainings = $trainings->where('user_id', auth()->user()->id);
         }
-        $trainings = $trainings->get();
+        $trainings = $trainings->orderBy('id', 'desc')->get();
         return view('user_trainings_list', compact('trainings'));
     }
 }

@@ -13,8 +13,11 @@
         </div>
         <!-- forms -->
         <div class="container">
-            <form action="{{ route('trainings.apply.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ isset($training) ? route('trainings.update', $training->id) : route('trainings.apply.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @if (isset($training))
+                    @method('PUT')
+                @endif
                 <div class="row mt-4 mb-2">
                     <!-- first set -->
                     <!-- emty space -->
@@ -27,10 +30,11 @@
                             <option value="">Please Select</option>
                             @php
                                 $sectors = Sector::all();
+                                $sectorText = Sector::find(request()->sector_id ?? (isset($training) ? $training->sector_id : ''));
                             @endphp
                             @foreach ($sectors as $sector)
                                 <option value="{{ $sector->id }}"
-                                    {{ old('sector') == $sector->id || request()->sector_id == $sector->id ? 'selected' : '' }}>
+                                    {{ old('sector') == $sector->id || request()->sector_id == $sector->id || (isset($training) ? $training->sector_id == $sector->id : '') ? 'selected' : '' }}>
                                     {{ $sector->name }}</option>
                             @endforeach
                         </select>
@@ -42,12 +46,12 @@
                                 required>
                             <option value="">Please Select</option>
                             @php
-                                $courseLevels = CourseLevel::where('sector_id', request()->sector_id)->get();
-                                $courseLevelText = CourseLevel::find(request()->course_level_id);
+                                $courseLevels = CourseLevel::where('sector_id', request()->sector_id ?? (isset($training) ? $training->sector_id : ''))->get();
+                                $courseLevelText = CourseLevel::find(request()->course_level_id ?? (isset($training) ? $training->course_level_id : ''));
                             @endphp
                             @foreach ($courseLevels as $courseLevel)
                                 <option value="{{ $courseLevel->id }}"
-                                    {{ old('sector') == $courseLevel->id || request()->course_level_id == $courseLevel->id ? 'selected' : '' }}>
+                                    {{ old('sector') == $courseLevel->id || request()->course_level_id == $courseLevel->id || (isset($training) ? $training->course_level_id == $courseLevel->id : '') ? 'selected' : '' }}>
                                     {{ $courseLevel->name }}</option>
                             @endforeach
                         </select>
@@ -60,12 +64,12 @@
                                 required>
                             <option value="">Please Select</option>
                             @php
-                                $courseTitles = CourseTitle::where('course_level_id', request()->course_level_id)->get();
-                                $courseTitleText = CourseTitle::find(request()->course_title_id);
+                                $courseTitles = CourseTitle::where('course_level_id', request()->course_level_id ?? (isset($training) ? $training->course_level_id : ''))->get();
+                                $courseTitleText = CourseTitle::find(request()->course_title_id ?? (isset($training) ? $training->course_title_id : ''));
                             @endphp
                             @foreach ($courseTitles as $courseTitle)
                                 <option value="{{ $courseTitle->id }}"
-                                    {{ old('course_title_id') == $courseTitle->id || request()->course_title_id == $courseTitle->id ? 'selected' : '' }}>
+                                    {{ old('course_title_id') == $courseTitle->id || request()->course_title_id == $courseTitle->id  || (isset($training) ? $training->course_title_id == $courseTitle->id : '') ? 'selected' : '' }}>
                                     {{ $courseTitle->name }}</option>
                             @endforeach
                         </select>
@@ -81,23 +85,25 @@
                     <!-- First name -->
                     <div class="col-md-2 mt-2 ">
                         <label class="form-label">First name <span class="span-star">*</span></label>
-                        <input type="text" class="form-control alphabetic-input" id="first_name" value=""
+                        <input type="text" class="form-control alphabetic-input" id="first_name" value="{{ old('first_name') ?? ($training->first_name ?? '') }}"
                                name="first_name" required>
                     </div>
                     <!-- Last name -->
                     <div class="col-md-2 mt-2">
                         <label class="form-label">Last name <span class="span-star">*</span></label>
-                        <input type="text" class="form-control alphabetic-input " id="last_name" value=""
+                        <input type="text" class="form-control alphabetic-input " id="last_name" value="{{ old('last_name') ?? ($training->last_name ?? '') }}"
                                name="last_name" required>
                     </div>
                     <!-- Passport Size Photo Upload -->
                     <div class="col-md-2 mt-2">
                         <label class="form-label">Passport Size Photo
                             <span class="span-star">*</span></label>
-                        <input type="file" class="form-control" id="validationDefaultUpload" value=""
-                               name="photo" required>
-                        <!-- <div class="valid-feedback">
-                                                    </div> -->
+                        <input type="file" class="form-control" id="validationDefaultUpload"
+                               name="photo" {{ isset($training) ? '' : 'required' }}>
+                        @if (isset($training))
+                            <img src="{{ asset('storage/' . $training->photo) }}" alt="Photo"
+                                 style="height: 150px;">
+                        @endif
                         <div class="pt-2" style="width: 150px;" id="imageContainer">
                             <!-- Placeholder for displaying uploaded image -->
                         </div>
@@ -124,12 +130,12 @@
                         <select class="form-select select-back-colour" id="validationCustom04" name="qualification"
                                 required>
                             <option value="">Please Select</option>
-                            <option value="high_school">High School</option>
-                            <option value="higher_secondary">Higher Secondary</option>
-                            <option value="diploma">Diploma</option>
-                            <option value="bachelors">Bachelors</option>
-                            <option value="master">Master</option>
-                            <option value="doctorate">Doctorate</option>
+                            <option value="high_school" {{ isset($training) && 'high_school' == $training->qualification ? 'selected' : '' }}>High School</option>
+                            <option value="higher_secondary" {{ isset($training) && 'higher_secondary' == $training->qualification ? 'selected' : '' }}>Higher Secondary</option>
+                            <option value="diploma" {{ isset($training) && 'diploma' == $training->qualification ? 'selected' : '' }}>Diploma</option>
+                            <option value="bachelors" {{ isset($training) && 'bachelors' == $training->qualification ? 'selected' : '' }}>Bachelors</option>
+                            <option value="master" {{ isset($training) && 'master' == $training->qualification ? 'selected' : '' }}>Master</option>
+                            <option value="doctorate" {{ isset($training) && 'doctorate' == $training->qualification ? 'selected' : '' }}>Doctorate</option>
                         </select>
                     </div>
                     <!-- emty space -->
@@ -152,10 +158,16 @@
                         <p style="font-weight: bold;">Do You Have Any Prior Experience? <span class="span-star">*</span>
                         </p>
                         <label>
-                            <input type="radio" name="experience_status" value="yes" id="yesRadio1" required> Yes
+                            <input type="radio" name="experience_status" value="yes" id="yesRadio1" {{ old('experience_status') == 'yes' ||
+                                (isset($training) && $training->experience_status == 'yes')
+                                    ? 'checked'
+                                    : '' }} required> Yes
                         </label>
                         <label>
-                            <input type="radio" name="experience_status" value="no" id="noRadio1" required> No
+                            <input type="radio" name="experience_status" value="no" id="noRadio1" {{ old('experience_status') == 'no' ||
+                                (isset($training) && $training->experience_status == 'no')
+                                    ? 'checked'
+                                    : '' }} required> No
                         </label>
 
                         <div id="formContainer1" class="hidden">
@@ -164,21 +176,30 @@
                                 <label for="exampleFormControlInput1" class="form-label">Job Title <span
                                         class="span-star">*</span></label>
                                 <input type="text" class="form-control select-back-colour" name="job_title"
-                                       id="exampleFormControlInput1" placeholder="Job Title">
+                                       value="{{ old('job_title') ?? ($training->job_title ?? '') }}" id="exampleFormControlInput1" placeholder="Job Title">
                             </div>
                             <!-- gender -->
                             <label>
-                                <input type="radio" name="gender" value="male">
+                                <input type="radio" name="gender" value="male" {{ old('gender') == 'male' ||
+                                (isset($training) && $training->gender == 'male')
+                                    ? 'checked'
+                                    : '' }} required>
                                 Male
                             </label><br>
 
                             <label>
-                                <input type="radio" name="gender" value="female">
+                                <input type="radio" name="gender" value="female" {{ old('gender') == 'female' ||
+                                (isset($training) && $training->gender == 'female')
+                                    ? 'checked'
+                                    : '' }} required>
                                 Female
                             </label><br>
 
                             <label>
-                                <input type="radio" name="gender" value="other">
+                                <input type="radio" name="gender" value="other" {{ old('gender') == 'other' ||
+                                (isset($training) && $training->gender == 'other')
+                                    ? 'checked'
+                                    : '' }} required>
                                 Other
                             </label><br>
 
@@ -186,7 +207,7 @@
                                 <label for="exampleFormControlInput1" class="form-label">Year of Experience <span
                                         class="span-star">*</span></label>
                                 <input type="number" class="form-control select-back-colour"
-                                       id="exampleFormControlInput1" placeholder="" name="year_of_experience">
+                                       value="{{ old('year_of_experience') ?? ($training->year_of_experience ?? '') }}" id="exampleFormControlInput1" placeholder="" name="year_of_experience">
                             </div>
                         </div>
                     </div>
@@ -197,47 +218,53 @@
                     <div class="col-lg-3">
                         <!-- Address Line 1 -->
                         <label class="form-label">Address Line 1<span class="span-star">*</span></label>
-                        <input type="text" class="form-control" id="validationCustom02" value=""
+                        <input type="text" class="form-control" id="validationCustom02" value="{{ old('address_line_1') ?? ($training->address_line_1 ?? '') }}"
                                name="address_line_1" required>
                         <!-- Country -->
                         <label for="validationCustom04" class="form-label">Country<span class="span-star">*</span>
                         </label>
                         <select class="form-select select-back-colour" id="validationCustom04" name="country" required>
                             <option value="">Please Select</option>
-                            <option value="india">India</option>
+                            <option value="india" {{ isset($training) ? 'selected' : '' }}>India</option>
                         </select>
                         <!-- City -->
                         <label class="form-label">City<span class="span-star">*</span></label>
                         <input type="text" class="form-control select-back-colour" id="validationCustom02"
-                               value="" name="city" required>
+                               value="{{ old('city') ?? ($training->city ?? '') }}" name="city" required>
 
                     </div>
                     <!-- Present Address right forms-->
                     <div class="col-lg-3">
                         <label class="form-label">Address Line 2<span class="span-star">*</span></label>
-                        <input type="text" class="form-control" id="validationCustom02" value=""
+                        <input type="text" class="form-control" id="validationCustom02" value="{{ old('address_line_2') ?? ($training->address_line_2 ?? '') }}"
                                name="address_line_2" required>
                         <!-- State -->
                         <label class="form-label">State<span class="span-star">*</span></label>
                         <input type="text" class="form-control select-back-colour" id="validationCustom02"
-                               value="" name="state" required>
+                               value="{{ old('state') ?? ($training->state ?? '') }}" name="state" required>
                         <!-- Zip Code -->
                         <label class="form-label">Zip Code<span class="span-star">*</span></label>
                         <input type="text" class="form-control select-back-colour" id="validationCustom02"
-                               value="" name="zip_code" placeholder="Zip" required>
+                               value="{{ old('zip_code') ?? ($training->zip_code ?? '') }}" name="zip_code" placeholder="Zip" required>
                     </div>
                     <div class="col-lg-3"></div>
                     <!-- second set -->
                     <div class="col-lg-3"></div>
                     <div class="col-lg-6 p-2">
                         <div class="col-lg-12 p-2">
-                            <p style="font-weight: bold;">Does your Permanent Address is Different? <span
+                            <p style="font-weight: bold;">Does your Permanent Address is Different?<span
                                     class="span-star">*</span></p>
                             <label>
-                                <input type="radio" name="address_status" value="yes" id="yesRadio2" required> Yes
+                                <input type="radio" name="address_status" value="yes" id="yesRadio2" {{ old('address_status') == 'yes' ||
+                                (isset($training) && $training->address_status == 'yes')
+                                    ? 'checked'
+                                    : '' }} required> Yes
                             </label>
                             <label>
-                                <input type="radio" name="address_status" value="no" id="noRadio2" required> No
+                                <input type="radio" name="address_status" value="no" id="noRadio2" {{ old('address_status') == 'no' ||
+                                (isset($training) && $training->address_status == 'no')
+                                    ? 'checked'
+                                    : '' }} required> No
                             </label>
                             <div id="formContainer2" class="hidden">
                                 <!-- emty space -->
@@ -250,7 +277,7 @@
                                         <!-- Address Line 1 -->
                                         <label class="form-label">Address Line 1<span class="span-star">*</span></label>
                                         <input type="text" class="form-control" id="validationCustom02"
-                                               value="" name="permanent_address_line_1">
+                                               value="{{ old('permanent_address_line_1') ?? ($training->permanent_address_line_1 ?? '') }}" name="permanent_address_line_1">
                                         <!-- Country -->
                                         <label for="validationCustom04" class="form-label">Country<span
                                                 class="span-star">*</span>
@@ -258,27 +285,27 @@
                                         <select class="form-select select-back-colour" id="validationCustom04"
                                                 name="permanent_country">
                                             <option value="">Please Select</option>
-                                            <option value="india">India</option>
+                                            <option value="india"{{ isset($training) ? 'selected' : '' }}>India</option>
                                         </select>
                                         <!-- City -->
                                         <label class="form-label">City<span class="span-star">*</span></label>
                                         <input type="text" class="form-control select-back-colour"
-                                               id="validationCustom02" value="" name="permanent_city">
+                                               id="validationCustom02" value="{{ old('permanent_city') ?? ($training->permanent_city ?? '') }}" name="permanent_city">
 
                                     </div>
                                     <!-- Present Address right forms-->
                                     <div class="col-lg-6">
                                         <label class="form-label">Address Line 2<span class="span-star">*</span></label>
                                         <input type="text" class="form-control" id="validationCustom02"
-                                               value="" name="permanent_address_line_2">
+                                               value="{{ old('permanent_address_line_2') ?? ($training->permanent_address_line_2 ?? '') }}" name="permanent_address_line_2">
                                         <!-- State -->
                                         <label class="form-label">State<span class="span-star">*</span></label>
                                         <input type="text" class="form-control select-back-colour"
-                                               id="validationCustom02" value="" name="permanent_state">
+                                               id="validationCustom02" value="{{ old('permanent_state') ?? ($training->permanent_state ?? '') }}" name="permanent_state">
                                         <!-- Zip Code -->
                                         <label class="form-label">Zip Code<span class="span-star">*</span></label>
                                         <input type="text" class="form-control select-back-colour"
-                                               id="validationCustom02" value="" name="permanent_zip_code"
+                                               id="validationCustom02" value="{{ old('permanent_zip_code') ?? ($training->permanent_zip_code ?? '') }}" name="permanent_zip_code"
                                                placeholder="Zip">
                                     </div>
 
@@ -297,24 +324,24 @@
                     <!-- Primary Mobile Number  -->
                     <div class="col-lg-3 ">
                         <label class="form-label">Primary Mobile Number<span class="span-star">*</span></label><br>
-                        <input type="tel" class="phoneInputField" name="primary_mobile_number" required>
+                        <input type="tel" class="phoneInputField" name="primary_mobile_number" value="{{ old('primary_mobile_number') ?? ($training->primary_mobile_number ?? '') }}" required>
                         <p class="errorText" style="color: red;"></p>
                         <!-- Primary Email -->
                         <label class="form-label">Primary Email
                             <span class="span-star">*</span></label>
                         <input type="email" class="form-control select-back-colour" id="validationCustom02"
-                               value="" placeholder="email address" name="primary_email" required>
+                               value="{{ old('primary_email') ?? ($training->primary_email ?? '') }}" placeholder="email address" name="primary_email" required>
                     </div>
                     <!-- Secondary Mobile Number  -->
                     <div class="col-lg-3 ">
                         <label class="form-label">Secondary Mobile Number<span class="span-star">*</span></label>
-                        <input type="tel" class="phoneInputField" name="secondary_mobile_number" required>
+                        <input type="tel" class="phoneInputField" name="secondary_mobile_number" value="{{ old('secondary_mobile_number') ?? ($training->secondary_mobile_number ?? '') }}" required>
                         <p class="errorText" style="color: red;"></p>
 
                         <!-- Secondary Email -->
                         <label class="form-label">Secondary Email </label>
                         <input type="email" class="form-control select-back-colour" id="validationCustom02"
-                               value="" placeholder="email address" name="secondary_email" required>
+                               value="{{ old('secondary_email') ?? ($training->secondary_email ?? '') }}" placeholder="email address" name="secondary_email" required>
                     </div>
                     <!-- emty space -->
                     <div class="col-lg-3"></div>
@@ -328,15 +355,15 @@
                         </label>
                         <textarea class="form-control select-back-colour" name="job_description"
                                   id="exampleFormControlTextarea1"
-                                  rows="3" required></textarea>
+                                  rows="3" required>{{ old('job_description') ?? ($training->job_description ?? '') }}</textarea>
 
-                        <label for="exampleFormControlTextarea1" class="form-label  ">What you are expecting
+                        <label for="exampleFormControlTextarea1" class="form-label">What you are expecting
                             from this training session? (Restrict to 300 words)
                             <span class="span-star">*</span>
                         </label>
                         <textarea class="form-control select-back-colour mt-4" name="training_session"
                                   id="exampleFormControlTextarea1"
-                                  rows="3" required></textarea>
+                                  rows="3" required>{{ old('training_session') ?? ($training->training_session ?? '') }}</textarea>
                         <h4 class="mt-4">Please Confirm That The Below Course You Selected:</h4>
                     </div>
                     <!-- emty space -->
@@ -346,7 +373,7 @@
                     <!-- Sector -->
                     <div class="col-lg-2">
                         <label class="form-label">Sector </label>
-                        <input class="form-control" type="text" value="{{ $sector->name }}" readonly id="sector_id"
+                        <input class="form-control" type="text" value="{{ $sectorText ? $sectorText->name : '' }}" readonly id="sector_id"
                                name="sector_id" disabled>
                     </div>
                     <!-- Course Level -->
@@ -380,12 +407,12 @@
                         <br>
                         <!-- checkbox -->
                         <div class="form-check mt-4">
-                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" required>
+                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" {{ isset($training) ? 'checked' : '' }} required>
                             <label class="form-check-label" for="flexCheckDefault">
                                 I have read and agree to the Terms and Conditions and Privacy Policy
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-4 mb-4">Submit Form</button>
+                        <button type="submit" class="btn btn-primary mt-4 mb-4">{{ isset($training) ? 'Update Form' : 'Submit Form' }}</button>
                     </div>
                     <br>
                     <div class="col-lg-3"></div>

@@ -68,7 +68,7 @@
         }
 
         .careers-back-img {
-            background-image: url('../img/back.jpeg');
+            background-image: url("{{ asset('img/back.jpeg') }}");
             height: 400px;
             background-repeat: no-repeat;
             background-size: cover;

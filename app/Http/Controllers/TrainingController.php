@@ -15,7 +15,7 @@ class TrainingController extends Controller
 {
     public function index()
     {
-        $trainings = Training::all();
+        $trainings = Training::orderBy('id', 'desc')->get();
         return view('training.index', compact('trainings'));
     }
 
@@ -80,6 +80,36 @@ class TrainingController extends Controller
         return redirect()->route('dashboard');
     }
 
+    public function edit($id)
+    {
+        $training = Training::find($id);
+        return view('trainings_apply',  compact('training'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $data = $request->all();
+        $training = Training::find($id);
+        // Upload image
+        if ($request->hasFile('photo')) {
+            $passportPhotoPath = $request->file('photo')->store('training', 'public');
+            $data['photo'] = $passportPhotoPath;
+        } else {
+            $data['photo'] = $training->photo;
+        }
+        $data['user_id'] = auth()->user()->id;
+        $training->fill($data);
+        $training->save();
+        $emailData['first_name'] = $training->first_name;
+        $emailData['last_name'] = $training->last_name;
+        $emailData['sector'] = $training->sector->name;
+        $emailData['course_level'] = $training->course_level->name;
+        $emailData['course_title'] = $training->course_title->name;
+        $this->savePdf($training);
+        Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
+        session()->flash('success', 'Training form updated successfully.');
+        return redirect()->route('dashboard');
+    }
 
     public function destroy($id)
     {
@@ -89,7 +119,7 @@ class TrainingController extends Controller
         return redirect()->route($route);
     }
 
-        public function show(Training $training)
+    public function show(Training $training)
     {
         return view('training.view', compact('training'));
     }

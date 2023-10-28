@@ -37,9 +37,9 @@
                 <!-- Passport Size Photo Upload -->
                 <div class="col-md-4">
                     <label class="form-label">Passport Size Photo </label><br>
-                    @if ($training->passport_size_photo_upload)
-                        <img src="{{ asset('storage/' . $training->passport_size_photo_upload) }}" alt="Training Image"
-                            style="max-width: 100%;">
+                    @if ($training->photo)
+                        <img src="{{ asset('storage/' . $training->photo) }}" alt="Training Image"
+                            style="max-width: 150px;">
                     @endif
                 </div>
             </div>
@@ -48,13 +48,13 @@
                 <div class="col-lg-6">
                     <label class="form-label">Select Your Qualification</label>
                     <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control "
-                        value="{{ $training->select_your_qualification }}" readonly>
+                        value="{{ str_replace('_', ' ', ucwords($training->qualification)) }}" readonly>
                 </div>
                 <h2 class="mt-3">Organization Details (if applicable) </h2>
                 <div class="col-md-4">
-                    <label class="form-label">Do You Have Any Piror Experience?</label>
+                    <label class="form-label">Do You Have Any Prior Experience?</label>
                     <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control "
-                        value="{{ $training->choice1 }}" readonly>
+                        value="{{ $training->experience_status }}" readonly>
                 </div>
             </div>
             <div class="row">
@@ -115,7 +115,7 @@
                 <div class="col-md-4 mt-5">
                     <label class="form-label">Does your Permanent Address is Different?</label>
                     <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control "
-                        value="{{ $training->choice2 }}" readonly>
+                        value="{{ $training->address_status }}" readonly>
                 </div>
             </div>
             <div class="row">
