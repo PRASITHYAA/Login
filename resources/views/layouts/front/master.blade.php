@@ -68,7 +68,7 @@
         }
 
         .careers-back-img {
-            background-image: url(./img/live\ back.jpeg);
+            background-image: url('../img/back.jpeg');
             height: 400px;
             background-repeat: no-repeat;
             background-size: cover;
@@ -158,7 +158,7 @@
 
                             <i class="fas fa-bars"></i>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="collapse navbar-collapse pb-2" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
                                 <li class="nav-item">
                                     <a class="nav-link  mx-2 " href="#">Home</a>

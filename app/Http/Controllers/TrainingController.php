@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TrainingSubmission;
 use App\Models\CourseTitle;
 use App\Models\Training;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class TrainingController extends Controller
 {
@@ -60,14 +64,19 @@ class TrainingController extends Controller
 
         // Upload image
         if ($request->hasFile('photo')) {
-            $passportPhotoPath = $request->file('photo')->store('photos', 'public');
-            $request->merge(['photo' => $passportPhotoPath]);
+            $passportPhotoPath = $request->file('photo')->store('training', 'public');
+            $training['photo'] = $passportPhotoPath;
         }
         $training['user_id'] = auth()->user()->id;
-        Training::create($training);
-
+        $training = Training::create($training);
+        $emailData['first_name'] = $training->first_name;
+        $emailData['last_name'] = $training->last_name;
+        $emailData['sector'] = $training->sector->name;
+        $emailData['course_level'] = $training->course_level->name;
+        $emailData['course_title'] = $training->course_title->name;
+        $this->savePdf($training);
+        Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form submitted successfully.');
-
         return redirect()->route('dashboard');
     }
 
@@ -89,5 +98,29 @@ class TrainingController extends Controller
     {
         $courseTitle = CourseTitle::find($id);
         return view('trainings_view', compact('courseTitle'));
+    }
+
+    public function preparePdf($id)
+    {
+        $training = Training::find($id);
+        $data = $training->toArray();
+        //$data = array_merge(['employmentReference' => $employmentReference], $data);
+        $pdf = Pdf::loadView('pdf.training_application', $data);
+        // Add a custom page footer with the date and time
+        $pdf->setOption(['isPhpEnabled', true, 'isHtml5ParserEnabled' => true]);
+        return ['pdf' => $pdf, 'training' => $training];
+    }
+
+    public function downloadPdf($id)
+    {
+        $pdfData = $this->preparePdf($id);
+        $dateTime = Carbon::now()->format('d-m-Y_h:i_A');
+        return $pdfData['pdf']->download($dateTime.'_job_application_' . $pdfData['training']->first_name . '.pdf');
+    }
+
+    public function savePdf($training)
+    {
+        $pdfData = $this->preparePdf($training->id);
+        $pdfData['pdf']->save('training_application_' . $training->first_name . '.pdf', 'public');
     }
 }
