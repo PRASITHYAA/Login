@@ -13,7 +13,7 @@
         </div>
         <!-- forms -->
         <div class="container">
-            <form action="{{ isset($training) ? route('trainings.update', $training->id) : route('trainings.apply.store') }}" method="POST" enctype="multipart/form-data">
+            <form id="myForm" action="{{ isset($training) ? route('trainings.update', $training->id) : route('trainings.apply.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @if (isset($training))
                     @method('PUT')
@@ -170,7 +170,7 @@
                                     : '' }} required> No
                         </label>
 
-                        <div id="formContainer1" class="hidden">
+                        <div id="formContainer1" class="{{ (isset($training) && $training->address_status == 'yes') ? '' : 'hidden' }}">
 
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Job Title <span
@@ -223,15 +223,28 @@
                         <!-- Country -->
                         <label for="validationCustom04" class="form-label">Country<span class="span-star">*</span>
                         </label>
-                        <select class="form-select select-back-colour" id="validationCustom04" name="country" required>
-                            <option value="">Please Select</option>
-                            <option value="india" {{ isset($training) ? 'selected' : '' }}>India</option>
+                        <select class="form-select" name="country" id="country" data-id="state" required>
+                            <option value="">--Select Country--</option>
+                            @foreach (\App\Models\Country::all() as $country)
+                                <option value="{{ $country->id }}"
+                                    {{ isset($training) && $country->id == $training->country ? 'selected' : '' }}>
+                                    {{ $country->name }}
+                                </option>
+                            @endforeach
                         </select>
                         <!-- City -->
                         <label class="form-label">City<span class="span-star">*</span></label>
-                        <input type="text" class="form-control select-back-colour" id="validationCustom02"
-                               value="{{ old('city') ?? ($training->city ?? '') }}" name="city" required>
-
+                        <select class="form-select" name="city" id="city" required>
+                            <option value="">--Select City--</option>
+                            @if(isset($training->city))
+                                @foreach (\App\Models\City::where('state_id', $training->state)->get() as $city)
+                                    <option value="{{ $city->id }}"
+                                        {{ isset($training) && $city->id == $training->city ? 'selected' : '' }}>
+                                        {{ $city->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
                     </div>
                     <!-- Present Address right forms-->
                     <div class="col-lg-3">
@@ -240,8 +253,17 @@
                                name="address_line_2" required>
                         <!-- State -->
                         <label class="form-label">State<span class="span-star">*</span></label>
-                        <input type="text" class="form-control select-back-colour" id="validationCustom02"
-                               value="{{ old('state') ?? ($training->state ?? '') }}" name="state" required>
+                        <select class="form-select" name="state" id="state" data-id="city" required>
+                            <option value="">--Select State--</option>
+                            @if(isset($training->state))
+                                @foreach (\App\Models\State::where('country_id', $training->country)->get() as $state)
+                                    <option value="{{ $state->id }}"
+                                        {{ isset($training) && $state->id == $training->state ? 'selected' : '' }}>
+                                        {{ $state->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
                         <!-- Zip Code -->
                         <label class="form-label">Zip Code<span class="span-star">*</span></label>
                         <input type="text" class="form-control select-back-colour" id="validationCustom02"
@@ -266,7 +288,7 @@
                                     ? 'checked'
                                     : '' }} required> No
                             </label>
-                            <div id="formContainer2" class="hidden">
+                            <div id="formContainer2" class="{{ (isset($training) && $training->address_status == 'yes') ? '' : 'hidden' }}">
                                 <!-- emty space -->
                                 <div class="col-lg-2"></div>
                                 <!-- Present Address left forms-->
@@ -277,36 +299,57 @@
                                         <!-- Address Line 1 -->
                                         <label class="form-label">Address Line 1<span class="span-star">*</span></label>
                                         <input type="text" class="form-control" id="validationCustom02"
-                                               value="{{ old('permanent_address_line_1') ?? ($training->permanent_address_line_1 ?? '') }}" name="permanent_address_line_1">
+                                               value="{{ old('permanent_address_line_1') ?? ($training->permanent_address_line_1 ?? '') }}" name="permanent_address_line_1" {{ isset($training->permanent_address_line_1) ? 'required' : '' }}>
                                         <!-- Country -->
                                         <label for="validationCustom04" class="form-label">Country<span
                                                 class="span-star">*</span>
                                         </label>
-                                        <select class="form-select select-back-colour" id="validationCustom04"
-                                                name="permanent_country">
-                                            <option value="">Please Select</option>
-                                            <option value="india"{{ isset($training) ? 'selected' : '' }}>India</option>
+                                        <select class="form-select" name="permanent_country" id="permanent_country" data-id="permanent_state" {{ isset($training->permanent_state) ? 'required' : '' }}>
+                                            <option value="">--Select Country--</option>
+                                            @foreach (\App\Models\Country::all() as $country)
+                                                <option value="{{ $country->id }}"
+                                                    {{ isset($training) && $country->id == $training->permanent_country ? 'selected' : '' }}>
+                                                    {{ $country->name }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                         <!-- City -->
                                         <label class="form-label">City<span class="span-star">*</span></label>
-                                        <input type="text" class="form-control select-back-colour"
-                                               id="validationCustom02" value="{{ old('permanent_city') ?? ($training->permanent_city ?? '') }}" name="permanent_city">
-
+                                        <select class="form-select permanent-address-input" name="permanent_city" id="permanent_city" {{ isset($training->permanent_city) ? 'required' : '' }}>
+                                            <option value="">--Select City--</option>
+                                            @if(isset($training->permanent_city))
+                                                @foreach (\App\Models\City::where('state_id', $training->permanent_state)->get() as $pcity)
+                                                    <option value="{{ $pcity->id }}"
+                                                        {{ isset($training) && $pcity->id == $training->permanent_city ? 'selected' : '' }}>
+                                                        {{ $pcity->name }}
+                                                    </option>
+                                                @endforeach
+                                            @endif
+                                        </select>
                                     </div>
                                     <!-- Present Address right forms-->
                                     <div class="col-lg-6">
                                         <label class="form-label">Address Line 2<span class="span-star">*</span></label>
                                         <input type="text" class="form-control" id="validationCustom02"
-                                               value="{{ old('permanent_address_line_2') ?? ($training->permanent_address_line_2 ?? '') }}" name="permanent_address_line_2">
+                                               value="{{ old('permanent_address_line_2') ?? ($training->permanent_address_line_2 ?? '') }}" name="permanent_address_line_2" {{ isset($training->permanent_address_line_2) ? 'required' : '' }}>
                                         <!-- State -->
                                         <label class="form-label">State<span class="span-star">*</span></label>
-                                        <input type="text" class="form-control select-back-colour"
-                                               id="validationCustom02" value="{{ old('permanent_state') ?? ($training->permanent_state ?? '') }}" name="permanent_state">
+                                        <select class="form-select permanent-address-input" name="permanent_state" id="permanent_state" data-id="permanent_city" {{ isset($training->permanent_city) ? 'required' : '' }}>
+                                            <option value="">--Select State--</option>
+                                            @if(isset($training->permanent_state))
+                                                @foreach (\App\Models\State::where('country_id', $training->permanent_country)->get() as $pstate)
+                                                    <option value="{{ $pstate->id }}"
+                                                        {{ isset($training) && $pstate->id == $training->permanent_state ? 'selected' : '' }}>
+                                                        {{ $pstate->name }}
+                                                    </option>
+                                                @endforeach
+                                            @endif
+                                        </select>
                                         <!-- Zip Code -->
                                         <label class="form-label">Zip Code<span class="span-star">*</span></label>
                                         <input type="text" class="form-control select-back-colour"
                                                id="validationCustom02" value="{{ old('permanent_zip_code') ?? ($training->permanent_zip_code ?? '') }}" name="permanent_zip_code"
-                                               placeholder="Zip">
+                                               placeholder="Zip" {{ isset($training->permanent_zip_code) ? 'required' : '' }}>
                                     </div>
 
                                 </div>
@@ -423,6 +466,9 @@
     </div>
 @endsection
 @section('script')
+    <!-- Include the intlTelInput library and utilsScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"></script>
     <script>
         function setupRadioListener(yesRadio, noRadio, formContainer) {
             yesRadio.addEventListener("change", () => {
@@ -466,14 +512,17 @@
 
         const phoneInputFields = document.querySelectorAll('.phoneInputField');
         const errorTexts = document.querySelectorAll('.errorText');
+        var itis = [];
 
         phoneInputFields.forEach((phoneInputField, index) => {
             const phoneInput = window.intlTelInput(phoneInputField, {
                 initialCountry: "in", // Set the initial country code to India (+91)
-                geoIpLookup: getIp,
+                //geoIpLookup: getIp,
                 utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+                separateDialCode: true,
+                autoInsertDialCode: true
             });
-
+            itis.push(phoneInput);
             // Add an event listener to validate the phone number on input
             phoneInputField.addEventListener('input', function () {
                 const selectedCountryData = phoneInput.getSelectedCountryData();
@@ -528,6 +577,67 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
+            $('#myForm').submit(function (e) {
+                const inputs = document.querySelectorAll('.phoneInputField');
+                inputs.forEach(function (input, index) {
+                    var phoneNumber = itis[index].getNumber();
+                    input.value = phoneNumber;
+                });
+            });
+            //State dropdown
+            $('#country, #permanent_country').change(function() {
+                var selectedSector = $(this).val();
+                var id = $(this).data('id');
+                // Make an AJAX request to the Laravel API to fetch positions based on the selected sector
+                $.ajax({
+                    url: "{{ route('states.ajax') }}", // Replace with your Laravel API endpoint
+                    type: 'GET',
+                    data: {
+                        country_id: selectedSector
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        // Clear and populate the position dropdown with the retrieved data
+                        $('#'+id).empty();
+                        $('#'+id).append($('<option>').text('--Select State--').val(''));
+                        $.each(data, function(key, value) {
+                            $('#'+id).append($('<option>').text(value).val(
+                                key));
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        // Handle errors here
+                    }
+                });
+            });
+            // City dropdown change event
+            $('#state, #permanent_state').change(function() {
+                var selectedSector = $(this).val();
+                var id = $(this).data('id');
+                // Make an AJAX request to the Laravel API to fetch positions based on the selected sector
+                $.ajax({
+                    url: "{{ route('cities.ajax') }}", // Replace with your Laravel API endpoint
+                    type: 'GET',
+                    data: {
+                        state_id: selectedSector
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        // Clear and populate the position dropdown with the retrieved data
+                        $('#'+id).empty();
+                        //$('#city').append($('<option>').text('--Select City--').val(''));
+                        $.each(data, function(key, value) {
+                            $('#'+id).append($('<option>').text(value).val(
+                                key));
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        // Handle errors here
+                    }
+                });
+            });
             $('#yesRadio1').click(function () {
                 $('#formContainer1 input,select').attr('required', true);
             });
