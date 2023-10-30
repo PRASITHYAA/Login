@@ -69,6 +69,8 @@ class TrainingController extends Controller
         }
         $training['user_id'] = auth()->user()->id;
         $training = Training::create($training);
+        $training->allow_edit = 0;
+        $training->save();
         $emailData['first_name'] = $training->first_name;
         $emailData['last_name'] = $training->last_name;
         $emailData['sector'] = $training->sector->name;
@@ -99,6 +101,7 @@ class TrainingController extends Controller
         }
         $data['user_id'] = auth()->user()->id;
         $training->fill($data);
+        $training->allow_edit = 0;
         $training->save();
         $emailData['first_name'] = $training->first_name;
         $emailData['last_name'] = $training->last_name;
@@ -152,5 +155,13 @@ class TrainingController extends Controller
     {
         $pdfData = $this->preparePdf($training->id);
         $pdfData['pdf']->save('training_application_' . $training->first_name . '.pdf', 'public');
+    }
+    
+    public function giveAccess($id)
+    {
+        $training = Training::find($id);
+        $training->allow_edit = 1;
+        $training->save();
+        return redirect()->back()->with('success', 'Edit Access given successfully!');
     }
 }
