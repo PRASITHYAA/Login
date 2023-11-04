@@ -78,7 +78,7 @@
                                         class="accordion-collapse collapse"
                                         aria-labelledby="panelsStayOpen-heading-{{ $position->id }}">
                                         <div class="accordion-body">
-                                            {{ $position->description }}
+                                            {!! $position->description !!}
                                         </div>
                                     </div>
 

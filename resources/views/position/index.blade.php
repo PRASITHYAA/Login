@@ -16,8 +16,8 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Sector</th>
                     <th>Position</th>
+                    <th>Sector</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -26,8 +26,8 @@
                         <tr>
                             {{--<td>{{ $counter++ }}</td>--}}
                             <td>{{ $position->id }}</td>
-                            <td>{{ $position->sector->name }}</td>
                             <td>{{ $position->name }}</td>
+                            <td>{{ $position->sector->name }}</td>
                             <td>
                                 <!-- Edit Button -->
                                 <a href="{{ route('position.edit', $position->id) }}" class="btn btn-warning ">Edit</a>

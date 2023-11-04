@@ -37,13 +37,13 @@
                     </div>
                     <!-- Current Salary -->
                     <div class="col-md-4">
-                        <label class="form-label">Current Salary </label>
+                        <label class="form-label">Current Salary Per Annum </label>
                         <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $disclaimer->current_salary }}" readonly>
                     </div>
                     <!-- Expected Salary -->
                     <div class="col-md-4">
-                        <label class="form-label">Expected Salary </label>
+                        <label class="form-label">Expected Salary Per Annum </label>
                         <input class="form-control" style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $disclaimer->expected_salary }}" readonly>
                     </div>

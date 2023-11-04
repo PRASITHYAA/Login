@@ -57,7 +57,7 @@
                     </div>
                      <div class="mb-3">
                         <label  class="form-label">Description <span style="color: red;">*</span></label>
-                            <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control" id="description"
+                            <textarea style="background-color: rgba(248, 235, 235, 0.726);" class="form-control editor" id="description"
                             name="description" rows="3">{{ $position->description }}</textarea>
 
                     </div>
@@ -76,11 +76,22 @@
     </div>
 
     <!--Main layout-->
-
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.tiny.cloud/1/xupxa3g67qxzkl4gwmmb0sg2fgv5xvdluxdkfsdfcrj65fin/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        $(document).ready(function() {
+            tinymce.init({
+                selector: 'textarea.editor',
+                skin: 'bootstrap',
+                plugins: 'lists, link, image, media',
+                toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
+                menubar: false,
+            });
+        });
+    </script>
 </body>
 
 </html>

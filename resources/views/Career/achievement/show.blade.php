@@ -7,7 +7,7 @@
                 aria-valuenow="90" aria-valuemin="0" aria-valuemax="90%">90%</div>
             <input type="hidden" name="job_application_id" id="job_application_id" value="{{ request()->id }}">
 
-            <h2 class="text-center p-4">ACHEIVEMENTS, CO-CURRICULAR, EXTRA-CURRICULAR DETAILS</h2>
+            <h2 class="text-center p-4">ACHIEVEMENTS, CO-CURRICULAR, EXTRA-CURRICULAR DETAILS</h2>
             <p>Please use this section to indicate how far you meet each of the competencies required for the post.
                 Indicate specific experience, achievements, knowledge, personal <br> qualities, and skills, which
                 you feel are relevant, for this particular post that you, applying for. Please limit your writing

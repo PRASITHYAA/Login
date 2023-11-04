@@ -39,9 +39,7 @@
                     Size Limit: 50KB</p>
 
                 <p style="font-weight: bold;">ID Card You Have <span class="red">*</span></p>
-
-                <label>Does Your Permanent Address is Different</label>
-                <br><br>
+                <br>
                 {{--<label>
                     <input type="checkbox" id="aadhar" class="address-type" name="identity_type[]" value="aadhar" {{ (old('identity_type') && in_array('aadhar', old('identity_type'))) || (isset($card) && in_array('aadhar', explode(',', $card->identity_type))) ? 'checked' : ((old('identity_type') == '' && !isset($card)) ? 'checked' : '') }}> AADHAR CARD
                 </label>--}}

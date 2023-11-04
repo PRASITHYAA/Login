@@ -61,7 +61,7 @@
 
                 <div id="nested-input"
                     style="{{ isset($employment) ? ($employment->previous_experience == 'yes' ? '' : 'display: none;') : 'display: none;' }}">
-                    <p style="font-weight: bold;">Note: Please add click (+) symbol to add more no of previous emloyers
+                    <p style="font-weight: bold;">Note: Please add click (+) symbol to add more no of previous employers
                         and enter recent employer detail first</p>
                     @if(isset($employment) && count($employment->employers))
                         @foreach($employment->employers as $ekey => $employer)
