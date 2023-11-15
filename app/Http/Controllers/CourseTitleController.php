@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\CourseTitle;
 use App\Models\CourseLevel;
+use Illuminate\Support\Facades\Session;
 
 
 class CourseTitleController extends Controller
@@ -75,6 +76,15 @@ class CourseTitleController extends Controller
         $courseTitle->fill($validatedData);
         $courseTitle->save();
         session()->flash('success', 'Course Title updated successfully!');
+        return redirect()->route('course_title.index');
+    }
+
+    public function destroy(CourseTitle $courseTitle)  // Update model name
+    {
+        $courseTitle->delete();
+
+        Session::flash('success', 'Course Title deleted successfully!');
+
         return redirect()->route('course_title.index');
     }
 
