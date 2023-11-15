@@ -9,6 +9,11 @@
                     {{ session('success') }}
                 </div>
             @endif
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
             <!-- Create and Refresh buttons -->
             <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
                 <a class="btn btn-primary me-md-2" href="{{ route('course_level.create') }}">Create</a>

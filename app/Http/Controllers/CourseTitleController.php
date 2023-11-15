@@ -81,10 +81,12 @@ class CourseTitleController extends Controller
 
     public function destroy(CourseTitle $courseTitle)  // Update model name
     {
+        try {
         $courseTitle->delete();
-
         Session::flash('success', 'Course Title deleted successfully!');
-
+        } catch (\Exception $e) {
+            Session::flash('error', $e->getMessage());
+        }
         return redirect()->route('course_title.index');
     }
 

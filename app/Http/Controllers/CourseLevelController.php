@@ -54,10 +54,12 @@ class CourseLevelController extends Controller
 
     public function destroy(CourseLevel $courseLevel)  // Update model name
     {
-        $courseLevel->delete();
-
-        Session::flash('success', 'Course Level deleted successfully!');
-
+        try {
+            $courseLevel->delete();
+            Session::flash('success', 'Course Level deleted successfully!');
+        } catch (\Exception $e) {
+            Session::flash('error', $e->getMessage());
+        }
         return redirect()->route('course_level.index');
     }
 
