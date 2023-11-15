@@ -15,7 +15,7 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="container  border mt-4 p-5  hai">
-                                    <h4 style="font-weight: bold;">Click to Apply for Carrier</h4>
+                                    <h4 style="font-weight: bold;">Click to Apply for Career</h4>
                                     <br>
                                     <a class="btn btn-warning" href="{{ route('careers') }}">click</a>
                                 </div>

@@ -46,7 +46,7 @@
             Should you have any questions or require further information, please do not hesitate to contact our HR department at info@tisecon.com or +91 89009 10738.
         </p>
         <p>
-            As an acknowledgment of your application, you can download a PDF copy of this acknowledgment letter by clicking the following button:
+            As an acknowledgement of your application, you can download a PDF copy of this acknowledgement letter by clicking the following button:
         </p>
         <div class="container text-center">
             <div class="alert alert-success">

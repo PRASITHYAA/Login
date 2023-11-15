@@ -155,7 +155,7 @@
 <header>
     <img src="https://tisecon.com/wp-content/uploads/2023/04/NEW-LOGO-FINAL-1.png" alt="Job Site Logo">
 </header>
-<h2 class="text-center">Career Form Application Acknowledgment</h2>
+<h2 class="text-center">Career Application Acknowledgement</h2>
 <h2 class="text-center border-bottom p-4 ">EMPLOYMENT / JOB APPLICATION</h2>
 <table>
     <tr>
@@ -541,12 +541,17 @@
             {{ $higher_secondary_percentage }}</td>
     </tr>
     <tr>
-        <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Filed of Specialization</td>
+        <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Class</td>
+        <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
+            {{ $higher_secondary_class }}</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Field of Specialization</td>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
             {{ $higher_secondary_stream }}</td>
     </tr>
     <tr>
-        <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Filed of Interest</td>
+        <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;"> Field of Interest</td>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 50%;">
             {{ $higher_secondary_filed_of_interest }}</td>
     </tr>
@@ -621,15 +626,15 @@
         <td>{{ $diploma_percentage }}</td>
     </tr>
     <tr>
-        <td>Class</td>
+        <td>Course</td>
         <td>{{ $diploma_course }}</td>
     </tr>
     <tr>
-        <td>Filed of Specialization</td>
+        <td>Field of Specialization</td>
         <td>{{ $diploma_major }}</td>
     </tr>
     <tr>
-        <td>Filed of Interest</td>
+        <td>Field of Interest</td>
         <td>{{ $diploma_filed_of_interest }}</td>
     </tr>
     <tr>
@@ -703,15 +708,15 @@
         <td>{{ $bachelors_percentage }}</td>
     </tr>
     <tr>
-        <td>Class</td>
+        <td>Course</td>
         <td>{{ $bachelors_course }}</td>
     </tr>
     <tr>
-        <td>Filed of Specialization</td>
+        <td>Field of Specialization</td>
         <td>{{ $bachelors_major }}</td>
     </tr>
     <tr>
-        <td>Filed of Interest</td>
+        <td>Field of Interest</td>
         <td> {{ $bachelors_filed_of_interest }}
     </tr>
     <tr>
@@ -789,11 +794,11 @@
         <td>{{ $master_class }}</td>
     </tr>
     <tr>
-        <td>Filed of Specialization</td>
+        <td>Field of Specialization</td>
         <td>{{ $master_filed_of_specialization }}</td>
     </tr>
     <tr>
-        <td>Filed of Interest</td>
+        <td>Field of Interest</td>
         <td>{{ $master_filed_of_interest }}</td>
     </tr>
     <tr>
@@ -869,11 +874,11 @@
         <td>{{ $doctorate_class }}</td>
     </tr>
     <tr>
-        <td>Filed of Specialization</td>
+        <td>Field of Specialization</td>
         <td>{{ $doctorate_filed_of_specialization }}</td>
     </tr>
     <tr>
-        <td>Filed of Interest</td>
+        <td>Field of Interest</td>
         <td>{{ $doctorate_filed_of_interest }}</td>
     </tr>
     <tr>
@@ -1022,7 +1027,7 @@
 <table>
     <tr>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">
-            Have You Ever Worked<br> for This Employer?</td>
+            Have You Ever Been<br> Convicted of A Crime?</td>
         <td>{{ $crime_status }}</td>
     </tr>
     <tr>
@@ -1053,7 +1058,7 @@
         </tr>
     @endif
 </table>
-<h2 class="text-center p-4  ">CURRICULUM VITAE</h2>
+{{--<h2 class="text-center p-4  ">CURRICULUM VITAE</h2>--}}
 <table>
     <tbody>
     <tr>

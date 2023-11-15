@@ -182,9 +182,9 @@
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->higher_secondary_stream }}" readonly>
                     </div>
-                    <!-- Higher Secondary Filed of Interest -->
+                    <!-- Higher Secondary Field of Interest -->
                     <div class="col-lg-2 mt-4">
-                        <label class="form-label">Filed of Interest </label>
+                        <label class="form-label">Field of Interest </label>
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->higher_secondary_filed_of_interest }}" readonly>
                     </div>
@@ -274,9 +274,9 @@
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->diploma_major }}" readonly>
                     </div>
-                    <!-- Diploma Filed of Interest -->
+                    <!-- Diploma Field of Interest -->
                     <div class="col-lg-2 mt-4">
-                        <label class="form-label">Filed of Interest </label>
+                        <label class="form-label">Field of Interest </label>
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->diploma_filed_of_interest }}" readonly>
                     </div>
@@ -359,9 +359,9 @@
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->bachelors_major }}" readonly>
                     </div>
-                    <!-- Bachelors Filed of Interest -->
+                    <!-- Bachelors Field of Interest -->
                     <div class="col-lg-2 mt-4">
-                        <label class="form-label">Filed of Interest </label>
+                        <label class="form-label">Field of Interest </label>
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->bachelors_filed_of_interest }}" readonly>
                     </div>
@@ -438,15 +438,15 @@
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->master_class }}" readonly>
                     </div>
-                    <!--  Filed of Specialization-->
+                    <!--  Field of Specialization-->
                     <div class="col-lg-2 mt-4">
                         <label class="form-label">Specialization</label>
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->master_filed_of_specialization }}" readonly>
                     </div>
-                    <!-- filed of interest -->
+                    <!-- Field of interest -->
                     <div class="col-lg-2 mt-4">
-                        <label class="form-label">Filed of Interest </label>
+                        <label class="form-label">Field of Interest </label>
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->master_filed_of_interest }}" readonly>
                     </div>
@@ -533,16 +533,16 @@
 
                     </div>
 
-                    <!-- doctoratefiledofspecialization -->
+                    <!-- doctorateFieldofspecialization -->
                     <div class="col-lg-2 mt-4">
                         <label class="form-label">Specialization </label>
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->doctorate_filed_of_specialization }}" readonly>
 
                     </div>
-                    <!-- doctoratefiledofinterest -->
+                    <!-- doctorateFieldofinterest -->
                     <div class="col-lg-2 mt-4">
-                        <label class="form-label">Filed of Interest </label>
+                        <label class="form-label">Field of Interest </label>
                         <input class="form-control " style="background-color: rgba(248, 235, 235, 0.726);"
                             value="{{ $education->doctorate_filed_of_interest }}" readonly>
                     </div>

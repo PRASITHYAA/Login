@@ -152,7 +152,7 @@
 <header>
     <img src="https://tisecon.com/wp-content/uploads/2023/04/NEW-LOGO-FINAL-1.png" alt="Job Site Logo">
 </header>
-<h2 class="text-center">Training Form Acknowledgment</h2>
+<h2 class="text-center">Training Form Acknowledgement</h2>
 <h2 class="text-center border-bottom p-4 ">Training Form</h2>
 <table>
     <tr>

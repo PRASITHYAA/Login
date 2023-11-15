@@ -295,11 +295,11 @@
                                         Others</option>
                                 </select>
                             </div>
-                            <!-- Higher Secondary Filed of Interest -->
+                            <!-- Higher Secondary Field of Interest -->
                             <div class="col-lg-2 mt-3">
-                                <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
+                                <label class="form-label">Field of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control alphabetic-input" placeholder="Filed of Interest"higher_secondary_filed_of_interest
+                                    class="form-control alphabetic-input" placeholder="Field of Interest"higher_secondary_filed_of_interest
                                     id="higher_secondary_filed_of_interest " name="higher_secondary_filed_of_interest"
                                     value="{{ old('higher_secondary_filed_of_interest') ?? ($education->higher_secondary_filed_of_interest ?? '') }}">
                             </div>
@@ -428,9 +428,9 @@
                             </div>
                             <!-- Diploma Diploma -->
                             <div class="col-lg-2 mt-3">
-                                <label class="form-label">Diploma <span style="color: red;">*</span></label>
+                                <label class="form-label">Class <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control alphabetic-input" placeholder="Course" id="diploma_course" name="diploma_course"
+                                    class="form-control alphabetic-input" placeholder="Class" id="diploma_course" name="diploma_course"
                                     value="{{ old('diploma_course') ?? ($education->diploma_course ?? '') }}">
                             </div>
                             <!-- Diploma Major -->
@@ -440,11 +440,11 @@
                                     class="form-control" placeholder="CSE" id="diploma_major" name="diploma_major"
                                     value="{{ old('diploma_major') ?? ($education->diploma_major ?? '') }}">
                             </div>
-                            <!-- Diploma Filed of Interest -->
+                            <!-- Diploma Field of Interest -->
                             <div class="col-lg-2 mt-3">
-                                <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
+                                <label class="form-label">Field of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control alphabetic-input" placeholder="Filed of Interest" id="diploma_filed_of_interest"
+                                    class="form-control alphabetic-input" placeholder="Field of Interest" id="diploma_filed_of_interest"
                                     name="diploma_filed_of_interest"
                                     value="{{ old('diploma_filed_of_interest') ?? ($education->diploma_filed_of_interest ?? '') }}">
                             </div>
@@ -603,11 +603,11 @@
                                     class="form-control alphabetic-input" placeholder="Major" id="bachelors_major" name="bachelors_major"
                                     value="{{ old('bachelors_major') ?? ($education->bachelors_major ?? '') }}">
                             </div>
-                            <!-- Bachelors Filed of Interest -->
+                            <!-- Bachelors Field of Interest -->
                             <div class="col-lg-2 mt-3">
-                                <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
+                                <label class="form-label">Field of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control alphabetic-input" placeholder="Filed of Interest" id="bachelors_filed_of_interest"
+                                    class="form-control alphabetic-input" placeholder="Field of Interest" id="bachelors_filed_of_interest"
                                     name="bachelors_filed_of_interest"
                                     value="{{ old('bachelors_filed_of_interest') ?? ($education->bachelors_filed_of_interest ?? '') }}">
                             </div>
@@ -736,21 +736,21 @@
                                     id="master_class" name="master_class" class="form-control" placeholder="Class"
                                     value="{{ old('master_class') ?? ($education->master_class ?? '') }}">
                             </div>
-                            <!--  Filed of Specialization-->
+                            <!--  Field of Specialization-->
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">Specialization
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     name="master_filed_of_specialization" class="form-control alphabetic-input"
-                                    id="master_filed_of_specialization" placeholder="Filed of Specialization"
+                                    id="master_filed_of_specialization" placeholder="Field of Specialization"
                                     value="{{ old('master_filed_of_specialization') ?? ($education->master_filed_of_specialization ?? '') }}">
                             </div>
-                            <!-- filed of interest -->
+                            <!-- Field of interest -->
                             <div class="col-lg-2 mt-3">
-                                <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
+                                <label class="form-label">Field of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     id="master_filed_of_interest" name="master_filed_of_interest" class="form-control alphabetic-input"
-                                    placeholder="Filed of Interest"
+                                    placeholder="Field of Interest"
                                     value="{{ old('master_filed_of_interest') ?? ($education->master_filed_of_interest ?? '') }}">
                             </div>
                             <div class="col-lg-2 mt-3">
@@ -882,21 +882,21 @@
                                     value="{{ old('doctorate_class') ?? ($education->doctorate_class ?? '') }}">
                             </div>
 
-                            <!-- doctoratefiledofspecialization -->
+                            <!-- doctorateFieldofspecialization -->
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">Specialization
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control alphabetic-input" placeholder="Filed of Specialization"
+                                    class="form-control alphabetic-input" placeholder="Field of Specialization"
                                     id="doctorate_filed_of_specialization" name="doctorate_filed_of_specialization"
                                     value="{{ old('doctorate_filed_of_specialization') ?? ($education->doctorate_filed_of_specialization ?? '') }}">
                             </div>
-                            <!-- doctoratefiledofinterest -->
+                            <!-- doctorateFieldofinterest -->
                             <div class="col-lg-2 mt-3">
-                                <label class="form-label">Filed of Interest <span style="color: red;">*</span></label>
+                                <label class="form-label">Field of Interest <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
                                     class="form-control alphabetic-input" name="doctorate_filed_of_interest"
-                                    id="doctorate_filed_of_interest" placeholder="Filed of Interest"
+                                    id="doctorate_filed_of_interest" placeholder="Field of Interest"
                                     value="{{ old('doctorate_filed_of_interest') ?? ($education->doctorate_filed_of_interest ?? '') }}">
                             </div>
                             <div class="col-lg-2 mt-3">
