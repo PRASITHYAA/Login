@@ -47,6 +47,7 @@ class DisclaimerController extends Controller
         $emailData['last_name'] = $jobApplication->last_name;
         $emailData['sector'] = $jobApplication->sector->name;
         $emailData['position'] = $jobApplication->position->name;
+        $emailData['created_at'] = $jobApplication->created_at;
         $jobApplication->allow_edit = 0;
         $jobApplication->save();
         $this->savePdf($jobApplication);
@@ -109,6 +110,7 @@ class DisclaimerController extends Controller
         $emailData['last_name'] = $jobApplication->last_name;
         $emailData['sector'] = $jobApplication->sector->name;
         $emailData['position'] = $jobApplication->position->name;
+        $emailData['created_at'] = $jobApplication->created_at;
         $this->savePdf($jobApplication);
         Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
         return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer updated successfully!');
@@ -149,15 +151,15 @@ class DisclaimerController extends Controller
     public function downloadPdf(Request $request)
     {
         $pdfData = $this->preparePdf($request);
-        $dateTime = Carbon::now()->format('d-m-Y_h:i_A');
-        return $pdfData['pdf']->download($dateTime.'_job_application_' . $pdfData['application']->first_name . '.pdf');
+        $dateTime = Carbon::parse($pdfData['application']->created_at)->format('d-m-Y_h:i_A');
+        return $pdfData['pdf']->download($dateTime.'_job_application_' . $pdfData['application']->first_name.'_'.$dateTime . '.pdf');
     }
 
     public function savePdf($application)
     {
         $request = new Request($application->toArray());
         $pdfData = $this->preparePdf($request);
-        $dateTime = Carbon::now()->format('d-m-Y_h:i_A');
-        $pdfData['pdf']->save($dateTime.'_job_application_' . $application->first_name . '.pdf', 'public');
+        $dateTime = Carbon::parse($application->created_at)->format('d-m-Y_h:i_A');
+        $pdfData['pdf']->save($dateTime.'_job_application_' . $application->first_name.'_'.$dateTime . '.pdf', 'public');
     }
 }

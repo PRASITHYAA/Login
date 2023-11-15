@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -52,10 +53,10 @@ class JobSubmission extends Mailable
      */
     public function attachments(): array
     {
-
+        $dateTime = Carbon::parse($this->data['created_at'])->format('d-m-Y_h:i_A');
         return [
-            Attachment::fromStorageDisk('public', 'job_application_'.$this->data['first_name'].'.pdf')
-                ->as('job_application_'.$this->data['first_name'].'.pdf')
+            Attachment::fromStorageDisk('public', 'job_application_'.$this->data['first_name'].'_'.$dateTime.'.pdf')
+                ->as('job_application_'.$this->data['first_name'].'_'.$dateTime.'.pdf')
                 ->withMime('application/pdf'),
         ];
     }

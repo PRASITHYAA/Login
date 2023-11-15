@@ -76,6 +76,7 @@ class TrainingController extends Controller
         $emailData['sector'] = $training->sector->name;
         $emailData['course_level'] = $training->course_level->name;
         $emailData['course_title'] = $training->course_title->name;
+        $emailData['created_at'] = $training->created_at;
         $this->savePdf($training);
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form submitted successfully.');
@@ -108,6 +109,7 @@ class TrainingController extends Controller
         $emailData['sector'] = $training->sector->name;
         $emailData['course_level'] = $training->course_level->name;
         $emailData['course_title'] = $training->course_title->name;
+        $emailData['created_at'] = $training->created_at;
         $this->savePdf($training);
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form updated successfully.');
@@ -147,16 +149,17 @@ class TrainingController extends Controller
     public function downloadPdf($id)
     {
         $pdfData = $this->preparePdf($id);
-        $dateTime = Carbon::now()->format('d-m-Y_h:i_A');
-        return $pdfData['pdf']->download($dateTime.'_job_application_' . $pdfData['training']->first_name . '.pdf');
+        $dateTime = Carbon::parse($pdfData['training']->created_at)->format('d-m-Y_h:i_A');
+        return $pdfData['pdf']->download($dateTime.'_job_application_' . $pdfData['training']->first_name.'_'.$dateTime . '.pdf');
     }
 
     public function savePdf($training)
     {
         $pdfData = $this->preparePdf($training->id);
-        $pdfData['pdf']->save('training_application_' . $training->first_name . '.pdf', 'public');
+        $dateTime = Carbon::parse($training->created_at)->format('d-m-Y_h:i_A');
+        $pdfData['pdf']->save('training_application_' . $training->first_name.'_'.$dateTime. '.pdf', 'public');
     }
-    
+
     public function giveAccess($id)
     {
         $training = Training::find($id);
