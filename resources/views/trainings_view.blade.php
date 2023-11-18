@@ -68,42 +68,7 @@
                 <div style="width: 100%; padding-left: 50px;" class="border 4px solid  mt-5 pt-4  hai ">
                     <i style="font-size: 50px;" class="fa-solid fa-calendar-days pb-4 "></i>
                     <h5 class="head-gold"> Training Schedule</h5>
-                    <p>Day 1 :</p>
-                    <ul>
-                        <li> Introduction to power system protection</li>
-                        <li> Basic Information and Types of faults</li>
-                        <li> Components of the protection system</li>
-                        <li> Importance of protection coordination</li>
-                        <li>Time scale for protection system </li>
-                        <li> Short Circuit calculations
-                        </li>
-                        <li>Basic principles of power system protections
-                        </li>
-                        <li> Types of protections – Equipment wise
-                        </li>
-                    </ul>
-                    <p>Day 2 :</p>
-                    <ul>
-                        <li> Settings of power system protections
-                        </li>
-                        <li> Type of Protection Relays
-                        </li>
-                        <li> Protection Relays Principle of operation
-                        </li>
-                        <li> Architecture
-                        </li>
-                        <li> Communication
-                        </li>
-                        <li> Numerical relays
-                        </li>
-                        <li> Testing of Relays
-                        </li>
-                        <li> Testing of Relays
-                        </li>
-                        <li> Advantages & disadvantages of Numerical relay
-                        </li>
-                        <li> Operation & Maintenance of Numerical relays</li>
-                    </ul>
+                    <p>{!! $courseTitle->course_training_schedule !!}</p>
                     <i style="font-size: 70px; display: flex;justify-content: end;color: white; " class="fa-solid fa-calendar-days "></i>
 
                 </div>
