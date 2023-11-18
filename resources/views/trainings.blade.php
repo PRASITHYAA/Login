@@ -29,7 +29,7 @@
                 <tr>
                     <td>{{ $training->from_date }}</td>
                     <td>{{ $training->course_code }}</td>
-                    <td>{{ $training->course_title }}</td>
+                    <td>{{ $training->name }}</td>
                     <td>{{ $training->course_level->name }}</td>
                     <td>{{ $training->duration }}</td>
                     <td>RS. {{ $training->course_registration_fee }}</td>
