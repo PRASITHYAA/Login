@@ -127,7 +127,7 @@
                                 class="fa-regular fa-address-book"></i> No. 5/333A, OMR Road, Thuraipakkam, Chennai,
                             Tamil Nadu, India-600097 </span>
                         <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
-                                class="fa-solid fa-phone-volume"></i> +91 89009 10738</span>
+                                class="fa-solid fa-phone-volume"></i> +91 44 35862654</span>
                         <span style="padding-left: 10px;" class=""> <i style="color:  rgb(176, 134, 55);"
                                 class="fa-regular fa-envelope"></i> info@tisecon.com</span>
                     </div>

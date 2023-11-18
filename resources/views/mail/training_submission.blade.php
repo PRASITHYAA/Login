@@ -7,7 +7,7 @@
         We would like to express our appreciation for the interest shown in our training program. Our team will review the submission and get in touch with the participant to provide further information regarding the course, including the schedule, fees, and enrollment details.
     </p>
     <p>
-        Should you have any questions or need more information, please do not hesitate to reach out to us at info@tisecon.com or +91 89009 10738.
+        Should you have any questions or need more information, please do not hesitate to reach out to us at info@tisecon.com or +91 44 35862654.
     </p>
     <p>
         Thank you for considering our training program, and we look forward to potentially welcoming the participant to the "Fundamentals Of Oil & Gas Business" course.
