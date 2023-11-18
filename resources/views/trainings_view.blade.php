@@ -54,7 +54,7 @@
                     <h5 class="head-gold">Date & Time / Duration</h5>
                     <p>{{ $courseTitle->from_date. ' - '. $courseTitle->to_date }} </p>
                     <p>{{ ' At '. $courseTitle->time }}</p>
-                    <p>{{ 'Duration : '.$courseTitle->duration }}</p>
+                    <p>{{ 'Duration : '.$courseTitle->duration.' days' }}</p>
                     <i style="font-size: 70px;display: flex;justify-content: end;color: white;" class="fa-solid fa-calendar-days "></i>
                 </div>
                 <!-- location -->
