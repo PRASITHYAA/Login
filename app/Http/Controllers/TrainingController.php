@@ -76,7 +76,7 @@ class TrainingController extends Controller
         $emailData['sector'] = $training->sector->name;
         $emailData['course_level'] = $training->course_level->name;
         $emailData['course_title'] = $training->course_title->name;
-        $emailData['created_at'] = $training->created_at;
+        $emailData['created_at'] = Carbon::parse($training->created_at)->format('d_m_Y_h_i_A');
         $this->savePdf($training);
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form submitted successfully.');
@@ -109,7 +109,7 @@ class TrainingController extends Controller
         $emailData['sector'] = $training->sector->name;
         $emailData['course_level'] = $training->course_level->name;
         $emailData['course_title'] = $training->course_title->name;
-        $emailData['created_at'] = $training->created_at;
+        $emailData['created_at'] = Carbon::parse($training->created_at)->format('d_m_Y_h_i_A');;
         $this->savePdf($training);
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form updated successfully.');
