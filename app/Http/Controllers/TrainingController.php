@@ -149,14 +149,14 @@ class TrainingController extends Controller
     public function downloadPdf($id)
     {
         $pdfData = $this->preparePdf($id);
-        $dateTime = Carbon::parse($pdfData['training']->created_at)->format('d-m-Y_h:i_A');
-        return $pdfData['pdf']->download($dateTime.'_job_application_' . $pdfData['training']->first_name.'_'.$dateTime . '.pdf');
+        $dateTime = Carbon::parse($pdfData['training']->created_at)->format('d_m_Y_h_i_A');
+        return $pdfData['pdf']->download('job_application_' . $pdfData['training']->first_name.'_'.$dateTime . '.pdf');
     }
 
     public function savePdf($training)
     {
         $pdfData = $this->preparePdf($training->id);
-        $dateTime = Carbon::parse($training->created_at)->format('d-m-Y_h:i_A');
+        $dateTime = Carbon::parse($training->created_at)->format('d_m_Y_h_i_A');
         $pdfData['pdf']->save('training_application_' . $training->first_name.'_'.$dateTime. '.pdf', 'public');
     }
 

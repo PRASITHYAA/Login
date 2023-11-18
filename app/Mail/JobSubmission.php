@@ -53,7 +53,7 @@ class JobSubmission extends Mailable
      */
     public function attachments(): array
     {
-        $dateTime = Carbon::parse($this->data['created_at'])->format('d-m-Y_h:i_A');
+        $dateTime = $this->data['created_at'];
         return [
             Attachment::fromStorageDisk('public', 'job_application_'.$this->data['first_name'].'_'.$dateTime.'.pdf')
                 ->as('job_application_'.$this->data['first_name'].'_'.$dateTime.'.pdf')
