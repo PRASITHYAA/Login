@@ -10,7 +10,7 @@
             <h4 style=" padding-top: 10px; color: white;" class="text-center">Course Title: {{ $courseTitle->name }}</h4>
             <h4 style=" padding-top: 10px; color: white;" class="text-center">CODE: {{ $courseTitle->course_code }}</h4>
             <h4 style=" padding-top: 10px; padding-bottom: 75px; color: white;" class="text-center">{{ $courseTitle->course_location }}
-                | Registration Fee: ₹{{ $courseTitle->course_registration_fee }}</h4>
+                | Registration Fee: ₹{{ $courseTitle->course_registration_fee }} | Course Fee: ₹{{ $courseTitle->course_fee }}</h4>
 <!-- <button class="text-center">thr</button> -->
         </div>
         <!-- forms -->
@@ -33,7 +33,7 @@
                     <i style="font-size: 50px;" class="fa-solid fa-user-group pb-4 "></i>
 
                     <h2 class="head-gold">Who Should Attend</h2>
-                    <p>{!! $courseTitle->course_description !!}</p>
+                    <p>{!! $courseTitle->who_should_attend !!}</p>
                     <i style="font-size: 90px; display: flex;justify-content: end;;color: white;;" class="fa-solid fa-user-group  "></i>
                 </div>
                 <!-- box-3 -->
@@ -53,7 +53,7 @@
                     <i style="font-size: 50px;" class="fa-solid fa-calendar-days pb-4 "></i>
                     <h5 class="head-gold">Date & Time / Duration</h5>
                     <p>{{ $courseTitle->from_date. ' - '. $courseTitle->to_date }} </p>
-                    <p>{{ ' At '. $courseTitle->time }}</p>
+                    <p>{{ \Carbon\Carbon::parse($courseTitle->time)->format('h:i A'). ' to '.\Carbon\Carbon::parse($courseTitle->end_time)->format('h:i A') }}</p>
                     <p>{{ 'Duration : '.$courseTitle->duration.' days' }}</p>
                     <i style="font-size: 70px;display: flex;justify-content: end;color: white;" class="fa-solid fa-calendar-days "></i>
                 </div>

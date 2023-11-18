@@ -16,10 +16,13 @@ class CourseTitle extends Model
         'from_date',
         'to_date',
         'time',
+        'end_time',
         'duration',
         'course_location',
         'course_registration_fee',
+        'course_fee',
         'course_description',
+        'who_should_attend',
         'course_training_schedule',
         'eligible_to_participate',
     ];

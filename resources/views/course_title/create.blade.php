@@ -91,8 +91,12 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Time <span style="color: red;">*</span></label>
+                        <label class="form-label">Start Time <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="time" class="form-control" min="00:00" max="23:59" name="time" id="time">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">End Time <span style="color: red;">*</span></label>
+                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="time" class="form-control" min="00:00" max="23:59" name="end_time" id="end_time">
                     </div>
                     <div class="mb-3">
                         <label class="form-label"> Course Location <span style="color: red;">*</span></label>
@@ -101,31 +105,35 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Course Registration Fee <span style="color: red;">*</span></label>
+                        <label class="form-label">Registration Fee <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
                             name="course_registration_fee" id="course_registration_fee">
                     </div>
-
                     <div class="mb-3">
-                        <label class="form-label">Course Description <span style="color: red;">*</span></label>
+                        <label class="form-label">Course Fee <span style="color: red;">*</span></label>
+                        <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
+                               name="course_fee" id="course_fee">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Workshop Description <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
                             class="form-control editor" name="course_description" id="myeditorinstance"></textarea>
                     </div>
-
-
+                    <div class="mb-3">
+                        <label class="form-label">Who Should Attend <span style="color: red;">*</span></label>
+                        <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
+                                  class="form-control editor" name="who_should_attend" id="myeditorinstance"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Prerequisites <span style="color: red;">*</span></label>
+                        <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
+                                  class="form-control editor" rows="5" name="eligible_to_participate" id="myeditorinstance"></textarea>
+                    </div>
                     <div class="mb-3">
                         <label class="form-label">Training Schedule <span style="color: red;">*</span></label>
                         <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
                             class="form-control editor" rows="5" name="course_training_schedule" id="myeditorinstance"></textarea>
                     </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Eligible To Participate <span style="color: red;">*</span></label>
-                        <textarea style="background-color: rgba(248, 235, 235, 0.726); width: 100%; height: 150px;" type="text"
-                            class="form-control editor" rows="5" name="eligible_to_participate" id="myeditorinstance"></textarea>
-                    </div>
-
-
                     <button class="btn btn-success">Save</button>
                     <a class="btn btn-secondary" href="{{ route('course_title.index') }}">Back</a>
 
@@ -149,7 +157,7 @@
             if (!isNaN(fromDate.getTime()) && !isNaN(toDate.getTime())) {
                 // Calculate the difference in days
                 const timeDifference = toDate - fromDate;
-                const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24)) + 1;
 
                 // Display the total experience in the input field
                 totalExperienceInput.value = daysDifference ;
