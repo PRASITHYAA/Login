@@ -708,6 +708,10 @@
         <td>{{ $bachelors_percentage }}</td>
     </tr>
     <tr>
+        <td>Class</td>
+        <td>{{ $bachelors_class }}</td>
+    </tr>
+    <tr>
         <td>Course</td>
         <td>{{ $bachelors_course }}</td>
     </tr>

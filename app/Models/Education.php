@@ -64,6 +64,7 @@ class Education extends Model
         'bachelors_to_date',
         'bachelors_year_of_passing',
         'bachelors_percentage',
+        'bachelors_class',
         'bachelors_course',
         'bachelors_major',
         'bachelors_filed_of_interest',

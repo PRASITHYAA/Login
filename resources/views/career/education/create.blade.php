@@ -570,6 +570,13 @@
                                     name="bachelors_percentage"
                                     value="{{ old('bachelors_percentage') ?? ($education->bachelors_percentage ?? '') }}">
                             </div>
+                            <!-- Bachelors Class -->
+                            <div class="col-lg-2 mt-3">
+                                <label class="form-label">Class <span style="color: red;">*</span></label>
+                                <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                       class="form-control alphabetic-input" placeholder="Class" id="bachelors_class" name="bachelors_class"
+                                       value="{{ old('bachelors_class') ?? ($education->bachelors_class ?? '') }}">
+                            </div>
                             <!-- Bachelors Course -->
                             <div class="col-lg-2 mt-3">
                                 <label for="" class="form-label">Course <span

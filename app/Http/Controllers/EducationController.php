@@ -70,6 +70,7 @@ class EducationController extends Controller
                 'bachelors_to_date' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_year_of_passing' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_percentage' => 'required_if:qualification.*,in:bachelor_degree',
+                'bachelors_class' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_course' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_major' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_filed_of_interest' => 'required_if:qualification.*,in:bachelor_degree',
@@ -245,6 +246,7 @@ class EducationController extends Controller
                 'bachelors_to_date' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_year_of_passing' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_percentage' => 'required_if:qualification.*,in:bachelor_degree',
+                'bachelors_class' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_course' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_major' => 'required_if:qualification.*,in:bachelor_degree',
                 'bachelors_filed_of_interest' => 'required_if:qualification.*,in:bachelor_degree',
@@ -415,6 +417,7 @@ class EducationController extends Controller
                 $data['bachelors_to_date'] = null;
                 $data['bachelors_year_of_passing'] = null;
                 $data['bachelors_percentage'] = null;
+                $data['bachelors_class'] = null;
                 $data['bachelors_course'] = null;
                 $data['bachelors_major'] = null;
                 $data['bachelors_filed_of_interest'] = null;
