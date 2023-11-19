@@ -1023,10 +1023,12 @@
             Eligible to Work?</td>
         <td>{{ $eligible_to_work }}</td>
     </tr>
-    <tr>
-        <th>If No,Explanation</th>
-        <td>{{ $eligible_to_work_text }}</td>
-    </tr>
+    @if($eligible_to_work == 'no')
+        <tr>
+            <th>If No,Explanation</th>
+            <td>{{ $eligible_to_work_text }}</td>
+        </tr>
+    @endif
 </table>
 <table>
     <tr>
