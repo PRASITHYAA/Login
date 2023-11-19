@@ -16,9 +16,18 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
+use Razorpay\Api\Api;
 
 class DisclaimerController extends Controller
 {
+    public function create()
+    {
+        $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
+        $res = $api->order->create(array('receipt' => '123', 'amount' => round(10) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
+
+        return view('career.disclaimer.create',  compact('res'));
+    }
+
     public function store(Request $request)
     {
          //dd(1,$request->all());
@@ -34,6 +43,8 @@ class DisclaimerController extends Controller
             'disclaimer_time' => 'required',
             'disclaimer_print_name' => 'required',
             'disclaimer_place' => 'required',
+            'payment_id' => 'required',
+            'payment_response' => 'required',
         ]);
 
         if ($request->hasFile('disclaimer_signature')) {
@@ -59,8 +70,10 @@ class DisclaimerController extends Controller
     public function show($id)
     {
         $disclaimer = Disclaimer::find($id);
+        $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
+        $res = $api->order->create(array('receipt' => '123', 'amount' => round(10) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
 
-        return view('career.disclaimer.show', ['disclaimer' => $disclaimer,]);
+        return view('career.disclaimer.show', ['disclaimer' => $disclaimer, 'res' => $res]);
     }
 
     public function edit($id)
@@ -69,7 +82,10 @@ class DisclaimerController extends Controller
 
         $achievement = Achievement::where('job_application_id', $disclaimer->job_application_id)->orderBy('id', 'desc')->first();
 
-        return view('career.disclaimer.create', ['disclaimer' => $disclaimer, 'achievement_id' => $achievement->id]);
+        $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
+        $res = $api->order->create(array('receipt' => '123', 'amount' => round(10) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
+
+        return view('career.disclaimer.create', ['disclaimer' => $disclaimer, 'achievement_id' => $achievement->id, 'res' => $res]);
     }
 
 

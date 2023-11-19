@@ -9,6 +9,7 @@ use App\Models\JobApplication;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Validator;
+use Razorpay\Api\Api;
 
 class AchievementController extends Controller
 {
@@ -52,8 +53,9 @@ class AchievementController extends Controller
         $achievement['conference'] = json_encode($achievement['conference']);
         $achievement['final_year_project'] = json_encode($achievement['final_year_project']);
         $achievement = Achievement::create($achievement);
-
-        return redirect()->route('disclaimer.view', ['job_application_id' => $request->job_application_id, 'achievement_id' => $achievement->id ])->with('success', 'Achievements, Co-curricular, Extra-curricular Details created successfully!');
+        $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
+        $res = $api->order->create(array('receipt' => '123', 'amount' => round(10) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
+        return redirect()->route('disclaimer.view', ['job_application_id' => $request->job_application_id, 'achievement_id' => $achievement->id, 'res' => $res])->with('success', 'Achievements, Co-curricular, Extra-curricular Details created successfully!');
     }
 
     public function show($id)
@@ -122,7 +124,10 @@ class AchievementController extends Controller
             return redirect()->route('career.disclaimer.edit', $disclaimer->id)->with('success', 'Achievements, Co-curricular, Extra-curricular Details updated successfully!');
         }
         else {
-            return redirect()->route('disclaimer.view', ['job_application_id' => $achievement->job_application_id, 'achievement_id' => $achievement->id])
+            $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
+            $res = $api->order->create(array('receipt' => '123', 'amount' => round(10) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
+
+            return redirect()->route('disclaimer.view', ['job_application_id' => $achievement->job_application_id, 'achievement_id' => $achievement->id, 'res' => $res])
                 ->with('success', 'Achievements, Co-curricular, Extra-curricular Details updated successfully!');
         }
     }

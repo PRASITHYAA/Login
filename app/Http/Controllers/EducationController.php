@@ -384,7 +384,7 @@ class EducationController extends Controller
         }
         $qualificationArray = ['high_school', 'higher_secondary', 'diploma', 'bachelor_degree', 'master_degree', 'doctorate_degree'];
         foreach ($qualificationArray as $value) {
-            if(!in_array($value, $request->qualification) && $value == 'high_school') {
+            if(is_null($request->qualification) || (!in_array($value, $request->qualification) && $value == 'high_school')) {
                 $data['high_school_name'] = null;
                 $data['high_school_city'] = null;
                 $data['high_school_address'] = null;
@@ -394,7 +394,7 @@ class EducationController extends Controller
                 $data['high_school_percentage'] = null;
                 $data['high_school_class'] = null;
                 $data['high_school_stream'] = null;
-            } else if(!in_array($value, $request->qualification) && $value == 'higher_secondary') {
+            } else if(is_null($request->qualification) || (!in_array($value, $request->qualification) && $value == 'higher_secondary')) {
                $data['higher_secondary_institution_name'] = null;
                $data['higher_secondary_city'] = null;
                $data['higher_secondary_address'] = null;
@@ -407,7 +407,7 @@ class EducationController extends Controller
                $data['higher_secondary_filed_of_interest'] = null;
                $data['higher_secondary_image_certificate'] = null;
                $data['higher_secondary_image_mark_sheet'] = null;
-            } else if(!in_array($value, $request->qualification) && $value == 'bachelor_degree') {
+            } else if(is_null($request->qualification) || (!in_array($value, $request->qualification) && $value == 'bachelor_degree')) {
                 $data['bachelors_institution_name'] = null;
                 $data['bachelors_city'] = null;
                 $data['bachelors_address'] = null;
@@ -418,7 +418,7 @@ class EducationController extends Controller
                 $data['bachelors_course'] = null;
                 $data['bachelors_major'] = null;
                 $data['bachelors_filed_of_interest'] = null;
-            } else if(!in_array($value, $request->qualification) && $value == 'diploma') {
+            } else if(is_null($request->qualification) || (!in_array($value, $request->qualification) && $value == 'diploma')) {
                $data['diploma_institution_name'] = null;
                $data['diploma_city'] = null;
                $data['diploma_address'] = null;
@@ -429,7 +429,7 @@ class EducationController extends Controller
                $data['diploma_course'] = null;
                $data['diploma_major'] = null;
                $data['diploma_filed_of_interest'] = null;
-            } else if(!in_array($value, $request->qualification) && $value == 'master_degree') {
+            } else if(is_null($request->qualification) || (!in_array($value, $request->qualification) && $value == 'master_degree')) {
                $data['master_institution_name'] = null;
                $data['master_city'] = null;
                $data['master_address'] = null;
@@ -442,7 +442,7 @@ class EducationController extends Controller
                $data['master_filed_of_interest'] = null;
                $data['master_image_certificate'] = null;
                $data['master_image_mark_sheet'] = null;
-            } else if(!in_array($value, $request->qualification) && $value == 'doctorate_degree') {
+            } else if(is_null($request->qualification) || (!in_array($value, $request->qualification) && $value == 'doctorate_degree')) {
                $data['doctorate_name'] = null;
                $data['doctorate_city'] = null;
                $data['doctorate_address'] = null;

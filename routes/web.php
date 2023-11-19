@@ -184,7 +184,7 @@ Route::delete('/achievement/{id}', [AchievementController::class, 'destroy'])->n
 
 //  disclaimer
 
-Route::view('/disclaimer', 'career.disclaimer.create')->name('disclaimer.view');
+Route::get('/disclaimer', [DisclaimerController::class, 'create'])->name('disclaimer.view');
 Route::post('/disclaimer', [DisclaimerController::class, 'store'])->name('career.disclaimer.store');
 Route::get('/disclaimer/{id}', [DisclaimerController::class, 'show'])->name('career.disclaimer.show');
 Route::get('/disclaimer/{id}/edit', [DisclaimerController::class, 'edit'])->name('career.disclaimer.edit');

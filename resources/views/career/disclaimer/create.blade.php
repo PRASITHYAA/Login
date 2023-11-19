@@ -42,7 +42,7 @@
             <h4 class="p-3">Joining date/Current and Expected Salary Details</h4>
 
             <form action="{{ isset($disclaimer) ? route('career.disclaimer.update', $disclaimer->id) : route('career.disclaimer.store') }}" class="row g-3" method="POST"
-                enctype="multipart/form-data">
+                enctype="multipart/form-data" id="disclaimer_form">
                 @csrf
                 @if (isset($disclaimer))
                     @method('PUT')
@@ -221,5 +221,52 @@
         const formattedDate = `${day}/${month}/${year}`;
 
         document.getElementById('currentDate').value = formattedDate;
+    </script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var options = {
+            "key": "{{ env('RAZOR_KEY') }}", // Enter the Key ID generated from the Dashboard
+            "amount": "{{ 10 * 100 }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "{{ env('APP_NAME') }}", //your business name
+            "description": "job application payment",
+            "image": "{{ asset('img/logo.png') }}",
+            "order_id": "{{ $res->id }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response){
+                $('<input>').attr({
+                    type: 'hidden',
+                    id: 'payment_id',
+                    name: 'payment_id',
+                    value: response.razorpay_payment_id
+                }).appendTo($('#disclaimer_form'));
+                $('<input>').attr({
+                    type: 'hidden',
+                    id: 'payment_response',
+                    name: 'payment_response',
+                    value: JSON.stringify(response)
+                }).appendTo($('#disclaimer_form'));
+                $('#disclaimer_form').submit();
+            },
+            "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+                "name": "{{ Auth::user()->name }}", //your customer's name
+                "email": "{{ Auth::user()->email ?? '' }}",
+                // "contact": "9000090000" //Provide the customer's phone number for better conversion rates
+            },
+            "notes": {
+                "user_id": "{{ auth()->id() }}"
+            },
+            "theme": {
+                "color": "#ff7529"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        $(document).ready(function () {
+            $('#disclaimer_form').on('submit', function (e) {
+                if($('#payment_id').val() == undefined) {
+                    e.preventDefault();
+                    rzp1.open();
+                }
+            })
+        });
     </script>
 @endsection

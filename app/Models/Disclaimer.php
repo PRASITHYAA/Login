@@ -20,6 +20,8 @@ class Disclaimer extends Model
         'disclaimer_time',
         'disclaimer_print_name',
         'disclaimer_place',
+        'payment_id',
+        'payment_response'
     ];
     public function jobApplication()
     {
