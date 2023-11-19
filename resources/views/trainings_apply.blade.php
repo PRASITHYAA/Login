@@ -85,13 +85,13 @@
                     <!-- First name -->
                     <div class="col-md-2 mt-2 ">
                         <label class="form-label">First name <span class="span-star">*</span></label>
-                        <input type="text" class="form-control alphabetic-input" id="first_name" value="{{ old('first_name') ?? ($training->first_name ?? '') }}"
+                        <input type="text" class="form-control alphabetic-input" id="first_name" value="{{ auth()->user()->first_name }}"
                                name="first_name" required>
                     </div>
                     <!-- Last name -->
                     <div class="col-md-2 mt-2">
                         <label class="form-label">Last name <span class="span-star">*</span></label>
-                        <input type="text" class="form-control alphabetic-input " id="last_name" value="{{ old('last_name') ?? ($training->last_name ?? '') }}"
+                        <input type="text" class="form-control alphabetic-input " id="last_name" value="{{ auth()->user()->last_name }}"
                                name="last_name" required>
                     </div>
                     <!-- Passport Size Photo Upload -->
@@ -171,7 +171,12 @@
                         </label>
 
                         <div id="formContainer1" class="{{ (isset($training) && $training->address_status == 'yes') ? '' : 'hidden' }}">
-
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Company Name <span
+                                        class="span-star">*</span></label>
+                                <input type="text" class="form-control select-back-colour" name="company_name"
+                                       value="{{ old('company_name') ?? ($training->company_name ?? '') }}" id="exampleFormControlInput1" placeholder="Company Name">
+                            </div>
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Job Title <span
                                         class="span-star">*</span></label>
@@ -373,7 +378,7 @@
                         <label class="form-label">Primary Email
                             <span class="span-star">*</span></label>
                         <input type="email" class="form-control select-back-colour" id="validationCustom02"
-                               value="{{ old('primary_email') ?? ($training->primary_email ?? '') }}" placeholder="email address" name="primary_email" required>
+                               value="{{ auth()->user()->email }}" placeholder="email address" name="primary_email" required>
                     </div>
                     <!-- Secondary Mobile Number  -->
                     <div class="col-lg-3 ">

@@ -199,6 +199,10 @@
         <td> {{ $experience_status }}</td>
     </tr>
     <tr>
+        <td>Company Name</td>
+        <td>{{ $company_name }}</td>
+    </tr>
+    <tr>
         <td>Job Title</td>
         <td>{{ $job_title }}</td>
     </tr>

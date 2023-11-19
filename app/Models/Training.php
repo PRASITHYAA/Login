@@ -19,6 +19,7 @@ class Training extends Model
         'photo',
         'qualification',
         'experience_status',
+        'company_name',
         'job_title',
         'gender',
         'year_of_experience',
