@@ -626,7 +626,7 @@
         <td>{{ $diploma_percentage }}</td>
     </tr>
     <tr>
-        <td>Course</td>
+        <td>Class</td>
         <td>{{ $diploma_course }}</td>
     </tr>
     <tr>
