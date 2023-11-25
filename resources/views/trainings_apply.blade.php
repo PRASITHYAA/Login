@@ -478,7 +478,7 @@
                                            type="text" class="form-control" name="place"
                                            value="{{ old('place') ?? ($training->place ?? '') }}" required>
                                 </div>
-                                @if(!isset($training))
+                                @if(!isset($training) || (isset($training) && is_null($training->payment_id)))
                                     <!-- Payment Item -->
                                     <div class="form-check">
                                         <p style="font-weight: bold;">Payment Item <span style="color: red;">*</span>
