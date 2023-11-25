@@ -41,9 +41,10 @@
                                         <th>ID</th>
                                         <th>NAME</th>
                                         <th>Email</th>
-                                        <th>SECTOR</th>
-                                        <th>Course Level</th>
+                                        <th>Sector</th>
+                                        <th>Course Code</th>
                                         <th>Course Title</th>
+                                        <th>Course Level</th>
                                         <th>OPERATIONS</th>
                                     </tr>
                                     <!-- 1 coloum -->
@@ -53,8 +54,9 @@
                                             <td>{{ $training->first_name . ' ' . $training->last_name }}</td>
                                             <td>{{ $training->primary_email }}</td>
                                             <td>{{ $training->sector->name }}</td>
-                                            <td>{{ $training->course_level->name }}</td>
+                                            <td>{{ $training->course_title->course_code }}</td>
                                             <td>{{ $training->course_title->name }}</td>
+                                            <td>{{ $training->course_level->name }}</td>
                                             <td>
                                                 <div class="" role="group"
                                                     aria-label="Basic mixed styles example">

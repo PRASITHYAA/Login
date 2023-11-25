@@ -15,7 +15,6 @@
                 <th>Course Code</th>
                 <th>Course Title</th>
                 <th>Course Level</th>
-
                 <th>Course Duration</th>
                 <th>Fees (INR) Including GST</th>
                 <th>Location</th>
@@ -31,8 +30,8 @@
                     <td>{{ $training->course_code }}</td>
                     <td>{{ $training->name }}</td>
                     <td>{{ $training->course_level->name }}</td>
-                    <td>{{ $training->duration }}</td>
-                    <td>RS. {{ $training->course_registration_fee }}</td>
+                    <td>{{ $training->duration }} Days</td>
+                    <td>₹. {{ $training->course_registration_fee }}</td>
                     <td>{{ $training->course_location }}</td>
                     <td>
                         <a style=" font-weight: bold;" class="btn btn-warning mx-1  btn-e1"
