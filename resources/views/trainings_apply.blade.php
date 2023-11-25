@@ -499,7 +499,11 @@
                                 I have read and agree to the Terms and Conditions and Privacy Policy
                             </label>
                         </div>
-                        <button type="submit" class="btn btn-primary mt-4 mb-4">{{ isset($training) ? 'Update Form' : 'Submit Form' }}</button>
+                        @if(request()->page == null)
+                            <button type="submit" class="btn btn-primary mt-4 mb-4">{{ isset($training) ? 'Update Form' : 'Submit Form' }}</button>
+                        @else
+                            <a href="{{ request()->back == 'admin' ? route('training.index') : route('user.trainings.list') }}" class="btn btn-primary mt-4 mb-4">Back</a>
+                        @endif
                     </div>
                     <br>
                     <div class="col-lg-3"></div>
@@ -757,6 +761,10 @@
     </script>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
+        var view = "{{ request()->page ?? '' }}";
+        if(view == 'view') {
+            $('#training_form input,select').attr('disabled', true);
+        }
         var order_id = "{{ $res->id ?? '' }}";
         if(order_id != '') {
             var options = {

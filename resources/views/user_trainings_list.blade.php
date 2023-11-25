@@ -60,7 +60,7 @@
                                             <td>
                                                 <div class="" role="group"
                                                     aria-label="Basic mixed styles example">
-                                                    <a href="{{ route('user.trainings.edit', $training->id) }}" title="View"><i class="fa fa-eye text-primary"></i></a>
+                                                    <a href="{{ route('user.trainings.edit', ['id' => $training->id, 'page' => 'view']) }}" title="View"><i class="fa fa-eye text-primary"></i></a>
                                                     @if($training->allow_edit == 1)
                                                         <a style="margin: 0 5px 0 5px;" href="{{ route('user.trainings.edit', $training->id) }}" title="Edit"><i class="fa fa-pencil text-success"></i></a>
                                                     @endif

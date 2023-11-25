@@ -63,7 +63,7 @@
                             <td>
                                 <a href="{{ route('training.access', $training->id) }}"
                                    title="Give Edit Access"><i class="fa fa-user-pen text-primary"></i></a>
-                                <a href="{{ route('training.view', $training->id) }}"
+                                <a href="{{ route('user.trainings.edit', ['id' => $training->id, 'page' => 'view', 'back' => 'admin']) }}"
                                    title="View"><i class="fa fa-eye text-primary"></i></a>
                                 <!-- Delete Button -->
                                 <form action="{{ route('training.destroy', $training->id) }}" method="POST"
