@@ -91,7 +91,9 @@ class TrainingController extends Controller
     public function edit($id)
     {
         $training = Training::find($id);
-        return view('trainings_apply',  compact('training'));
+        $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
+        $res = $api->order->create(array('receipt' => '123', 'amount' => round(10) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
+        return view('trainings_apply',  compact('training', 'res'));
     }
 
     public function update($id, Request $request)
