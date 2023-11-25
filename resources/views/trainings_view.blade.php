@@ -77,7 +77,7 @@
                 <div style="width: 100%;" class="border 4px solid text-center mt-5 pt-4 mb-4  hai ">
                     <i style="font-size: 50px;" class="fa-solid fa-pen-to-square pb-4 "></i>
                     <h5 class="head-gold">Registration Fee</h5>
-                    <p>Registration Fee of Rs.{{ $courseTitle->course_registration_fee }}/- Applicable</p>
+                    <p>Registration Fee of ₹.{{ $courseTitle->course_registration_fee }}/- Applicable</p>
                     <i style="font-size: 70px; display: flex;justify-content: end;color: white; " class="fa-solid fa-pen-to-square  fly-out-up    "></i>
                     <div class="ekit-wid-con">
                         	<div class="ekit-btn-wraper">

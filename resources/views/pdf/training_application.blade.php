@@ -169,12 +169,16 @@
         <td class="empty-column">{{ \App\Models\Sector::find($sector_id)->name }} </td>
     </tr>
     <tr>
-        <td class="empty-column">COURSE LEVEL FOR</td>
-        <td class="empty-column">{{ \App\Models\CourseLevel::find($course_level_id)->name }} </td>
+        <td class="empty-column">COURSE CODE APPLIED FOR</td>
+        <td class="empty-column">{{ \App\Models\CourseTitle::find($course_title_id)->course_code }} </td>
     </tr>
     <tr>
-        <td class="empty-column">COURSE TITLE FOR</td>
+        <td class="empty-column">COURSE TITLE APPLIED FOR</td>
         <td class="empty-column">{{ \App\Models\CourseTitle::find($course_title_id)->name }} </td>
+    </tr>
+    <tr>
+        <td class="empty-column">COURSE LEVEL APPLIED FOR</td>
+        <td class="empty-column">{{ \App\Models\CourseLevel::find($course_level_id)->name }} </td>
     </tr>
 </table>
 <h2 class="text-center border-bottom-4 p-4 mt-3">QUALIFICATION</h2>
@@ -268,25 +272,37 @@
 
     <tr>
         <td>District</td>
-        <td>{{ $city }}</td>
-        <td>{{ $permanent_city ?? $city }}</td>
+        <td>{{ $city_name }}</td>
+        <td>{{ $permanent_city_name ?? $city_name }}</td>
     </tr>
 
     <tr>
         <td>State</td>
-        <td> {{ $state }}</td>
-        <td>{{ $permanent_state ?? $state }}</td>
+        <td> {{ $state_name }}</td>
+        <td>{{ $permanent_state_name ?? $state_name }}</td>
     </tr>
     <tr>
         <td>Country</td>
-        <td> {{ $country }}</td>
-        <td> {{ $permanent_country ?? $country }}</td>
+        <td> {{ $country_name }}</td>
+        <td> {{ $permanent_country_name ?? $country_name }}</td>
     </tr>
     </tbody>
 </table>
 <div class="page-break"></div>
 <!-- disclaimer -->
 <h2 class="text-center p-4 mt-4 mb-2">PLEASE CONFIRM THAT THE BELOW COURSE YOU SELECTED</h2>
+<table>
+    <tr class="col-lg-2">
+        <td class="form-label">Sector </td>
+        <td class="form-label">Course Level </td>
+        <td class="form-label">Course Title </td>
+    </tr>
+    <tr>
+        <td><input class="form-control" type="text" value="{{ \App\Models\Sector::find($sector_id)->name }}"></td>
+        <td><input class="form-control" type="text" value="{{ \App\Models\CourseLevel::find($course_level_id)->name }}"></td>
+        <td><input class="form-control" type="text" value="{{ \App\Models\CourseTitle::find($course_title_id )->name }}"></td>
+    </tr>
+</table>
 <div class="col-lg-6 mt-4">
     <h4>Terms and conditions:</h4>
     <span>1. The mode of instruction during training will remain as English</span> <br>
@@ -299,6 +315,9 @@
     <span>4. Course fees will not be refunded. However, could be rescheduled to next
                             available date/course, if not attended due to unforeseen situation.
                         </span><br>
+    <span>5. Transportation and accommodation are not included in the course fees.</span><br>
+    <span>6. Visa and any other travel expenses are not included in the course fees.</span>
+    <br>
     <!-- checkbox -->
     <div class="form-check mt-4">
         <input type="checkbox" value="" id="flexCheckDefault" checked>
@@ -307,5 +326,37 @@
         </label>
     </div>
 </div>
+<table>
+    <tr>
+        <th style="border: 1px solid black; width: 30%;">Signature</th>
+        <td><img style="height:100px" src="{{ asset('storage/' . $signature) }}" alt="Signature"> </td>
+    </tr>
+</table><br>
+<table>
+    <tr>
+        <th style="border: 1px solid black; width: 30%;">Date</th>
+        <td>{{ $date }}</td>
+    </tr>
+</table><br>
+<table>
+    <tr>
+        <th style="border: 1px solid black; width: 30%;">Time</th>
+        <td> {{ $time }}</td>
+    </tr>
+</table><br>
+<table>
+    <tr>
+        <th style="border: 1px solid black; width: 30%;">Print Name</th>
+        <td> {{ $first_name }} {{ $last_name }}</td>
+    </tr>
+</table>
+<br>
+<table>
+    <tr>
+        <th style="border: 1px solid black; width: 30%;">Place</th>
+        <td> {{ $place }}</td>
+    </tr>
+</table>
+
 </body>
 </html>

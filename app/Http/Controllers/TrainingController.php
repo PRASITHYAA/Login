@@ -10,6 +10,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Razorpay\Api\Api;
 
 class TrainingController extends Controller
 {
@@ -66,6 +67,10 @@ class TrainingController extends Controller
         if ($request->hasFile('photo')) {
             $passportPhotoPath = $request->file('photo')->store('training', 'public');
             $training['photo'] = $passportPhotoPath;
+        }
+        if ($request->hasFile('signature')) {
+            $passportSignaturePath = $request->file('signature')->store('training', 'public');
+            $training['signature'] = $passportSignaturePath;
         }
         $training['user_id'] = auth()->user()->id;
         $training = Training::create($training);
@@ -166,5 +171,12 @@ class TrainingController extends Controller
         $training->allow_edit = 1;
         $training->save();
         return redirect()->back()->with('success', 'Edit Access given successfully!');
+    }
+
+    public function applyTraining()
+    {
+        $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
+        $res = $api->order->create(array('receipt' => '123', 'amount' => round(10) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
+        return view('trainings_apply', ['res' => $res]);
     }
 }

@@ -13,10 +13,13 @@
         </div>
         <!-- forms -->
         <div class="container">
-            <form id="myForm" action="{{ isset($training) ? route('trainings.update', $training->id) : route('trainings.apply.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ isset($training) ? route('trainings.update', $training->id) : route('trainings.apply.store') }}" method="POST" id="training_form" enctype="multipart/form-data">
                 @csrf
                 @if (isset($training))
                     @method('PUT')
+                    @if(!is_null($training->payment_id))
+                        <input type="hidden" name="payment_id" value="{{ $training->payment_id }}">
+                    @endif
                 @endif
                 <div class="row mt-4 mb-2">
                     <!-- first set -->
@@ -26,53 +29,27 @@
                     <!-- Sector -->
                     <div class="col-lg-2">
                         <label for="validationCustom04" class="form-label">Sector</label>
-                        <select class="form-select select-back-colour" id="sector_id" name="sector_id" required>
-                            <option value="">Please Select</option>
-                            @php
-                                $sectors = Sector::all();
-                                $sectorText = Sector::find(request()->sector_id ?? (isset($training) ? $training->sector_id : ''));
-                            @endphp
-                            @foreach ($sectors as $sector)
-                                <option value="{{ $sector->id }}"
-                                    {{ old('sector') == $sector->id || request()->sector_id == $sector->id || (isset($training) ? $training->sector_id == $sector->id : '') ? 'selected' : '' }}>
-                                    {{ $sector->name }}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control bg" name=""
+                               value="{{ \App\Models\Sector::find(request()->sector_id ?? $training->sector_id ?? '')->name }}" readonly>
+                        <input type="hidden" name="sector_id"
+                               value="{{ request()->sector_id ?? $training->sector_id ?? '' }}">
                     </div>
                     <!-- Course Level -->
                     <div class="col-lg-2">
                         <label for="validationCustom04" class="form-label">Course Level</label>
-                        <select class="form-select select-back-colour" id="course_level_id" name="course_level_id"
-                                required>
-                            <option value="">Please Select</option>
-                            @php
-                                $courseLevels = CourseLevel::where('sector_id', request()->sector_id ?? (isset($training) ? $training->sector_id : ''))->get();
-                                $courseLevelText = CourseLevel::find(request()->course_level_id ?? (isset($training) ? $training->course_level_id : ''));
-                            @endphp
-                            @foreach ($courseLevels as $courseLevel)
-                                <option value="{{ $courseLevel->id }}"
-                                    {{ old('sector') == $courseLevel->id || request()->course_level_id == $courseLevel->id || (isset($training) ? $training->course_level_id == $courseLevel->id : '') ? 'selected' : '' }}>
-                                    {{ $courseLevel->name }}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control bg" name=""
+                               value="{{ \App\Models\CourseLevel::find(request()->course_level_id ?? $training->course_level_id ?? '')->name }}" readonly>
+                        <input type="hidden" name="course_level_id"
+                               value="{{ request()->course_level_id ?? $training->course_level_id ?? '' }}">
                     </div>
                     <!-- Course Title -->
                     <div class="col-lg-2">
                         <label for="validationCustom04" class="form-label">Course Title
                         </label>
-                        <select class="form-select select-back-colour" id="course_title_id" name="course_title_id"
-                                required>
-                            <option value="">Please Select</option>
-                            @php
-                                $courseTitles = CourseTitle::where('course_level_id', request()->course_level_id ?? (isset($training) ? $training->course_level_id : ''))->get();
-                                $courseTitleText = CourseTitle::find(request()->course_title_id ?? (isset($training) ? $training->course_title_id : ''));
-                            @endphp
-                            @foreach ($courseTitles as $courseTitle)
-                                <option value="{{ $courseTitle->id }}"
-                                    {{ old('course_title_id') == $courseTitle->id || request()->course_title_id == $courseTitle->id  || (isset($training) ? $training->course_title_id == $courseTitle->id : '') ? 'selected' : '' }}>
-                                    {{ $courseTitle->name }}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" class="form-control bg" name=""
+                               value="{{ \App\Models\CourseTitle::find(request()->course_title_id ?? $training->course_title_id ?? '')->name }}" readonly>
+                        <input type="hidden" name="course_title_id"
+                               value="{{ request()->course_title_id ?? $training->course_title_id ?? '' }}">
                     </div>
 
                     <!-- emty space -->
@@ -86,13 +63,13 @@
                     <div class="col-md-2 mt-2 ">
                         <label class="form-label">First name <span class="span-star">*</span></label>
                         <input type="text" class="form-control alphabetic-input" id="first_name" value="{{ auth()->user()->first_name }}"
-                               name="first_name" required>
+                               name="first_name" readonly required>
                     </div>
                     <!-- Last name -->
                     <div class="col-md-2 mt-2">
                         <label class="form-label">Last name <span class="span-star">*</span></label>
                         <input type="text" class="form-control alphabetic-input " id="last_name" value="{{ auth()->user()->last_name }}"
-                               name="last_name" required>
+                               name="last_name" readonly required>
                     </div>
                     <!-- Passport Size Photo Upload -->
                     <div class="col-md-2 mt-2">
@@ -188,7 +165,7 @@
                                 <input type="radio" name="gender" value="male" {{ old('gender') == 'male' ||
                                 (isset($training) && $training->gender == 'male')
                                     ? 'checked'
-                                    : '' }} required>
+                                    : '' }} >
                                 Male
                             </label><br>
 
@@ -196,7 +173,7 @@
                                 <input type="radio" name="gender" value="female" {{ old('gender') == 'female' ||
                                 (isset($training) && $training->gender == 'female')
                                     ? 'checked'
-                                    : '' }} required>
+                                    : '' }}>
                                 Female
                             </label><br>
 
@@ -204,7 +181,7 @@
                                 <input type="radio" name="gender" value="other" {{ old('gender') == 'other' ||
                                 (isset($training) && $training->gender == 'other')
                                     ? 'checked'
-                                    : '' }} required>
+                                    : '' }}>
                                 Other
                             </label><br>
 
@@ -378,7 +355,7 @@
                         <label class="form-label">Primary Email
                             <span class="span-star">*</span></label>
                         <input type="email" class="form-control select-back-colour" id="validationCustom02"
-                               value="{{ auth()->user()->email }}" placeholder="email address" name="primary_email" required>
+                               value="{{ auth()->user()->email }}" placeholder="email address" name="primary_email" readonly required>
                     </div>
                     <!-- Secondary Mobile Number  -->
                     <div class="col-lg-3 ">
@@ -421,19 +398,19 @@
                     <!-- Sector -->
                     <div class="col-lg-2">
                         <label class="form-label">Sector </label>
-                        <input class="form-control" type="text" value="{{ $sectorText ? $sectorText->name : '' }}" readonly id="sector_id"
+                        <input class="form-control" type="text" value="{{ \App\Models\Sector::find(request()->sector_id ?? $training->sector_id ?? '')->name }}" readonly id="sector_id"
                                name="sector_id" disabled>
                     </div>
                     <!-- Course Level -->
                     <div class="col-lg-2">
                         <label class="form-label">Course Level </label>
                         <input class="form-control" type="text" name="course_level_text" id="course_level_text"
-                               value="{{ $courseLevelText ? $courseLevelText->name : '' }}" aria-label="Disabled input example" disabled readonly>
+                               value="{{ \App\Models\CourseLevel::find(request()->course_level_id ?? $training->course_level_id ?? '')->name }}" aria-label="Disabled input example" disabled readonly>
                     </div>
                     <!-- Course Title -->
                     <div class="col-lg-2">
                         <label class="form-label">Course Title</label>
-                        <input class="form-control" type="text" value="{{ $courseTitleText ? $courseTitleText->name : '' }}"
+                        <input class="form-control" type="text" value="{{ \App\Models\CourseTitle::find(request()->course_title_id ?? $training->course_title_id ?? '')->name }}"
                                aria-label="Disabled input example" name="course_title_text" id="course_title_text"
                                readonly>
                     </div>
@@ -452,9 +429,71 @@
                         <span>4. Course fees will not be refunded. However, could be rescheduled to next
                             available date/course, if not attended due to unforeseen situation.
                         </span><br>
+                        <span>5. Transportation and accommodation are not included in the course fees.</span><br>
+                        <span>6. Visa and any other travel expenses are not included in the course fees.</span>
                         <br>
+                        <br>
+                        <div class="row">
+                            <!-- Signature -->
+                            <div class="col-md-4">
+                                <label for="signature" class="form-label">Signature <span class="red">*</span></label>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="signature" name="signature"
+                                           accept="image/*" {{ !isset($training->signature) ? 'required' : '' }}>
+                                </div>
+                                @if (isset($training) && $training->signature)
+                                    <img src="{{ asset('storage/'.$training->signature) }}" alt="Image"
+                                         style="width: 150px;">
+                                @endif
+                                <div class="form-group mt-2">
+                                    <img id="SignaturePreview" src="#" alt="Image Preview"
+                                         style="max-width:150px; display: none;">
+                                </div>
+                            </div>
+                            <!-- date -->
+                            <div class="col-md-4">
+                                <label class="form-label">Date</label>
+                                <input class="form-control bg" style="background-color: rgba(248, 235, 235, 0.726);" type="text"
+                                       id="currentDate" value="{{ $training->date ?? Carbon\Carbon::now()->format('d/m/Y') }}" name="date" readonly>
+                            </div>
+                            <!-- time -->
+                            <div class="col-md-4">
+                                <label class="form-label">Time</label>
+                                <input style="background-color: rgba(248, 235, 235, 0.726);" class="form-control bg" type="text"
+                                       id="currentTime" name="time" value="{{ $training->time ?? Carbon\Carbon::now()->format('h:i A') }}" readonly>
+                            </div>
+                            <div class="row g-3">
+                                <!-- Print Name -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Print Name</label>
+                                    <input style="background-color: rgba(248, 235, 235, 0.726);" aria-label="Print Name"
+                                           id="print_name" type="text" class="form-control" name="print_name"
+                                           value="{{ auth()->user()->first_name . ' ' . auth()->user()->last_name }}"
+                                           readonly>
+                                </div>
+                                {{-- place --}}
+                                <div class="col-md-6">
+                                    <label class="form-label">PLACE <span style="color: red;">*</span></label>
+                                    <input style="background-color: rgba(248, 235, 235, 0.726);" id="place"
+                                           type="text" class="form-control" name="place"
+                                           value="{{ old('place') ?? ($training->place ?? '') }}" required>
+                                </div>
+                                @if(!isset($training))
+                                    <!-- Payment Item -->
+                                    <div class="form-check">
+                                        <p style="font-weight: bold;">Payment Item <span style="color: red;">*</span>
+                                        <input class="form-check-input" type="radio" name="pay" id="flexRadioDefault2"
+                                               checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Pay Rs 10
+                                        </label>
+                                        </p>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
                         <!-- checkbox -->
-                        <div class="form-check mt-4">
+                        <div class="form-check mt-2">
                             <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" {{ isset($training) ? 'checked' : '' }} required>
                             <label class="form-check-label" for="flexCheckDefault">
                                 I have read and agree to the Terms and Conditions and Privacy Policy
@@ -706,6 +745,64 @@
                     }
                 });
             });
+        });
+        handleImagePreview(document.getElementById('signature'), document.getElementById('SignaturePreview'));
+        function handleImagePreview(inputElement, previewElement) {
+            inputElement.addEventListener('change', function(event) {
+                var image = previewElement;
+                image.src = URL.createObjectURL(event.target.files[0]);
+                image.style.display = 'block';
+            });
+        }
+    </script>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        var order_id = "{{ $res->id ?? '' }}";
+        if(order_id != '') {
+            var options = {
+                "key": "{{ env('RAZOR_KEY') }}", // Enter the Key ID generated from the Dashboard
+                "amount": "{{ 10 * 100 }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "currency": "INR",
+                "name": "{{ env('APP_NAME') }}", //your business name
+                "description": "job application payment",
+                "image": "{{ asset('img/logo.png') }}",
+                "order_id": order_id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                "handler": function (response) {
+                    $('<input>').attr({
+                        type: 'hidden',
+                        id: 'payment_id',
+                        name: 'payment_id',
+                        value: response.razorpay_payment_id
+                    }).appendTo($('#training_form'));
+                    $('<input>').attr({
+                        type: 'hidden',
+                        id: 'payment_response',
+                        name: 'payment_response',
+                        value: JSON.stringify(response)
+                    }).appendTo($('#training_form'));
+                    $('#training_form').submit();
+                },
+                "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+                    "name": "{{ Auth::user()->name }}", //your customer's name
+                    "email": "{{ Auth::user()->email ?? '' }}",
+                    // "contact": "9000090000" //Provide the customer's phone number for better conversion rates
+                },
+                "notes": {
+                    "user_id": "{{ auth()->id() }}"
+                },
+                "theme": {
+                    "color": "#ff7529"
+                }
+            };
+        }
+        var rzp1 = new Razorpay(options);
+        $(document).ready(function () {
+            $('#training_form').on('submit', function (e) {
+                if($('#payment_id').val() == undefined) {
+                    e.preventDefault();
+                    rzp1.open();
+                }
+            })
         });
     </script>
 @endsection

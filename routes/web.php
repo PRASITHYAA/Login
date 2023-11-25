@@ -120,7 +120,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/available/trainings/{id}', [TrainingController::class ,'trainingView'])->name('available.trainings.views');
     Route::get('/trainings/{id}/edit', [TrainingController::class ,'edit'])->name('user.trainings.edit');
     Route::delete('/user/trainings/{id}', [TrainingController::class ,'destroy'])->name('user.trainings.destroy');
-    Route::view('/trainings/apply', 'trainings_apply')->name('trainings.apply');
+    Route::get('/trainings/apply', [TrainingController::class , 'applyTraining'])->name('trainings.apply');
     Route::get('/trainings/{id}', [TrainingController::class, 'show'])->name('trainings.show');
     Route::put('/trainings/{id}', [TrainingController::class ,'update'])->name('trainings.update');
     Route::post('/trainings/apply/store', [TrainingController::class, 'store'])->name('trainings.apply.store');
