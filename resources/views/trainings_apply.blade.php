@@ -769,7 +769,7 @@
         if(order_id != '') {
             var options = {
                 "key": "{{ env('RAZOR_KEY') }}", // Enter the Key ID generated from the Dashboard
-                "amount": "{{ $course->course_fee * 100 }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                "amount": "{{ (int)$course->course_fee * 100 }}", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                 "currency": "INR",
                 "name": "{{ env('APP_NAME') }}", //your business name
                 "description": "job application payment",
