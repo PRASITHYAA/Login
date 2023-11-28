@@ -91,9 +91,10 @@ class TrainingController extends Controller
     public function edit($id)
     {
         $training = Training::find($id);
+        $course = CourseTitle::find($training->course_title_id);
         $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
-        $res = $api->order->create(array('receipt' => '123', 'amount' => round(10) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
-        return view('trainings_apply',  compact('training', 'res'));
+        $res = $api->order->create(array('receipt' => '123', 'amount' => round($course->course_registration_fee) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
+        return view('trainings_apply',  compact('training', 'res', 'course'));
     }
 
     public function update($id, Request $request)
@@ -175,10 +176,11 @@ class TrainingController extends Controller
         return redirect()->back()->with('success', 'Edit Access given successfully!');
     }
 
-    public function applyTraining()
+    public function applyTraining(Request $request)
     {
+        $course = CourseTitle::find(request()->course_title_id);
         $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
-        $res = $api->order->create(array('receipt' => '123', 'amount' => round(10) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
-        return view('trainings_apply', ['res' => $res]);
+        $res = $api->order->create(array('receipt' => '123', 'amount' => round($course->course_registration_fee) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
+        return view('trainings_apply', ['res' => $res, 'course' => $course]);
     }
 }
