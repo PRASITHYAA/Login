@@ -42,9 +42,13 @@
                     <h2 class="head-gold">Prerequisites</h2>
                     <p>{!! $courseTitle->eligible_to_participate !!}</p>
                     <i style="font-size: 90px; display: flex;justify-content: end;color: white;" class="fa-regular fa-circle-check  "></i>
-
                 </div>
-
+                <div style=" width: 100%; padding-left: 50px; " class="border 4px solid mt-4 pt-4 hai ">
+                    <i style="font-size: 50px;" class="fa-regular fa-circle-check  pb-4 "></i>
+                    <h2 class="head-gold">Training Schedule</h2>
+                    <p>{!! $courseTitle->course_training_schedule !!}</p>
+                    <i style="font-size: 90px; display: flex;justify-content: end;color: white;" class="fa-regular fa-circle-check  "></i>
+                </div>
             </div>
             <!-- 2 coloum   right-->
             <div class="col-lg-4">
@@ -63,14 +67,6 @@
                     <h5 class="head-gold">Location </h5>
                     <p>{{ $courseTitle->course_location }}</p>
                     <i style="font-size: 70px; display: flex;justify-content: end; color: white; " class="fa-solid fa-location-dot  "></i>
-                </div>
-                <!-- training -->
-                <div style="width: 100%; padding-left: 50px;" class="border 4px solid  mt-5 pt-4  hai ">
-                    <i style="font-size: 50px;" class="fa-solid fa-calendar-days pb-4 "></i>
-                    <h5 class="head-gold"> Training Schedule</h5>
-                    <p>{!! $courseTitle->course_training_schedule !!}</p>
-                    <i style="font-size: 70px; display: flex;justify-content: end;color: white; " class="fa-solid fa-calendar-days "></i>
-
                 </div>
 
                 <!-- final box -->

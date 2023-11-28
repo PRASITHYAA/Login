@@ -113,12 +113,12 @@
                             name="course_location" value="{{ $courseTitle->course_location }}" id="course_location">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Registration Fee <span style="color: red;">*</span></label>
+                        <label class="form-label">Course Fee <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
                             name="course_registration_fee" value="{{ $courseTitle->course_registration_fee }}" id="course_registration_fee">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Course Fee <span style="color: red;">*</span></label>
+                        <label class="form-label">Registration Fee <span style="color: red;">*</span></label>
                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="text" class="form-control"
                                name="course_fee" id="course_fee" value="{{ $courseTitle->course_fee }}">
                     </div>
