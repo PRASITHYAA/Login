@@ -10,7 +10,7 @@
             <h4 style=" padding-top: 10px; color: white;" class="text-center">Course Title: {{ $courseTitle->name }}</h4>
             <h4 style=" padding-top: 10px; color: white;" class="text-center">CODE: {{ $courseTitle->course_code }}</h4>
             <h4 style=" padding-top: 10px; padding-bottom: 75px; color: white;" class="text-center">{{ $courseTitle->course_location }}
-                | Registration Fee: ₹{{ $courseTitle->course_registration_fee }} | Course Fee: ₹{{ $courseTitle->course_fee }}</h4>
+                | Registration Fee: ₹{{ $courseTitle->course_fee }} | Course Fee: ₹{{ $courseTitle->course_registration_fee }}</h4>
 <!-- <button class="text-center">thr</button> -->
         </div>
         <!-- forms -->
