@@ -93,7 +93,7 @@ class TrainingController extends Controller
         $training = Training::find($id);
         $course = CourseTitle::find($training->course_title_id);
         $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
-        $res = $api->order->create(array('receipt' => '123', 'amount' => round($course->course_fee) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
+        $res = $api->order->create(array('receipt' => '123', 'amount' => round((int)$course->course_fee) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
         return view('trainings_apply',  compact('training', 'res', 'course'));
     }
 
@@ -180,7 +180,7 @@ class TrainingController extends Controller
     {
         $course = CourseTitle::find(request()->course_title_id);
         $api = new Api(env('RAZOR_KEY'), env('RAZOR_SECRET'));
-        $res = $api->order->create(array('receipt' => '123', 'amount' => round($course->course_fee) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
+        $res = $api->order->create(array('receipt' => '123', 'amount' => round((int)$course->course_fee) * 100, 'currency' => 'INR', 'notes' => array('key1' => 'value3', 'key2' => 'value2')));
         return view('trainings_apply', ['res' => $res, 'course' => $course]);
     }
 }
