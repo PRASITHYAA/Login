@@ -17,7 +17,7 @@ class JobApplicationController extends Controller
     {
         $jobApplications = JobApplication::orderBy('id', 'desc')->get();  // Fetch all job applications
 
-        return view('Career.job_application.index', ['jobApplications' => $jobApplications]);
+        return view('career.job_application.index', ['jobApplications' => $jobApplications]);
     }
 
     public function create()
