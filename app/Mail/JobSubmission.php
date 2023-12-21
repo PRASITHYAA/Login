@@ -40,7 +40,7 @@ class JobSubmission extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.job_submission',
+            view: $this->data['view'],
             with: $this->data,
 
         );

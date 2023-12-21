@@ -83,7 +83,10 @@ class TrainingController extends Controller
         $emailData['course_title'] = $training->course_title->name;
         $emailData['created_at'] = Carbon::parse($training->created_at)->format('d_m_Y_h_i_A');
         $this->savePdf($training);
+        $emailData['view'] = 'mail.training_submission';
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
+        $emailData['view'] = 'mail.job_submission_admin';
+        Mail::to('info@tisecon.com')->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form submitted successfully.');
         return redirect()->route('dashboard');
     }
@@ -119,7 +122,10 @@ class TrainingController extends Controller
         $emailData['course_title'] = $training->course_title->name;
         $emailData['created_at'] = Carbon::parse($training->created_at)->format('d_m_Y_h_i_A');;
         $this->savePdf($training);
+        $emailData['view'] = 'mail.job_submission';
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
+        $emailData['view'] = 'mail.job_submission_admin';
+        Mail::to('info@tisecon.com')->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form updated successfully.');
         return redirect()->route('dashboard');
     }

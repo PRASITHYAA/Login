@@ -40,7 +40,7 @@ class TrainingSubmission extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.training_submission',
+            view: $this->data['view'],
             with: $this->data,
 
         );

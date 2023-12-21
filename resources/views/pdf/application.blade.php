@@ -248,6 +248,7 @@
             <td>Spouse Name (If married)</td>
             <td> {{ $spouse_name }}</td>
             <td>{{ $spouse_date_of_birth }}</td>
+            <td>{{ $spouse_email }}</td>
             <td>{{ $spouse_phone }}</td>
             <td><img style="height:100px" src="{{ asset('storage/' . $spouse_image) }}" alt="Spouse's Image"></td>
 
@@ -259,6 +260,7 @@
                 <td>Sibling {{ $key+1 }}</td>
                 <td>{{ $sib['name'] }}</td>
                 <td>{{ $sib['dob'] }}</td>
+                <td>{{ $sib['email'] }}</td>
                 <td>{{ $sib['phone'] }}</td>
                 <td><img style="height:100px" src="{{ asset('storage/' . $sib['photo']) }}" alt="Sibling's Image"></td>
             </tr>

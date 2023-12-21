@@ -964,6 +964,7 @@
                 formContainer.append(clonedFields);
                 // Remove all buttons with the class "add-field-button" except for the last one
                 $('.add-field-button:not(:last)').hide();
+                $('#siblingsimagePreview_'+siblings_id).attr('src', '#').attr('style', 'height: 150px; display: none;');
                 handleImagePreview(document.getElementById('siblings_image_'+siblings_id), document.getElementById('siblingsimagePreview_'+siblings_id));
             });
 
