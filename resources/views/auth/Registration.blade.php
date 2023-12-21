@@ -82,8 +82,8 @@
                 <!-- check box -->
 
                 <div class=" form-check ">
-                    <input type="checkbox" class="form-check-input  " id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">I agree to terms & Policy.</label>
+                    <input type="checkbox" class="form-check-input  " id="exampleCheck1" required>
+                    <label class="form-check-label" for="exampleCheck1">I agree to <a href="https://tisecon.com/terms-and-conditions/" target="_blank">Terms & Conditions</a>.</label>
                 </div>
                 {{-- button --}}
                 <button type="submit" style="border-radius: 40px;font-weight: bold;"
