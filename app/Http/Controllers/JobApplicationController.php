@@ -36,7 +36,7 @@ class JobApplicationController extends Controller
             'position_id' => 'required',
             'first_name' => 'required',
             'last_name' => 'required',
-            'image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100 ',
+            'image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:1024 ',
             'dob' => 'required|date',
             'age' => 'required|integer|min:18|max:99',
             'country' => 'required',
@@ -62,25 +62,25 @@ class JobApplicationController extends Controller
             'father_name' => 'required',
             'father_date_of_birth' => 'required|date',
             'father_phone' => ['required', 'regex:/^[+0-9\s]+$/'],
-            'father_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
+            'father_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:1024',
             // mother name
             'mother_name' => 'required',
             'mother_date_of_birth' => 'required|date',
             'mother_phone' => ['required', 'regex:/^[+0-9\s]+$/'],
-            'mother_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
+            'mother_image' => 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:1024',
             // maritalStatus
             'marital_status' => 'required|in:married,single',
             'spouse_name' => 'required_if:marital_status,married',
             'spouse_date_of_birth' => 'required_if:marital_status,married',
             'spouse_email' => 'required_if:marital_status,married',
             'spouse_phone' => 'required_if:marital_status,married',
-            'spouse_image' => 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
+            'spouse_image' => 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:1024',
             'siblings' => 'required|in:yes,no',
             'siblings_name.*' => 'required_if:siblings,yes',
             'siblings_date_of_birth.*' => 'required_if:siblings,yes',
             'siblings_email.*' => 'required_if:siblings,yes',
             'siblings_phone.*' => 'required_if:siblings,yes',
-            'siblings_image.*' => 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:100',
+            'siblings_image.*' => 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:1024',
         ]);
         $data = $request->all();
         //dd($validations->errors(),$data);
@@ -190,19 +190,19 @@ class JobApplicationController extends Controller
             'siblings_phone.*' => 'required_if:siblings,yes',
         ];
         if ($request->hasFile('image')) {
-            $rules['image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
+            $rules['image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:1024';
         }
         if ($request->hasFile('father_image')) {
-            $rules['father_image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
+            $rules['father_image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:1024';
         }
         if ($request->hasFile('mother_image')) {
-            $rules['mother_image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
+            $rules['mother_image'] = 'required|image|mimes:jpg,jpeg,png,gif,bmp|max:1024';
         }
         if ($request->hasFile('spouse_image')) {
-            $rules['spouse_image'] = 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
+            $rules['spouse_image'] = 'required_if:marital_status,married|image|mimes:jpg,jpeg,png,gif,bmp|max:1024';
         }
         if ($request->hasFile('siblings_image')) {
-            $rules['siblings_image.*'] = 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:100';
+            $rules['siblings_image.*'] = 'required_if:siblings,yes|image|mimes:jpg,jpeg,png,gif,bmp|max:1024';
         }
         $data = $request->validate($rules);
 

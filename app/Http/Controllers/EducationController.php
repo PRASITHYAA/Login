@@ -483,19 +483,19 @@ class EducationController extends Controller
         return ["required_if:qualification.*,in:$field", 'mimes:jpeg,png,jpg,gif,pdf',
             function ($attribute, $value, $fail) {
                 $allowedExtensions = ['jpeg', 'png', 'jpg', 'gif', 'pdf'];
-                $maxPdfSize = 1000; // 1000KB
-                $maxImageSize = 100; // 100KB
+                $maxPdfSize = 1024; // 1MB
+                $maxImageSize = 1024; // 1MB
 
                 // Check if the uploaded file is a PDF
                 if ($value->getClientOriginalExtension() === 'pdf') {
                     if ($value->getSize() > $maxPdfSize * 1024) {
-                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of ' . $maxPdfSize . 'KB.');
+                        $fail('The ' . $attribute . ' must be a PDF file with a maximum size of ' . $maxPdfSize . 'MB.');
                     }
                 } else {
                     // Check if the uploaded file is an image
                     if (in_array($value->getClientOriginalExtension(), $allowedExtensions)) {
                         if ($value->getSize() > $maxImageSize * 1024) {
-                            $fail('The ' . $attribute . ' must be an image with a maximum size of ' . $maxImageSize . 'KB.');
+                            $fail('The ' . $attribute . ' must be an image with a maximum size of ' . $maxImageSize . 'MB.');
                         }
                     } else {
                         $fail('The ' . $attribute . ' must be either a PDF file or an image.');

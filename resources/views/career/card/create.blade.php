@@ -399,17 +399,27 @@
 
     <!-- previews image - -->
     <script>
-        function setupImagePreview(inputId, previewId) {
-            document.getElementById(inputId).addEventListener('change', function(event) {
-                var image = document.getElementById(previewId);
-                image.src = URL.createObjectURL(event.target.files[0]);
-                image.style.display = 'block';
+        function setupImagePreview(inputElement, previewElement) {
+            inputElement.addEventListener('change', function(event) {
+                var image = previewElement;
+                if(event.target.files[0].size/1024 <= 1024) {
+                    image.src = URL.createObjectURL(event.target.files[0]);
+                    image.style.display = 'block';
+                    $('.image_preview').remove();
+                } else {
+                    image.src = '';
+                    image.style.display = 'none';
+                    inputElement.value = '';
+                    var id = inputElement.id;
+                    $('#'+id).parent().parent().find('.image_preview').remove();
+                    $('#'+id).parent().parent().append('<span class="image_preview text-danger">Image size must be less than 1MB</span>');
+                }
             });
         }
-        setupImagePreview('aadhar_image', 'aadharImagePreview');
-        setupImagePreview('aadhar_image_page', 'aadharImagePagePreview');
-        setupImagePreview('passport_image_id', 'passportImageIdPreview');
-        setupImagePreview('passport_image_id_page', 'passportImageIdPagePreview');
+        setupImagePreview(document.getElementById('aadhar_image'), document.getElementById('aadharImagePreview'));
+        setupImagePreview(document.getElementById('aadhar_image_page'), document.getElementById('aadharImagePagePreview'));
+        setupImagePreview(document.getElementById('passport_image_id'), document.getElementById('passportImageIdPreview'));
+        setupImagePreview(document.getElementById('passport_image_id_page'), document.getElementById('passportImageIdPagePreview'));
     </script>
 
     <!-- aadhar number validation -->

@@ -1015,31 +1015,41 @@
 
     {{-- image --}}
     <script>
-        function setupImagePreview(inputId, previewId) {
-            document.getElementById(inputId).addEventListener('change', function(event) {
-                var image = document.getElementById(previewId);
-                image.src = URL.createObjectURL(event.target.files[0]);
-                image.style.display = 'block';
+        function setupImagePreview(inputElement, previewElement) {
+            inputElement.addEventListener('change', function(event) {
+                var image = previewElement;
+                if(event.target.files[0].size/1024 <= 1024) {
+                    image.src = URL.createObjectURL(event.target.files[0]);
+                    image.style.display = 'block';
+                    $('.image_preview').remove();
+                } else {
+                    image.src = '';
+                    image.style.display = 'none';
+                    inputElement.value = '';
+                    var id = inputElement.id;
+                    $('#'+id).parent().parent().find('.image_preview').remove();
+                    $('#'+id).parent().parent().append('<span class="image_preview text-danger">Image size must be less than 1MB</span>');
+                }
             });
         }
 
-        setupImagePreview('high_school_image_mark_sheet', 'highschoolMarkSheetPreview');
-        setupImagePreview('high_school_image_certificate', 'highschoolimagecertificatePreview');
+        setupImagePreview(document.getElementById('high_school_image_mark_sheet'), document.getElementById('highschoolMarkSheetPreview'));
+        setupImagePreview(document.getElementById('high_school_image_certificate'), document.getElementById('highschoolimagecertificatePreview'));
 
-        setupImagePreview('higher_secondary_image_certificate', 'highersecondaryimagecertificatePreview');
-        setupImagePreview('higher_secondary_image_mark_sheet', 'highersecondaryimagemarksheetPreview');
+        setupImagePreview(document.getElementById('higher_secondary_image_certificate'), document.getElementById('highersecondaryimagecertificatePreview'));
+        setupImagePreview(document.getElementById('higher_secondary_image_mark_sheet'), document.getElementById('highersecondaryimagemarksheetPreview'));
 
-        setupImagePreview('diploma_image_certificate', 'diplomaCertificatePreview');
-        setupImagePreview('diploma_image_mark_sheet', 'diplomaMarkSheetPreview');
+        setupImagePreview(document.getElementById('diploma_image_certificate'), document.getElementById('diplomaCertificatePreview'));
+        setupImagePreview(document.getElementById('diploma_image_mark_sheet'), document.getElementById('diplomaMarkSheetPreview'));
 
-        setupImagePreview('bachelors_image_mark_sheet', 'bachelorsimagemarksheetPreview');
-        setupImagePreview('bachelors_image_certificate', 'bachelorsimagecertificatePreview');
+        setupImagePreview(document.getElementById('bachelors_image_mark_sheet'), document.getElementById('bachelorsimagemarksheetPreview'));
+        setupImagePreview(document.getElementById('bachelors_image_certificate'), document.getElementById('bachelorsimagecertificatePreview'));
 
-        setupImagePreview('master_image_certificate', 'masterimagecertificatePreview');
-        setupImagePreview('master_image_mark_sheet', 'masterimagemarksheetPreview');
+        setupImagePreview(document.getElementById('master_image_certificate'), document.getElementById('masterimagecertificatePreview'));
+        setupImagePreview(document.getElementById('master_image_mark_sheet'), document.getElementById('masterimagemarksheetPreview'));
 
-        setupImagePreview('doctorate_image_certificate', 'doctorateimagecertificatePreview');
-        setupImagePreview('doctorate_image_mark_sheet', 'doctorateimagemarksheetPreview');
+        setupImagePreview(document.getElementById('doctorate_image_certificate'), document.getElementById('doctorateimagecertificatePreview'));
+        setupImagePreview(document.getElementById('doctorate_image_mark_sheet'), document.getElementById('doctorateimagemarksheetPreview'));
     </script>
 
 @endsection

@@ -754,8 +754,18 @@
         function handleImagePreview(inputElement, previewElement) {
             inputElement.addEventListener('change', function(event) {
                 var image = previewElement;
-                image.src = URL.createObjectURL(event.target.files[0]);
-                image.style.display = 'block';
+                if(event.target.files[0].size/1024 <= 1024) {
+                    image.src = URL.createObjectURL(event.target.files[0]);
+                    image.style.display = 'block';
+                    $('.image_preview').remove();
+                } else {
+                    image.src = '';
+                    image.style.display = 'none';
+                    inputElement.value = '';
+                    var id = inputElement.id;
+                    $('#'+id).parent().parent().find('.image_preview').remove();
+                    $('#'+id).parent().parent().append('<span class="image_preview text-danger">Image size must be less than 1MB</span>');
+                }
             });
         }
     </script>
