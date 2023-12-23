@@ -1,5 +1,5 @@
 <div>
-    Attn: Human Resource Department Manager<br>
+    <b>Attn: Human Resource Department Manager</b><br>
     Dear Sir/Madam,<br>
     Greetings,<br>
     <p>Please find attached herewith Job application received from <b>{{ $first_name.' '.$last_name }}</b> for the position of
@@ -15,7 +15,7 @@
         <li>7.	Release Appointment Letter					: 2 weeks from MCV</li>
     </ul>
     Thank You for your support to select greatest asset of the company.
-    <br>
-    Regards,
-    <p>TISE Consultant Management</p>
+    <br><br>
+    <p>Regards,<br>
+    TISE Consultant Management</p>
 </div>

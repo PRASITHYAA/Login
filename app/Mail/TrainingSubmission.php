@@ -30,7 +30,7 @@ class TrainingSubmission extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Training Submission',
+            subject: "Training Application - ".$this->data['first_name'].' '.$this->data['last_name'].", Sector - ".$this->data['sector'].", Course Code - ".$this->data['course_code'].", Course Title - ".$this->data['course_title']
         );
     }
 

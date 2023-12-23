@@ -81,12 +81,17 @@ class TrainingController extends Controller
         $emailData['sector'] = $training->sector->name;
         $emailData['course_level'] = $training->course_level->name;
         $emailData['course_title'] = $training->course_title->name;
+        $emailData['course_code'] = $training->course_title->course_code;
+        $emailData['course_location'] = $training->course_title->course_location;
+        $emailData['from_date'] = $training->course_title->from_date;
+        $emailData['to_date'] = $training->course_title->to_date;
+        $emailData['duration'] = $training->course_title->duration;
         $emailData['created_at'] = Carbon::parse($training->created_at)->format('d_m_Y_h_i_A');
         $this->savePdf($training);
         $emailData['view'] = 'mail.training_submission';
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
         $emailData['view'] = 'mail.training_submission_admin';
-        Mail::to('info@tisecon.com')->send(new TrainingSubmission($emailData));
+        Mail::to(env('EMAIL_TO_ADMIN'))->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form submitted successfully.');
         return redirect()->route('dashboard');
     }
@@ -120,12 +125,17 @@ class TrainingController extends Controller
         $emailData['sector'] = $training->sector->name;
         $emailData['course_level'] = $training->course_level->name;
         $emailData['course_title'] = $training->course_title->name;
+        $emailData['course_code'] = $training->course_title->course_code;
+        $emailData['course_location'] = $training->course_title->course_location;
+        $emailData['from_date'] = $training->course_title->from_date;
+        $emailData['to_date'] = $training->course_title->to_date;
+        $emailData['duration'] = $training->course_title->duration;
         $emailData['created_at'] = Carbon::parse($training->created_at)->format('d_m_Y_h_i_A');;
         $this->savePdf($training);
         $emailData['view'] = 'mail.training_submission';
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
         $emailData['view'] = 'mail.training_submission_admin';
-        Mail::to('info@tisecon.com')->send(new TrainingSubmission($emailData));
+        Mail::to(env('EMAIL_TO_ADMIN'))->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form updated successfully.');
         return redirect()->route('dashboard');
     }
