@@ -65,7 +65,7 @@ class DisclaimerController extends Controller
         $emailData['view'] = 'mail.job_submission';
         Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
         $emailData['view'] = 'mail.job_submission_admin';
-        Mail::to('info@tisecon.com')->send(new JobSubmission($emailData));
+        Mail::to(env('EMAIL_TO_ADMIN'))->send(new JobSubmission($emailData));
 
         return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', 'Disclaimer created successfully!');
     }
@@ -134,7 +134,7 @@ class DisclaimerController extends Controller
         $emailData['view'] = 'mail.job_submission';
         Mail::to(env('EMAIL_TO', $jobApplication->email))->send(new JobSubmission($emailData));
         $emailData['view'] = 'mail.job_submission_admin';
-        Mail::to('info@tisecon.com')->send(new JobSubmission($emailData));
+        Mail::to(env('EMAIL_TO_ADMIN'))->send(new JobSubmission($emailData));
         return redirect()->route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id])->with('success', ' Disclaimer updated successfully!');
     }
 
