@@ -40,7 +40,7 @@
                 <h1 class="text-center pt-4 pb-4">EDUCATION</h1>
                 <p style="font-weight: bold;">Note: Please fill all completed educational details as applicable</p>
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp <br>
-                    Size Limit: 50KB</p>
+                    Size Limit: 1MB</p>
 
                 <p>Do you have any education qualification? <span style="color: red;">*</span></p>
 

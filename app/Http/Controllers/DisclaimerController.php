@@ -38,7 +38,7 @@ class DisclaimerController extends Controller
             'current_salary' => 'required|numeric',
             'currency' => 'required',
             'expected_salary' => 'required|numeric',
-            'disclaimer_signature' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'disclaimer_signature' => 'required|image|mimes:jpeg,png,jpg,gif|max:1024',
             'disclaimer_date' => 'required',
             'disclaimer_time' => 'required',
             'disclaimer_print_name' => 'required',
@@ -109,7 +109,7 @@ class DisclaimerController extends Controller
         ];
 
         if ($request->hasFile('disclaimer_signature')) {
-            $rules['disclaimer_signature'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
+            $rules['disclaimer_signature'] = 'required|image|mimes:jpeg,png,jpg,gif|max:1024';
         }
 
         $data = $request->validate($rules);

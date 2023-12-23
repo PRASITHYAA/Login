@@ -122,7 +122,7 @@
                 <h2 class="pt-4 pb-4"> FINAL YEAR PROJECT</h2>
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, pdf bmp <br>
                     Size
-                    Limit: 50KB </p>
+                    Limit: 1MB </p>
                 <p> Do you worked on any final year projects?<span class="red">*</span></p>
 
                 <label>

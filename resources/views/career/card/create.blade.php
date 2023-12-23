@@ -36,7 +36,7 @@
                     value="{{ isset($card) ? $card->job_application_id : request()->job_application_id }}">
                 <h2 class="text-center p-4">Government-Issued Identification Cards (IDs)</h2>
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp <br>
-                    Size Limit: 50KB</p>
+                    Size Limit: 1MB</p>
 
                 <p style="font-weight: bold;">ID Card You Have <span class="red">*</span></p>
                 <br>

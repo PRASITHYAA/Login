@@ -63,7 +63,7 @@
                     <h2 style="display: flex;justify-content: flex-start;" class="pt-4 pb-4">PERSONAL INFORMATION</h2>
                     <p style="font-weight: bold;">
                         Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp <br>
-                        Size Limit: 50KB
+                        Size Limit: 1MB
                     </p>
                     <!-- firstname -->
                     <div class="row g-3">

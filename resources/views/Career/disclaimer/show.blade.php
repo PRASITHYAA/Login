@@ -50,7 +50,7 @@
                     <!-- paragraph -->
                     <p style="font-weight: bold;" class="mt-3">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp
                         <br>
-                        Size Limit: 50KB
+                        Size Limit: 1MB
                     </p>
                     <div class="row ">
                         <!-- Signature -->

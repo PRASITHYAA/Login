@@ -30,7 +30,7 @@ class JobSubmission extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Job Submission',
+            subject: "Job Application - ".$this->data['first_name'].' '.$this->data['last_name'].' - '.$this->data['sector'].' - '. $this->data['position'],
         );
     }
 

@@ -211,12 +211,11 @@
     <thead>
     <tr>
         <th>Description</th>
-        <th>First Name</th>
-        {{-- <th>Last Name</th> --}}
-        <th>Date of Birth <br>
-            (YYYY/MM/DD)</th>
-        <th>Phone/Mobile</th>
-        <th>Photo (Passport Size)</th>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Contact</th>
+        <th>Email</th>
+        <th>Photo</th>
     </tr>
     </thead>
     <tbody>
@@ -225,6 +224,7 @@
         <td> {{ $first_name }}{{ $last_name }}</td>
         <td>{{ $dob }}</td>
         <td> {{ $phone }}</td>
+        <td></td>
         <td><img style="height:100px" src="{{ asset('storage/' . $image) }}" alt="Image"></td>
     </tr>
     <tr>
@@ -232,6 +232,7 @@
         <td> {{ $father_name }}</td>
         <td>{{ $father_date_of_birth }}</td>
         <td> {{ $father_phone }}</td>
+        <td></td>
         <td><img style="height:100px" src="{{ asset('storage/' . $father_image) }}" alt="Father's Image"></td>
 
     </tr>
@@ -240,6 +241,7 @@
         <td> {{ $mother_name }}</td>
         <td>{{ $mother_date_of_birth }}</td>
         <td>{{ $mother_phone }}</td>
+        <td></td>
         <td><img style="height:100px" src="{{ asset('storage/' . $mother_image) }}" alt="Mother's Image"></td>
 
     </tr>
@@ -248,8 +250,8 @@
             <td>Spouse Name (If married)</td>
             <td> {{ $spouse_name }}</td>
             <td>{{ $spouse_date_of_birth }}</td>
-            <td>{{ $spouse_email }}</td>
             <td>{{ $spouse_phone }}</td>
+            <td>{{ $spouse_email }}</td>
             <td><img style="height:100px" src="{{ asset('storage/' . $spouse_image) }}" alt="Spouse's Image"></td>
 
         </tr>
@@ -260,8 +262,8 @@
                 <td>Sibling {{ $key+1 }}</td>
                 <td>{{ $sib['name'] }}</td>
                 <td>{{ $sib['dob'] }}</td>
-                <td>{{ $sib['email'] }}</td>
                 <td>{{ $sib['phone'] }}</td>
+                <td>{{ $sib['email'] }}</td>
                 <td><img style="height:100px" src="{{ asset('storage/' . $sib['photo']) }}" alt="Sibling's Image"></td>
             </tr>
         @endforeach
@@ -1189,13 +1191,13 @@
 <!-- disclaimer -->
 <h2 class="text-center p-4     mt-4 mb-2">DISCLAIMER </h2>
 
-<p>Applicant understands that this is an Equal Opportunity Employer and is committed to excellence through
+<p>I, {{ $first_name }} {{ $last_name }} understands that this is an Equal Opportunity Employer and is committed to excellence through
     diversity. In order to ensure this application is acceptable, please print or type the application that is fully
     completed in order forit to be considered.</p>
 
 <p>Please complete each section EVEN IF you decide to attach a resume.</p>
 
-<p>I, the Applicant, certify that my answers are true and honest to the best of my knowledge. If this
+<p>I, {{ $first_name }} {{ $last_name }}, certify that my answers are true and honest to the best of my knowledge. If this
     application leads to my eventual employment, I understand that any false or misleading information in my
     application or interview may result in my employment being terminated</p>
 

@@ -29,11 +29,15 @@
 
         </div>
         <h2 class="text-center p-4">DISCLAIMER</h2>
+        @php
+            $jobApplication = \App\Models\JobApplication::find(request()->job_application_id ?? $disclaimer->job_application_id ?? '');
+        @endphp
         <!-- paragraph -->
-        <p>Applicant understands that this is an Equal Opportunity Employer and is
+        <p>I, {{ $jobApplication->first_name }} {{ $jobApplication->last_name }} understands that this is an Equal Opportunity Employer and is
             committed to excellence through diversity. In order to ensure this application is acceptable,
             please print or type the application that is fully completed in order for it to be considered.
-            Please complete each section EVEN IF you decide to attach a resume. I, the Applicant, certify
+            Please complete each section EVEN IF you decide to attach a resume.</p>
+        <p>I, {{ $jobApplication->first_name }} {{ $jobApplication->last_name }}, certify
             that my answers are true and honest to the best of my knowledge. If this application leads to my
             eventual employment, I understand that any false or misleading Information in my application or
             interview may result in my employment being terminated.</p>
@@ -74,7 +78,7 @@
                 <!-- paragraph -->
                 <p style="font-weight: bold;">Note: Accepted Formats For Image: jpg, jpeg, gif, png, bmp
                     <br>
-                    Size Limit: 50KB
+                    Size Limit: 1MB
                 </p>
                 <div class="row ">
                     <!-- Signature -->
@@ -109,9 +113,6 @@
                         <!-- Print Name -->
                         <div class="col-md-6">
                             <label class="form-label">Print Name</label>
-                            @php
-                                $jobApplication = \App\Models\JobApplication::find(request()->job_application_id ?? $disclaimer->job_application_id ?? '');
-                            @endphp
                             <input style="background-color: rgba(248, 235, 235, 0.726);" aria-label="Print Name"
                                 id="print_name" type="text" class="form-control" name="disclaimer_print_name"
                                 value="{{ $jobApplication ? $jobApplication->first_name . ' ' . $jobApplication->last_name : '' }}"
