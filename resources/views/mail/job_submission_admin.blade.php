@@ -17,5 +17,5 @@
     Thank You for your support to select greatest asset of the company.
     <br><br>
     <p>Regards,<br>
-    TISE Consultant Management</p>
+        <b>TISE Consultant Management</b></p>
 </div>

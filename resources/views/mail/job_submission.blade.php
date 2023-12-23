@@ -20,5 +20,5 @@
     </p>
 <br>
 Regards,
-<p>Tisecon Team</p>
+    <p><b>Tisecon Team</b></p>
 </div>
