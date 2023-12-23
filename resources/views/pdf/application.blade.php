@@ -224,7 +224,7 @@
         <td> {{ $first_name }}{{ $last_name }}</td>
         <td>{{ $dob }}</td>
         <td> {{ $phone }}</td>
-        <td></td>
+        <td>{{ $email }}</td>
         <td><img style="height:100px" src="{{ asset('storage/' . $image) }}" alt="Image"></td>
     </tr>
     <tr>
