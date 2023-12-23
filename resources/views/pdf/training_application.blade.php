@@ -298,9 +298,9 @@
         <td class="form-label">Course Title </td>
     </tr>
     <tr>
-        <td><input class="form-control" type="text" value="{{ \App\Models\Sector::find($sector_id)->name }}"></td>
-        <td><input class="form-control" type="text" value="{{ \App\Models\CourseLevel::find($course_level_id)->name }}"></td>
-        <td><input class="form-control" type="text" value="{{ \App\Models\CourseTitle::find($course_title_id )->name }}"></td>
+        <td>{{ \App\Models\Sector::find($sector_id)->name }}</td>
+        <td>{{ \App\Models\CourseLevel::find($course_level_id)->name }}</td>
+        <td>{{ \App\Models\CourseTitle::find($course_title_id )->name }}</td>
     </tr>
 </table>
 <div class="col-lg-6 mt-4">
