@@ -46,7 +46,7 @@
                                     <td>{{ $jobApplication->position->name }}</td>
                                     <td>
                                         <div class="" role="group" aria-label="Basic mixed styles example">
-                                            <a href="{{ route('career.job_application.edit', $jobApplication->id) }}"
+                                            <a href="{{ route('career.job_application.edit', ['id' => $jobApplication->id, 'option' => 'view']) }}"
                                                title="View"><i class="fa fa-eye text-primary"></i></a>
                                             @if($jobApplication->allow_edit == 1)
                                                 <a style="margin: 0 5px 0 5px;"

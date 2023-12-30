@@ -287,9 +287,17 @@
                     <div class="col-md-6">
                         <!-- button -->
                         <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
+                            @if(request()->option == 'view')
                             <a style="font-weight: bold; " class="btn btn-secondary "
+                               href="{{ route('career.job_application.edit', ['id' => (request()->job_application_id ?? (isset($card) ? $card->job_application_id : '')), 'option' => request()->option]) }}">Previous</a>
+                                @php $education = App\Models\Education::where('job_application_id', $card->job_application_id)->first(); @endphp
+                                <a style="font-weight: bold;" class="btn btn-secondary m-1"
+                                    href="{{ route('career.education.edit', ['id' => $education->id, 'option' => request()->option]) }}">Next</a> 
+                            @else
+                                <a style="font-weight: bold; " class="btn btn-secondary "
                                href="{{ route('career.job_application.edit', (request()->job_application_id ?? (isset($card) ? $card->job_application_id : ''))) }}">Previous</a>
-                            <button class="btn btn-primary   mx-3">Save And Next </button>
+                                <button class="btn btn-primary   mx-3">Save And Next </button>
+                            @endif
                             <br>
                             <br>
                         </div>

@@ -50,8 +50,8 @@
                                class="btn btn-info">View</a>--}}
                             <a href="{{ route('career.job_application.access', $jobApplication->id) }}"
                                title="Give Edit Access"><i class="fa fa-user-pen text-primary"></i></a>
-                            <a href="{{ route('career.job_application.edit', $jobApplication->id) }}"
-                               title="View"><i class="fa fa-eye text-primary"></i></a>
+                            <a href="{{ route('career.job_application.edit', ['id' => $jobApplication->id, 'option' => 'view']) }}"
+                               title="View" target="_blank"><i class="fa fa-eye text-primary"></i></a>
                             {{-- <a href="{{ route('career.job_application.edit', $jobApplication->id) }}" class="btn btn-warning">Edit</a> --}}
                             <form
                                 action="{{ route('career.job_application.destroy', $jobApplication->id) }}"

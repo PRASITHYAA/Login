@@ -52,7 +52,7 @@
         </ol>
         <div style="display: flex;justify-content: end;">
             @if(request()->job_application_id ?? '')
-            <a style="font-weight: bold;" class="btn btn-secondary" href="{{ route('career.job_application.edit', [request()->job_application_id]) }}">Next</a>
+            <a style="font-weight: bold;" class="btn btn-secondary" href="{{ route('career.job_application.edit', ['id' => request()->job_application_id, 'option' => request()->option]) }}">Next</a>
             {{-- <a href="{{ route('job_application', $position->id) }}" class="btn btn-warning btn-sm">Edit</a> --}}
             @else
                 <a style="font-weight: bold;" class="btn btn-secondary" href="{{ route('job_application', ['sector_id' => request()->sector_id, 'position_id' => request()->position_id]) }}">Next</a>

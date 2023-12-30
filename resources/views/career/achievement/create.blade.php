@@ -284,9 +284,16 @@
                 </div>
                 <!-- buttons -->
                 <div style="display: flex;justify-content: end; align-items: center;">
-                    <a style="display: flex;align-items: center;; " class="btn btn-secondary mx-3 mt-5"
+                    @if(request()->option == 'view')
+                                <a style="font-weight: bold; " class="btn btn-secondary mx-3 mt-5" href="{{ route('career.employment.edit', ['id' => request()->employment_id ?? ($employment_id ?? ''), 'option' => request()->option]) }}">Previous</a>
+                                    @php $disclaimer = App\Models\Disclaimer::where('job_application_id', $achievement->job_application_id)->first(); @endphp
+                                    <a style="font-weight: bold;" class="btn btn-secondary m-1 mt-5"
+                                        href="{{ route('career.disclaimer.edit', ['id' => $disclaimer->id, 'option' => request()->option]) }}">Next</a> 
+                            @else
+                                <a style="display: flex;align-items: center;; " class="btn btn-secondary mx-3 mt-5"
                         href="{{ route('career.employment.edit', request()->employment_id ?? ($employment_id ?? '')) }}">Previous</a>
                     <button class="btn btn-primary mt-5 mx-3 ">Save And Next </button>
+                            @endif
                 </div>
             </form>
         </div>

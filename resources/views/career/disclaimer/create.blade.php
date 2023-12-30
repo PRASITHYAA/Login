@@ -34,12 +34,10 @@
         @endphp
         <!-- paragraph -->
         <p>I, {{ $jobApplication->first_name }} {{ $jobApplication->last_name }} understands that this is an Equal Opportunity Employer and is
-            committed to excellence through diversity. In order to ensure this application is acceptable,
-            please print or type the application that is fully completed in order for it to be considered.
-            Please complete each section EVEN IF you decide to attach a resume.</p>
+            committed to excellence through diversity.</p>
         <p>I, {{ $jobApplication->first_name }} {{ $jobApplication->last_name }}, certify
             that my answers are true and honest to the best of my knowledge. If this application leads to my
-            eventual employment, I understand that any false or misleading Information in my application or
+            eventual employment, I understand and agree that any false or misleading Information in my application or
             interview may result in my employment being terminated.</p>
         <div class="container">
             <!-- heading -->
@@ -150,9 +148,15 @@
 
                 <!-- buttons -->
                 <div style="display: flex;justify-content: end;  " class="groupfinal">
-                    <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
-                       href="{{ route('career.achievement.edit', request()->achievement_id ?? ($achievement_id ?? '')) }}">Previous</a>
-                    <button class="btn btn-primary m-1 ">Submit Form</button>
+                            @if(request()->option == 'view')
+                                <a style="font-weight: bold; " class="btn btn-secondary mx-3 mt-5" href="{{ route('career.achievement.edit', ['id' => request()->achievement_id ?? ($achievement_id ?? ''), 'option' => request()->option]) }}">Previous</a>
+                                    <a style="font-weight: bold;" class="btn btn-secondary m-1 mt-5"
+                                        href="{{ route('acknowledgement', ['job_application_id' => $disclaimer->job_application_id, 'disclaimer_id' => $disclaimer->id, 'option' => request()->option]) }}">Next</a> 
+                            @else
+                                <a style="display: flex;align-items: center;" class="btn btn-secondary m-1" href="{{ route('career.achievement.edit', request()->achievement_id ?? ($achievement_id ?? '')) }}">Previous</a>
+                                <button class="btn btn-primary m-1 ">Submit Form</button>
+                            @endif
+
 
                 </div>
             </form>

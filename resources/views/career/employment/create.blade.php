@@ -418,10 +418,16 @@
 
                 <!-- button -->
                 <div style="display: flex;justify-content: end; align-items: center;" class="mt-5">
-
-                    <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
+                            @if(request()->option == 'view')
+                                <a style="font-weight: bold; " class="btn btn-secondary mx-3 mt-5" href="{{ route('career.education.edit', ['id' => request()->education_id ?? ($education_id ?? ''), 'option' => request()->option]) }}">Previous</a>
+                                    @php $achievement = App\Models\Achievement::where('job_application_id', $employment->job_application_id)->first(); @endphp
+                                    <a style="font-weight: bold;" class="btn btn-secondary m-1 mt-5"
+                                        href="{{ route('career.achievement.edit', ['id' => $achievement->id, 'option' => request()->option]) }}">Next</a> 
+                            @else
+                                <a style="display: flex;align-items: center;" class="btn btn-secondary m-1 "
                         href="{{ route('career.education.edit', request()->education_id ?? ($education_id ?? '')) }}">Previous</a>
                     <button class="btn btn-primary  mx-3 ">Save And Next </button>
+                            @endif
                 </div>
 
             </form>
