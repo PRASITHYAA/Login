@@ -75,14 +75,14 @@
                     <div class="col-md-2 mt-2">
                         <label class="form-label">Passport Size Photo
                             <span class="span-star">*</span></label>
-                        <input type="file" class="form-control" id="validationDefaultUpload"
+                        <input type="file" class="form-control" id="validationDefaultUpload" accept="image/*"
                                name="photo" {{ isset($training) ? '' : 'required' }}>
                         @if (isset($training))
                             <img src="{{ asset('storage/' . $training->photo) }}" alt="Photo"
                                  style="height: 150px;">
                         @endif
-                        <div class="pt-2" style="width: 150px;" id="imageContainer">
-                            <!-- Placeholder for displaying uploaded image -->
+                        <div class="form-group">
+                            <img id="imageContainer" src="#" alt="Image Preview" style="height: 150px; display: none;">
                         </div>
                     </div>
                 </div> <!-- row end -->
@@ -586,45 +586,42 @@
             });
         });
     </script>
-
-    <!-- image upload down showing -->
-
-    <script>
-        // Get the file input element
-        const fileInput = document.getElementById('validationDefaultUpload');
-
-        // Get the image container
-        const imageContainer = document.getElementById('imageContainer');
-
-        // Event listener for file input change
-        fileInput.addEventListener('change', function (event) {
-            const file = event.target.files[0]; // Get the selected file
-
-            if (file) {
-                // Create a FileReader to read the selected file
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    // Create an image element
-                    const img = document.createElement('img');
-                    img.src = e.target.result; // Set the image source to the loaded data
-
-                    // Apply styling to the image element
-                    img.style.maxWidth = '100%'; // Adjust the desired maximum width
-
-                    // Append the image to the container
-                    imageContainer.innerHTML = ''; // Clear previous content
-                    imageContainer.appendChild(img);
-                };
-
-                // Read the selected file as a data URL
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
+
+function handleImagePreview(inputElement, previewElement) {
+            inputElement.addEventListener('change', function(event) {
+                var image = previewElement;
+                if(event.target.files[0].size/1024 <= 1024) {
+                    image.src = URL.createObjectURL(event.target.files[0]);
+                    var mime = event.target.files[0].type;
+                    if(mime == 'image/jpg' || mime == 'image/jpeg' || mime == 'image/gif' || mime == 'image/png' || mime == 'image/x-icon') {
+                        image.style.display = 'block';
+                        $('.image_preview').remove();
+                    } else {
+                        image.src = '';
+                        image.style.display = 'none';
+                        inputElement.value = '';
+                        var id = inputElement.id;
+                        $('#'+id).parent().find('.image_preview').remove();
+                        $('#'+id).parent().append('<span class="image_preview text-danger">Invalid Image</span>');
+                    }
+                } else {
+                    image.src = '';
+                    image.style.display = 'none';
+                    inputElement.value = '';
+                    var id = inputElement.id;
+                    $('#'+id).parent().find('.image_preview').remove();
+                    $('#'+id).parent().append('<span class="image_preview text-danger">Image size must be less than 1MB</span>');
+                }
+            });
+        }
+
+        handleImagePreview(document.getElementById('validationDefaultUpload'), document.getElementById('imageContainer'));
+        handleImagePreview(document.getElementById('signature'), document.getElementById('SignaturePreview'));
+
+
             $('#myForm').submit(function (e) {
                 const inputs = document.querySelectorAll('.phoneInputField');
                 inputs.forEach(function (input, index) {
@@ -750,24 +747,6 @@
                 });
             });
         });
-        handleImagePreview(document.getElementById('signature'), document.getElementById('SignaturePreview'));
-        function handleImagePreview(inputElement, previewElement) {
-            inputElement.addEventListener('change', function(event) {
-                var image = previewElement;
-                if(event.target.files[0].size/1024 <= 1024) {
-                    image.src = URL.createObjectURL(event.target.files[0]);
-                    image.style.display = 'block';
-                    $('.image_preview').remove();
-                } else {
-                    image.src = '';
-                    image.style.display = 'none';
-                    inputElement.value = '';
-                    var id = inputElement.id;
-                    $('#'+id).parent().parent().find('.image_preview').remove();
-                    $('#'+id).parent().parent().append('<span class="image_preview text-danger">Image size must be less than 1MB</span>');
-                }
-            });
-        }
     </script>
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
