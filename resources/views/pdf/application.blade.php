@@ -221,7 +221,7 @@
     <tbody>
     <tr>
         <td>Name</td>
-        <td> {{ $first_name }}{{ $last_name }}</td>
+        <td>{{ $first_name.' '.$last_name }}</td>
         <td>{{ $dob }}</td>
         <td> {{ $phone }}</td>
         <td>{{ $email }}</td>
@@ -1033,8 +1033,6 @@
             <td>{{ $eligible_to_work_text }}</td>
         </tr>
     @endif
-</table>
-<table>
     <tr>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">
             Have You Ever Been<br> Convicted of A Crime?</td>
@@ -1067,10 +1065,6 @@
             <td>{{ $achievement }}</td>
         </tr>
     @endif
-</table>
-{{--<h2 class="text-center p-4  ">CURRICULUM VITAE</h2>--}}
-<table>
-    <tbody>
     <tr>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">Have you been
             published
@@ -1091,7 +1085,6 @@
             <td>{{ $conference }}</td>
         </tr>
     @endif
-    </tbody>
 </table>
 <div class="page-break"></div>
 <h2 class="text-center p-4  ">FINAL YEAR PROJECT</h2>
@@ -1175,8 +1168,6 @@
             @endif
         </td>
     </tr>
-</table>
-<table>
     <tr>
         <td style="border: 1px solid black; padding: 10px; text-align: left; width: 30%;">
             Are You Willing to Consent to a Background Check?</td>
@@ -1192,13 +1183,10 @@
 <h2 class="text-center p-4     mt-4 mb-2">DISCLAIMER </h2>
 
 <p>I, {{ $first_name }} {{ $last_name }} understands that this is an Equal Opportunity Employer and is committed to excellence through
-    diversity. In order to ensure this application is acceptable, please print or type the application that is fully
-    completed in order forit to be considered.</p>
-
-<p>Please complete each section EVEN IF you decide to attach a resume.</p>
+    diversity.</p>
 
 <p>I, {{ $first_name }} {{ $last_name }}, certify that my answers are true and honest to the best of my knowledge. If this
-    application leads to my eventual employment, I understand that any false or misleading information in my
+    application leads to my eventual employment, I understand and agree that any false or misleading information in my
     application or interview may result in my employment being terminated</p>
 
 
