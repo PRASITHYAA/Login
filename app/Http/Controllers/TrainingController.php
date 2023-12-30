@@ -91,7 +91,7 @@ class TrainingController extends Controller
         $emailData['view'] = 'mail.training_submission';
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
         $emailData['view'] = 'mail.training_submission_admin';
-        Mail::to(env('EMAIL_TO_ADMIN'))->send(new TrainingSubmission($emailData));
+        Mail::to(env('EMAIL_TO_TRAINING_ADMIN'))->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form submitted successfully.');
         return redirect()->route('dashboard');
     }
@@ -135,7 +135,7 @@ class TrainingController extends Controller
         $emailData['view'] = 'mail.training_submission';
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
         $emailData['view'] = 'mail.training_submission_admin';
-        Mail::to(env('EMAIL_TO_ADMIN'))->send(new TrainingSubmission($emailData));
+        Mail::to(env('EMAIL_TO_TRAINING_ADMIN'))->send(new TrainingSubmission($emailData));
         session()->flash('success', 'Training form updated successfully.');
         return redirect()->route('dashboard');
     }
