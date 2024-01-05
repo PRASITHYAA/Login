@@ -654,8 +654,10 @@
                                 <a style="font-weight: bold;" class="btn btn-secondary m-1"
                                     href="{{ route('career.instruction', ['job_application_id' => $jobApplication->id ?? '', 'option' => request()->option]) }}">Previous</a>
                                 @php $card = App\Models\Card::where('job_application_id', $jobApplication->id)->first(); @endphp
-                                <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                                    href="{{ route('career.card.edit', ['id' => $card->id, 'option' => request()->option]) }}">Next</a> 
+                                @if(!is_null($card))
+                                    <a style="font-weight: bold;" class="btn btn-secondary m-1"
+                                        href="{{ route('career.card.edit', ['id' => $card->id, 'option' => request()->option]) }}">Next</a> 
+                                @endif
                             @else
                                 <a style="font-weight: bold;" class="btn btn-secondary m-1"
                                     href="{{ route('career.instruction', ['job_application_id' => $jobApplication->id ?? '']) }}">Previous</a>    
@@ -969,9 +971,33 @@
     <script src="script.js"></script>
 
     <!-- clone -->
-
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js">
+    </script>
+    <link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+<link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet">
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
     <script>
         $(document).ready(function() {
+        /*var date = [{"mask": "##/##/####"}];
+        $('input[type="date"]').inputmask({
+            mask: date,
+            greedy: false,
+            alias: "dd/mm/yyyy",
+            placeholder: "dd/mm/yyyy",
+            definitions: {'#': {validator: "[0-9]", cardinality: 1}}
+        });
+        $('input[type="date"]').datepicker({
+              dateFormat: 'dd/mm/yyyy',
+              defaultDate: new Date(),
+              changeMonth: true,
+              changeYear: true,
+              maxDate: 0,
+              //yearRange: '1900:'+(new Date).getFullYear()
+              yearRange: "1900:c+100",
+        });*/
+
             const formContainer = $("#formContainer2");
             const addFieldButton = $(".add-field-button");
 

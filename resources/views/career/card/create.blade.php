@@ -291,8 +291,10 @@
                             <a style="font-weight: bold; " class="btn btn-secondary "
                                href="{{ route('career.job_application.edit', ['id' => (request()->job_application_id ?? (isset($card) ? $card->job_application_id : '')), 'option' => request()->option]) }}">Previous</a>
                                 @php $education = App\Models\Education::where('job_application_id', $card->job_application_id)->first(); @endphp
-                                <a style="font-weight: bold;" class="btn btn-secondary m-1"
-                                    href="{{ route('career.education.edit', ['id' => $education->id, 'option' => request()->option]) }}">Next</a> 
+                                @if(!is_null($education))
+                                    <a style="font-weight: bold;" class="btn btn-secondary m-1"
+                                        href="{{ route('career.education.edit', ['id' => $education->id, 'option' => request()->option]) }}">Next</a>
+                                @endif     
                             @else
                                 <a style="font-weight: bold; " class="btn btn-secondary "
                                href="{{ route('career.job_application.edit', (request()->job_application_id ?? (isset($card) ? $card->job_application_id : ''))) }}">Previous</a>

@@ -106,6 +106,35 @@
         .btn-right {
             float: right;
         }
+        input[type="date"] {
+            display: inline-block;
+            position: relative;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background: transparent;
+            bottom: 0;
+            color: transparent;
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
+        }
+        input[type="date"]::-moz-calendar-picker-indicator {
+ background: transparent;
+            bottom: 0;
+            color: transparent;
+            cursor: pointer;
+            height: auto;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: auto;
+}
     </style>
 
 
@@ -161,9 +190,9 @@
                         <div class="collapse navbar-collapse pb-2" id="navbarSupportedContent">
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0  ">
                                 <li class="nav-item">
-                                    <a class="nav-link  mx-2 " href="#">Home</a>
+                                    <a class="nav-link  mx-2 " href="{{ route('dashboard') }}">Home</a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link  mx-2 " href="#">About</a>
                                 </li>
                                 <li class="nav-item">
@@ -198,13 +227,18 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link   mx-1" href="#">Contact Us</a>
-                                </li>
+                                </li> -->
                             </ul>
-                            <div class="d-flex align-items-end btn-nav">
+                            <div class="d-flex align-items-end btn-nav" style="margin-right: 5px;">
+                                <a href="{{ route('logout') }}" class="btn btn-primary btn-nav ">
+                                    Logout
+                                </a>
+                            </div>
+                            <!-- <div class="d-flex align-items-end btn-nav">
                                 <button type="button" class="btn btn-primary btn-nav ">
                                     Feedback
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </nav>
@@ -349,6 +383,11 @@
         });
     </script>
     @yield('script')
+    <script>
+        $(document).ready(function() {
+            $('input[type="date"]').attr('onkeydown', "return false");
+        });
+    </script>
 </body>
 
 </html>

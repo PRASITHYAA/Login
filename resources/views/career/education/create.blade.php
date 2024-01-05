@@ -964,8 +964,10 @@
                             @if(request()->option == 'view')
                             <a style="font-weight: bold; " class="btn btn-secondary mx-3 mt-5" href="{{ route('career.card.edit', ['id' => request()->card_id ?? ($card_id ?? ''), 'option' => request()->option]) }}">Previous</a>
                                 @php $employment = App\Models\Employment::where('job_application_id', $education->job_application_id)->first(); @endphp
-                                <a style="font-weight: bold;" class="btn btn-secondary m-1 mt-5"
-                                    href="{{ route('career.employment.edit', ['id' => $employment->id, 'option' => request()->option]) }}">Next</a> 
+                                @if(!is_null($employment))
+                                    <a style="font-weight: bold;" class="btn btn-secondary m-1 mt-5"
+                                        href="{{ route('career.employment.edit', ['id' => $employment->id, 'option' => request()->option]) }}">Next</a>
+                                @endif     
                             @else
                                 <a style="font-weight: bold; " class="btn btn-secondary mx-3 mt-5" href="{{ route('career.card.edit', request()->card_id ?? ($card_id ?? '')) }}">Previous</a>
                                 <button class="btn btn-primary mx-3 mt-5 ">Save And Next </button>

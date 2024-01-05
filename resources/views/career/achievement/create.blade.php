@@ -287,8 +287,10 @@
                     @if(request()->option == 'view')
                                 <a style="font-weight: bold; " class="btn btn-secondary mx-3 mt-5" href="{{ route('career.employment.edit', ['id' => request()->employment_id ?? ($employment_id ?? ''), 'option' => request()->option]) }}">Previous</a>
                                     @php $disclaimer = App\Models\Disclaimer::where('job_application_id', $achievement->job_application_id)->first(); @endphp
-                                    <a style="font-weight: bold;" class="btn btn-secondary m-1 mt-5"
-                                        href="{{ route('career.disclaimer.edit', ['id' => $disclaimer->id, 'option' => request()->option]) }}">Next</a> 
+                                    @if(!is_null($disclaimer))
+                                        <a style="font-weight: bold;" class="btn btn-secondary m-1 mt-5"
+                                            href="{{ route('career.disclaimer.edit', ['id' => $disclaimer->id, 'option' => request()->option]) }}">Next</a>
+                                    @endif    
                             @else
                                 <a style="display: flex;align-items: center;; " class="btn btn-secondary mx-3 mt-5"
                         href="{{ route('career.employment.edit', request()->employment_id ?? ($employment_id ?? '')) }}">Previous</a>
