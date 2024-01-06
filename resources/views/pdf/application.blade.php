@@ -397,24 +397,52 @@
     </tr>
     <tr>
         <td>Upload ID- 1st Page</td>
-        <td><img style="height:100px" src="{{ asset('storage/' . $aadhar_image) }}" alt="Aadhar Image"></td>
+        <td>
+            @if(!is_null($aadhar_image) && explode('.', $aadhar_image)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $aadhar_image) }}"
+                   target="_blank"
+                   alt="Aadhar pdf" style="width: 100px;">View</a>
+            @elseif(!is_null($aadhar_image))
+                <img
+                    src="{{ asset('storage/' . $aadhar_image) }}"
+                    alt="Aadhar image" style="width: 100px;">
+            @endif
+        </td>
         <td style="{{ $passport_name ? '' : 'display:none;' }}">
-            @if(!is_null($passport_image_id))
-                <img style="height:100px" src="{{ asset('storage/' . $passport_image_id) }}" alt="Passport Image">
+            @if(!is_null($passport_image_id) && explode('.', $passport_image_id)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $passport_image_id) }}"
+                   target="_blank"
+                   alt="Passport pdf" style="width: 100px;">View</a>
+            @elseif(!is_null($passport_image_id))
+                <img
+                    src="{{ asset('storage/' . $passport_image_id) }}"
+                    alt="Passport Image" style="width: 100px;">
             @endif
         </td>
     </tr>
     <tr>
         <td>Upload ID- 2st Page</td>
         <td>
-            @if(!is_null($aadhar_image_page))
-                <img style="height:100px" src="{{ asset('storage/' . $aadhar_image_page) }}" alt="Aadhar Image Page">
+            @if(!is_null($aadhar_image_page) && explode('.', $aadhar_image_page)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $aadhar_image_page) }}"
+                   target="_blank"
+                   alt="Aadhar pdf" style="width: 100px;">View</a>
+            @elseif(!is_null($aadhar_image_page))
+                <img
+                    src="{{ asset('storage/' . $aadhar_image_page) }}"
+                    alt="Aadhar Image" style="width: 100px;">
             @endif
         </td>
         <td style="{{ $passport_name ? '' : 'display:none;' }}">
-            @if(!is_null($passport_image_id_page))
-                <img style="height:100px" src="{{ asset('storage/' . $passport_image_id_page) }}" alt="Aadhar Image Page">
-            @endif
+            @if(!is_null($passport_image_id_page) && explode('.', $passport_image_id_page)[1]  == 'pdf')
+                <a href="{{ asset('storage/' . $passport_image_id_page) }}"
+                   target="_blank"
+                   alt="Passport pdf" style="width: 100px;">View</a>
+            @elseif(!is_null($passport_image_id_page))
+                <img
+                    src="{{ asset('storage/' . $passport_image_id_page) }}"
+                    alt="Passport Image" style="width: 100px;">
+            @endif            
         </td>
     </tr>
     </tbody>
