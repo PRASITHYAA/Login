@@ -12,9 +12,10 @@ class LoginController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:6',
-        ],
-        );
+            'password' => 'required|min:8',
+        ], [
+            'password.min' => 'The password must be at least :min characters.',
+        ]);
 
         $email = $request->input('email');
         $password = $request->input('password');

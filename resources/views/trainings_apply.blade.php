@@ -248,7 +248,7 @@
                         </select>
                         <!-- Zip Code -->
                         <label class="form-label">Zip Code<span class="span-star">*</span></label>
-                        <input type="text" class="form-control select-back-colour" id="validationCustom02"
+                        <input type="number" class="form-control select-back-colour" id="validationCustom02"
                                value="{{ old('zip_code') ?? ($training->zip_code ?? '') }}" name="zip_code" placeholder="Zip" required>
                     </div>
                     <div class="col-lg-3"></div>
@@ -329,7 +329,7 @@
                                         </select>
                                         <!-- Zip Code -->
                                         <label class="form-label">Zip Code<span class="span-star">*</span></label>
-                                        <input type="text" class="form-control select-back-colour"
+                                        <input type="number" class="form-control select-back-colour"
                                                id="validationCustom02" value="{{ old('permanent_zip_code') ?? ($training->permanent_zip_code ?? '') }}" name="permanent_zip_code"
                                                placeholder="Zip" {{ isset($training->permanent_zip_code) ? 'required' : '' }}>
                                     </div>
@@ -589,8 +589,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
-
-function handleImagePreview(inputElement, previewElement) {
+        function handleImagePreview(inputElement, previewElement) {
             inputElement.addEventListener('change', function(event) {
                 var image = previewElement;
                 if(event.target.files[0].size/1024 <= 1024) {
@@ -621,14 +620,6 @@ function handleImagePreview(inputElement, previewElement) {
         handleImagePreview(document.getElementById('validationDefaultUpload'), document.getElementById('imageContainer'));
         handleImagePreview(document.getElementById('signature'), document.getElementById('SignaturePreview'));
 
-
-            $('#myForm').submit(function (e) {
-                const inputs = document.querySelectorAll('.phoneInputField');
-                inputs.forEach(function (input, index) {
-                    var phoneNumber = itis[index].getNumber();
-                    input.value = phoneNumber;
-                });
-            });
             //State dropdown
             $('#country, #permanent_country').change(function() {
                 var selectedSector = $(this).val();
@@ -795,10 +786,15 @@ function handleImagePreview(inputElement, previewElement) {
         var rzp1 = new Razorpay(options);
         $(document).ready(function () {
             $('#training_form').on('submit', function (e) {
-                if($('#payment_id').val() == undefined) {
+                /*if($('#payment_id').val() == undefined) {
                     e.preventDefault();
                     rzp1.open();
-                }
+                }*/
+                const inputs = document.querySelectorAll('.phoneInputField');
+                inputs.forEach(function (input, index) {
+                    var phoneNumber = itis[index].getNumber();
+                    input.value = phoneNumber;
+                });
             })
         });
     </script>

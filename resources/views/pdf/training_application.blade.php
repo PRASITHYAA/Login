@@ -329,7 +329,7 @@
 <table>
     <tr>
         <th style="border: 1px solid black; width: 30%;">Signature</th>
-        <td><img style="height:100px" src="{{ asset('storage/' . $signature) }}" alt="Signature"> </td>
+        <td><img style="height:100px" src="{{ public_path('storage/' . $signature) }}" alt="Signature"> </td>
     </tr>
 </table><br>
 <table>

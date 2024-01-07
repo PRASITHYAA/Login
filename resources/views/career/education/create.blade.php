@@ -430,7 +430,7 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">Class <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control alphabetic-input" placeholder="Class" id="diploma_course" name="diploma_course"
+                                    class="form-control numeric-input" placeholder="Class" id="diploma_course" name="diploma_course"
                                     value="{{ old('diploma_course') ?? ($education->diploma_course ?? '') }}">
                             </div>
                             <!-- Diploma Major -->
@@ -574,7 +574,7 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">Class <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                       class="form-control alphabetic-input" placeholder="Class" id="bachelors_class" name="bachelors_class"
+                                       class="form-control numeric-input" placeholder="Class" id="bachelors_class" name="bachelors_class"
                                        value="{{ old('bachelors_class') ?? ($education->bachelors_class ?? '') }}">
                             </div>
                             <!-- Bachelors Course -->
@@ -740,7 +740,7 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">Class <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="master_class" name="master_class" class="form-control" placeholder="Class"
+                                    id="master_class" name="master_class" class="form-control numeric-input" placeholder="Class"
                                     value="{{ old('master_class') ?? ($education->master_class ?? '') }}">
                             </div>
                             <!--  Field of Specialization-->
@@ -885,7 +885,7 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">Class <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    id="doctorate_class" class="form-control" name="doctorate_class" placeholder="Class"
+                                    id="doctorate_class" class="form-control numeric-input" name="doctorate_class" placeholder="Class"
                                     value="{{ old('doctorate_class') ?? ($education->doctorate_class ?? '') }}">
                             </div>
 

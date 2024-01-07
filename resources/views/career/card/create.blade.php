@@ -459,7 +459,7 @@
                     inputElement.value = '';
                     var id = inputElement.id;
                     $('#'+id).parent().parent().find('.image_preview').remove();
-                    $('#'+id).parent().parent().append('<span class="image_preview text-danger">Image size must be less than 1MB</span>');
+                    $('#'+id).parent().parent().append('<span class="image_preview text-danger">File size must be less than 1MB</span>');
                 }
             });
         }

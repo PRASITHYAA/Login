@@ -11,7 +11,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-
+    {{-- jquery --}}
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -41,25 +43,25 @@
             @endif
 
             {{-- form start --}}
-            <form class="mt-3 mx-3 " method="POST" action="{{ url('/store') }}">
+            <form class="mt-3 mx-3 " method="POST" action="{{ url('/store') }}" id="RegistrationForm">
                 <h2>REGISTRATION FORM</h2>
                 <p>Please fill in the information below </p>
                 {{-- name --}}
                 <div class="col">
                     <label for="name" class="col-form-label">First Name<span class="star">*</span></label>
                     <input type="text" class="form-control bg " id="first_name" name="first_name"
-                        placeholder="Enter Your First Name" required>
+                        placeholder="Enter Your First Name" value="{{ old('first_name') }}" required>
                 </div>
                 <div class="col">
                     <label for="name" class="col-form-label">Last Name<span class="star">*</span></label>
                     <input type="text" class="form-control bg " id="last_name" name="last_name"
-                           placeholder="Enter Your Last Name" required>
+                           placeholder="Enter Your Last Name" value="{{ old('last_name') }}" required>
                 </div>
                 {{-- email --}}
                 <div class="col">
                     <label for="email" class="col-form-label">Email<span class="star">*</span></label>
-                    <input type="email" class="form-control bg " id="email" name="email"
-                        placeholder="Enter Your Email" required>
+                    <input type="email" class="form-control bg" id="email" name="email"
+                        placeholder="Enter Your Email" value="{{ old('email') }}" required>
                 </div>
                 {{-- password --}}
                 <div class="col">
@@ -94,5 +96,29 @@
         </div>
 
 </body>
+<script>
+$(document).ready(function() {
+  $('#RegistrationForm').submit(function(event) {
+    // Prevent the form from submitting
 
+    // Get the email value
+    var email = $('#email').val();
+
+    // Regular expression for basic email validation
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Check if the email is valid
+    if (emailRegex.test(email)) {
+      // If valid, submit the form
+        $('#email').parent().find('.email_error').remove();
+      // You can replace the alert with the actual form submission code here
+    } else {
+      // If not valid, show an error message or perform any other action
+      $('#email').parent().find('.email_error').remove();
+        $('#email').parent().append('<span class="email_error text-danger">Invalid email address. Please enter a valid email.</span>');
+        event.preventDefault();
+    }
+  });
+});
+</script>
 </html>

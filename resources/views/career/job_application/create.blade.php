@@ -185,7 +185,7 @@
                         <div class="col-md-4">
                             <label class="form-label">Alternative Phone/Mobile </label>
                             <br>
-                            <input type="tel" class=" form-control phoneInputField" name="alternative_phone"
+                            <input type="number" class=" form-control phoneInputField" name="alternative_phone"
                                 id="alternative_phone"
                                 value="{{ old('alternative_phone') ?? ($jobApplication->alternative_phone ?? '') }}">
                             <p class="errorText" style="color: red;"></p>
@@ -696,7 +696,7 @@
                     inputElement.value = '';
                     var id = inputElement.id;
                     $('#'+id).parent().parent().find('.image_preview').remove();
-                    $('#'+id).parent().parent().append('<span class="image_preview text-danger">Image size must be less than 1MB</span>');
+                    $('#'+id).parent().parent().append('<span class="image_preview text-danger">File size must be less than 1MB</span>');
                 }
             });
         }

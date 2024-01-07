@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Mail\ResetPasswordMail;
 
 class ForgetPasswordController extends Controller
 {
@@ -31,11 +32,11 @@ class ForgetPasswordController extends Controller
             'token' => $token,
            'created_at' => carbon::now(),
         ]);
-
-        Mail::send('auth.email.forgetpassword', ['token' => $token], function ($message) use ($request) {
+        Mail::to($request->input('email'))->send(new ResetPasswordMail(['token' => $token, 'email' => $request->input('email')]));
+        /*Mail::send('auth.email.forgetpassword', ['token' => $token], function ($message) use ($request) {
             $message->to($request->input('email'));
             $message->subject('Reset Password');
-        });
+        });*/
 
         return back()->with('message', 'We have sent you an email with a reset password link.');
     }
@@ -70,6 +71,6 @@ class ForgetPasswordController extends Controller
         ->where('email', $request->input('email'))
         ->delete();
 
-        return redirect('/login')->with('message', 'your password has been changed');
+        return redirect('/login')->with('success', 'Password has been reset!');
     }
 }

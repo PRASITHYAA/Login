@@ -67,7 +67,7 @@
                 <div class="col-md-4 row">
                     <label class="form-label mt-3">Expected Salary Per Annum <span style="color: red;">*</span></label>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="currency" name="currency" placeholder="USD" value="{{ old('currency') ?? ($disclaimer->currency ?? '') }}" required>
+                        <input type="text" class="form-control alphabetic-input" id="currency" name="currency" placeholder="USD" value="{{ old('currency') ?? ($disclaimer->currency ?? '') }}" required>
                     </div>
                     <div class="col-md-9">
                         <input type="number" class="form-control" id="expected_salary" name="expected_salary" placeholder="Expected Salary Per Annum" value="{{ old('expected_salary') ?? ($disclaimer->expected_salary ?? '') }}" required>
@@ -123,7 +123,7 @@
                         <div class="col-md-6">
                             <label class="form-label">PLACE <span style="color: red;">*</span></label>
                             <input style="background-color: rgba(248, 235, 235, 0.726);" id="disclaimer_place"
-                                type="text" class="form-control" name="disclaimer_place"
+                                type="text" class="form-control alphabetic-input" name="disclaimer_place"
                                    value="{{ old('disclaimer_place') ?? ($disclaimer->disclaimer_place ?? '') }}" required>
                         </div>
                         <!-- checkbox -->

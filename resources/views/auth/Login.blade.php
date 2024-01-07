@@ -35,7 +35,13 @@
     <div class="container-fluild">
         <div class="container mt-5 d-flex align-items-center justify-content-center ">
             <div class="col-lg-4 border">
-
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <span>{{ $error }}</span>
+                            @endforeach
+                    </div>
+                @endif
                 @if (session('error'))
                     <div class="alert alert-danger">
                         {{ session('error') }}
@@ -44,11 +50,12 @@
                     @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
+                            @php session()->forget('success'); @endphp
                         </div>
                     @endif
 
                 {{-- form start --}}
-                <form class="mt-3 mx-3" method="POST" action="{{ url('/authenticate') }}">
+                <form class="mt-3 mx-3" method="POST" action="{{ url('/authenticate') }}" id="LoginForm">
                     <h2>LOGIN </h2>
                     <p>Please fill in the information below </p>
                     {{-- email --}}
@@ -92,5 +99,4 @@
         </div>
 
 </body>
-
 </html>

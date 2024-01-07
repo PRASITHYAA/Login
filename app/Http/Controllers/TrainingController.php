@@ -131,11 +131,11 @@ class TrainingController extends Controller
         $emailData['to_date'] = $training->course_title->to_date;
         $emailData['duration'] = $training->course_title->duration;
         $emailData['created_at'] = Carbon::parse($training->created_at)->format('d_m_Y_h_i_A');;
-        $this->savePdf($training);
+        /*$this->savePdf($training);
         $emailData['view'] = 'mail.training_submission';
         Mail::to(env('EMAIL_TO', $training->primary_email))->send(new TrainingSubmission($emailData));
         $emailData['view'] = 'mail.training_submission_admin';
-        Mail::to(env('EMAIL_TO_TRAINING_ADMIN'))->send(new TrainingSubmission($emailData));
+        Mail::to(env('EMAIL_TO_TRAINING_ADMIN'))->send(new TrainingSubmission($emailData));*/
         session()->flash('success', 'Training form updated successfully.');
         return redirect()->route('dashboard');
     }
