@@ -48,7 +48,11 @@ class UserController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email,'.$user->id,
-            'password' => 'min:6',
+                'password' => [
+                    'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/',
+                ]
+            ], [
+                'password.regex' => 'Password should have 8 characters. Atleast one captial letter, one number and one special character.'
         ]);
 
         $user->update($request->all());
@@ -71,9 +75,14 @@ class UserController extends Controller
     {
         $request->validate([
             'old_password' => 'required',
-            'password' => 'required|confirmed|min:6',
-        ],
+            'password' => [
+                    'required',
+                    'confirmed',
+                    'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/',
+                ]
+            ],
             [
+                'password.regex' => 'Password should have 8 characters. Atleast one captial letter, one number and one special character.',
                 'password.confirmed' => 'The password confirmation does not match.',
             ]);
         $user = auth()->user();

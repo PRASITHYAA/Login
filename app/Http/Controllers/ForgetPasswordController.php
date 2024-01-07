@@ -52,9 +52,16 @@ class ForgetPasswordController extends Controller
             [
                 // 'email' => 'required|email|exist :users',
                 'email' => 'required|email|exists:users,email',
-                 'password' => 'required|min:6|confirmed',
-            ]
-        );
+                'password' => [
+                    'required',
+                    'confirmed',
+                    'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,}$/',
+                ]
+            ],
+            [
+                'password.regex' => 'Password should have 8 characters. Atleast one captial letter, one number and one special character.',
+                'password.confirmed' => 'The password confirmation does not match.',
+        ]);
         $password_reset_request = DB::table('password_resets')
         ->where('email', $request->input('email'))
         ->where('token', $request->token)
