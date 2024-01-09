@@ -103,8 +103,8 @@
                         <!-- dateofbirth -->
                         <div class="col-md-4">
                             <label for="dob">Enter your date of birth <span class="red">*</span></label><br>
-                            <input class="form-control " type="date" name="dob" id="dob"
-                                value="{{ old('dob') ?? ($jobApplication->dob ?? '') }}" oninput="calculateAge()" required>
+                            <input class="form-control datepicker-age" type="text" name="dob" id="dob"
+                                value="{{ old('dob') ?? ($jobApplication->dob ?? '') }}" required>
                             <span class="text-danger" id="ageError"></span>
                         </div>
                         <!-- age -->
@@ -329,7 +329,7 @@
                         <!-- fatherdateofbirth -->
                         <div class="col-md-3">
                             <label class="form-label">Date Of Birth <span class="red">*</span></label>
-                            <input type="date" class="form-control" id="father_date_of_birth"
+                            <input type="text" class="form-control datepicker" id="father_date_of_birth"
                                 value="{{ old('father_date_of_birth') ?? ($jobApplication->father_date_of_birth ?? '') }}"
                                 name="father_date_of_birth" required>
                         </div>
@@ -373,7 +373,7 @@
                         <!-- mother dob -->
                         <div class="col-md-3">
                             <label class="form-label">Date Of Birth <span class="red">*</span></label>
-                            <input type="date" class="form-control" name="mother_date_of_birth"
+                            <input type="text" class="form-control datepicker" name="mother_date_of_birth"
                                 id="mother_date_of_birth"
                                 value="{{ old('mother_date_of_birth') ?? ($jobApplication->mother_date_of_birth ?? '') }}"
                                 required>
@@ -438,7 +438,7 @@
                                     <!-- spousedob -->
                                     <div class="col-md-3">
                                         <label class="form-label pt-2">Date of Birth <span class="red">*</span></label>
-                                        <input type="date" class="form-control bg marital-status-input"
+                                        <input type="text" class="form-control bg marital-status-input datepicker"
                                             name="spouse_date_of_birth" id="spouse_date_of_birth"
                                             value="{{ old('spouse_date_of_birth') ?? ($jobApplication->spouse_date_of_birth ?? '') }}"
                                             placeholder="Date of Birth">
@@ -520,8 +520,8 @@
                                                         <div class="col-md-3">
                                                             <label class="form-label pt-2">Date of Birth <span
                                                                     class="red">*</span></label>
-                                                            <input type="date" name="siblings_date_of_birth[]"
-                                                                class="form-control sibling-dob-input bg"
+                                                            <input type="text" name="siblings_date_of_birth[]"
+                                                                class="form-control sibling-dob-input bg datepicker"
                                                                 id="siblings_date_of_birth_1"
                                                                 value="{{ $sibling->dob ?? '' }}"
                                                                 placeholder="Date of Birth" required="true">
@@ -593,8 +593,8 @@
                                                     <div class="col-md-3">
                                                         <label class="form-label pt-2">Date of Birth <span
                                                                 class="red">*</span></label>
-                                                        <input type="date" name="siblings_date_of_birth[]"
-                                                               class="form-control sibling-dob-input bg"
+                                                        <input type="text" name="siblings_date_of_birth[]"
+                                                               class="form-control sibling-dob-input bg datepicker"
                                                                id="siblings_date_of_birth_1"
                                                                value="{{ old('siblings_date_of_birth')[0] ?? '' }}"
                                                                placeholder="Date of Birth">
@@ -751,8 +751,6 @@
             }
         }
     </script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
             $('#myForm').submit(function (e) {
@@ -976,28 +974,8 @@
     </script>
     <link rel="stylesheet" href=
 "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-<link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css" rel="stylesheet">
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.js"></script>
     <script>
         $(document).ready(function() {
-        /*var date = [{"mask": "##/##/####"}];
-        $('input[type="date"]').inputmask({
-            mask: date,
-            greedy: false,
-            alias: "dd/mm/yyyy",
-            placeholder: "dd/mm/yyyy",
-            definitions: {'#': {validator: "[0-9]", cardinality: 1}}
-        });
-        $('input[type="date"]').datepicker({
-              dateFormat: 'dd/mm/yyyy',
-              defaultDate: new Date(),
-              changeMonth: true,
-              changeYear: true,
-              maxDate: 0,
-              //yearRange: '1900:'+(new Date).getFullYear()
-              yearRange: "1900:c+100",
-        });*/
-
             const formContainer = $("#formContainer2");
             const addFieldButton = $(".add-field-button");
 

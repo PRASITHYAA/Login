@@ -340,10 +340,31 @@
     </script>
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.1/mdb.min.js"></script>
+<link href= 
+'//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css'
+        rel='stylesheet'> 
 
+    <script src= 
+"https://code.jquery.com/ui/1.13.2/jquery-ui.js"> 
+    </script>
     {{-- Alphabetic --}}
     <script>
         $(document).ready(function() {
+            $(".datepicker, .datepicker-age").attr('placeholder', 'mm/dd/yyyy');
+            $('input[type="date"]').attr({'placeholder': 'mm/dd/yyyy', 'type': 'text'}).addClass('datepicker');
+            $(".datepicker").datepicker({
+                yearRange: '1950:2050', // Set the start year and end year
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd'
+            });
+            $(".datepicker-age").datepicker({
+                yearRange: '1950:2050', // Set the start year and end year
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd',
+                onSelect: calculateAge
+            }); 
             $('.alphabetic-input').on('input', function() {
                 var inputValue = $(this).val();
                 var alphabeticValue = inputValue.replace(/[^A-Za-z ]/g, '');
@@ -415,6 +436,7 @@
             $(".phoneInputField, .numeric-input").inputFilter(function(value) {
                 return /^\d*$/.test(value);    // Allow digits only, using a RegExp
             },"Only digits allowed");
+
         });
     </script>
 </body>
