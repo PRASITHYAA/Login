@@ -248,7 +248,7 @@
                         </select>
                         <!-- Zip Code -->
                         <label class="form-label">Zip Code<span class="span-star">*</span></label>
-                        <input type="number" class="form-control select-back-colour" id="validationCustom02"
+                        <input type="text" class="form-control select-back-colour numeric-input" id="validationCustom02"
                                value="{{ old('zip_code') ?? ($training->zip_code ?? '') }}" name="zip_code" placeholder="Zip" required>
                     </div>
                     <div class="col-lg-3"></div>
@@ -329,7 +329,7 @@
                                         </select>
                                         <!-- Zip Code -->
                                         <label class="form-label">Zip Code<span class="span-star">*</span></label>
-                                        <input type="number" class="form-control select-back-colour"
+                                        <input type="text" class="form-control select-back-colour numeric-input"
                                                id="validationCustom02" value="{{ old('permanent_zip_code') ?? ($training->permanent_zip_code ?? '') }}" name="permanent_zip_code"
                                                placeholder="Zip" {{ isset($training->permanent_zip_code) ? 'required' : '' }}>
                                     </div>
@@ -786,10 +786,10 @@
         var rzp1 = new Razorpay(options);
         $(document).ready(function () {
             $('#training_form').on('submit', function (e) {
-                /*if($('#payment_id').val() == undefined) {
+                if($('#payment_id').val() == undefined) {
                     e.preventDefault();
                     rzp1.open();
-                }*/
+                }
                 const inputs = document.querySelectorAll('.phoneInputField');
                 inputs.forEach(function (input, index) {
                     var phoneNumber = itis[index].getNumber();

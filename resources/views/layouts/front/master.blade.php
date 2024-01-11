@@ -352,6 +352,7 @@
         $(document).ready(function() {
             $(".datepicker, .datepicker-age").attr('placeholder', 'mm/dd/yyyy');
             $('input[type="date"]').attr({'placeholder': 'mm/dd/yyyy', 'type': 'text'}).addClass('datepicker');
+            $('.datepicker-experiance').removeClass('datepicker');
             $(".datepicker").datepicker({
                 yearRange: '1950:2050', // Set the start year and end year
                 changeMonth: true,
@@ -364,6 +365,13 @@
                 changeYear: true,
                 dateFormat: 'yy-mm-dd',
                 onSelect: calculateAge
+            });
+            $(".datepicker-experiance").datepicker({
+                yearRange: '1950:2050', // Set the start year and end year
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd',
+                onSelect: validateDateRange
             }); 
             $('.alphabetic-input').on('input', function() {
                 var inputValue = $(this).val();
@@ -401,6 +409,75 @@
                     }
                 }
             });
+            function calculateAge() {
+                const dobInput = document.getElementById("dob").value;
+
+                if (!dobInput) {
+                    document.getElementById("ageOutput").value = "";
+                    return;
+                }
+
+                const dob = new Date(dobInput);
+                const currentDate = new Date();
+
+                if (dob >= currentDate) {
+                    alert("Please enter a valid date of birth.");
+                    document.getElementById("ageOutput").value = "";
+                    return;
+                }
+                const ageInMilliseconds = currentDate - dob;
+                const ageInYears = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365));
+
+                document.getElementById("ageOutput").value = ageInYears;
+                if(ageInYears < 18) {
+                    $('#ageError').text('Age Should be above 18 years');
+                } else {
+                    $('#ageError').text('');
+                }
+            }
+            function validateDateRange() {
+                var input_id = $(this).attr('id');
+                var idPartsFrom = input_id.match(/^employer_fromDate_(\d+)$/);
+                var idPartsTo = input_id.match(/^employer_toDate_(\d+)$/);
+                var incPart = 1;
+                if(idPartsFrom != null) {
+                    incPart = input_id.split('employer_fromDate_');
+                } else if(idPartsTo != null) {
+                    incPart = input_id.split('employer_toDate_');
+                }
+                console.log(incPart[1]);
+                const fromDate = new Date($("#employer_fromDate_"+incPart[1]).val());
+                const toDate = new Date($("#employer_toDate_"+incPart[1]).val());
+                var validationMessage = $("#validationMessage");
+                if (fromDate > toDate) {
+                    validationMessage.remove();
+                    $('<p style="color: red;" id="validationMessage" class="error">The From Date must be before the To Date</p>').insertAfter("#employer_toDate_"+incPart[1]);
+                    validationMessage.show();
+                } else {
+                    validationMessage.remove();
+                    calculateExperience($("#employer_fromDate_"+incPart[1]), $("#employer_toDate_"+incPart[1]), incPart);
+                }
+            }            
+            function calculateExperience(fromDateInput, toDateInput, input_name) {
+                console.log("#totalExperience_"+input_name[1]);
+                const totalExperienceInput = $("#employer_totalExperience_"+input_name[1]);
+                const fromDate = new Date(fromDateInput.val());
+                const toDate = new Date(toDateInput.val());
+
+                if (!isNaN(fromDate.getTime()) && !isNaN(toDate.getTime())) {
+                    // Calculate the difference in months and years
+                    const monthsDifference = (toDate.getMonth() - fromDate.getMonth()) + 12 * (toDate.getFullYear() - fromDate.getFullYear());
+                    const years = Math.floor(monthsDifference / 12);
+                    const months = monthsDifference % 12;
+
+                    // Display the total experience in the input field
+                    const totalExperience = years + " years and " + months + " months";
+                    totalExperienceInput.val(totalExperience);
+                } else {
+                    // If the input dates are not valid, clear the total experience field
+                    totalExperienceInput.val('');
+                }
+            }            
         });
     </script>
     @yield('script')

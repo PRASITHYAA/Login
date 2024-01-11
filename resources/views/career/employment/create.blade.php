@@ -115,14 +115,14 @@
                                         <div class="col-md-4">
                                             <label class="form-label">From Date <span style="color: red;">*</span></label>
                                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                                   name="employer_from_date[]" class="form-control fromDate" placeholder="" id="employer_fromDate_{{$ekey+1}}"
+                                                   name="employer_from_date[]" class="form-control fromDate datepicker-experiance" placeholder="" id="employer_fromDate_{{$ekey+1}}"
                                                    value="{{ old('from_date') ?? ($employer->from_date ?? '') }}">
                                         </div>
                                         <!-- To Date -->
                                         <div class="col-md-4">
                                             <label class="form-label">To Date <span style="color: red;">*</span></label>
                                             <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                                   name="employer_to_date[]" class="form-control toDate" placeholder="" id="employer_toDate_{{$ekey+1}}"
+                                                   name="employer_to_date[]" class="form-control toDate datepicker-experiance" placeholder="" id="employer_toDate_{{$ekey+1}}"
                                                    value="{{ old('to_date') ?? ($employer->to_date ?? '') }}">
                                         </div>
                                         <!-- Experience -->
@@ -203,14 +203,14 @@
                                     <div class="col-md-4">
                                         <label class="form-label">From Date <span style="color: red;">*</span></label>
                                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                            name="employer_from_date[]" class="form-control fromDate" placeholder="" id="employer_fromDate_1"
+                                            name="employer_from_date[]" class="form-control fromDate datepicker-experiance" placeholder="" id="employer_fromDate_1"
                                             value="{{ old('from_date') ?? ($employment->from_date ?? '') }}">
                                     </div>
                                     <!-- To Date -->
                                     <div class="col-md-4">
                                         <label class="form-label">To Date <span style="color: red;">*</span></label>
                                         <input style="background-color: rgba(248, 235, 235, 0.726);" type="date"
-                                            name="employer_to_date[]" class="form-control toDate" placeholder="" id="employer_toDate_1"
+                                            name="employer_to_date[]" class="form-control toDate datepicker-experiance" placeholder="" id="employer_toDate_1"
                                             value="{{ old('to_date') ?? ($employment->to_date ?? '') }}">
                                         <p style="color: red;" id="validationMessage" class="error"></p>
                                     </div>
@@ -433,8 +433,8 @@
             </form>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@endsection
+@section('script')
     <script>
         $(document).ready(function() {
             $('#EmploymentForm').submit(function (e) {
@@ -528,10 +528,12 @@
                 }
             });
         });
-        $(document).ready(function () {
-            <!-- from date to date validation -->
-            $(".fromDate, .toDate").on("input", validateDateRange);
-            function validateDateRange() {
+    </script>
+    <script>
+        $(document).ready(function() {
+            const formContainer = $("#form-container");
+            const addFieldButton = $(".add-field-button");
+            function validateDateRange1() {
                 var input_id = $(this).attr('id');
                 var idPartsFrom = input_id.match(/^employer_fromDate_(\d+)$/);
                 var idPartsTo = input_id.match(/^employer_toDate_(\d+)$/);
@@ -551,12 +553,10 @@
                     validationMessage.show();
                 } else {
                     validationMessage.remove();
-                    calculateExperience($("#employer_fromDate_"+incPart[1]), $("#employer_toDate_"+incPart[1]), incPart);
+                    calculateExperience1($("#employer_fromDate_"+incPart[1]), $("#employer_toDate_"+incPart[1]), incPart);
                 }
             }
-            {{-- Experience --}}
-
-            function calculateExperience(fromDateInput, toDateInput, input_name) {
+            function calculateExperience1(fromDateInput, toDateInput, input_name) {
                 console.log("#totalExperience_"+input_name[1]);
                 const totalExperienceInput = $("#employer_totalExperience_"+input_name[1]);
                 const fromDate = new Date(fromDateInput.val());
@@ -576,13 +576,6 @@
                     totalExperienceInput.val('');
                 }
             }
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            const formContainer = $("#form-container");
-            const addFieldButton = $(".add-field-button");
-
             addFieldButton.click(function(e) {
                 e.preventDefault();
                 const clonedFields = formContainer.find(".form-fields:last").clone(true);
@@ -595,6 +588,18 @@
                         var numericValue = parseInt(idParts[2]); // Extract the numeric value
                         $(this).attr('id', 'employer_'+employerType+'_'+(parseInt(numericValue)+1));
                     }
+
+                    clonedFields.find("input.datepicker-experiance")
+    .removeClass('hasDatepicker')
+    .removeData('datepicker')
+    .unbind()
+    .datepicker({
+                yearRange: '1950:2050', // Set the start year and end year
+                changeMonth: true,
+                changeYear: true,
+                dateFormat: 'yy-mm-dd',
+                onSelect: validateDateRange1,
+    });
                 });
                 /*input_name = input_name.split('employer_name_');
                 var siblings_id = parseInt(input_name[1])+1;
