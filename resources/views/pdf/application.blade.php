@@ -213,8 +213,7 @@
         <th>Description</th>
         <th>Name</th>
         <th>DOB</th>
-        <th>Contact</th>
-        <th>Email</th>
+        <th>Email / Mobile Number</th>
         <th>Photo</th>
     </tr>
     </thead>
@@ -223,8 +222,7 @@
         <td>Name</td>
         <td>{{ $first_name.' '.$last_name }}</td>
         <td>{{ $dob }}</td>
-        <td> {{ $phone }}</td>
-        <td>{{ $email }}</td>
+        <td> {{ $email.' / '.$phone }}</td>
         <td><img style="height:100px" src="{{ asset('storage/' . $image) }}" alt="Image"></td>
     </tr>
     <tr>
@@ -232,7 +230,6 @@
         <td> {{ $father_name }}</td>
         <td>{{ $father_date_of_birth }}</td>
         <td> {{ $father_phone }}</td>
-        <td></td>
         <td><img style="height:100px" src="{{ asset('storage/' . $father_image) }}" alt="Father's Image"></td>
 
     </tr>
@@ -241,7 +238,6 @@
         <td> {{ $mother_name }}</td>
         <td>{{ $mother_date_of_birth }}</td>
         <td>{{ $mother_phone }}</td>
-        <td></td>
         <td><img style="height:100px" src="{{ asset('storage/' . $mother_image) }}" alt="Mother's Image"></td>
 
     </tr>
@@ -250,8 +246,7 @@
             <td>Spouse Name (If married)</td>
             <td> {{ $spouse_name }}</td>
             <td>{{ $spouse_date_of_birth }}</td>
-            <td>{{ $spouse_phone }}</td>
-            <td>{{ $spouse_email }}</td>
+            <td>{{ $spouse_email.' / '.$spouse_phone }}</td>
             <td><img style="height:100px" src="{{ asset('storage/' . $spouse_image) }}" alt="Spouse's Image"></td>
 
         </tr>
@@ -262,8 +257,7 @@
                 <td>Sibling {{ $key+1 }}</td>
                 <td>{{ $sib['name'] }}</td>
                 <td>{{ $sib['dob'] }}</td>
-                <td>{{ $sib['phone'] }}</td>
-                <td>{{ $sib['email'] }}</td>
+                <td>{{ $sib['email'].' / '.$sib['phone'] }}</td>
                 <td><img style="height:100px" src="{{ asset('storage/' . $sib['photo']) }}" alt="Sibling's Image"></td>
             </tr>
         @endforeach

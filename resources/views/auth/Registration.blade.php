@@ -49,12 +49,12 @@
                 {{-- name --}}
                 <div class="col">
                     <label for="name" class="col-form-label">First Name<span class="star">*</span></label>
-                    <input type="text" class="form-control bg " id="first_name" name="first_name"
+                    <input type="text" class="form-control bg alphabetic-input" id="first_name" name="first_name"
                         placeholder="Enter Your First Name" value="{{ old('first_name') }}" required>
                 </div>
                 <div class="col">
                     <label for="name" class="col-form-label">Last Name<span class="star">*</span></label>
-                    <input type="text" class="form-control bg " id="last_name" name="last_name"
+                    <input type="text" class="form-control bg alphabetic-input" id="last_name" name="last_name"
                            placeholder="Enter Your Last Name" value="{{ old('last_name') }}" required>
                 </div>
                 {{-- email --}}
@@ -98,6 +98,11 @@
 </body>
 <script>
 $(document).ready(function() {
+    $('.alphabetic-input').on('input', function() {
+        var inputValue = $(this).val();
+        var alphabeticValue = inputValue.replace(/[^A-Za-z ]/g, '');
+        $(this).val(alphabeticValue);
+    });    
   $('#RegistrationForm').submit(function(event) {
     // Prevent the form from submitting
 

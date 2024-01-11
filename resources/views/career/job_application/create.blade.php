@@ -719,39 +719,7 @@
             document.getElementById("marriedInputs").style.display = "none";
             document.getElementById("singleInputs").style.display = "block";
         }
-    </script>
 
-
-    <!-- age  -->
-    <script>
-        function calculateAge() {
-            const dobInput = document.getElementById("dob").value;
-
-            if (!dobInput) {
-                document.getElementById("ageOutput").value = "";
-                return;
-            }
-
-            const dob = new Date(dobInput);
-            const currentDate = new Date();
-
-            if (dob >= currentDate) {
-                alert("Please enter a valid date of birth.");
-                document.getElementById("ageOutput").value = "";
-                return;
-            }
-            const ageInMilliseconds = currentDate - dob;
-            const ageInYears = Math.floor(ageInMilliseconds / (1000 * 60 * 60 * 24 * 365));
-
-            document.getElementById("ageOutput").value = ageInYears;
-            if(ageInYears < 18) {
-                $('#ageError').text('Age Should be above 18 years');
-            } else {
-                $('#ageError').text('');
-            }
-        }
-    </script>
-    <script>
         $(document).ready(function() {
             $('#myForm').submit(function (e) {
                 const inputs = document.querySelectorAll('.phoneInputField');

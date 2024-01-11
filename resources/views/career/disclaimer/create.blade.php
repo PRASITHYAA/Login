@@ -193,26 +193,34 @@
 
     {{-- image --}}
     <script>
-        const signatureInput = document.getElementById('disclaimer_signature');
-        const signaturePreview = document.getElementById('disclaimer_SignaturePreview');
-        // signature
-        signatureInput.addEventListener('change', function() {
-            const file = this.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function(e) {
-                    signaturePreview.src = e.target.result;
-                    signaturePreview.style.display = 'block';
-                };
-
-                reader.readAsDataURL(file);
-            } else {
-                signaturePreview.src = '#';
-                signaturePreview.style.display = 'none';
-            }
-        });
+        function handleImagePreview(inputElement, previewElement) {
+            inputElement.addEventListener('change', function(event) {
+                var image = previewElement;
+                if(event.target.files[0].size/1024 <= 1024) {
+                    image.src = URL.createObjectURL(event.target.files[0]);
+                    var mime = event.target.files[0].type;
+                    if(mime == 'image/jpg' || mime == 'image/jpeg' || mime == 'image/gif' || mime == 'image/png' || mime == 'image/x-icon') {
+                        image.style.display = 'block';
+                        $('.image_preview').remove();
+                    } else {
+                        image.src = '';
+                        image.style.display = 'none';
+                        inputElement.value = '';
+                        var id = inputElement.id;
+                        $('#'+id).parent().parent().find('.image_preview').remove();
+                        $('#'+id).parent().parent().append('<span class="image_preview text-danger">Invalid Image</span>');
+                    }
+                } else {
+                    image.src = '';
+                    image.style.display = 'none';
+                    inputElement.value = '';
+                    var id = inputElement.id;
+                    $('#'+id).parent().parent().find('.image_preview').remove();
+                    $('#'+id).parent().parent().append('<span class="image_preview text-danger">File size must be less than 1MB</span>');
+                }
+            });
+        }
+        handleImagePreview(document.getElementById('disclaimer_signature'), document.getElementById('disclaimer_SignaturePreview'));
     </script>
 
 
