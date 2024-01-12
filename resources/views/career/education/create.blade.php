@@ -116,7 +116,7 @@
                                 <label class="form-label">GPA/Percentage
                                     <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control qualification" placeholder="9 GPA" id="high_school_percentage"
+                                    class="form-control qualification numeric-input" placeholder="9 GPA" id="high_school_percentage"
                                     name="high_school_percentage" value="{{ old('high_school_percentage') ?? $education->high_school_percentage ?? '' }}">
                             </div>
                             <!-- High school Class -->
@@ -437,7 +437,7 @@
                             <div class="col-lg-2 mt-3">
                                 <label class="form-label">Major <span style="color: red;">*</span></label>
                                 <input style="background-color: rgba(248, 235, 235, 0.726);" type="text"
-                                    class="form-control" placeholder="CSE" id="diploma_major" name="diploma_major"
+                                    class="form-control numeric-input" placeholder="CSE" id="diploma_major" name="diploma_major"
                                     value="{{ old('diploma_major') ?? ($education->diploma_major ?? '') }}">
                             </div>
                             <!-- Diploma Field of Interest -->

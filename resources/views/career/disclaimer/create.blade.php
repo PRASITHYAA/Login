@@ -60,7 +60,7 @@
                 <!-- Current Salary -->
                 <div class="col-md-4">
                     <label class="form-label">Current Salary Per Annum <span class="red">*</span></label>
-                    <input type="number" class="form-control bg" id="current_salary" name="current_salary"
+                    <input type="text" class="form-control bg numeric-input" id="current_salary" name="current_salary"
                         value="{{ old('current_salary') ?? ($disclaimer->current_salary ?? '') }}" required>
                 </div>
                 <!-- Expected Salary -->
@@ -70,7 +70,7 @@
                         <input type="text" class="form-control alphabetic-input" id="currency" name="currency" placeholder="USD" value="{{ old('currency') ?? ($disclaimer->currency ?? '') }}" required>
                     </div>
                     <div class="col-md-9">
-                        <input type="number" class="form-control" id="expected_salary" name="expected_salary" placeholder="Expected Salary Per Annum" value="{{ old('expected_salary') ?? ($disclaimer->expected_salary ?? '') }}" required>
+                        <input type="text" class="form-control numeric-input" id="expected_salary" name="expected_salary" placeholder="Expected Salary Per Annum" value="{{ old('expected_salary') ?? ($disclaimer->expected_salary ?? '') }}" required>
                     </div>
                 </div>
                 <!-- paragraph -->
